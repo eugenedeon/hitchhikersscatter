@@ -3,7 +3,7 @@ import os
 
 # internal distributions
 os.system('g++ infiniteRod_isotropicpoint_isotropicscatter_exponential.cpp -o infiniteRod_isotropicpoint_isotropicscatter_exponential -O3 -I ../../../include/')
-os.system('g++ infiniteRod_isotropicpoint_anisotropicscatter_exponential.cpp -o infiniteRod_isotropicpoint_anisotropicscatter_exponential -O3 -I ../../../include/')
+#os.system('g++ infiniteRod_isotropicpoint_anisotropicscatter_exponential.cpp -o infiniteRod_isotropicpoint_anisotropicscatter_exponential -O3 -I ../../../include/')
 
 # fluence parameters
 maxx = 10.0
@@ -23,7 +23,7 @@ if 1:
           print 'computing: ' + filename
           os.system( './infiniteRod_isotropicpoint_isotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(maxx) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' > ' + filename )
 
-if 1:
+if 0:
 	for g in [-0.9, -0.3, 0.3, 0.9]:
 	  for mut in muts:
 	      for c in cs:
