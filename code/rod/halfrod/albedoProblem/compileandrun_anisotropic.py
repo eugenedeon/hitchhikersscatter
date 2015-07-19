@@ -4,41 +4,30 @@ import os
 # internal distributions
 os.system('g++ halfRod_albedoproblem_anisotropicscatter_exponential.cpp -o halfRod_albedoproblem_anisotropicscatter_exponential -O3 -I ../../../include/')
 
-# variation in g
-numsamples = 1000000
-c = 0.95
-mut = 1
-maxx = 10
-dx = 1
-numorders = 2
-nummoments = 2
-if 1:
-  g = -0.9
-  while g <= 0.9:    
-    filename = 'data/halfrod_albedoproblem_anisotropicscatter_exp_c' + str(c) + '_mut' + str(mut) + '_g' + str(g) + '.txt'
-    print 'computing: ' + filename
-    os.system( './halfRod_albedoproblem_anisotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(maxx) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str( g ) + ' > ' + filename )
-    g += 0.1
+maxx = 10.0
+dx = 20.0 / 101
+
+cs = [ 0.1, 0.3, 0.5, 0.7, 0.9 ]
+muts = [1.0, 3.0]
+gs = [-0.9, -0.7, -0.5, -0.3, -0.1, 0.1, 0.3, 0.5, 0.7, 0.9]
 
 numsamples = 10000000
+numorders = 20
+nummoments = 10
+
 if 1:
-  dx = 0.1
-  g = 0.7
-  c = 0.7
-  numorders = 10
-  nummoments = 10
-  filename = 'data/halfrod_albedoproblem_anisotropicscatter_exp_c' + str(c) + '_mut' + str(mut) + '_g' + str(g) + '.txt'
-  print 'computing: ' + filename
-  os.system( './halfRod_albedoproblem_anisotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(maxx) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str( g ) + ' > ' + filename )
-    
+  for g in gs:
+    for c in cs:
+      for mut in muts:
+        filename = 'data/halfrod_albedoproblem_anisotropicscatter_exp_c' + str(c) + '_mut' + str(mut) + '_g' + str(g) + '.txt'
+        print 'computing: ' + filename
+        os.system( './halfRod_albedoproblem_anisotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(maxx) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str( g ) + ' > ' + filename )
+
+numsamples = 1000000
 if 1:
-  dx = 0.1
-  g = 0.7
-  c = 0.7
-  mut = 0.4
-  numorders = 10
-  nummoments = 10
-  filename = 'data/halfrod_albedoproblem_anisotropicscatter_exp_c' + str(c) + '_mut' + str(mut) + '_g' + str(g) + '.txt'
-  print 'computing: ' + filename
-  os.system( './halfRod_albedoproblem_anisotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(maxx) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str( g ) + ' > ' + filename )
-    
+  for g in gs:
+    for c in [0.95,0.98,0.99,0.999]:
+      for mut in muts:
+        filename = 'data/halfrod_albedoproblem_anisotropicscatter_exp_c' + str(c) + '_mut' + str(mut) + '_g' + str(g) + '.txt'
+        print 'computing: ' + filename
+        os.system( './halfRod_albedoproblem_anisotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(maxx) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str( g ) + ' > ' + filename )
