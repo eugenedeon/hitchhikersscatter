@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     90689,       2219]
-NotebookOptionsPosition[     87004,       2085]
-NotebookOutlinePosition[     87418,       2103]
-CellTagsIndexPosition[     87375,       2100]
+NotebookDataLength[    102440,       2426]
+NotebookOptionsPosition[     98640,       2288]
+NotebookOutlinePosition[     99053,       2306]
+CellTagsIndexPosition[     99010,       2303]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -86,33 +86,35 @@ Cell["Half rod reflectance/albedo (R)", "Subsection",
   3.64291416791686*^9, 3.6429141684669037`*^9}, {3.642914333967946*^9, 
   3.6429143355347443`*^9}}],
 
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{
   RowBox[{"Clear", "[", 
-   RowBox[{"\[Alpha]", ",", "g"}], "]"}], ";", 
-  RowBox[{
-   RowBox[{"R", "[", "\[Alpha]_", "]"}], ":=", 
-   RowBox[{"2", 
-    FractionBox[
-     RowBox[{"(", 
-      RowBox[{
-       FractionBox[
-        RowBox[{"-", "\[Alpha]"}], "2"], "-", 
-       SqrtBox[
-        RowBox[{"1", "-", "\[Alpha]"}]], "+", "1"}], ")"}], 
-     "\[Alpha]"]}]}]}]], "Input",
+   RowBox[{"\[Alpha]", ",", "g"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"halfrodalbedoisoscatter`R", "[", "\[Alpha]_", "]"}], ":=", 
+  RowBox[{"2", 
+   FractionBox[
+    RowBox[{"(", 
+     RowBox[{
+      FractionBox[
+       RowBox[{"-", "\[Alpha]"}], "2"], "-", 
+      SqrtBox[
+       RowBox[{"1", "-", "\[Alpha]"}]], "+", "1"}], ")"}], 
+    "\[Alpha]"]}]}]}], "Input",
  CellChangeTimes->{{3.61959293187952*^9, 3.619592988486793*^9}, {
-   3.643952897091851*^9, 3.643952909827197*^9}, 3.645060596153613*^9}],
+   3.643952897091851*^9, 3.643952909827197*^9}, 3.645060596153613*^9, {
+   3.6462769500975237`*^9, 3.646276953883354*^9}}],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Series", "[", 
   RowBox[{
-   RowBox[{"R", "[", "\[Alpha]", "]"}], ",", 
+   RowBox[{"halfrodalbedoisoscatter`R", "[", "\[Alpha]", "]"}], ",", 
    RowBox[{"{", 
     RowBox[{"\[Alpha]", ",", "0", ",", "5"}], "}"}]}], "]"}]], "Input",
- CellChangeTimes->{{3.64395301276322*^9, 3.6439530159736977`*^9}}],
+ CellChangeTimes->{{3.64395301276322*^9, 3.6439530159736977`*^9}, 
+   3.646277409414596*^9}],
 
 Cell[BoxData[
  InterpretationBox[
@@ -143,12 +145,14 @@ Cell[BoxData[
   Editable->False]], "Output",
  CellChangeTimes->{{3.643953013423473*^9, 3.643953016768423*^9}, 
    3.6439531274961863`*^9, 3.6450666661383247`*^9, 3.6450701608233*^9, 
-   3.646173975289732*^9, 3.646254686939445*^9, 3.646262947087016*^9}]
+   3.646173975289732*^9, 3.646254686939445*^9, 3.646262947087016*^9, 
+   3.646272134709774*^9, 3.6462726782631474`*^9, 3.646277219348131*^9, {
+   3.646277409763979*^9, 3.64627741367945*^9}}]
 }, Open  ]],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"R", "[", 
+  RowBox[{"halfrodalbedoisoscatter`R", "[", 
    RowBox[{"\[Alpha]_", ",", "n_"}], "]"}], ":=", 
   RowBox[{
    SuperscriptBox["\[Alpha]", "n"], 
@@ -156,11 +160,12 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"SeriesCoefficient", "[", 
       RowBox[{
-       RowBox[{"R", "[", "A", "]"}], ",", 
+       RowBox[{"halfrodalbedoisoscatter`R", "[", "A", "]"}], ",", 
        RowBox[{"{", 
         RowBox[{"A", ",", "0", ",", "n"}], "}"}]}], "]"}], "/.", 
      RowBox[{"A", "\[Rule]", "\[Alpha]"}]}], ")"}]}]}]], "Input",
- CellChangeTimes->{{3.6439530290024643`*^9, 3.643953031241785*^9}}]
+ CellChangeTimes->{{3.6439530290024643`*^9, 3.643953031241785*^9}, 
+   3.6462769654525433`*^9, 3.646277429964838*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -172,7 +177,7 @@ Cell["Internal distribution, \[OpenCurlyQuote]radiance\[CloseCurlyQuote]", \
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"LR", "[", 
+  RowBox[{"halfrodalbedoisoscatter`LR", "[", 
    RowBox[{"x_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_"}], "]"}], ":=", 
   SuperscriptBox["\[ExponentialE]", 
    RowBox[{
@@ -181,12 +186,12 @@ Cell[BoxData[
       RowBox[{"1", "-", "\[Alpha]"}]]}], " ", "\[CapitalSigma]t", " ", "x"}]],
    " "}]], "Input",
  CellChangeTimes->{{3.617430690623348*^9, 3.6174307057929173`*^9}, {
-  3.617430826778767*^9, 3.617430831298792*^9}, {3.619594091183975*^9, 
-  3.619594114394599*^9}}],
+   3.617430826778767*^9, 3.617430831298792*^9}, {3.619594091183975*^9, 
+   3.619594114394599*^9}, 3.6462769749823427`*^9}],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"LL", "[", 
+  RowBox[{"halfrodalbedoisoscatter`LL", "[", 
    RowBox[{"x_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_"}], "]"}], ":=", 
   FractionBox[
    RowBox[{"\[Alpha]", " ", 
@@ -201,8 +206,8 @@ Cell[BoxData[
      SqrtBox[
       RowBox[{"1", "-", "\[Alpha]"}]]}], "+", "2"}]]}]], "Input",
  CellChangeTimes->{{3.617430716019354*^9, 3.617430719357438*^9}, {
-  3.61743083377562*^9, 3.617430837914253*^9}, {3.619594163099494*^9, 
-  3.6195941960739183`*^9}}]
+   3.61743083377562*^9, 3.617430837914253*^9}, {3.619594163099494*^9, 
+   3.6195941960739183`*^9}, 3.6462769758513393`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -212,17 +217,18 @@ Cell["Fluence", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"\[Phi]", "[", 
+  RowBox[{"halfrodalbedoisoscatter`\[Phi]", "[", 
    RowBox[{"x_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_"}], "]"}], ":=", 
   RowBox[{
-   RowBox[{"LR", "[", 
+   RowBox[{"halfrodalbedoisoscatter`LR", "[", 
     RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], "+", 
-   RowBox[{"LL", "[", 
+   RowBox[{"halfrodalbedoisoscatter`LL", "[", 
     RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], 
     "]"}]}]}]], "Input",
  CellChangeTimes->{{3.61742826600518*^9, 3.617428300462263*^9}, {
-  3.6174283455645227`*^9, 3.617428382979632*^9}, {3.619594141002194*^9, 
-  3.619594157053108*^9}}]
+   3.6174283455645227`*^9, 3.617428382979632*^9}, {3.619594141002194*^9, 
+   3.619594157053108*^9}, {3.646276978139011*^9, 3.646276979698987*^9}, 
+   3.646277313980769*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -232,7 +238,7 @@ Cell["n-th collided fluence", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"\[Phi]", "[", 
+  RowBox[{"halfrodalbedoisoscatter`\[Phi]", "[", 
    RowBox[{"x_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_", ",", "n_"}], 
    "]"}], ":=", 
   RowBox[{
@@ -241,13 +247,14 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"SeriesCoefficient", "[", 
       RowBox[{
-       RowBox[{"\[Phi]", "[", 
+       RowBox[{"halfrodalbedoisoscatter`\[Phi]", "[", 
         RowBox[{"x", ",", "A", ",", "\[CapitalSigma]t"}], "]"}], ",", 
        RowBox[{"{", 
         RowBox[{"A", ",", "0", ",", "n"}], "}"}]}], "]"}], "/.", 
      RowBox[{"A", "\[Rule]", "\[Alpha]"}]}], ")"}]}]}]], "Input",
  CellChangeTimes->{{3.621359852120468*^9, 3.621359891634035*^9}, {
-  3.645060658264719*^9, 3.645060660751495*^9}}]
+  3.645060658264719*^9, 3.645060660751495*^9}, {3.646276985419786*^9, 
+  3.64627698925959*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -257,7 +264,7 @@ Cell["Moments", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"\[Phi]m", "[", 
+  RowBox[{"halfrodalbedoisoscatter`\[Phi]m", "[", 
    RowBox[{"\[Alpha]_", ",", "\[CapitalSigma]t_", ",", "k_"}], "]"}], ":=", 
   FractionBox[
    RowBox[{"2", " ", 
@@ -277,14 +284,15 @@ Cell[BoxData[
       RowBox[{"-", "1"}], "-", "k"}]], " ", 
     RowBox[{"Gamma", "[", 
      RowBox[{"1", "+", "k"}], "]"}]}], "\[Alpha]"]}]], "Input",
- CellChangeTimes->{{3.6257609784356527`*^9, 3.62576099570722*^9}}],
+ CellChangeTimes->{{3.6257609784356527`*^9, 3.62576099570722*^9}, 
+   3.646276992027254*^9}],
 
 Cell["Only accurate for n even", "Text",
  CellChangeTimes->{{3.64506907595159*^9, 3.6450690795903254`*^9}}],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"\[Phi]m", "[", 
+  RowBox[{"halfrodalbedoisoscatter`\[Phi]m", "[", 
    RowBox[{"\[Alpha]_", ",", "\[CapitalSigma]t_", ",", "k_", ",", "n_"}], 
    "]"}], ":=", 
   RowBox[{
@@ -345,7 +353,7 @@ Cell[BoxData[
       RowBox[{"Gamma", "[", 
        RowBox[{"3", "+", "n"}], "]"}]}], ")"}]}]}]}]], "Input",
  CellChangeTimes->{{3.6450611342022667`*^9, 3.6450611397954493`*^9}, {
-  3.6450688679851513`*^9, 3.645068871838372*^9}}]
+   3.6450688679851513`*^9, 3.645068871838372*^9}, 3.646276993739078*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -358,7 +366,7 @@ Cell["load MC data", "Section",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"ppoints", "[", 
+  RowBox[{"halfrodalbedoisoscatter`ppoints", "[", 
    RowBox[{"xs_", ",", "dx_", ",", "maxx_", ",", "\[CapitalSigma]t_"}], "]"}],
    ":=", 
   RowBox[{
@@ -383,23 +391,23 @@ Cell[BoxData[
     RowBox[{"1", ";;", 
      RowBox[{"-", "2"}]}], "]"}], "]"}]}]], "Input",
  CellChangeTimes->{{3.617848413386137*^9, 3.6178484581160173`*^9}, {
-  3.61959273772493*^9, 3.6195927529849243`*^9}}],
+   3.61959273772493*^9, 3.6195927529849243`*^9}, 3.6462769978320913`*^9}],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"fs", "=", 
+  RowBox[{"halfrodalbedoisoscatter`fs", "=", 
    RowBox[{
    "FileNames", "[", 
     "\"\<code/rod/halfrod/albedoProblem/data/halfrod_albedoproblem_\
 isotropicscatter_exp*\>\"", "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.617431703558316*^9, 3.61743173077596*^9}, {
    3.61959282254521*^9, 3.6195928356726227`*^9}, {3.6409361975771008`*^9, 
-   3.640936201348721*^9}, 3.645065566454424*^9}],
+   3.640936201348721*^9}, 3.645065566454424*^9, 3.646276999345551*^9}],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"index", "[", "x_", "]"}], ":=", 
+   RowBox[{"halfrodalbedoisoscatter`index", "[", "x_", "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
@@ -423,22 +431,26 @@ Cell[BoxData[{
        RowBox[{"\[Alpha]", ",", "\[CapitalSigma]t", ",", "data"}], "}"}]}]}], 
     "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"simulations", "=", 
-   RowBox[{"index", "/@", "fs"}]}], ";"}]}], "Input",
+  RowBox[{"halfrodalbedoisoscatter`simulations", "=", 
+   RowBox[{
+   "halfrodalbedoisoscatter`index", "/@", "halfrodalbedoisoscatter`fs"}]}], 
+  ";"}]}], "Input",
  CellChangeTimes->{{3.645065231793377*^9, 3.645065296029221*^9}, {
-   3.6450653296918097`*^9, 3.6450653865106487`*^9}, 3.6450654361720257`*^9}],
+   3.6450653296918097`*^9, 3.6450653865106487`*^9}, 3.6450654361720257`*^9, {
+   3.6462770009307747`*^9, 3.646277007281083*^9}}],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"alphas", "=", 
+ RowBox[{"halfrodalbedoisoscatter`alphas", "=", 
   RowBox[{"Union", "[", 
    RowBox[{
     RowBox[{
      RowBox[{"#", "[", 
-      RowBox[{"[", "1", "]"}], "]"}], "&"}], "/@", "simulations"}], 
-   "]"}]}]], "Input",
- CellChangeTimes->{{3.645065448960425*^9, 3.6450654746981783`*^9}}],
+      RowBox[{"[", "1", "]"}], "]"}], "&"}], "/@", 
+    "halfrodalbedoisoscatter`simulations"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.645065448960425*^9, 3.6450654746981783`*^9}, {
+  3.646277017777326*^9, 3.646277020560364*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -447,26 +459,49 @@ Cell[BoxData[
    ",", "0.98`", ",", "0.99`", ",", "0.999`"}], "}"}]], "Output",
  CellChangeTimes->{{3.6450654647633867`*^9, 3.645065474997116*^9}, 
    3.645070161322473*^9, 3.64617397571076*^9, 3.646254687365184*^9, 
-   3.64626294753141*^9}]
+   3.64626294753141*^9, 3.6462719491004677`*^9, 3.6462721350831223`*^9, 
+   3.646272678669051*^9, 3.646277219750484*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"muts", "=", 
+ RowBox[{"halfrodalbedoisoscatter`muts", "=", 
   RowBox[{"Union", "[", 
    RowBox[{
     RowBox[{
      RowBox[{"#", "[", 
-      RowBox[{"[", "2", "]"}], "]"}], "&"}], "/@", "simulations"}], 
-   "]"}]}]], "Input",
- CellChangeTimes->{{3.645065539848353*^9, 3.645065542907295*^9}}],
+      RowBox[{"[", "2", "]"}], "]"}], "&"}], "/@", 
+    "halfrodalbedoisoscatter`simulations"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.645065539848353*^9, 3.645065542907295*^9}, {
+  3.646277022208873*^9, 3.6462770239529*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"1", ",", "3"}], "}"}]], "Output",
  CellChangeTimes->{3.64506554314834*^9, 3.645070161361624*^9, 
-  3.6461739757283497`*^9, 3.646254687418363*^9, 3.646262947585215*^9}]
+  3.6461739757283497`*^9, 3.646254687418363*^9, 3.646262947585215*^9, 
+  3.6462719491576767`*^9, 3.646272135103839*^9, 3.646272678692589*^9, 
+  3.646277219769197*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"halfrodalbedoisoscatter`numcollorders", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"halfrodalbedoisoscatter`simulations", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "[", 
+    RowBox[{"[", "3", "]"}], "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"2", ",", "11"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.646271938814583*^9, 3.646271939521427*^9}, {
+  3.6462770267672453`*^9, 3.646277028704248*^9}}],
+
+Cell[BoxData["20"], "Output",
+ CellChangeTimes->{3.64627194920724*^9, 3.646272135156968*^9, 
+  3.646272678737818*^9, 3.646277219814145*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -509,8 +544,10 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"MCalbedo", "[", "f", "]"}], ",", 
     RowBox[{"{", 
-     RowBox[{"f", ",", "fs"}], "}"}]}], "]"}]}]], "Input",
- CellChangeTimes->{{3.619593071323732*^9, 3.619593103575766*^9}}],
+     RowBox[{"f", ",", "halfrodalbedoisoscatter`fs"}], "}"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.619593071323732*^9, 3.619593103575766*^9}, 
+   3.646277268865171*^9}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -559,7 +596,8 @@ Cell[BoxData[
    3.621374593008964*^9, 3.625760817492489*^9, 3.625761016161327*^9, 
    3.640936236796224*^9, 3.641004208677805*^9, 3.643952948258046*^9, 
    3.643953127864519*^9, 3.645070161645657*^9, 3.6461739760106688`*^9, 
-   3.646254687693862*^9, 3.646262947877223*^9}]
+   3.646254687693862*^9, 3.646262947877223*^9, 3.646272135426918*^9, 
+   3.646272679046945*^9, 3.646277219935012*^9, 3.646277272333538*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -572,13 +610,14 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"Plot", "[", 
       RowBox[{
-       RowBox[{"R", "[", "c", "]"}], ",", 
+       RowBox[{"halfrodalbedoisoscatter`R", "[", "c", "]"}], ",", 
        RowBox[{"{", 
         RowBox[{"c", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", 
      "\[IndentingNewLine]", 
      RowBox[{"ListPlot", "[", "MCalbedos", "]"}], "\[IndentingNewLine]", ",", 
      
      RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "500"}], ",", 
      RowBox[{"FrameLabel", "\[Rule]", 
       RowBox[{"{", 
        RowBox[{
@@ -591,10 +630,11 @@ Cell[BoxData[
 half rod\>\""}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]", 
     "]"}]}]}]], "Input",
  CellChangeTimes->{{3.619592993305902*^9, 3.6195929999537*^9}, {
-  3.6195932018649*^9, 3.61959321010837*^9}, {3.6195936692165422`*^9, 
-  3.619593713091885*^9}, {3.619593781083522*^9, 3.61959378368323*^9}, {
-  3.643952916676456*^9, 3.643952922132271*^9}, {3.6439529808338423`*^9, 
-  3.643952982188665*^9}}],
+   3.6195932018649*^9, 3.61959321010837*^9}, {3.6195936692165422`*^9, 
+   3.619593713091885*^9}, {3.619593781083522*^9, 3.61959378368323*^9}, {
+   3.643952916676456*^9, 3.643952922132271*^9}, {3.6439529808338423`*^9, 
+   3.643952982188665*^9}, 3.646277039263294*^9, {3.64627727879084*^9, 
+   3.6462772815293083`*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{{{}, {}, 
@@ -666,7 +706,7 @@ rod\"", TraditionalForm]}},
   GridLines->{None, None},
   GridLinesStyle->Directive[
     GrayLevel[0.5, 0.4]],
-  ImageSize->{436.30078125, Automatic},
+  ImageSize->500,
   Method->{"DefaultBoundaryStyle" -> Automatic, "ScalingFunctions" -> None},
   PlotRange->{{0, 1}, {0., 0.9997143265247463}},
   PlotRangeClipping->True,
@@ -686,7 +726,8 @@ rod\"", TraditionalForm]}},
    3.625761016211163*^9, 3.6409362368430033`*^9, 3.641004208724547*^9, 
    3.643952948413391*^9, 3.64395298263938*^9, 3.6439531279153957`*^9, 
    3.645070161785976*^9, 3.646173976067939*^9, 3.646254687762287*^9, 
-   3.6462629479713707`*^9}]
+   3.6462629479713707`*^9, 3.646272135474256*^9, 3.646272679154695*^9, 
+   3.64627722004309*^9, {3.646277272377324*^9, 3.646277281954121*^9}}]
 }, Open  ]]
 }, Open  ]],
 
@@ -712,229 +753,236 @@ Cell[BoxData[{
    RowBox[{"If", "[", 
     RowBox[{
      RowBox[{
-      RowBox[{"Length", "[", "simulations", "]"}], ">", "0"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"data", "=", 
-       RowBox[{
-        RowBox[{"SelectFirst", "[", 
-         RowBox[{"simulations", ",", 
-          RowBox[{
-           RowBox[{
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
-            
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
-             "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
-        RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"maxx", "=", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", 
-         RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      
-      RowBox[{"dx", "=", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", 
-         RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      
-      RowBox[{"numcollorders", "=", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", 
-         RowBox[{"2", ",", "11"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"nummoments", "=", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", 
-         RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]",
-       "\[IndentingNewLine]", 
-      RowBox[{"densmom", "=", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", "11", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      "\[IndentingNewLine]", 
-      RowBox[{"pointsCL", " ", "=", " ", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", "7", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"(*", " ", 
-       RowBox[{
-       "divide", " ", "by", " ", "\[CapitalSigma]t", " ", "to", " ", 
-        "convert", " ", "collision", " ", "density", " ", "into", " ", "L"}], 
-       " ", "*)"}], "\[IndentingNewLine]", 
-      RowBox[{"plotpointsCL", "=", 
-       RowBox[{"ppoints", "[", 
-        RowBox[{"pointsCL", ",", "dx", ",", "maxx", ",", "\[CapitalSigma]t"}],
-         "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"pointsCR", " ", "=", " ", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", "9", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"plotpointsCR", "=", 
-       RowBox[{"ppoints", "[", 
-        RowBox[{"pointsCR", ",", "dx", ",", "maxx", ",", "\[CapitalSigma]t"}],
-         "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"(*", " ", 
-       RowBox[{
-       "divide", " ", "by", " ", "\[CapitalSigma]t", " ", "to", " ", 
-        "convert", " ", "collision", " ", "density", " ", "into", " ", 
-        "fluence"}], " ", "*)"}], "\[IndentingNewLine]", 
-      RowBox[{"plotpoints\[Phi]", "=", 
-       RowBox[{"ppoints", "[", 
+      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
+      ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
         RowBox[{
-         RowBox[{"pointsCL", "+", "pointsCR"}], ",", "dx", ",", "maxx", ",", 
-         "\[CapitalSigma]t"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      "\[IndentingNewLine]", 
-      RowBox[{"plot\[Phi]", "=", 
-       RowBox[{"Show", "[", "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"ListPlot", "[", 
-          RowBox[{"plotpoints\[Phi]", ",", 
-           RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-           RowBox[{"PlotStyle", "\[Rule]", 
-            RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Plot", "[", 
+        "data", ",", "maxx", ",", "dx", ",", "numcollorders", ",", 
+         "nummoments", ",", "pointsCL", ",", "plotpointsCL", ",", "pointsCR", 
+         ",", "plotpointsCR", ",", "plotpoints\[Phi]", ",", "plot\[Phi]", ",",
+          "plotLL", ",", "plotLR"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"maxx", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dx", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"numcollorders", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "11"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"nummoments", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"pointsCL", " ", "=", " ", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", "7", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "divide", " ", "by", " ", "\[CapitalSigma]t", " ", "to", " ", 
+          "convert", " ", "collision", " ", "density", " ", "into", " ", 
+          "L"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"plotpointsCL", "=", 
+         RowBox[{"halfrodalbedoisoscatter`ppoints", "[", 
           RowBox[{
-           RowBox[{"\[Phi]", "[", 
-            RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
-           ",", 
-           RowBox[{"{", 
-            RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
-           RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], 
-         "\[IndentingNewLine]", ",", 
-         RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
-         RowBox[{"FrameLabel", "->", 
-          RowBox[{"{", 
-           RowBox[{
+          "pointsCL", ",", "dx", ",", "maxx", ",", "\[CapitalSigma]t"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"pointsCR", " ", "=", " ", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", "9", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"plotpointsCR", "=", 
+         RowBox[{"halfrodalbedoisoscatter`ppoints", "[", 
+          RowBox[{
+          "pointsCR", ",", "dx", ",", "maxx", ",", "\[CapitalSigma]t"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "divide", " ", "by", " ", "\[CapitalSigma]t", " ", "to", " ", 
+          "convert", " ", "collision", " ", "density", " ", "into", " ", 
+          "fluence"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"plotpoints\[Phi]", "=", 
+         RowBox[{"halfrodalbedoisoscatter`ppoints", "[", 
+          RowBox[{
+           RowBox[{"pointsCL", "+", "pointsCR"}], ",", "dx", ",", "maxx", ",",
+            "\[CapitalSigma]t"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"plot\[Phi]", "=", 
+         RowBox[{"Show", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"plotpoints\[Phi]", ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", 
+              RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"halfrodalbedoisoscatter`\[Phi]", "[", 
+              RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], 
+           "\[IndentingNewLine]", ",", 
+           RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"FrameLabel", "->", 
             RowBox[{"{", 
              RowBox[{
-              RowBox[{"\[Phi]", "[", "x", "]"}], ","}], "}"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"x", ",", 
-              RowBox[{
-              "\"\<Semi-infinite rod, albedo problem, isotropic scattering, \
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"\[Phi]", "[", "x", "]"}], ","}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<x\>\"", ",", 
+                RowBox[{
+                "\"\<Semi-infinite rod, albedo problem, isotropic scattering, \
 fluence \[Phi][x], \[Alpha] = \>\"", "<>", 
-               RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
-               "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \
-\>\"", "<>", 
-               RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], 
-             "}"}]}], "}"}]}]}], "\[IndentingNewLine]", "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"plotLL", "=", 
-       RowBox[{"Show", "[", "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"ListPlot", "[", 
-          RowBox[{"plotpointsCL", ",", 
-           RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-           RowBox[{"PlotStyle", "\[Rule]", 
-            RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Plot", "[", 
+                 RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+                 "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\
+\"", "<>", 
+                 RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], 
+               "}"}]}], "}"}]}]}], "\[IndentingNewLine]", "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"plotLL", "=", 
+         RowBox[{"Show", "[", "\[IndentingNewLine]", 
           RowBox[{
-           RowBox[{"LL", "[", 
-            RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
-           ",", 
-           RowBox[{"{", 
-            RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
-           RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Plot", "[", 
-          RowBox[{
-           RowBox[{"\[Phi]", "[", 
-            RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
-           ",", 
-           RowBox[{"{", 
-            RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
-           RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-           RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], 
-         "\[IndentingNewLine]", ",", 
-         RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
-         RowBox[{"FrameLabel", "->", 
-          RowBox[{"{", 
-           RowBox[{
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"plotpointsCL", ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", 
+              RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"halfrodalbedoisoscatter`LL", "[", 
+              RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"halfrodalbedoisoscatter`\[Phi]", "[", 
+              RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], 
+           "\[IndentingNewLine]", ",", 
+           RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"FrameLabel", "->", 
             RowBox[{"{", 
              RowBox[{
-              RowBox[{
-               SubscriptBox["L", "-"], "[", "x", "]"}], ","}], "}"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"x", ",", 
-              RowBox[{
-              "\"\<Semi-infinite rod, albedo problem, isotropic scattering, \
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 SubscriptBox["L", "-"], "[", "x", "]"}], ","}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<x\>\"", ",", 
+                RowBox[{
+                "\"\<Semi-infinite rod, albedo problem, isotropic scattering, \
 \!\(\*SubscriptBox[\(L\), \(-\)]\)[x], \[Alpha] = \>\"", "<>", 
-               RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
-               "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \
-\>\"", "<>", 
-               RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], 
-             "}"}]}], "}"}]}], ",", 
-         RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
-        "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"plotLR", "=", 
-       RowBox[{"Show", "[", "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"ListPlot", "[", 
-          RowBox[{"plotpointsCR", ",", 
-           RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-           RowBox[{"PlotStyle", "\[Rule]", 
-            RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Plot", "[", 
+                 RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+                 "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\
+\"", "<>", 
+                 RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], 
+               "}"}]}], "}"}]}], ",", 
+           RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"plotLR", "=", 
+         RowBox[{"Show", "[", "\[IndentingNewLine]", 
           RowBox[{
-           RowBox[{"LR", "[", 
-            RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
-           ",", 
-           RowBox[{"{", 
-            RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
-           RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Plot", "[", 
-          RowBox[{
-           RowBox[{"\[Phi]", "[", 
-            RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
-           ",", 
-           RowBox[{"{", 
-            RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
-           RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-           RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], 
-         "\[IndentingNewLine]", ",", 
-         RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
-         RowBox[{"FrameLabel", "->", 
-          RowBox[{"{", 
-           RowBox[{
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"plotpointsCR", ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", 
+              RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"halfrodalbedoisoscatter`LR", "[", 
+              RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"halfrodalbedoisoscatter`\[Phi]", "[", 
+              RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "]"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], 
+           "\[IndentingNewLine]", ",", 
+           RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"FrameLabel", "->", 
             RowBox[{"{", 
              RowBox[{
-              RowBox[{
-               SubscriptBox["L", "+"], "[", "x", "]"}], ","}], "}"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"x", ",", 
-              RowBox[{
-              "\"\<Semi-infinite rod, albedo problem, isotropic scattering, \
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 SubscriptBox["L", "+"], "[", "x", "]"}], ","}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<x\>\"", ",", 
+                RowBox[{
+                "\"\<Semi-infinite rod, albedo problem, isotropic scattering, \
 \!\(\*SubscriptBox[\(L\), \(+\)]\)[x], \[Alpha] = \>\"", "<>", 
-               RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
-               "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \
-\>\"", "<>", 
-               RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], 
-             "}"}]}], "}"}]}], ",", 
-         RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
-        "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"Show", "[", 
-       RowBox[{
-        RowBox[{"GraphicsGrid", "[", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"{", "plot\[Phi]", "}"}], ",", 
-           RowBox[{"{", "plotLL", "}"}], ",", 
-           RowBox[{"{", "plotLR", "}"}]}], "}"}], "]"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "500"}]}], "]"}]}], 
-     "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+                 RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+                 "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\
+\"", "<>", 
+                 RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], 
+               "}"}]}], "}"}]}], ",", 
+           RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"GraphicsGrid", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", "plot\[Phi]", "}"}], ",", 
+             RowBox[{"{", "plotLL", "}"}], ",", 
+             RowBox[{"{", "plotLR", "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", "500"}]}], "]"}]}]}], 
+      "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+     "\[IndentingNewLine]", 
      RowBox[{
      "Text", "[", 
       "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
 notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
     "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
-    RowBox[{"\[Alpha]", ",", "alphas"}], "}"}], ",", 
+    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"\[CapitalSigma]t", ",", "muts"}], "}"}]}], 
-  "]"}], "\[IndentingNewLine]"}], "Input",
+    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], 
+    "}"}]}], "]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.6174281170020113`*^9, 3.61742813267981*^9}, 
    3.6174287994794273`*^9, {3.617428838302623*^9, 3.617428878809485*^9}, {
    3.6174289474455023`*^9, 3.61742896885219*^9}, {3.61742923797204*^9, 
@@ -958,7 +1006,9 @@ notebook and ensure the data path is setup correctly.\>\"", "]"}]}],
    3.619592840035911*^9}, {3.619594023021328*^9, 3.619594057454226*^9}, {
    3.619594367717161*^9, 3.619594451177827*^9}, {3.619635242437984*^9, 
    3.619635273373003*^9}, 3.6450668161459093`*^9, {3.6462541709221277`*^9, 
-   3.646254197207653*^9}, {3.646254257622604*^9, 3.646254280753685*^9}}],
+   3.646254197207653*^9}, {3.646254257622604*^9, 3.646254280753685*^9}, {
+   3.646271995106873*^9, 3.646272029289276*^9}, {3.646272121445628*^9, 
+   3.646272131625037*^9}, {3.64627705380926*^9, 3.64627709157316*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -972,102 +1022,112 @@ Cell[BoxData[
       0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}}, Typeset`size$$ = {
     500., {447., 451.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$2772$$ = 
-    0, $CellContext`\[CapitalSigma]t$2773$$ = False}, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$9308$$ = 
+    0, $CellContext`\[CapitalSigma]t$9309$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`\[Alpha]$$ = 
         0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2772$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9308$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$2773$$, False]}, 
+$CellContext`\[CapitalSigma]t$9309$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> 
-      If[Length[$CellContext`simulations] > 0, $CellContext`data = Part[
-           
-           SelectFirst[$CellContext`simulations, And[
-            Part[#, 1] == $CellContext`\[Alpha]$$, 
-             Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
-           3]; $CellContext`maxx = 
-         Part[$CellContext`data, 2, 5]; $CellContext`dx = 
-         Part[$CellContext`data, 2, 7]; $CellContext`numcollorders = 
-         Part[$CellContext`data, 2, 11]; $CellContext`nummoments = 
-         Part[$CellContext`data, 2, 13]; $CellContext`densmom = 
-         Part[$CellContext`data, 11]; $CellContext`pointsCL = 
-         Part[$CellContext`data, 
-           7]; $CellContext`plotpointsCL = \
-$CellContext`ppoints[$CellContext`pointsCL, $CellContext`dx, \
-$CellContext`maxx, $CellContext`\[CapitalSigma]t$$]; $CellContext`pointsCR = 
-         Part[$CellContext`data, 
-           9]; $CellContext`plotpointsCR = \
-$CellContext`ppoints[$CellContext`pointsCR, $CellContext`dx, \
-$CellContext`maxx, $CellContext`\[CapitalSigma]t$$]; $CellContext`plotpoints\
-\[Phi] = $CellContext`ppoints[$CellContext`pointsCL + $CellContext`pointsCR, \
-$CellContext`dx, $CellContext`maxx, $CellContext`\[CapitalSigma]t$$]; \
-$CellContext`plot\[Phi] = Show[
-           
-           ListPlot[$CellContext`plotpoints\[Phi], PlotRange -> All, 
-            PlotStyle -> PointSize[0.01]], 
-           Plot[
-            $CellContext`\[Phi][$CellContext`x, $CellContext`\[Alpha]$$, \
-$CellContext`\[CapitalSigma]t$$], {$CellContext`x, 0, $CellContext`maxx}, 
-            PlotRange -> All], Frame -> True, FrameLabel -> {{
-              $CellContext`\[Phi][$CellContext`x], Null}, {$CellContext`x, 
-              StringJoin[
-              "Semi-infinite rod, albedo problem, isotropic scattering, \
+      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`maxx$, $CellContext`dx$, \
+$CellContext`numcollorders$, $CellContext`nummoments$, \
+$CellContext`pointsCL$, $CellContext`plotpointsCL$, $CellContext`pointsCR$, \
+$CellContext`plotpointsCR$, $CellContext`plotpoints\[Phi]$, $CellContext`plot\
+\[Phi]$, $CellContext`plotLL$, $CellContext`plotLR$}, $CellContext`data$ = 
+          Part[
+            SelectFirst[
+            halfrodalbedoisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`maxx$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`dx$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`numcollorders$ = 
+          Part[$CellContext`data$, 2, 11]; $CellContext`nummoments$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`pointsCL$ = 
+          Part[$CellContext`data$, 7]; $CellContext`plotpointsCL$ = 
+          halfrodalbedoisoscatter`ppoints[$CellContext`pointsCL$, \
+$CellContext`dx$, $CellContext`maxx$, $CellContext`\[CapitalSigma]t$$]; \
+$CellContext`pointsCR$ = 
+          Part[$CellContext`data$, 9]; $CellContext`plotpointsCR$ = 
+          halfrodalbedoisoscatter`ppoints[$CellContext`pointsCR$, \
+$CellContext`dx$, $CellContext`maxx$, $CellContext`\[CapitalSigma]t$$]; \
+$CellContext`plotpoints\[Phi]$ = 
+          halfrodalbedoisoscatter`ppoints[$CellContext`pointsCL$ + \
+$CellContext`pointsCR$, $CellContext`dx$, $CellContext`maxx$, $CellContext`\
+\[CapitalSigma]t$$]; $CellContext`plot\[Phi]$ = Show[
+            
+            ListPlot[$CellContext`plotpoints\[Phi]$, PlotRange -> All, 
+             PlotStyle -> PointSize[0.01]], 
+            Plot[
+             
+             halfrodalbedoisoscatter`\[Phi][$CellContext`x, $CellContext`\
+\[Alpha]$$, $CellContext`\[CapitalSigma]t$$], {$CellContext`x, 
+              0, $CellContext`maxx$}, PlotRange -> All], Frame -> True, 
+            FrameLabel -> {{
+               $CellContext`\[Phi][$CellContext`x], Null}, {"x", 
+               StringJoin[
+               "Semi-infinite rod, albedo problem, isotropic scattering, \
 fluence \[Phi][x], \[Alpha] = ", 
-               ToString[$CellContext`\[Alpha]$$], 
-               ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
-               
-               ToString[$CellContext`\[CapitalSigma]t$$]]}}]; \
-$CellContext`plotLL = Show[
+                ToString[$CellContext`\[Alpha]$$], 
+                ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+                
+                ToString[$CellContext`\[CapitalSigma]t$$]]}}]; \
+$CellContext`plotLL$ = Show[
+            
+            ListPlot[$CellContext`plotpointsCL$, PlotRange -> All, PlotStyle -> 
+             PointSize[0.01]], 
+            Plot[
+             
+             halfrodalbedoisoscatter`LL[$CellContext`x, \
+$CellContext`\[Alpha]$$, $CellContext`\[CapitalSigma]t$$], {$CellContext`x, 
+              0, $CellContext`maxx$}, PlotRange -> All], 
+            Plot[
+             
+             halfrodalbedoisoscatter`\[Phi][$CellContext`x, $CellContext`\
+\[Alpha]$$, $CellContext`\[CapitalSigma]t$$], {$CellContext`x, 
+              0, $CellContext`maxx$}, PlotRange -> All, PlotStyle -> Dashed], 
+            Frame -> True, FrameLabel -> {{
+               SubMinus[$CellContext`L][$CellContext`x], Null}, {"x", 
+               StringJoin[
+               "Semi-infinite rod, albedo problem, isotropic scattering, \!\(\
+\*SubscriptBox[\(L\), \(-\)]\)[x], \[Alpha] = ", 
+                ToString[$CellContext`\[Alpha]$$], 
+                ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+                ToString[$CellContext`\[CapitalSigma]t$$]]}}, PlotRange -> 
+            All]; $CellContext`plotLR$ = Show[
+            
+            ListPlot[$CellContext`plotpointsCR$, PlotRange -> All, PlotStyle -> 
+             PointSize[0.01]], 
+            Plot[
+             
+             halfrodalbedoisoscatter`LR[$CellContext`x, \
+$CellContext`\[Alpha]$$, $CellContext`\[CapitalSigma]t$$], {$CellContext`x, 
+              0, $CellContext`maxx$}, PlotRange -> All], 
+            Plot[
+             
+             halfrodalbedoisoscatter`\[Phi][$CellContext`x, $CellContext`\
+\[Alpha]$$, $CellContext`\[CapitalSigma]t$$], {$CellContext`x, 
+              0, $CellContext`maxx$}, PlotRange -> All, PlotStyle -> Dashed], 
+            Frame -> True, FrameLabel -> {{
+               SubPlus[$CellContext`L][$CellContext`x], Null}, {"x", 
+               StringJoin[
+               "Semi-infinite rod, albedo problem, isotropic scattering, \!\(\
+\*SubscriptBox[\(L\), \(+\)]\)[x], \[Alpha] = ", 
+                ToString[$CellContext`\[Alpha]$$], 
+                ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+                ToString[$CellContext`\[CapitalSigma]t$$]]}}, PlotRange -> 
+            All]; Show[
            
-           ListPlot[$CellContext`plotpointsCL, PlotRange -> All, PlotStyle -> 
-            PointSize[0.01]], 
-           Plot[
-            $CellContext`LL[$CellContext`x, $CellContext`\[Alpha]$$, \
-$CellContext`\[CapitalSigma]t$$], {$CellContext`x, 0, $CellContext`maxx}, 
-            PlotRange -> All], 
-           Plot[
-            $CellContext`\[Phi][$CellContext`x, $CellContext`\[Alpha]$$, \
-$CellContext`\[CapitalSigma]t$$], {$CellContext`x, 0, $CellContext`maxx}, 
-            PlotRange -> All, PlotStyle -> Dashed], Frame -> True, 
-           FrameLabel -> {{
-              SubMinus[$CellContext`L][$CellContext`x], 
-              Null}, {$CellContext`x, 
-              StringJoin[
-              "Semi-infinite rod, albedo problem, isotropic scattering, \
-\!\(\*SubscriptBox[\(L\), \(-\)]\)[x], \[Alpha] = ", 
-               ToString[$CellContext`\[Alpha]$$], 
-               ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
-               ToString[$CellContext`\[CapitalSigma]t$$]]}}, PlotRange -> 
-           All]; $CellContext`plotLR = Show[
-           
-           ListPlot[$CellContext`plotpointsCR, PlotRange -> All, PlotStyle -> 
-            PointSize[0.01]], 
-           Plot[
-            $CellContext`LR[$CellContext`x, $CellContext`\[Alpha]$$, \
-$CellContext`\[CapitalSigma]t$$], {$CellContext`x, 0, $CellContext`maxx}, 
-            PlotRange -> All], 
-           Plot[
-            $CellContext`\[Phi][$CellContext`x, $CellContext`\[Alpha]$$, \
-$CellContext`\[CapitalSigma]t$$], {$CellContext`x, 0, $CellContext`maxx}, 
-            PlotRange -> All, PlotStyle -> Dashed], Frame -> True, 
-           FrameLabel -> {{
-              SubPlus[$CellContext`L][$CellContext`x], Null}, {$CellContext`x, 
-              StringJoin[
-              "Semi-infinite rod, albedo problem, isotropic scattering, \
-\!\(\*SubscriptBox[\(L\), \(+\)]\)[x], \[Alpha] = ", 
-               ToString[$CellContext`\[Alpha]$$], 
-               ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
-               ToString[$CellContext`\[CapitalSigma]t$$]]}}, PlotRange -> 
-           All]; Show[
-          
-          GraphicsGrid[{{$CellContext`plot\[Phi]}, {$CellContext`plotLL}, \
-{$CellContext`plotLR}}], ImageSize -> 500], 
+           GraphicsGrid[{{$CellContext`plot\[Phi]$}, {$CellContext`plotLL$}, \
+{$CellContext`plotLR$}}], ImageSize -> 500]], 
         Text[
         "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
 and ensure the data path is setup correctly."]], 
@@ -1110,7 +1170,8 @@ and ensure the data path is setup correctly."]],
    3.641004208801806*^9, 3.643952948466518*^9, 3.643953128039459*^9, 
    3.645066582360589*^9, 3.645066816790968*^9, 3.645070163356307*^9, 
    3.646173976422086*^9, 3.646254199533277*^9, 3.646254282171978*^9, 
-   3.6462546880659*^9, 3.6462629485021563`*^9}]
+   3.6462546880659*^9, 3.6462629485021563`*^9, 3.646272135540148*^9, 
+   3.6462726792068453`*^9, 3.646277220098629*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -1128,79 +1189,94 @@ Cell[BoxData[
    RowBox[{"If", "[", 
     RowBox[{
      RowBox[{
-      RowBox[{"Length", "[", "simulations", "]"}], ">", "0"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"data", "=", 
+      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
+      ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "Rs", ",", "ns", ",", "analytic", ",", "j", ",", 
+         "numcollorders"}], "}"}], ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"SelectFirst", "[", 
-         RowBox[{"simulations", ",", 
-          RowBox[{
-           RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
             RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
-            
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
-             "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
-        RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"Rs", "=", 
-       RowBox[{"N", "[", 
-        RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"numcollorders", "=", 
          RowBox[{"data", "[", 
-          RowBox[{"[", "5", "]"}], "]"}], "}"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"ns", "=", 
-       RowBox[{"Table", "[", 
-        RowBox[{"n", ",", 
-         RowBox[{"{", 
-          RowBox[{"n", ",", "0", ",", 
-           RowBox[{"numcollorders", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"analytic", "=", 
-       RowBox[{"Table", "[", 
-        RowBox[{
-         RowBox[{"R", "[", 
-          RowBox[{"\[Alpha]", ",", "n"}], "]"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"n", ",", "ns"}], "}"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"j", "=", 
-       RowBox[{"Join", "[", 
-        RowBox[{
-         RowBox[{"{", "ns", "}"}], ",", 
-         RowBox[{"{", "analytic", "}"}], ",", "Rs"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
-       RowBox[{"Join", "[", 
-        RowBox[{
-         RowBox[{"{", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "11"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Rs", "=", 
+         RowBox[{"N", "[", 
           RowBox[{"{", 
-           RowBox[{"\"\<n\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], 
-           "}"}], "}"}], ",", 
-         RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], "\[IndentingNewLine]",
-        "]"}]}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+           RowBox[{"data", "[", 
+            RowBox[{"[", "5", "]"}], "]"}], "}"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ns", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{"n", ",", 
+           RowBox[{"{", 
+            RowBox[{"n", ",", "0", ",", 
+             RowBox[{"numcollorders", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"analytic", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"halfrodalbedoisoscatter`R", "[", 
+            RowBox[{"\[Alpha]", ",", "n"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"n", ",", "ns"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"j", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", "ns", "}"}], ",", 
+           RowBox[{"{", "analytic", "}"}], ",", "Rs"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<n\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
+             "}"}], ",", 
+           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], 
+     "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
      RowBox[{
      "Text", "[", 
       "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
 notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
     "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
-    RowBox[{"\[Alpha]", ",", "alphas"}], "}"}], ",", 
+    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"\[CapitalSigma]t", ",", "muts"}], "}"}]}], "]"}]], "Input",
+    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], 
+    "}"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.621359462271472*^9, 3.621359519826496*^9}, {
    3.621359610039978*^9, 3.621359631348999*^9}, {3.621359686715735*^9, 
    3.621359698586138*^9}, {3.643953116913168*^9, 3.643953117270402*^9}, 
-   3.645068256619286*^9, {3.646254307936059*^9, 3.6462543169431477`*^9}}],
+   3.645068256619286*^9, {3.646254307936059*^9, 3.6462543169431477`*^9}, {
+   3.646272199006176*^9, 3.6462722146570587`*^9}, {3.646272246192518*^9, 
+   3.646272250744228*^9}, {3.6462770949325237`*^9, 3.646277104843841*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    0.98, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
+    0.99, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
@@ -1209,35 +1285,41 @@ Cell[BoxData[
       Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}}, Typeset`size$$ = {
     210., {173.134033203125, 178.865966796875}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$2983$$ = 
-    0, $CellContext`\[CapitalSigma]t$2984$$ = False}, 
+    True, $CellContext`\[Alpha]$13286$$ = 
+    0, $CellContext`\[CapitalSigma]t$13287$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`\[Alpha]$$ = 
         0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2983$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$13286$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$2984$$, False]}, 
+$CellContext`\[CapitalSigma]t$13287$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> 
-      If[Length[$CellContext`simulations] > 0, $CellContext`data = Part[
-           
-           SelectFirst[$CellContext`simulations, And[
-            Part[#, 1] == $CellContext`\[Alpha]$$, 
-             Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
-           3]; $CellContext`Rs = N[{
-            Part[$CellContext`data, 5]}]; $CellContext`ns = 
-         Table[$CellContext`n, {$CellContext`n, 0, $CellContext`numcollorders - 
-            1}]; $CellContext`analytic = Table[
-           $CellContext`R[$CellContext`\[Alpha]$$, $CellContext`n], \
-{$CellContext`n, $CellContext`ns}]; $CellContext`j = 
-         Join[{$CellContext`ns}, {$CellContext`analytic}, $CellContext`Rs]; 
-        TableForm[
-          Join[{{"n", "analytic", "MC"}}, 
-           Transpose[$CellContext`j]]], 
+      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`Rs$, $CellContext`ns$, \
+$CellContext`analytic$, $CellContext`j$, $CellContext`numcollorders$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            halfrodalbedoisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`numcollorders$ = 
+          Part[$CellContext`data$, 2, 11]; $CellContext`Rs$ = N[{
+             Part[$CellContext`data$, 5]}]; $CellContext`ns$ = 
+          Table[$CellContext`n, {$CellContext`n, 
+             0, $CellContext`numcollorders$ - 1}]; $CellContext`analytic$ = 
+          Table[
+            
+            halfrodalbedoisoscatter`R[$CellContext`\[Alpha]$$, \
+$CellContext`n], {$CellContext`n, $CellContext`ns$}]; $CellContext`j$ = 
+          Join[{$CellContext`ns$}, {$CellContext`analytic$}, \
+$CellContext`Rs$]; TableForm[
+           Join[{{"n", "analytic", "MC"}}, 
+            Transpose[$CellContext`j$]]]], 
         Text[
         "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
 and ensure the data path is setup correctly."]], 
@@ -1262,7 +1344,9 @@ and ensure the data path is setup correctly."]],
    3.641004106338101*^9, 3.641004224900922*^9, {3.643953112682353*^9, 
    3.6439531279900017`*^9}, 3.6439531795352573`*^9, 3.6450665828103857`*^9, 
    3.645068257141838*^9, 3.645070163635479*^9, 3.646173976851034*^9, 
-   3.646254317765687*^9, 3.646254688302388*^9, 3.646262948697145*^9}]
+   3.646254317765687*^9, 3.646254688302388*^9, 3.646262948697145*^9, 
+   3.6462721358739357`*^9, 3.6462722542928762`*^9, 3.646272679407893*^9, 
+   3.646277220421599*^9, 3.646277362946724*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -1285,130 +1369,152 @@ Cell[BoxData[
    RowBox[{"If", "[", 
     RowBox[{
      RowBox[{
-      RowBox[{"Length", "[", "simulations", "]"}], ">", "0"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"data", "=", 
-       RowBox[{
-        RowBox[{"SelectFirst", "[", 
-         RowBox[{"simulations", ",", 
-          RowBox[{
-           RowBox[{
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
-            
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
-             "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
-        RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"\[Phi]moments", "=", 
-       RowBox[{"N", "[", 
-        FractionBox[
-         RowBox[{"{", 
-          RowBox[{"data", "[", 
-           RowBox[{"[", "11", "]"}], "]"}], "}"}], "\[CapitalSigma]t"], 
-        "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"ks", "=", 
+      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
+      ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
        RowBox[{"{", 
-        RowBox[{"Table", "[", 
-         RowBox[{"k", ",", 
-          RowBox[{"{", 
-           RowBox[{"k", ",", "0", ",", 
-            RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"analytic", "=", 
-       RowBox[{"Table", "[", 
         RowBox[{
-         RowBox[{"\[Phi]m", "[", 
-          RowBox[{"\[Alpha]", ",", "\[CapitalSigma]t", ",", "k"}], "]"}], ",", 
+        "data", ",", "nummoments", ",", "\[Phi]moments", ",", "ks", ",", 
+         "analytic", ",", "j"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"nummoments", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\[Phi]moments", "=", 
+         RowBox[{"N", "[", 
+          FractionBox[
+           RowBox[{"{", 
+            RowBox[{"data", "[", 
+             RowBox[{"[", "11", "]"}], "]"}], "}"}], "\[CapitalSigma]t"], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ks", "=", 
          RowBox[{"{", 
-          RowBox[{"k", ",", "ks"}], "}"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"j", "=", 
-       RowBox[{"Join", "[", 
-        RowBox[{"ks", ",", "analytic", ",", "\[Phi]moments"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
-       RowBox[{"Join", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"{", 
-           RowBox[{"\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], 
-           "}"}], "}"}], ",", 
-         RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], "\[IndentingNewLine]",
-        "]"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Table", "[", 
+           RowBox[{"k", ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "0", ",", 
+              RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"analytic", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"halfrodalbedoisoscatter`\[Phi]m", "[", 
+            RowBox[{"\[Alpha]", ",", "\[CapitalSigma]t", ",", "k"}], "]"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "ks"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"j", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{"ks", ",", "analytic", ",", "\[Phi]moments"}], "]"}]}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
+             "}"}], ",", 
+           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
+     "\[IndentingNewLine]", 
      RowBox[{
      "Text", "[", 
       "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
 notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
     "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
-    RowBox[{"\[Alpha]", ",", "alphas"}], "}"}], ",", 
+    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"\[CapitalSigma]t", ",", "muts"}], "}"}]}], "]"}]], "Input",
+    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], 
+    "}"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.6177792806285133`*^9, 3.617779297336399*^9}, {
    3.617779343239357*^9, 3.6177794771281633`*^9}, {3.6177795098244753`*^9, 
    3.6177795247590523`*^9}, {3.617779555197104*^9, 3.617779656475761*^9}, {
    3.617779687007894*^9, 3.617779881109676*^9}, {3.617847356159178*^9, 
    3.617847361453464*^9}, {3.619594516589923*^9, 3.6195945170905647`*^9}, {
    3.619594713380765*^9, 3.619594735762917*^9}, 3.645068394199531*^9, 
-   3.6462543369102907`*^9, {3.6462544012171173`*^9, 3.646254401505522*^9}}],
+   3.6462543369102907`*^9, {3.6462544012171173`*^9, 3.646254401505522*^9}, {
+   3.6462722925210257`*^9, 3.646272314924221*^9}, {3.646277107722872*^9, 
+   3.64627711942684*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    0.95, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    0.7, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`\[Alpha]$$], {0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.98, 
       0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}}, Typeset`size$$ = {
-    252., {93.134033203125, 98.865966796875}}, Typeset`update$$ = 0, 
+    242., {90.134033203125, 95.865966796875}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$3012$$ = 
-    0, $CellContext`\[CapitalSigma]t$3013$$ = False}, 
+    True, $CellContext`\[Alpha]$9552$$ = 
+    0, $CellContext`\[CapitalSigma]t$9553$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`\[Alpha]$$ = 
         0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$3012$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9552$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$3013$$, False]}, 
+$CellContext`\[CapitalSigma]t$9553$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> 
-      If[Length[$CellContext`simulations] > 0, $CellContext`data = Part[
-           
-           SelectFirst[$CellContext`simulations, And[
-            Part[#, 1] == $CellContext`\[Alpha]$$, 
-             Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
-           3]; $CellContext`\[Phi]moments = N[{
-             
-             Part[$CellContext`data, 
-              11]}/$CellContext`\[CapitalSigma]t$$]; $CellContext`ks = {
-           
-           Table[$CellContext`k, {$CellContext`k, 0, $CellContext`nummoments - 
-             1}]}; $CellContext`analytic = Table[
-           $CellContext`\[Phi]m[$CellContext`\[Alpha]$$, $CellContext`\
-\[CapitalSigma]t$$, $CellContext`k], {$CellContext`k, $CellContext`ks}]; \
-$CellContext`j = 
-         Join[$CellContext`ks, $CellContext`analytic, \
-$CellContext`\[Phi]moments]; TableForm[
-          Join[{{"k", "analytic", "MC"}}, 
-           Transpose[$CellContext`j]]], 
+      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`nummoments$, $CellContext`\
+\[Phi]moments$, $CellContext`ks$, $CellContext`analytic$, $CellContext`j$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            halfrodalbedoisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`nummoments$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`\[Phi]moments$ = N[{
+              
+              Part[$CellContext`data$, 
+               11]}/$CellContext`\[CapitalSigma]t$$]; $CellContext`ks$ = {
+            
+            Table[$CellContext`k, {$CellContext`k, 
+              0, $CellContext`nummoments$ - 1}]}; $CellContext`analytic$ = 
+          Table[
+            
+            halfrodalbedoisoscatter`\[Phi]m[$CellContext`\[Alpha]$$, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`k], {$CellContext`k, \
+$CellContext`ks$}]; $CellContext`j$ = 
+          Join[$CellContext`ks$, $CellContext`analytic$, \
+$CellContext`\[Phi]moments$]; TableForm[
+           Join[{{"k", "analytic", "MC"}}, 
+            Transpose[$CellContext`j$]]]], 
         Text[
         "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
 and ensure the data path is setup correctly."]], 
       "Specifications" :> {{$CellContext`\[Alpha]$$, {0.1, 0.3, 0.5, 0.7, 0.9,
           0.95, 0.98, 0.99, 0.999}}, {$CellContext`\[CapitalSigma]t$$, {1, 
          3}}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{297., {150., 155.}},
+     ImageSizeCache->{287., {147., 152.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1430,7 +1536,9 @@ and ensure the data path is setup correctly."]],
    3.640936237036949*^9, 3.6410042089759274`*^9, 3.643952948659853*^9, 
    3.643953128159903*^9, 3.645066582831504*^9, 3.6450683948407917`*^9, 
    3.645070163756219*^9, 3.646173977134774*^9, 3.646254402640938*^9, 
-   3.6462546884830513`*^9, 3.64626294879793*^9}]
+   3.6462546884830513`*^9, 3.64626294879793*^9, 3.6462721359569473`*^9, {
+   3.646272320142614*^9, 3.646272326757351*^9}, 3.646272679489949*^9, 
+   3.646277220531495*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -1447,88 +1555,105 @@ Cell[BoxData[
    RowBox[{"If", "[", 
     RowBox[{
      RowBox[{
-      RowBox[{"Length", "[", "simulations", "]"}], ">", "0"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"data", "=", 
-       RowBox[{
-        RowBox[{"SelectFirst", "[", 
-         RowBox[{"simulations", ",", 
-          RowBox[{
-           RowBox[{
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
-            
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
-             "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
-        RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"\[Phi]moments", "=", 
-       RowBox[{"N", "[", 
-        FractionBox[
-         RowBox[{"{", 
-          RowBox[{"data", "[", 
-           RowBox[{"[", 
-            RowBox[{"13", "+", "n"}], "]"}], "]"}], "}"}], 
-         "\[CapitalSigma]t"], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"ks", "=", 
+      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
+      ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
        RowBox[{"{", 
-        RowBox[{"Table", "[", 
-         RowBox[{"k", ",", 
-          RowBox[{"{", 
-           RowBox[{"k", ",", "0", ",", 
-            RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"analytic", "=", 
-       RowBox[{"Table", "[", 
         RowBox[{
-         RowBox[{"Quiet", "[", 
-          RowBox[{"N", "[", 
-           RowBox[{"\[Phi]m", "[", 
-            RowBox[{"\[Alpha]", ",", "\[CapitalSigma]t", ",", "k", ",", "n"}],
-             "]"}], "]"}], "]"}], ",", 
+        "data", ",", "\[Phi]moments", ",", "ks", ",", "analytic", ",", "j", 
+         ",", "nummoments"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"nummoments", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\[Phi]moments", "=", 
+         RowBox[{"N", "[", 
+          FractionBox[
+           RowBox[{"{", 
+            RowBox[{"data", "[", 
+             RowBox[{"[", 
+              RowBox[{"13", "+", "n"}], "]"}], "]"}], "}"}], 
+           "\[CapitalSigma]t"], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ks", "=", 
          RowBox[{"{", 
-          RowBox[{"k", ",", "ks"}], "}"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"j", "=", 
-       RowBox[{"Join", "[", 
-        RowBox[{"ks", ",", "analytic", ",", "\[Phi]moments"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
-       RowBox[{"Join", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"{", 
-           RowBox[{"\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], 
-           "}"}], "}"}], ",", 
-         RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], "\[IndentingNewLine]",
-        "]"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Table", "[", 
+           RowBox[{"k", ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "0", ",", 
+              RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"analytic", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"Quiet", "[", 
+            RowBox[{"N", "[", 
+             RowBox[{"halfrodalbedoisoscatter`\[Phi]m", "[", 
+              RowBox[{
+              "\[Alpha]", ",", "\[CapitalSigma]t", ",", "k", ",", "n"}], 
+              "]"}], "]"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "ks"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"j", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{"ks", ",", "analytic", ",", "\[Phi]moments"}], "]"}]}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
+             "}"}], ",", 
+           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
+     "\[IndentingNewLine]", 
      RowBox[{
      "Text", "[", 
       "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
 notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
     "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
-    RowBox[{"\[Alpha]", ",", "alphas"}], "}"}], ",", 
+    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"\[CapitalSigma]t", ",", "muts"}], "}"}], ",", 
+    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], "}"}], 
+   ",", 
    RowBox[{"{", 
     RowBox[{"n", ",", 
      RowBox[{"Range", "[", 
       RowBox[{"If", "[", 
        RowBox[{
-        RowBox[{"NumberQ", "[", "numcollorders", "]"}], ",", "numcollorders", 
-        ",", "1"}], "]"}], "]"}]}], "}"}]}], "]"}]], "Input",
+        RowBox[{
+        "NumberQ", "[", "halfrodalbedoisoscatter`numcollorders", "]"}], ",", 
+        "halfrodalbedoisoscatter`numcollorders", ",", "1"}], "]"}], "]"}]}], 
+    "}"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.646254332711746*^9, 3.646254360739975*^9}, {
-  3.6462546341534433`*^9, 3.6462546400025663`*^9}}],
+  3.6462546341534433`*^9, 3.6462546400025663`*^9}, {3.6462723555456667`*^9, 
+  3.646272383775259*^9}, {3.6462771222906933`*^9, 3.6462771401613626`*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = 4, $CellContext`\[Alpha]$$ = 
-    0.7, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`n$$ = 7, $CellContext`\[Alpha]$$ = 
+    0.9, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
@@ -1537,45 +1662,52 @@ Cell[BoxData[
       Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}, {
       Hold[$CellContext`n$$], {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
       15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {
-    253., {89.134033203125, 94.865966796875}}, Typeset`update$$ = 0, 
+    253., {90.134033203125, 95.865966796875}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$3039$$ = 
-    0, $CellContext`\[CapitalSigma]t$3040$$ = False, $CellContext`n$3041$$ = 
+    True, $CellContext`\[Alpha]$9580$$ = 
+    0, $CellContext`\[CapitalSigma]t$9581$$ = False, $CellContext`n$9582$$ = 
     0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`n$$ = 1, $CellContext`\[Alpha]$$ = 
         0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$3039$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9580$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$3040$$, False], 
-        Hold[$CellContext`n$$, $CellContext`n$3041$$, 0]}, 
+$CellContext`\[CapitalSigma]t$9581$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$9582$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> 
-      If[Length[$CellContext`simulations] > 0, $CellContext`data = Part[
-           
-           SelectFirst[$CellContext`simulations, And[
-            Part[#, 1] == $CellContext`\[Alpha]$$, 
-             Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
-           3]; $CellContext`\[Phi]moments = N[{
-             
-             Part[$CellContext`data, 
-              13 + $CellContext`n$$]}/$CellContext`\[CapitalSigma]t$$]; \
-$CellContext`ks = {
-           Table[$CellContext`k, {$CellContext`k, 0, $CellContext`nummoments - 
-             1}]}; $CellContext`analytic = Table[
-           Quiet[
-            N[
-             $CellContext`\[Phi]m[$CellContext`\[Alpha]$$, $CellContext`\
-\[CapitalSigma]t$$, $CellContext`k, $CellContext`n$$]]], {$CellContext`k, \
-$CellContext`ks}]; $CellContext`j = 
-         Join[$CellContext`ks, $CellContext`analytic, \
-$CellContext`\[Phi]moments]; TableForm[
-          Join[{{"k", "analytic", "MC"}}, 
-           Transpose[$CellContext`j]]], 
+      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`\[Phi]moments$, \
+$CellContext`ks$, $CellContext`analytic$, $CellContext`j$, \
+$CellContext`nummoments$}, $CellContext`data$ = Part[
+            SelectFirst[
+            halfrodalbedoisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`nummoments$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`\[Phi]moments$ = N[{
+              
+              Part[$CellContext`data$, 
+               13 + $CellContext`n$$]}/$CellContext`\[CapitalSigma]t$$]; \
+$CellContext`ks$ = {
+            
+            Table[$CellContext`k, {$CellContext`k, 
+              0, $CellContext`nummoments$ - 1}]}; $CellContext`analytic$ = 
+          Table[
+            Quiet[
+             N[
+              
+              halfrodalbedoisoscatter`\[Phi]m[$CellContext`\[Alpha]$$, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`k, $CellContext`n$$]]], \
+{$CellContext`k, $CellContext`ks$}]; $CellContext`j$ = 
+          Join[$CellContext`ks$, $CellContext`analytic$, \
+$CellContext`\[Phi]moments$]; TableForm[
+           Join[{{"k", "analytic", "MC"}}, 
+            Transpose[$CellContext`j$]]]], 
         Text[
         "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
 and ensure the data path is setup correctly."]], 
@@ -1584,7 +1716,7 @@ and ensure the data path is setup correctly."]],
          3}}, {$CellContext`n$$, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
          14, 15, 16, 17, 18, 19, 20}}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{298., {160., 165.}},
+     ImageSizeCache->{298., {161., 166.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1598,7 +1730,9 @@ and ensure the data path is setup correctly."]],
  CellChangeTimes->{
   3.6450691030559998`*^9, 3.645070163703945*^9, 3.646173976984788*^9, {
    3.646254361680525*^9, 3.6462543784379463`*^9}, 3.6462545202789383`*^9, 
-   3.646254640433272*^9, 3.646254688399544*^9, 3.646262948881361*^9}]
+   3.646254640433272*^9, 3.646254688399544*^9, 3.646262948881361*^9, 
+   3.646272136013496*^9, 3.646272385426499*^9, 3.646272679573999*^9, 
+   3.6462772206243753`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -1616,113 +1750,136 @@ Cell[BoxData[
    RowBox[{"If", "[", 
     RowBox[{
      RowBox[{
-      RowBox[{"Length", "[", "simulations", "]"}], ">", "0"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"data", "=", 
-       RowBox[{
-        RowBox[{"SelectFirst", "[", 
-         RowBox[{"simulations", ",", 
-          RowBox[{
-           RowBox[{
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
-            
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
-             "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
-        RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"nthL", "=", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", 
-         RowBox[{
-          RowBox[{"13", "+", "numcollorders", "+", "1"}], ";;", 
-          RowBox[{"13", "+", 
-           RowBox[{"2", "numcollorders"}]}]}], "]"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"nthR", "=", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", 
-         RowBox[{
-          RowBox[{"13", "+", 
-           RowBox[{"2", " ", "numcollorders"}], "+", "2"}], ";;", 
-          RowBox[{"-", "1"}]}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      "\[IndentingNewLine]", 
-      RowBox[{"Clear", "[", "c", "]"}], ";", 
-      RowBox[{"LnR", "=", 
-       RowBox[{"FullSimplify", "[", 
+      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
+      ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
         RowBox[{
-         RowBox[{"SeriesCoefficient", "[", 
-          RowBox[{
-           RowBox[{"LR", "[", 
-            RowBox[{"x", ",", "c", ",", "\[CapitalSigma]t"}], "]"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"c", ",", "0", ",", "n"}], "}"}]}], "]"}], 
-         SuperscriptBox["\[Alpha]", "n"]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"Show", "[", "\[IndentingNewLine]", 
+        "data", ",", "nthL", ",", "nthR", ",", "maxx", ",", "dx", ",", 
+         "numcollorders", ",", "LnR"}], "}"}], ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"ListPlot", "[", 
+        RowBox[{"data", "=", 
          RowBox[{
-          RowBox[{"ppoints", "[", 
-           RowBox[{
-            RowBox[{"nthR", "[", 
-             RowBox[{"[", 
-              RowBox[{"n", "+", "1"}], "]"}], "]"}], ",", "dx", ",", "maxx", 
-            ",", "\[CapitalSigma]t"}], "]"}], ",", 
-          RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-          RowBox[{"PlotStyle", "\[Rule]", 
-           RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
-        "\[IndentingNewLine]", 
-        RowBox[{"Plot", "[", 
-         RowBox[{"LnR", ",", 
-          RowBox[{"{", 
-           RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
-          RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], 
-        "\[IndentingNewLine]", ",", 
-        RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
-        RowBox[{"FrameLabel", "->", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"{", 
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
             RowBox[{
              RowBox[{
-              SubscriptBox["L", "+"], "[", 
-              RowBox[{"\"\<x|\>\"", "<>", 
-               RowBox[{"ToString", "[", "n", "]"}]}], "]"}], ","}], "}"}], 
-           ",", 
-           RowBox[{"{", 
-            RowBox[{"x", ",", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"maxx", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dx", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"numcollorders", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "11"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"nthL", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{
+            RowBox[{"13", "+", "numcollorders", "+", "1"}], ";;", 
+            RowBox[{"13", "+", 
+             RowBox[{"2", "numcollorders"}]}]}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"nthR", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{
+            RowBox[{"13", "+", 
+             RowBox[{"2", " ", "numcollorders"}], "+", "2"}], ";;", 
+            RowBox[{"-", "1"}]}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Clear", "[", 
+         RowBox[{"c", ",", "x"}], "]"}], ";", 
+        RowBox[{"LnR", "=", 
+         RowBox[{
+          RowBox[{"SeriesCoefficient", "[", 
+           RowBox[{
+            RowBox[{"halfrodalbedoisoscatter`LR", "[", 
+             RowBox[{"x", ",", "c", ",", "\[CapitalSigma]t"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"c", ",", "0", ",", "n"}], "}"}]}], "]"}], 
+          SuperscriptBox["\[Alpha]", "n"]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"ListPlot", "[", 
+           RowBox[{
+            RowBox[{"halfrodalbedoisoscatter`ppoints", "[", 
              RowBox[{
-             "\"\<Semi-Infinite Rod, albedo problem, isotropic scattering, \!\
-\(\*SubscriptBox[\(L\), \(+\)]\)[x|\>\"", "<>", 
-              RowBox[{"ToString", "[", "n", "]"}], "<>", 
-              "\"\<], \[Alpha] = \>\"", "<>", 
-              RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
-              "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"",
-               "<>", 
-              RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], "}"}]}],
-           "}"}]}], ",", 
-        RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
-       "]"}]}], ",", "\[IndentingNewLine]", 
+              RowBox[{"nthR", "[", 
+               RowBox[{"[", 
+                RowBox[{"n", "+", "1"}], "]"}], "]"}], ",", "dx", ",", "maxx",
+               ",", "\[CapitalSigma]t"}], "]"}], ",", 
+            RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+            RowBox[{"PlotStyle", "\[Rule]", 
+             RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Plot", "[", 
+           RowBox[{"LnR", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
+            RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"FrameLabel", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                SubscriptBox["L", "+"], "[", 
+                RowBox[{"\"\<x|\>\"", "<>", 
+                 RowBox[{"ToString", "[", "n", "]"}]}], "]"}], ","}], "}"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", 
+               RowBox[{
+               "\"\<Semi-Infinite Rod, albedo problem, isotropic scattering, \
+\!\(\*SubscriptBox[\(L\), \(+\)]\)[x|\>\"", "<>", 
+                RowBox[{"ToString", "[", "n", "]"}], "<>", 
+                "\"\<], \[Alpha] = \>\"", "<>", 
+                RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+                "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \
+\>\"", "<>", 
+                RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], 
+              "}"}]}], "}"}]}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
+         "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+     
      RowBox[{
      "Text", "[", 
       "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
 notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
     "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
-    RowBox[{"\[Alpha]", ",", "alphas"}], "}"}], ",", 
+    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"\[CapitalSigma]t", ",", "muts"}], "}"}], ",", 
+    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], "}"}], 
+   ",", 
    RowBox[{"{", 
     RowBox[{"n", ",", 
      RowBox[{"Range", "[", 
       RowBox[{"If", "[", 
        RowBox[{
-        RowBox[{"NumberQ", "[", "numcollorders", "]"}], ",", "numcollorders", 
-        ",", "1"}], "]"}], "]"}]}], "}"}]}], "]"}]], "Input",
+        RowBox[{
+        "NumberQ", "[", "halfrodalbedoisoscatter`numcollorders", "]"}], ",", 
+        "halfrodalbedoisoscatter`numcollorders", ",", "1"}], "]"}], "]"}]}], 
+    "}"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.617848087531028*^9, 3.617848128632434*^9}, {
    3.6178483799454823`*^9, 3.6178483963910007`*^9}, {3.617848587920553*^9, 
    3.617848741866837*^9}, {3.617848861441987*^9, 3.617848980979924*^9}, {
@@ -1733,13 +1890,15 @@ notebook and ensure the data path is setup correctly.\>\"", "]"}]}],
    3.618036398228166*^9}, {3.618036459241461*^9, 3.618036480538363*^9}, {
    3.619594784617628*^9, 3.61959481460251*^9}, {3.6196381857106743`*^9, 
    3.619638204748053*^9}, 3.64506987013127*^9, 3.646254340055859*^9, {
-   3.64625440730513*^9, 3.646254407617051*^9}, 3.646254670105748*^9}],
+   3.64625440730513*^9, 3.646254407617051*^9}, 3.646254670105748*^9, {
+   3.646272502894999*^9, 3.646272546935742*^9}, {3.646272598031747*^9, 
+   3.6462726095038767`*^9}, {3.646277145177865*^9, 3.646277175575788*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = 11, $CellContext`\[Alpha]$$ = 
-    0.999, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`n$$ = 4, $CellContext`\[Alpha]$$ = 
+    0.95, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
@@ -1747,60 +1906,69 @@ Cell[BoxData[
       0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}, {
       Hold[$CellContext`n$$], {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
-      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {360., {108., 112.}}, 
+      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {360., {111., 115.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$3069$$ = 
-    0, $CellContext`\[CapitalSigma]t$3070$$ = False, $CellContext`n$3071$$ = 
+    True, $CellContext`\[Alpha]$9611$$ = 
+    0, $CellContext`\[CapitalSigma]t$9612$$ = False, $CellContext`n$9613$$ = 
     0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`n$$ = 1, $CellContext`\[Alpha]$$ = 
         0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$3069$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9611$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$3070$$, False], 
-        Hold[$CellContext`n$$, $CellContext`n$3071$$, 0]}, 
+$CellContext`\[CapitalSigma]t$9612$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$9613$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> 
-      If[Length[$CellContext`simulations] > 0, $CellContext`data = Part[
-           
-           SelectFirst[$CellContext`simulations, And[
-            Part[#, 1] == $CellContext`\[Alpha]$$, 
-             Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
-           3]; $CellContext`nthL = Part[$CellContext`data, 
-           Span[
-           13 + $CellContext`numcollorders + 1, 13 + 
-            2 $CellContext`numcollorders]]; $CellContext`nthR = 
-         Part[$CellContext`data, 
-           Span[13 + 2 $CellContext`numcollorders + 2, -1]]; 
-        Clear[$CellContext`c]; $CellContext`LnR = 
-         FullSimplify[SeriesCoefficient[
-             $CellContext`LR[$CellContext`x, $CellContext`c, $CellContext`\
-\[CapitalSigma]t$$], {$CellContext`c, 
-              0, $CellContext`n$$}] $CellContext`\[Alpha]$$^$CellContext`n$$]; 
-        Show[
-          ListPlot[
-           $CellContext`ppoints[
-            
-            Part[$CellContext`nthR, $CellContext`n$$ + 
-             1], $CellContext`dx, $CellContext`maxx, $CellContext`\
+      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`nthL$, $CellContext`nthR$, \
+$CellContext`maxx$, $CellContext`dx$, $CellContext`numcollorders$, \
+$CellContext`LnR$}, $CellContext`data$ = Part[
+            SelectFirst[
+            halfrodalbedoisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`maxx$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`dx$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`numcollorders$ = 
+          Part[$CellContext`data$, 2, 11]; $CellContext`nthL$ = 
+          Part[$CellContext`data$, 
+            Span[
+            13 + $CellContext`numcollorders$ + 1, 13 + 
+             2 $CellContext`numcollorders$]]; $CellContext`nthR$ = 
+          Part[$CellContext`data$, 
+            Span[13 + 2 $CellContext`numcollorders$ + 2, -1]]; 
+         Clear[$CellContext`c, $CellContext`x]; $CellContext`LnR$ = 
+          SeriesCoefficient[
+             
+             halfrodalbedoisoscatter`LR[$CellContext`x, $CellContext`c, \
+$CellContext`\[CapitalSigma]t$$], {$CellContext`c, 
+              0, $CellContext`n$$}] $CellContext`\[Alpha]$$^$CellContext`n$$; 
+         Show[
+           ListPlot[
+            halfrodalbedoisoscatter`ppoints[
+             
+             Part[$CellContext`nthR$, $CellContext`n$$ + 
+              1], $CellContext`dx$, $CellContext`maxx$, $CellContext`\
 \[CapitalSigma]t$$], PlotRange -> All, PlotStyle -> PointSize[0.01]], 
-          
-          Plot[$CellContext`LnR, {$CellContext`x, 0, $CellContext`maxx}, 
-           PlotRange -> All], Frame -> True, FrameLabel -> {{
-             SubPlus[$CellContext`L][
-              StringJoin["x|", 
-               ToString[$CellContext`n$$]]], Null}, {$CellContext`x, 
-             StringJoin[
-             "Semi-Infinite Rod, albedo problem, isotropic scattering, \
+           
+           Plot[$CellContext`LnR$, {$CellContext`x, 0, $CellContext`maxx$}, 
+            PlotRange -> All], Frame -> True, FrameLabel -> {{
+              SubPlus[$CellContext`L][
+               StringJoin["x|", 
+                ToString[$CellContext`n$$]]], Null}, {$CellContext`x, 
+              StringJoin[
+              "Semi-Infinite Rod, albedo problem, isotropic scattering, \
 \!\(\*SubscriptBox[\(L\), \(+\)]\)[x|", 
-              ToString[$CellContext`n$$], "], \[Alpha] = ", 
-              ToString[$CellContext`\[Alpha]$$], 
-              ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
-              ToString[$CellContext`\[CapitalSigma]t$$]]}}, PlotRange -> All], 
+               ToString[$CellContext`n$$], "], \[Alpha] = ", 
+               ToString[$CellContext`\[Alpha]$$], 
+               ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+               ToString[$CellContext`\[CapitalSigma]t$$]]}}, PlotRange -> 
+           All]], 
         Text[
         "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
 and ensure the data path is setup correctly."]], 
@@ -1809,7 +1977,7 @@ and ensure the data path is setup correctly."]],
          3}}, {$CellContext`n$$, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
          14, 15, 16, 17, 18, 19, 20}}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{405., {177., 182.}},
+     ImageSizeCache->{405., {180., 185.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1836,7 +2004,8 @@ and ensure the data path is setup correctly."]],
    3.643953128211825*^9, 3.645066582869865*^9, 3.64506917798079*^9, 
    3.645069871050242*^9, 3.645070163856153*^9, 3.646173977550927*^9, 
    3.646254408444701*^9, {3.646254671233919*^9, 3.646254688609837*^9}, 
-   3.6462629490141373`*^9}]
+   3.6462629490141373`*^9, 3.646272136061755*^9, 3.646272550097081*^9, 
+   3.646272623204092*^9, 3.646272679674335*^9, 3.6462772207066813`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -1853,117 +2022,139 @@ Cell[BoxData[
    RowBox[{"If", "[", 
     RowBox[{
      RowBox[{
-      RowBox[{"Length", "[", "simulations", "]"}], ">", "0"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"data", "=", 
-       RowBox[{
-        RowBox[{"SelectFirst", "[", 
-         RowBox[{"simulations", ",", 
-          RowBox[{
-           RowBox[{
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
-            
-            RowBox[{
-             RowBox[{"#", "[", 
-              RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
-             "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
-        RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"nthL", "=", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", 
-         RowBox[{
-          RowBox[{"13", "+", "numcollorders", "+", "1"}], ";;", 
-          RowBox[{"13", "+", 
-           RowBox[{"2", "numcollorders"}]}]}], "]"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"nthR", "=", 
-       RowBox[{"data", "[", 
-        RowBox[{"[", 
-         RowBox[{
-          RowBox[{"13", "+", 
-           RowBox[{"2", " ", "numcollorders"}], "+", "2"}], ";;", 
-          RowBox[{"-", "1"}]}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      "\[IndentingNewLine]", 
-      RowBox[{"Clear", "[", "c", "]"}], ";", 
-      RowBox[{"\[Phi]n", "=", 
-       RowBox[{"FullSimplify", "[", 
+      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
+      ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
         RowBox[{
-         RowBox[{"SeriesCoefficient", "[", 
-          RowBox[{
-           RowBox[{"\[Phi]", "[", 
-            RowBox[{"x", ",", "c", ",", "\[CapitalSigma]t"}], "]"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"c", ",", "0", ",", "n"}], "}"}]}], "]"}], 
-         SuperscriptBox["\[Alpha]", "n"]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"Show", "[", "\[IndentingNewLine]", 
+        "data", ",", "maxx", ",", "dx", ",", "numcollorders", ",", "nthL", 
+         ",", "nthR", ",", "\[Phi]n"}], "}"}], ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"ListPlot", "[", 
+        RowBox[{"data", "=", 
          RowBox[{
-          RowBox[{"ppoints", "[", 
-           RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
             RowBox[{
-             RowBox[{"nthR", "[", 
-              RowBox[{"[", 
-               RowBox[{"n", "+", "1"}], "]"}], "]"}], "+", 
-             RowBox[{"nthL", "[", 
-              RowBox[{"[", 
-               RowBox[{"n", "+", "1"}], "]"}], "]"}]}], ",", "dx", ",", 
-            "maxx", ",", "\[CapitalSigma]t"}], "]"}], ",", 
-          RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-          RowBox[{"PlotStyle", "\[Rule]", 
-           RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"maxx", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
         "\[IndentingNewLine]", 
-        RowBox[{"Plot", "[", 
-         RowBox[{"\[Phi]n", ",", 
-          RowBox[{"{", 
-           RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
-          RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], 
-        "\[IndentingNewLine]", ",", 
-        RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
-        RowBox[{"FrameLabel", "->", 
-         RowBox[{"{", 
-          RowBox[{
+        RowBox[{"dx", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"numcollorders", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "11"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"nthL", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{
+            RowBox[{"13", "+", "numcollorders", "+", "1"}], ";;", 
+            RowBox[{"13", "+", 
+             RowBox[{"2", "numcollorders"}]}]}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"nthR", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{
+            RowBox[{"13", "+", 
+             RowBox[{"2", " ", "numcollorders"}], "+", "2"}], ";;", 
+            RowBox[{"-", "1"}]}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Clear", "[", "c", "]"}], ";", 
+        RowBox[{"\[Phi]n", "=", 
+         RowBox[{
+          RowBox[{"SeriesCoefficient", "[", 
+           RowBox[{
+            RowBox[{"halfrodalbedoisoscatter`\[Phi]", "[", 
+             RowBox[{"x", ",", "c", ",", "\[CapitalSigma]t"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"c", ",", "0", ",", "n"}], "}"}]}], "]"}], 
+          SuperscriptBox["\[Alpha]", "n"]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"ListPlot", "[", 
+           RowBox[{
+            RowBox[{"halfrodalbedoisoscatter`ppoints", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"nthR", "[", 
+                RowBox[{"[", 
+                 RowBox[{"n", "+", "1"}], "]"}], "]"}], "+", 
+               RowBox[{"nthL", "[", 
+                RowBox[{"[", 
+                 RowBox[{"n", "+", "1"}], "]"}], "]"}]}], ",", "dx", ",", 
+              "maxx", ",", "\[CapitalSigma]t"}], "]"}], ",", 
+            RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+            RowBox[{"PlotStyle", "\[Rule]", 
+             RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Plot", "[", 
+           RowBox[{"\[Phi]n", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
+            RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"FrameLabel", "->", 
            RowBox[{"{", 
             RowBox[{
-             RowBox[{
-              SubscriptBox["L", "+"], "[", 
-              RowBox[{"\"\<x|\>\"", "<>", 
-               RowBox[{"ToString", "[", "n", "]"}]}], "]"}], ","}], "}"}], 
-           ",", 
-           RowBox[{"{", 
-            RowBox[{"x", ",", 
-             RowBox[{
-             "\"\<Semi-Infinite Rod, albedo problem, isotropic scattering, \
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                SubscriptBox["L", "+"], "[", 
+                RowBox[{"\"\<x|\>\"", "<>", 
+                 RowBox[{"ToString", "[", "n", "]"}]}], "]"}], ","}], "}"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", 
+               RowBox[{
+               "\"\<Semi-Infinite Rod, albedo problem, isotropic scattering, \
 \[Phi][x|\>\"", "<>", 
-              RowBox[{"ToString", "[", "n", "]"}], "<>", 
-              "\"\<], \[Alpha] = \>\"", "<>", 
-              RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
-              "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"",
-               "<>", 
-              RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], "}"}]}],
-           "}"}]}], ",", 
-        RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
-       "]"}]}], ",", "\[IndentingNewLine]", 
+                RowBox[{"ToString", "[", "n", "]"}], "<>", 
+                "\"\<], \[Alpha] = \>\"", "<>", 
+                RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+                "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \
+\>\"", "<>", 
+                RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], 
+              "}"}]}], "}"}]}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
+         "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+     
      RowBox[{
      "Text", "[", 
       "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
 notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
     "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
-    RowBox[{"\[Alpha]", ",", "alphas"}], "}"}], ",", 
+    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"\[CapitalSigma]t", ",", "muts"}], "}"}], ",", 
+    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], "}"}], 
+   ",", 
    RowBox[{"{", 
     RowBox[{"n", ",", 
      RowBox[{"Range", "[", 
       RowBox[{"If", "[", 
        RowBox[{
-        RowBox[{"NumberQ", "[", "numcollorders", "]"}], ",", "numcollorders", 
-        ",", "1"}], "]"}], "]"}]}], "}"}]}], "]"}]], "Input",
+        RowBox[{
+        "NumberQ", "[", "halfrodalbedoisoscatter`numcollorders", "]"}], ",", 
+        "halfrodalbedoisoscatter`numcollorders", ",", "1"}], "]"}], "]"}]}], 
+    "}"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.617899027974739*^9, 3.617899102058537*^9}, {
    3.6180269284074593`*^9, 3.61802695676259*^9}, {3.6180353307690983`*^9, 
    3.618035331073291*^9}, {3.6180353616180267`*^9, 3.618035387988235*^9}, {
@@ -1975,13 +2166,15 @@ notebook and ensure the data path is setup correctly.\>\"", "]"}]}],
    3.621374781248908*^9, 3.621374815343933*^9}, {3.6410041951418047`*^9, 
    3.641004204457437*^9}, {3.645069985930352*^9, 3.6450700570061626`*^9}, 
    3.646254345342705*^9, {3.6462544110734043`*^9, 3.646254411352294*^9}, 
-   3.6462546758012743`*^9}],
+   3.6462546758012743`*^9, {3.646272564757514*^9, 3.6462725921029873`*^9}, {
+   3.646272633440489*^9, 3.646272640863365*^9}, {3.6462771789836683`*^9, 
+   3.646277207301758*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = 5, $CellContext`\[Alpha]$$ = 
-    0.99, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`n$$ = 13, $CellContext`\[Alpha]$$ = 
+    0.999, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
@@ -1989,60 +2182,69 @@ Cell[BoxData[
       0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}, {
       Hold[$CellContext`n$$], {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
-      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {360., {112., 117.}}, 
+      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {360., {108., 112.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$3178$$ = 
-    0, $CellContext`\[CapitalSigma]t$3179$$ = False, $CellContext`n$3180$$ = 
+    True, $CellContext`\[Alpha]$9679$$ = 
+    0, $CellContext`\[CapitalSigma]t$9680$$ = False, $CellContext`n$9681$$ = 
     0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`n$$ = 1, $CellContext`\[Alpha]$$ = 
         0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$3178$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9679$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$3179$$, False], 
-        Hold[$CellContext`n$$, $CellContext`n$3180$$, 0]}, 
+$CellContext`\[CapitalSigma]t$9680$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$9681$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> 
-      If[Length[$CellContext`simulations] > 0, $CellContext`data = Part[
-           
-           SelectFirst[$CellContext`simulations, And[
-            Part[#, 1] == $CellContext`\[Alpha]$$, 
-             Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
-           3]; $CellContext`nthL = Part[$CellContext`data, 
-           Span[
-           13 + $CellContext`numcollorders + 1, 13 + 
-            2 $CellContext`numcollorders]]; $CellContext`nthR = 
-         Part[$CellContext`data, 
-           Span[13 + 2 $CellContext`numcollorders + 2, -1]]; 
-        Clear[$CellContext`c]; $CellContext`\[Phi]n = 
-         FullSimplify[SeriesCoefficient[
-             $CellContext`\[Phi][$CellContext`x, $CellContext`c, \
+      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`maxx$, $CellContext`dx$, \
+$CellContext`numcollorders$, $CellContext`nthL$, $CellContext`nthR$, \
+$CellContext`\[Phi]n$}, $CellContext`data$ = Part[
+            SelectFirst[
+            halfrodalbedoisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`maxx$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`dx$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`numcollorders$ = 
+          Part[$CellContext`data$, 2, 11]; $CellContext`nthL$ = 
+          Part[$CellContext`data$, 
+            Span[
+            13 + $CellContext`numcollorders$ + 1, 13 + 
+             2 $CellContext`numcollorders$]]; $CellContext`nthR$ = 
+          Part[$CellContext`data$, 
+            Span[13 + 2 $CellContext`numcollorders$ + 2, -1]]; 
+         Clear[$CellContext`c]; $CellContext`\[Phi]n$ = SeriesCoefficient[
+             
+             halfrodalbedoisoscatter`\[Phi][$CellContext`x, $CellContext`c, \
 $CellContext`\[CapitalSigma]t$$], {$CellContext`c, 
-              0, $CellContext`n$$}] $CellContext`\[Alpha]$$^$CellContext`n$$]; 
-        Show[
-          ListPlot[
-           $CellContext`ppoints[
-           Part[$CellContext`nthR, $CellContext`n$$ + 1] + 
-            Part[$CellContext`nthL, $CellContext`n$$ + 
-              1], $CellContext`dx, $CellContext`maxx, $CellContext`\
+              0, $CellContext`n$$}] $CellContext`\[Alpha]$$^$CellContext`n$$; 
+         Show[
+           ListPlot[
+            halfrodalbedoisoscatter`ppoints[
+            Part[$CellContext`nthR$, $CellContext`n$$ + 1] + 
+             Part[$CellContext`nthL$, $CellContext`n$$ + 
+               1], $CellContext`dx$, $CellContext`maxx$, $CellContext`\
 \[CapitalSigma]t$$], PlotRange -> All, PlotStyle -> PointSize[0.01]], 
-          
-          Plot[$CellContext`\[Phi]n, {$CellContext`x, 0, $CellContext`maxx}, 
-           PlotRange -> All], Frame -> True, FrameLabel -> {{
-             SubPlus[$CellContext`L][
-              StringJoin["x|", 
-               ToString[$CellContext`n$$]]], Null}, {$CellContext`x, 
-             StringJoin[
-             "Semi-Infinite Rod, albedo problem, isotropic scattering, \
+           
+           Plot[$CellContext`\[Phi]n$, {$CellContext`x, 
+             0, $CellContext`maxx$}, PlotRange -> All], Frame -> True, 
+           FrameLabel -> {{
+              SubPlus[$CellContext`L][
+               StringJoin["x|", 
+                ToString[$CellContext`n$$]]], Null}, {$CellContext`x, 
+              StringJoin[
+              "Semi-Infinite Rod, albedo problem, isotropic scattering, \
 \[Phi][x|", 
-              ToString[$CellContext`n$$], "], \[Alpha] = ", 
-              ToString[$CellContext`\[Alpha]$$], 
-              ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
-              ToString[$CellContext`\[CapitalSigma]t$$]]}}, PlotRange -> All], 
+               ToString[$CellContext`n$$], "], \[Alpha] = ", 
+               ToString[$CellContext`\[Alpha]$$], 
+               ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+               ToString[$CellContext`\[CapitalSigma]t$$]]}}, PlotRange -> 
+           All]], 
         Text[
         "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
 and ensure the data path is setup correctly."]], 
@@ -2051,7 +2253,7 @@ and ensure the data path is setup correctly."]],
          3}}, {$CellContext`n$$, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
          14, 15, 16, 17, 18, 19, 20}}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{405., {182., 187.}},
+     ImageSizeCache->{405., {177., 182.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -2076,7 +2278,8 @@ and ensure the data path is setup correctly."]],
    3.643952948964425*^9, 3.643953128321561*^9, 3.645066582952861*^9, 
    3.6450700282258663`*^9, 3.645070060176592*^9, 3.645070163994829*^9, 
    3.64617397781698*^9, 3.6462544121082277`*^9, {3.646254677177189*^9, 
-   3.646254688665596*^9}, 3.646262949149982*^9}]
+   3.646254688665596*^9}, 3.646262949149982*^9, 3.646272136206377*^9, 
+   3.646272679789216*^9, 3.6462772208412848`*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -2084,7 +2287,7 @@ and ensure the data path is setup correctly."]],
 }, Open  ]]
 },
 WindowSize->{1167, 1075},
-WindowMargins->{{264, Automatic}, {Automatic, 25}},
+WindowMargins->{{Automatic, 31}, {Automatic, 27}},
 PrintingCopies->1,
 PrintingPageRange->{1, Automatic},
 FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 4, \
@@ -2120,102 +2323,106 @@ Cell[CellGroupData[{
 Cell[2372, 78, 105, 1, 64, "Section"],
 Cell[CellGroupData[{
 Cell[2502, 83, 220, 3, 44, "Subsection"],
-Cell[2725, 88, 538, 16, 59, "Input"],
+Cell[2725, 88, 628, 17, 79, "Input"],
 Cell[CellGroupData[{
-Cell[3288, 108, 251, 6, 28, "Input"],
-Cell[3542, 116, 997, 29, 50, "Output"]
+Cell[3378, 109, 301, 7, 28, "Input"],
+Cell[3682, 118, 1118, 31, 50, "Output"]
 }, Open  ]],
-Cell[4554, 148, 492, 14, 31, "Input"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[5083, 167, 209, 3, 44, "Subsection"],
-Cell[5295, 172, 468, 12, 36, "Input"],
-Cell[5766, 186, 636, 18, 64, "Input"]
+Cell[4815, 152, 590, 15, 65, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6439, 209, 97, 1, 44, "Subsection"],
-Cell[6539, 212, 509, 12, 28, "Input"]
+Cell[5442, 172, 209, 3, 44, "Subsection"],
+Cell[5654, 177, 518, 12, 36, "Input"],
+Cell[6175, 191, 686, 18, 64, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7085, 229, 111, 1, 44, "Subsection"],
-Cell[7199, 232, 644, 17, 31, "Input"]
+Cell[6898, 214, 97, 1, 44, "Subsection"],
+Cell[6998, 217, 655, 13, 28, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7880, 254, 95, 1, 44, "Subsection"],
-Cell[7978, 257, 741, 22, 63, "Input"],
-Cell[8722, 281, 107, 1, 30, "Text"],
-Cell[8832, 284, 2115, 63, 159, "Input"]
+Cell[7690, 235, 111, 1, 44, "Subsection"],
+Cell[7804, 238, 740, 18, 31, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8581, 261, 95, 1, 44, "Subsection"],
+Cell[8679, 264, 791, 23, 63, "Input"],
+Cell[9473, 289, 107, 1, 30, "Text"],
+Cell[9583, 292, 2162, 63, 159, "Input"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10996, 353, 197, 3, 64, "Section"],
-Cell[11196, 358, 888, 27, 28, "Input"],
-Cell[12087, 387, 392, 9, 28, "Input"],
-Cell[12482, 398, 1132, 30, 114, "Input"],
+Cell[11794, 361, 197, 3, 64, "Section"],
+Cell[11994, 366, 937, 27, 28, "Input"],
+Cell[12934, 395, 438, 9, 28, "Input"],
+Cell[13375, 406, 1287, 33, 114, "Input"],
 Cell[CellGroupData[{
-Cell[13639, 432, 271, 8, 28, "Input"],
-Cell[13913, 442, 344, 7, 28, "Output"]
+Cell[14687, 443, 369, 9, 28, "Input"],
+Cell[15059, 454, 440, 8, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[14294, 454, 267, 8, 28, "Input"],
-Cell[14564, 464, 207, 4, 28, "Output"]
+Cell[15536, 467, 363, 9, 28, "Input"],
+Cell[15902, 478, 303, 6, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16242, 489, 424, 10, 28, "Input"],
+Cell[16669, 501, 139, 2, 28, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[14820, 474, 101, 1, 64, "Section"],
-Cell[14924, 477, 891, 24, 97, "Input"],
+Cell[16857, 509, 101, 1, 64, "Section"],
+Cell[16961, 512, 891, 24, 97, "Input"],
 Cell[CellGroupData[{
-Cell[15840, 505, 268, 7, 28, "Input"],
-Cell[16111, 514, 1892, 47, 63, "Output"]
+Cell[17877, 540, 322, 9, 28, "Input"],
+Cell[18202, 551, 1984, 48, 63, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18040, 566, 1232, 30, 114, "Input"],
-Cell[19275, 598, 4846, 90, 305, "Output"]
+Cell[20223, 604, 1385, 32, 114, "Input"],
+Cell[21611, 638, 4939, 91, 344, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[24170, 694, 115, 1, 64, "Section"],
+Cell[26599, 735, 115, 1, 64, "Section"],
 Cell[CellGroupData[{
-Cell[24310, 699, 110, 1, 44, "Subsection"],
+Cell[26739, 740, 110, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[24445, 704, 11545, 256, 913, "Input"],
-Cell[35993, 962, 8257, 150, 1028, "Output"]
+Cell[26874, 745, 12679, 265, 879, "Input"],
+Cell[39556, 1012, 8881, 161, 1028, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[44299, 1118, 156, 2, 44, "Subsection"],
+Cell[48486, 1179, 156, 2, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[44480, 1124, 2810, 72, 250, "Input"],
-Cell[47293, 1198, 3465, 66, 482, "Output"]
+Cell[48667, 1185, 3628, 87, 301, "Input"],
+Cell[52298, 1274, 3888, 74, 482, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[50807, 1270, 113, 1, 44, "Subsection"],
-Cell[50923, 1273, 207, 4, 30, "Text"],
+Cell[56235, 1354, 113, 1, 44, "Subsection"],
+Cell[56351, 1357, 207, 4, 30, "Text"],
 Cell[CellGroupData[{
-Cell[51155, 1281, 3088, 75, 297, "Input"],
-Cell[54246, 1358, 3857, 74, 322, "Output"]
+Cell[56583, 1365, 3874, 91, 370, "Input"],
+Cell[60460, 1458, 4290, 82, 316, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[58152, 1438, 119, 1, 44, "Subsection"],
+Cell[64799, 1546, 119, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[58296, 1443, 3065, 81, 297, "Input"],
-Cell[61364, 1526, 3725, 74, 342, "Output"]
+Cell[64943, 1551, 3923, 98, 387, "Input"],
+Cell[68869, 1651, 4151, 83, 344, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[65138, 1606, 171, 2, 44, "Subsection"],
+Cell[73069, 1740, 171, 2, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[65334, 1612, 5199, 123, 340, "Input"],
-Cell[70536, 1737, 5463, 101, 376, "Output"]
+Cell[73265, 1746, 6474, 148, 447, "Input"],
+Cell[79742, 1896, 6073, 111, 382, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[76048, 1844, 120, 1, 44, "Subsection"],
+Cell[85864, 2013, 120, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[76193, 1849, 5375, 128, 340, "Input"],
-Cell[81571, 1979, 5369, 99, 386, "Output"]
+Cell[86009, 2018, 6634, 152, 447, "Input"],
+Cell[92646, 2172, 5930, 109, 376, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
