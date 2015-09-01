@@ -36,7 +36,7 @@ public:
         // angular collision density
         const size_t num_u_bins = floor( 2.0 / du ) + 1.0;
         const size_t num_ru_bins = num_r_bins * num_u_bins;
-        size_t * angularCollisionDensity = new size_t [num_r_bins];
+        size_t * angularCollisionDensity = new size_t [num_ru_bins];
         for( size_t i = 0; i < num_ru_bins; ++i )
         {
             angularCollisionDensity[i] = 0;
@@ -45,7 +45,7 @@ public:
         // collision density of arbitrary order
         const size_t numCollisionbins = num_r_bins * numCollisionOrders;
         size_t * collisionDensities = new size_t [numCollisionbins];
-        for( size_t i = 0; i < num_r_bins; ++i )
+        for( size_t i = 0; i < numCollisionbins; ++i )
         {
             collisionDensities[i] = 0;
         }
@@ -56,8 +56,10 @@ public:
         {
             globalMoments[i] = 0;
         }
-        double * orderMoments = new double [numMoments * numCollisionOrders];
-        for( size_t i = 0; i < numMoments * numCollisionOrders; ++i )
+
+        const size_t numOrderMoments = numMoments * numCollisionOrders;
+        double * orderMoments = new double [numOrderMoments];
+        for( size_t i = 0; i < numOrderMoments; ++i )
         {
             orderMoments[i] = 0;
         }
@@ -87,21 +89,25 @@ public:
                 {   
                     for( size_t m = 0; m < numMoments; ++m )
                     {
+                        assert( m * numCollisionOrders + collisionOrder < numOrderMoments );
                         orderMoments[m * numCollisionOrders + collisionOrder] += pow( r, double( m ) );
                     }
                 }
 
                 const size_t ri = std::min( num_r_bins - 1, (long unsigned int)( floor( r / dr ) ) );
+                assert( ri < num_r_bins );
                 collisionDensity[ri]++;
 
                 const float u = Dot( Normalize(pos), dir );
                 const size_t ui = discreteMap( -1.0, 1.0, du, u );
                 const size_t rui = num_u_bins * ri + ui;
+                assert( rui < num_ru_bins );
                 angularCollisionDensity[rui]++;
 
                 if( collisionOrder < numCollisionOrders )
                 {   
                     const size_t collision_i = ri + num_r_bins * ( collisionOrder - 1 );
+                    assert( collision_i < numCollisionbins );
                     collisionDensities[collision_i]++;
                 }
 
@@ -122,21 +128,25 @@ public:
             {   
                 for( size_t m = 0; m < numMoments; ++m )
                 {
+                    assert( m * numCollisionOrders + collisionOrder < numOrderMoments );
                     orderMoments[m * numCollisionOrders + collisionOrder] += pow( r, double( m ) );
                 }
             }
             
             const size_t ri = std::min( num_r_bins - 1, (long unsigned int)( floor( r / dr ) ) );
+            assert( ri < num_r_bins );
             collisionDensity[ri]++;
 
             const float u = Dot( Normalize(pos), dir );
             const size_t ui = discreteMap( -1.0, 1.0, du, u );
             const size_t rui = num_u_bins * ri + ui;
+            assert( rui < num_ru_bins );
             angularCollisionDensity[rui]++;
 
             if( collisionOrder < numCollisionOrders )
             {   
                 const size_t collision_i = ri + num_r_bins * ( collisionOrder - 1 );
+                assert( collision_i < numCollisionbins );
                 collisionDensities[collision_i]++;
             }
         }
