@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    102440,       2426]
-NotebookOptionsPosition[     98640,       2288]
-NotebookOutlinePosition[     99053,       2306]
-CellTagsIndexPosition[     99010,       2303]
+NotebookDataLength[    102669,       2425]
+NotebookOptionsPosition[     98908,       2289]
+NotebookOutlinePosition[     99319,       2307]
+CellTagsIndexPosition[     99276,       2304]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -23,6 +23,9 @@ Cell[CellGroupData[{
 Cell["Half Rod, Albedo Problem, Isotropic Scattering", "Title",
  CellChangeTimes->{{3.61742787362737*^9, 3.617427885266508*^9}, {
   3.619592656668026*^9, 3.619592662680479*^9}}],
+
+Cell["Exponential Random Flight", "Subtitle",
+ CellChangeTimes->{{3.619594484416584*^9, 3.6195944880949802`*^9}}],
 
 Cell[TextData[{
  "This is code to accompany the book:\n",
@@ -55,11 +58,6 @@ Cell[BoxData[
  RowBox[{"SetDirectory", "[", 
   RowBox[{"Import", "[", "\"\<~/.hitchhikerpath\>\"", "]"}], "]"}]], "Input"]
 }, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["Exponential Random Flight", "Subtitle",
- CellChangeTimes->{{3.619594484416584*^9, 3.6195944880949802`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -147,7 +145,7 @@ Cell[BoxData[
    3.6439531274961863`*^9, 3.6450666661383247`*^9, 3.6450701608233*^9, 
    3.646173975289732*^9, 3.646254686939445*^9, 3.646262947087016*^9, 
    3.646272134709774*^9, 3.6462726782631474`*^9, 3.646277219348131*^9, {
-   3.646277409763979*^9, 3.64627741367945*^9}}]
+   3.646277409763979*^9, 3.64627741367945*^9}, 3.6486939520456953`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -155,17 +153,17 @@ Cell[BoxData[
   RowBox[{"halfrodalbedoisoscatter`R", "[", 
    RowBox[{"\[Alpha]_", ",", "n_"}], "]"}], ":=", 
   RowBox[{
-   SuperscriptBox["\[Alpha]", "n"], 
-   RowBox[{"(", 
+   SuperscriptBox["\[Alpha]", "n"], "2", " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"-", "1"}], ")"}], "n"], 
+   RowBox[{"Binomial", "[", 
     RowBox[{
-     RowBox[{"SeriesCoefficient", "[", 
-      RowBox[{
-       RowBox[{"halfrodalbedoisoscatter`R", "[", "A", "]"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"A", ",", "0", ",", "n"}], "}"}]}], "]"}], "/.", 
-     RowBox[{"A", "\[Rule]", "\[Alpha]"}]}], ")"}]}]}]], "Input",
+     RowBox[{"1", "/", "2"}], ",", 
+     RowBox[{"n", "+", "1"}]}], "]"}]}]}]], "Input",
  CellChangeTimes->{{3.6439530290024643`*^9, 3.643953031241785*^9}, 
-   3.6462769654525433`*^9, 3.646277429964838*^9}]
+   3.6462769654525433`*^9, 3.646277429964838*^9, {3.6486939293712587`*^9, 
+   3.6486939466857233`*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -460,7 +458,7 @@ Cell[BoxData[
  CellChangeTimes->{{3.6450654647633867`*^9, 3.645065474997116*^9}, 
    3.645070161322473*^9, 3.64617397571076*^9, 3.646254687365184*^9, 
    3.64626294753141*^9, 3.6462719491004677`*^9, 3.6462721350831223`*^9, 
-   3.646272678669051*^9, 3.646277219750484*^9}]
+   3.646272678669051*^9, 3.646277219750484*^9, 3.6486939524696493`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -482,7 +480,7 @@ Cell[BoxData[
  CellChangeTimes->{3.64506554314834*^9, 3.645070161361624*^9, 
   3.6461739757283497`*^9, 3.646254687418363*^9, 3.646262947585215*^9, 
   3.6462719491576767`*^9, 3.646272135103839*^9, 3.646272678692589*^9, 
-  3.646277219769197*^9}]
+  3.646277219769197*^9, 3.648693952490026*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -501,7 +499,7 @@ Cell[BoxData[
 
 Cell[BoxData["20"], "Output",
  CellChangeTimes->{3.64627194920724*^9, 3.646272135156968*^9, 
-  3.646272678737818*^9, 3.646277219814145*^9}]
+  3.646272678737818*^9, 3.646277219814145*^9, 3.648693952533187*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -597,7 +595,8 @@ Cell[BoxData[
    3.640936236796224*^9, 3.641004208677805*^9, 3.643952948258046*^9, 
    3.643953127864519*^9, 3.645070161645657*^9, 3.6461739760106688`*^9, 
    3.646254687693862*^9, 3.646262947877223*^9, 3.646272135426918*^9, 
-   3.646272679046945*^9, 3.646277219935012*^9, 3.646277272333538*^9}]
+   3.646272679046945*^9, 3.646277219935012*^9, 3.646277272333538*^9, 
+   3.648693952807158*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -727,7 +726,183 @@ rod\"", TraditionalForm]}},
    3.643952948413391*^9, 3.64395298263938*^9, 3.6439531279153957`*^9, 
    3.645070161785976*^9, 3.646173976067939*^9, 3.646254687762287*^9, 
    3.6462629479713707`*^9, 3.646272135474256*^9, 3.646272679154695*^9, 
-   3.64627722004309*^9, {3.646277272377324*^9, 3.646277281954121*^9}}]
+   3.64627722004309*^9, {3.646277272377324*^9, 3.646277281954121*^9}, 
+   3.6486939530888968`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["n-th collided albedo", "Subsection",
+ CellChangeTimes->{{3.621359362066428*^9, 3.621359362977552*^9}, {
+  3.622130497509987*^9, 3.62213050706733*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
+      ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "Rs", ",", "ns", ",", "analytic", ",", "j", ",", 
+         "numcollorders"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"numcollorders", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "11"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Rs", "=", 
+         RowBox[{"N", "[", 
+          RowBox[{"{", 
+           RowBox[{"data", "[", 
+            RowBox[{"[", "5", "]"}], "]"}], "}"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ns", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{"n", ",", 
+           RowBox[{"{", 
+            RowBox[{"n", ",", "0", ",", 
+             RowBox[{"numcollorders", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"analytic", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"halfrodalbedoisoscatter`R", "[", 
+            RowBox[{"\[Alpha]", ",", "n"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"n", ",", "ns"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"j", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", "ns", "}"}], ",", 
+           RowBox[{"{", "analytic", "}"}], ",", "Rs"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<n\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
+             "}"}], ",", 
+           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], 
+     "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], 
+    "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.621359462271472*^9, 3.621359519826496*^9}, {
+   3.621359610039978*^9, 3.621359631348999*^9}, {3.621359686715735*^9, 
+   3.621359698586138*^9}, {3.643953116913168*^9, 3.643953117270402*^9}, 
+   3.645068256619286*^9, {3.646254307936059*^9, 3.6462543169431477`*^9}, {
+   3.646272199006176*^9, 3.6462722146570587`*^9}, {3.646272246192518*^9, 
+   3.646272250744228*^9}, {3.6462770949325237`*^9, 3.646277104843841*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
+    0.98, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`\[Alpha]$$], {0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.98, 
+      0.99, 0.999}}, {
+      Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}}, Typeset`size$$ = {
+    210., {173.134033203125, 178.865966796875}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$93468$$ = 
+    0, $CellContext`\[CapitalSigma]t$93469$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Alpha]$$ = 
+        0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$93468$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$93469$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`Rs$, $CellContext`ns$, \
+$CellContext`analytic$, $CellContext`j$, $CellContext`numcollorders$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            halfrodalbedoisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`numcollorders$ = 
+          Part[$CellContext`data$, 2, 11]; $CellContext`Rs$ = N[{
+             Part[$CellContext`data$, 5]}]; $CellContext`ns$ = 
+          Table[$CellContext`n, {$CellContext`n, 
+             0, $CellContext`numcollorders$ - 1}]; $CellContext`analytic$ = 
+          Table[
+            
+            halfrodalbedoisoscatter`R[$CellContext`\[Alpha]$$, \
+$CellContext`n], {$CellContext`n, $CellContext`ns$}]; $CellContext`j$ = 
+          Join[{$CellContext`ns$}, {$CellContext`analytic$}, \
+$CellContext`Rs$]; TableForm[
+           Join[{{"n", "analytic", "MC"}}, 
+            Transpose[$CellContext`j$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{$CellContext`\[Alpha]$$, {0.1, 0.3, 0.5, 0.7, 0.9,
+          0.95, 0.98, 0.99, 0.999}}, {$CellContext`\[CapitalSigma]t$$, {1, 
+         3}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{255., {230., 235.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.621359528988345*^9, {3.621359612850271*^9, 3.621359631537554*^9}, {
+   3.6213596901948233`*^9, 3.621359699022088*^9}, {3.626998540141939*^9, 
+   3.626998564427421*^9}, 3.626999475503785*^9, 3.627001300076396*^9, 
+   3.641004106338101*^9, 3.641004224900922*^9, {3.643953112682353*^9, 
+   3.6439531279900017`*^9}, 3.6439531795352573`*^9, 3.6450665828103857`*^9, 
+   3.645068257141838*^9, 3.645070163635479*^9, 3.646173976851034*^9, 
+   3.646254317765687*^9, 3.646254688302388*^9, 3.646262948697145*^9, 
+   3.6462721358739357`*^9, 3.6462722542928762`*^9, 3.646272679407893*^9, 
+   3.646277220421599*^9, 3.646277362946724*^9, 3.648693953333843*^9}]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]],
 
@@ -738,8 +913,9 @@ Cell["Compare Deterministic and MC", "Section",
 
 Cell[CellGroupData[{
 
-Cell["Internal distributions", "Subsection",
- CellChangeTimes->{{3.646262885300542*^9, 3.646262887250815*^9}}],
+Cell["Internal distribution", "Subsection",
+ CellChangeTimes->{{3.646262885300542*^9, 3.646262887250815*^9}, 
+   3.648694165319491*^9}],
 
 Cell[CellGroupData[{
 
@@ -1014,7 +1190,7 @@ Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    0.98, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    0.95, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
@@ -1022,15 +1198,15 @@ Cell[BoxData[
       0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}}, Typeset`size$$ = {
     500., {447., 451.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$9308$$ = 
-    0, $CellContext`\[CapitalSigma]t$9309$$ = False}, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$93266$$ = 
+    0, $CellContext`\[CapitalSigma]t$93267$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`\[Alpha]$$ = 
         0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9308$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$93266$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$9309$$, False]}, 
+$CellContext`\[CapitalSigma]t$93267$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -1171,568 +1347,7 @@ and ensure the data path is setup correctly."]],
    3.645066582360589*^9, 3.645066816790968*^9, 3.645070163356307*^9, 
    3.646173976422086*^9, 3.646254199533277*^9, 3.646254282171978*^9, 
    3.6462546880659*^9, 3.6462629485021563`*^9, 3.646272135540148*^9, 
-   3.6462726792068453`*^9, 3.646277220098629*^9}]
-}, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["n-th collided albedo", "Subsection",
- CellChangeTimes->{{3.621359362066428*^9, 3.621359362977552*^9}, {
-  3.622130497509987*^9, 3.62213050706733*^9}}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"If", "[", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
-      ">", "0"}], ",", "\[IndentingNewLine]", 
-     RowBox[{"Module", "[", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{
-        "data", ",", "Rs", ",", "ns", ",", "analytic", ",", "j", ",", 
-         "numcollorders"}], "}"}], ",", "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"data", "=", 
-         RowBox[{
-          RowBox[{"SelectFirst", "[", 
-           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
-            RowBox[{
-             RowBox[{
-              RowBox[{
-               RowBox[{"#", "[", 
-                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
-              RowBox[{
-               RowBox[{"#", "[", 
-                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
-               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
-          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"numcollorders", "=", 
-         RowBox[{"data", "[", 
-          RowBox[{"[", 
-           RowBox[{"2", ",", "11"}], "]"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"Rs", "=", 
-         RowBox[{"N", "[", 
-          RowBox[{"{", 
-           RowBox[{"data", "[", 
-            RowBox[{"[", "5", "]"}], "]"}], "}"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"ns", "=", 
-         RowBox[{"Table", "[", 
-          RowBox[{"n", ",", 
-           RowBox[{"{", 
-            RowBox[{"n", ",", "0", ",", 
-             RowBox[{"numcollorders", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"analytic", "=", 
-         RowBox[{"Table", "[", 
-          RowBox[{
-           RowBox[{"halfrodalbedoisoscatter`R", "[", 
-            RowBox[{"\[Alpha]", ",", "n"}], "]"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"n", ",", "ns"}], "}"}]}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"j", "=", 
-         RowBox[{"Join", "[", 
-          RowBox[{
-           RowBox[{"{", "ns", "}"}], ",", 
-           RowBox[{"{", "analytic", "}"}], ",", "Rs"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
-         RowBox[{"Join", "[", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"{", 
-             RowBox[{
-             "\"\<n\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
-             "}"}], ",", 
-           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
-         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], 
-     "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
-     RowBox[{
-     "Text", "[", 
-      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
-notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
-    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
-   RowBox[{"{", 
-    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], 
-    "}"}]}], "]"}]], "Input",
- CellChangeTimes->{{3.621359462271472*^9, 3.621359519826496*^9}, {
-   3.621359610039978*^9, 3.621359631348999*^9}, {3.621359686715735*^9, 
-   3.621359698586138*^9}, {3.643953116913168*^9, 3.643953117270402*^9}, 
-   3.645068256619286*^9, {3.646254307936059*^9, 3.6462543169431477`*^9}, {
-   3.646272199006176*^9, 3.6462722146570587`*^9}, {3.646272246192518*^9, 
-   3.646272250744228*^9}, {3.6462770949325237`*^9, 3.646277104843841*^9}}],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    0.99, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`\[Alpha]$$], {0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.98, 
-      0.99, 0.999}}, {
-      Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}}, Typeset`size$$ = {
-    210., {173.134033203125, 178.865966796875}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$13286$$ = 
-    0, $CellContext`\[CapitalSigma]t$13287$$ = False}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, 
-      "Variables" :> {$CellContext`\[Alpha]$$ = 
-        0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$13286$$, 0], 
-        Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$13287$$, False]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> 
-      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
-        Module[{$CellContext`data$, $CellContext`Rs$, $CellContext`ns$, \
-$CellContext`analytic$, $CellContext`j$, $CellContext`numcollorders$}, \
-$CellContext`data$ = Part[
-            SelectFirst[
-            halfrodalbedoisoscatter`simulations, And[
-             Part[#, 1] == $CellContext`\[Alpha]$$, 
-              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
-            3]; $CellContext`numcollorders$ = 
-          Part[$CellContext`data$, 2, 11]; $CellContext`Rs$ = N[{
-             Part[$CellContext`data$, 5]}]; $CellContext`ns$ = 
-          Table[$CellContext`n, {$CellContext`n, 
-             0, $CellContext`numcollorders$ - 1}]; $CellContext`analytic$ = 
-          Table[
-            
-            halfrodalbedoisoscatter`R[$CellContext`\[Alpha]$$, \
-$CellContext`n], {$CellContext`n, $CellContext`ns$}]; $CellContext`j$ = 
-          Join[{$CellContext`ns$}, {$CellContext`analytic$}, \
-$CellContext`Rs$]; TableForm[
-           Join[{{"n", "analytic", "MC"}}, 
-            Transpose[$CellContext`j$]]]], 
-        Text[
-        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
-and ensure the data path is setup correctly."]], 
-      "Specifications" :> {{$CellContext`\[Alpha]$$, {0.1, 0.3, 0.5, 0.7, 0.9,
-          0.95, 0.98, 0.99, 0.999}}, {$CellContext`\[CapitalSigma]t$$, {1, 
-         3}}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{255., {230., 235.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{
-  3.621359528988345*^9, {3.621359612850271*^9, 3.621359631537554*^9}, {
-   3.6213596901948233`*^9, 3.621359699022088*^9}, {3.626998540141939*^9, 
-   3.626998564427421*^9}, 3.626999475503785*^9, 3.627001300076396*^9, 
-   3.641004106338101*^9, 3.641004224900922*^9, {3.643953112682353*^9, 
-   3.6439531279900017`*^9}, 3.6439531795352573`*^9, 3.6450665828103857`*^9, 
-   3.645068257141838*^9, 3.645070163635479*^9, 3.646173976851034*^9, 
-   3.646254317765687*^9, 3.646254688302388*^9, 3.646262948697145*^9, 
-   3.6462721358739357`*^9, 3.6462722542928762`*^9, 3.646272679407893*^9, 
-   3.646277220421599*^9, 3.646277362946724*^9}]
-}, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["Compare moments of \[Phi]", "Subsection",
- CellChangeTimes->{{3.617779269834346*^9, 3.617779274641601*^9}}],
-
-Cell["\<\
-Divide these results, which are collision density moments, by \
-\[CapitalSigma]t to produce radiance/fluence moments:\
-\>", "Text",
- CellChangeTimes->{{3.617847370274527*^9, 3.617847402120873*^9}}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"If", "[", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
-      ">", "0"}], ",", "\[IndentingNewLine]", 
-     RowBox[{"Module", "[", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{
-        "data", ",", "nummoments", ",", "\[Phi]moments", ",", "ks", ",", 
-         "analytic", ",", "j"}], "}"}], ",", "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"data", "=", 
-         RowBox[{
-          RowBox[{"SelectFirst", "[", 
-           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
-            RowBox[{
-             RowBox[{
-              RowBox[{
-               RowBox[{"#", "[", 
-                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
-              RowBox[{
-               RowBox[{"#", "[", 
-                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
-               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
-          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"nummoments", "=", 
-         RowBox[{"data", "[", 
-          RowBox[{"[", 
-           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"\[Phi]moments", "=", 
-         RowBox[{"N", "[", 
-          FractionBox[
-           RowBox[{"{", 
-            RowBox[{"data", "[", 
-             RowBox[{"[", "11", "]"}], "]"}], "}"}], "\[CapitalSigma]t"], 
-          "]"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"ks", "=", 
-         RowBox[{"{", 
-          RowBox[{"Table", "[", 
-           RowBox[{"k", ",", 
-            RowBox[{"{", 
-             RowBox[{"k", ",", "0", ",", 
-              RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], 
-        ";", "\[IndentingNewLine]", 
-        RowBox[{"analytic", "=", 
-         RowBox[{"Table", "[", 
-          RowBox[{
-           RowBox[{"halfrodalbedoisoscatter`\[Phi]m", "[", 
-            RowBox[{"\[Alpha]", ",", "\[CapitalSigma]t", ",", "k"}], "]"}], 
-           ",", 
-           RowBox[{"{", 
-            RowBox[{"k", ",", "ks"}], "}"}]}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"j", "=", 
-         RowBox[{"Join", "[", 
-          RowBox[{"ks", ",", "analytic", ",", "\[Phi]moments"}], "]"}]}], ";",
-         "\[IndentingNewLine]", 
-        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
-         RowBox[{"Join", "[", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"{", 
-             RowBox[{
-             "\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
-             "}"}], ",", 
-           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
-         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-     "Text", "[", 
-      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
-notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
-    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
-   RowBox[{"{", 
-    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], 
-    "}"}]}], "]"}]], "Input",
- CellChangeTimes->{{3.6177792806285133`*^9, 3.617779297336399*^9}, {
-   3.617779343239357*^9, 3.6177794771281633`*^9}, {3.6177795098244753`*^9, 
-   3.6177795247590523`*^9}, {3.617779555197104*^9, 3.617779656475761*^9}, {
-   3.617779687007894*^9, 3.617779881109676*^9}, {3.617847356159178*^9, 
-   3.617847361453464*^9}, {3.619594516589923*^9, 3.6195945170905647`*^9}, {
-   3.619594713380765*^9, 3.619594735762917*^9}, 3.645068394199531*^9, 
-   3.6462543369102907`*^9, {3.6462544012171173`*^9, 3.646254401505522*^9}, {
-   3.6462722925210257`*^9, 3.646272314924221*^9}, {3.646277107722872*^9, 
-   3.64627711942684*^9}}],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    0.7, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`\[Alpha]$$], {0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.98, 
-      0.99, 0.999}}, {
-      Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}}, Typeset`size$$ = {
-    242., {90.134033203125, 95.865966796875}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$9552$$ = 
-    0, $CellContext`\[CapitalSigma]t$9553$$ = False}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, 
-      "Variables" :> {$CellContext`\[Alpha]$$ = 
-        0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9552$$, 0], 
-        Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$9553$$, False]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> 
-      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
-        Module[{$CellContext`data$, $CellContext`nummoments$, $CellContext`\
-\[Phi]moments$, $CellContext`ks$, $CellContext`analytic$, $CellContext`j$}, \
-$CellContext`data$ = Part[
-            SelectFirst[
-            halfrodalbedoisoscatter`simulations, And[
-             Part[#, 1] == $CellContext`\[Alpha]$$, 
-              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
-            3]; $CellContext`nummoments$ = 
-          Part[$CellContext`data$, 2, 13]; $CellContext`\[Phi]moments$ = N[{
-              
-              Part[$CellContext`data$, 
-               11]}/$CellContext`\[CapitalSigma]t$$]; $CellContext`ks$ = {
-            
-            Table[$CellContext`k, {$CellContext`k, 
-              0, $CellContext`nummoments$ - 1}]}; $CellContext`analytic$ = 
-          Table[
-            
-            halfrodalbedoisoscatter`\[Phi]m[$CellContext`\[Alpha]$$, \
-$CellContext`\[CapitalSigma]t$$, $CellContext`k], {$CellContext`k, \
-$CellContext`ks$}]; $CellContext`j$ = 
-          Join[$CellContext`ks$, $CellContext`analytic$, \
-$CellContext`\[Phi]moments$]; TableForm[
-           Join[{{"k", "analytic", "MC"}}, 
-            Transpose[$CellContext`j$]]]], 
-        Text[
-        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
-and ensure the data path is setup correctly."]], 
-      "Specifications" :> {{$CellContext`\[Alpha]$$, {0.1, 0.3, 0.5, 0.7, 0.9,
-          0.95, 0.98, 0.99, 0.999}}, {$CellContext`\[CapitalSigma]t$$, {1, 
-         3}}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{287., {147., 152.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{
-  3.617779832588072*^9, {3.617779869376008*^9, 3.6177798817119627`*^9}, {
-   3.6178473088352737`*^9, 3.617847330769167*^9}, 3.617847361723319*^9, 
-   3.618026897603917*^9, 3.618035300457242*^9, 3.619594068174963*^9, 
-   3.619594213989615*^9, 3.619594517486966*^9, {3.6195946709229193`*^9, 
-   3.619594685752365*^9}, 3.6195947362190523`*^9, 3.621374422621011*^9, {
-   3.621374461501079*^9, 3.621374471782186*^9}, 3.621374593290991*^9, 
-   3.625760818327333*^9, {3.625761010482192*^9, 3.625761016396119*^9}, 
-   3.640936237036949*^9, 3.6410042089759274`*^9, 3.643952948659853*^9, 
-   3.643953128159903*^9, 3.645066582831504*^9, 3.6450683948407917`*^9, 
-   3.645070163756219*^9, 3.646173977134774*^9, 3.646254402640938*^9, 
-   3.6462546884830513`*^9, 3.64626294879793*^9, 3.6462721359569473`*^9, {
-   3.646272320142614*^9, 3.646272326757351*^9}, 3.646272679489949*^9, 
-   3.646277220531495*^9}]
-}, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["n-th collided moments of \[Phi]", "Subsection",
- CellChangeTimes->{{3.646262916178207*^9, 3.646262920832403*^9}}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"If", "[", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
-      ">", "0"}], ",", "\[IndentingNewLine]", 
-     RowBox[{"Module", "[", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{
-        "data", ",", "\[Phi]moments", ",", "ks", ",", "analytic", ",", "j", 
-         ",", "nummoments"}], "}"}], ",", "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"data", "=", 
-         RowBox[{
-          RowBox[{"SelectFirst", "[", 
-           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
-            RowBox[{
-             RowBox[{
-              RowBox[{
-               RowBox[{"#", "[", 
-                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
-              RowBox[{
-               RowBox[{"#", "[", 
-                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
-               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
-          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"nummoments", "=", 
-         RowBox[{"data", "[", 
-          RowBox[{"[", 
-           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"\[Phi]moments", "=", 
-         RowBox[{"N", "[", 
-          FractionBox[
-           RowBox[{"{", 
-            RowBox[{"data", "[", 
-             RowBox[{"[", 
-              RowBox[{"13", "+", "n"}], "]"}], "]"}], "}"}], 
-           "\[CapitalSigma]t"], "]"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"ks", "=", 
-         RowBox[{"{", 
-          RowBox[{"Table", "[", 
-           RowBox[{"k", ",", 
-            RowBox[{"{", 
-             RowBox[{"k", ",", "0", ",", 
-              RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], 
-        ";", "\[IndentingNewLine]", 
-        RowBox[{"analytic", "=", 
-         RowBox[{"Table", "[", 
-          RowBox[{
-           RowBox[{"Quiet", "[", 
-            RowBox[{"N", "[", 
-             RowBox[{"halfrodalbedoisoscatter`\[Phi]m", "[", 
-              RowBox[{
-              "\[Alpha]", ",", "\[CapitalSigma]t", ",", "k", ",", "n"}], 
-              "]"}], "]"}], "]"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"k", ",", "ks"}], "}"}]}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"j", "=", 
-         RowBox[{"Join", "[", 
-          RowBox[{"ks", ",", "analytic", ",", "\[Phi]moments"}], "]"}]}], ";",
-         "\[IndentingNewLine]", 
-        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
-         RowBox[{"Join", "[", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"{", 
-             RowBox[{
-             "\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
-             "}"}], ",", 
-           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
-         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-     "Text", "[", 
-      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
-notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
-    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
-   RowBox[{"{", 
-    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"n", ",", 
-     RowBox[{"Range", "[", 
-      RowBox[{"If", "[", 
-       RowBox[{
-        RowBox[{
-        "NumberQ", "[", "halfrodalbedoisoscatter`numcollorders", "]"}], ",", 
-        "halfrodalbedoisoscatter`numcollorders", ",", "1"}], "]"}], "]"}]}], 
-    "}"}]}], "]"}]], "Input",
- CellChangeTimes->{{3.646254332711746*^9, 3.646254360739975*^9}, {
-  3.6462546341534433`*^9, 3.6462546400025663`*^9}, {3.6462723555456667`*^9, 
-  3.646272383775259*^9}, {3.6462771222906933`*^9, 3.6462771401613626`*^9}}],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = 7, $CellContext`\[Alpha]$$ = 
-    0.9, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`\[Alpha]$$], {0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.98, 
-      0.99, 0.999}}, {
-      Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}, {
-      Hold[$CellContext`n$$], {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
-      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {
-    253., {90.134033203125, 95.865966796875}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$9580$$ = 
-    0, $CellContext`\[CapitalSigma]t$9581$$ = False, $CellContext`n$9582$$ = 
-    0}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, 
-      "Variables" :> {$CellContext`n$$ = 1, $CellContext`\[Alpha]$$ = 
-        0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9580$$, 0], 
-        Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$9581$$, False], 
-        Hold[$CellContext`n$$, $CellContext`n$9582$$, 0]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> 
-      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
-        Module[{$CellContext`data$, $CellContext`\[Phi]moments$, \
-$CellContext`ks$, $CellContext`analytic$, $CellContext`j$, \
-$CellContext`nummoments$}, $CellContext`data$ = Part[
-            SelectFirst[
-            halfrodalbedoisoscatter`simulations, And[
-             Part[#, 1] == $CellContext`\[Alpha]$$, 
-              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
-            3]; $CellContext`nummoments$ = 
-          Part[$CellContext`data$, 2, 13]; $CellContext`\[Phi]moments$ = N[{
-              
-              Part[$CellContext`data$, 
-               13 + $CellContext`n$$]}/$CellContext`\[CapitalSigma]t$$]; \
-$CellContext`ks$ = {
-            
-            Table[$CellContext`k, {$CellContext`k, 
-              0, $CellContext`nummoments$ - 1}]}; $CellContext`analytic$ = 
-          Table[
-            Quiet[
-             N[
-              
-              halfrodalbedoisoscatter`\[Phi]m[$CellContext`\[Alpha]$$, \
-$CellContext`\[CapitalSigma]t$$, $CellContext`k, $CellContext`n$$]]], \
-{$CellContext`k, $CellContext`ks$}]; $CellContext`j$ = 
-          Join[$CellContext`ks$, $CellContext`analytic$, \
-$CellContext`\[Phi]moments$]; TableForm[
-           Join[{{"k", "analytic", "MC"}}, 
-            Transpose[$CellContext`j$]]]], 
-        Text[
-        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
-and ensure the data path is setup correctly."]], 
-      "Specifications" :> {{$CellContext`\[Alpha]$$, {0.1, 0.3, 0.5, 0.7, 0.9,
-          0.95, 0.98, 0.99, 0.999}}, {$CellContext`\[CapitalSigma]t$$, {1, 
-         3}}, {$CellContext`n$$, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
-         14, 15, 16, 17, 18, 19, 20}}}, "Options" :> {}, 
-      "DefaultOptions" :> {}],
-     ImageSizeCache->{298., {161., 166.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{
-  3.6450691030559998`*^9, 3.645070163703945*^9, 3.646173976984788*^9, {
-   3.646254361680525*^9, 3.6462543784379463`*^9}, 3.6462545202789383`*^9, 
-   3.646254640433272*^9, 3.646254688399544*^9, 3.646262948881361*^9, 
-   3.646272136013496*^9, 3.646272385426499*^9, 3.646272679573999*^9, 
-   3.6462772206243753`*^9}]
+   3.6462726792068453`*^9, 3.646277220098629*^9, 3.648693953120194*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -1897,7 +1512,7 @@ notebook and ensure the data path is setup correctly.\>\"", "]"}]}],
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = 4, $CellContext`\[Alpha]$$ = 
+   DynamicModuleBox[{$CellContext`n$$ = 6, $CellContext`\[Alpha]$$ = 
     0.95, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
@@ -1906,19 +1521,19 @@ Cell[BoxData[
       0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}, {
       Hold[$CellContext`n$$], {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
-      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {360., {111., 115.}}, 
+      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {360., {107., 112.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$9611$$ = 
-    0, $CellContext`\[CapitalSigma]t$9612$$ = False, $CellContext`n$9613$$ = 
-    0}, 
+    True, $CellContext`\[Alpha]$93556$$ = 
+    0, $CellContext`\[CapitalSigma]t$93557$$ = False, $CellContext`n$93558$$ =
+     0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`n$$ = 1, $CellContext`\[Alpha]$$ = 
         0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9611$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$93556$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$9612$$, False], 
-        Hold[$CellContext`n$$, $CellContext`n$9613$$, 0]}, 
+$CellContext`\[CapitalSigma]t$93557$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$93558$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -1977,7 +1592,7 @@ and ensure the data path is setup correctly."]],
          3}}, {$CellContext`n$$, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
          14, 15, 16, 17, 18, 19, 20}}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{405., {180., 185.}},
+     ImageSizeCache->{405., {177., 182.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -2005,7 +1620,8 @@ and ensure the data path is setup correctly."]],
    3.645069871050242*^9, 3.645070163856153*^9, 3.646173977550927*^9, 
    3.646254408444701*^9, {3.646254671233919*^9, 3.646254688609837*^9}, 
    3.6462629490141373`*^9, 3.646272136061755*^9, 3.646272550097081*^9, 
-   3.646272623204092*^9, 3.646272679674335*^9, 3.6462772207066813`*^9}]
+   3.646272623204092*^9, 3.646272679674335*^9, 3.6462772207066813`*^9, 
+   3.6486939535797377`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -2173,8 +1789,8 @@ notebook and ensure the data path is setup correctly.\>\"", "]"}]}],
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = 13, $CellContext`\[Alpha]$$ = 
-    0.999, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`n$$ = 4, $CellContext`\[Alpha]$$ = 
+    0.95, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
@@ -2182,19 +1798,19 @@ Cell[BoxData[
       0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}, {
       Hold[$CellContext`n$$], {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
-      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {360., {108., 112.}}, 
+      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {360., {112., 117.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$9679$$ = 
-    0, $CellContext`\[CapitalSigma]t$9680$$ = False, $CellContext`n$9681$$ = 
-    0}, 
+    True, $CellContext`\[Alpha]$93624$$ = 
+    0, $CellContext`\[CapitalSigma]t$93625$$ = False, $CellContext`n$93626$$ =
+     0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`n$$ = 1, $CellContext`\[Alpha]$$ = 
         0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9679$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$93624$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$9680$$, False], 
-        Hold[$CellContext`n$$, $CellContext`n$9681$$, 0]}, 
+$CellContext`\[CapitalSigma]t$93625$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$93626$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -2253,7 +1869,7 @@ and ensure the data path is setup correctly."]],
          3}}, {$CellContext`n$$, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
          14, 15, 16, 17, 18, 19, 20}}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{405., {177., 182.}},
+     ImageSizeCache->{405., {182., 187.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -2279,15 +1895,400 @@ and ensure the data path is setup correctly."]],
    3.6450700282258663`*^9, 3.645070060176592*^9, 3.645070163994829*^9, 
    3.64617397781698*^9, 3.6462544121082277`*^9, {3.646254677177189*^9, 
    3.646254688665596*^9}, 3.646262949149982*^9, 3.646272136206377*^9, 
-   3.646272679789216*^9, 3.6462772208412848`*^9}]
+   3.646272679789216*^9, 3.6462772208412848`*^9, 3.648693953680644*^9}]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Compare moments of \[Phi]", "Subsection",
+ CellChangeTimes->{{3.617779269834346*^9, 3.617779274641601*^9}}],
+
+Cell["\<\
+Divide these results, which are collision density moments, by \
+\[CapitalSigma]t to produce radiance/fluence moments:\
+\>", "Text",
+ CellChangeTimes->{{3.617847370274527*^9, 3.617847402120873*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
+      ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "nummoments", ",", "\[Phi]moments", ",", "ks", ",", 
+         "analytic", ",", "j"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"nummoments", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\[Phi]moments", "=", 
+         RowBox[{"N", "[", 
+          FractionBox[
+           RowBox[{"{", 
+            RowBox[{"data", "[", 
+             RowBox[{"[", "11", "]"}], "]"}], "}"}], "\[CapitalSigma]t"], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ks", "=", 
+         RowBox[{"{", 
+          RowBox[{"Table", "[", 
+           RowBox[{"k", ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "0", ",", 
+              RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"analytic", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"halfrodalbedoisoscatter`\[Phi]m", "[", 
+            RowBox[{"\[Alpha]", ",", "\[CapitalSigma]t", ",", "k"}], "]"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "ks"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"j", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{"ks", ",", "analytic", ",", "\[Phi]moments"}], "]"}]}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
+             "}"}], ",", 
+           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], 
+    "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6177792806285133`*^9, 3.617779297336399*^9}, {
+   3.617779343239357*^9, 3.6177794771281633`*^9}, {3.6177795098244753`*^9, 
+   3.6177795247590523`*^9}, {3.617779555197104*^9, 3.617779656475761*^9}, {
+   3.617779687007894*^9, 3.617779881109676*^9}, {3.617847356159178*^9, 
+   3.617847361453464*^9}, {3.619594516589923*^9, 3.6195945170905647`*^9}, {
+   3.619594713380765*^9, 3.619594735762917*^9}, 3.645068394199531*^9, 
+   3.6462543369102907`*^9, {3.6462544012171173`*^9, 3.646254401505522*^9}, {
+   3.6462722925210257`*^9, 3.646272314924221*^9}, {3.646277107722872*^9, 
+   3.64627711942684*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
+    0.9, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`\[Alpha]$$], {0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.98, 
+      0.99, 0.999}}, {
+      Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}}, Typeset`size$$ = {
+    181., {88.134033203125, 93.865966796875}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$93497$$ = 
+    0, $CellContext`\[CapitalSigma]t$93498$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Alpha]$$ = 
+        0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$93497$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$93498$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`nummoments$, $CellContext`\
+\[Phi]moments$, $CellContext`ks$, $CellContext`analytic$, $CellContext`j$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            halfrodalbedoisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`nummoments$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`\[Phi]moments$ = N[{
+              
+              Part[$CellContext`data$, 
+               11]}/$CellContext`\[CapitalSigma]t$$]; $CellContext`ks$ = {
+            
+            Table[$CellContext`k, {$CellContext`k, 
+              0, $CellContext`nummoments$ - 1}]}; $CellContext`analytic$ = 
+          Table[
+            
+            halfrodalbedoisoscatter`\[Phi]m[$CellContext`\[Alpha]$$, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`k], {$CellContext`k, \
+$CellContext`ks$}]; $CellContext`j$ = 
+          Join[$CellContext`ks$, $CellContext`analytic$, \
+$CellContext`\[Phi]moments$]; TableForm[
+           Join[{{"k", "analytic", "MC"}}, 
+            Transpose[$CellContext`j$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{$CellContext`\[Alpha]$$, {0.1, 0.3, 0.5, 0.7, 0.9,
+          0.95, 0.98, 0.99, 0.999}}, {$CellContext`\[CapitalSigma]t$$, {1, 
+         3}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{226., {145., 150.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.617779832588072*^9, {3.617779869376008*^9, 3.6177798817119627`*^9}, {
+   3.6178473088352737`*^9, 3.617847330769167*^9}, 3.617847361723319*^9, 
+   3.618026897603917*^9, 3.618035300457242*^9, 3.619594068174963*^9, 
+   3.619594213989615*^9, 3.619594517486966*^9, {3.6195946709229193`*^9, 
+   3.619594685752365*^9}, 3.6195947362190523`*^9, 3.621374422621011*^9, {
+   3.621374461501079*^9, 3.621374471782186*^9}, 3.621374593290991*^9, 
+   3.625760818327333*^9, {3.625761010482192*^9, 3.625761016396119*^9}, 
+   3.640936237036949*^9, 3.6410042089759274`*^9, 3.643952948659853*^9, 
+   3.643953128159903*^9, 3.645066582831504*^9, 3.6450683948407917`*^9, 
+   3.645070163756219*^9, 3.646173977134774*^9, 3.646254402640938*^9, 
+   3.6462546884830513`*^9, 3.64626294879793*^9, 3.6462721359569473`*^9, {
+   3.646272320142614*^9, 3.646272326757351*^9}, 3.646272679489949*^9, 
+   3.646277220531495*^9, 3.648693953417049*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["n-th collided moments of \[Phi]", "Subsection",
+ CellChangeTimes->{{3.646262916178207*^9, 3.646262920832403*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Length", "[", "halfrodalbedoisoscatter`simulations", "]"}], 
+      ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "\[Phi]moments", ",", "ks", ",", "analytic", ",", "j", 
+         ",", "nummoments"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodalbedoisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"nummoments", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\[Phi]moments", "=", 
+         RowBox[{"N", "[", 
+          FractionBox[
+           RowBox[{"{", 
+            RowBox[{"data", "[", 
+             RowBox[{"[", 
+              RowBox[{"13", "+", "n"}], "]"}], "]"}], "}"}], 
+           "\[CapitalSigma]t"], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ks", "=", 
+         RowBox[{"{", 
+          RowBox[{"Table", "[", 
+           RowBox[{"k", ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "0", ",", 
+              RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"analytic", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"Quiet", "[", 
+            RowBox[{"N", "[", 
+             RowBox[{"halfrodalbedoisoscatter`\[Phi]m", "[", 
+              RowBox[{
+              "\[Alpha]", ",", "\[CapitalSigma]t", ",", "k", ",", "n"}], 
+              "]"}], "]"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "ks"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"j", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{"ks", ",", "analytic", ",", "\[Phi]moments"}], "]"}]}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
+             "}"}], ",", 
+           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Alpha]", ",", "halfrodalbedoisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[CapitalSigma]t", ",", "halfrodalbedoisoscatter`muts"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"n", ",", 
+     RowBox[{"Range", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+        "NumberQ", "[", "halfrodalbedoisoscatter`numcollorders", "]"}], ",", 
+        "halfrodalbedoisoscatter`numcollorders", ",", "1"}], "]"}], "]"}]}], 
+    "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.646254332711746*^9, 3.646254360739975*^9}, {
+  3.6462546341534433`*^9, 3.6462546400025663`*^9}, {3.6462723555456667`*^9, 
+  3.646272383775259*^9}, {3.6462771222906933`*^9, 3.6462771401613626`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 3, $CellContext`\[Alpha]$$ = 
+    0.95, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`\[Alpha]$$], {0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.98, 
+      0.99, 0.999}}, {
+      Hold[$CellContext`\[CapitalSigma]t$$], {1, 3}}, {
+      Hold[$CellContext`n$$], {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
+      15, 16, 17, 18, 19, 20}}}, Typeset`size$$ = {
+    225., {88.134033203125, 93.865966796875}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$93525$$ = 
+    0, $CellContext`\[CapitalSigma]t$93526$$ = False, $CellContext`n$93527$$ =
+     0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 1, $CellContext`\[Alpha]$$ = 
+        0.1, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$93525$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$93526$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$93527$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[halfrodalbedoisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`\[Phi]moments$, \
+$CellContext`ks$, $CellContext`analytic$, $CellContext`j$, \
+$CellContext`nummoments$}, $CellContext`data$ = Part[
+            SelectFirst[
+            halfrodalbedoisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`nummoments$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`\[Phi]moments$ = N[{
+              
+              Part[$CellContext`data$, 
+               13 + $CellContext`n$$]}/$CellContext`\[CapitalSigma]t$$]; \
+$CellContext`ks$ = {
+            
+            Table[$CellContext`k, {$CellContext`k, 
+              0, $CellContext`nummoments$ - 1}]}; $CellContext`analytic$ = 
+          Table[
+            Quiet[
+             N[
+              
+              halfrodalbedoisoscatter`\[Phi]m[$CellContext`\[Alpha]$$, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`k, $CellContext`n$$]]], \
+{$CellContext`k, $CellContext`ks$}]; $CellContext`j$ = 
+          Join[$CellContext`ks$, $CellContext`analytic$, \
+$CellContext`\[Phi]moments$]; TableForm[
+           Join[{{"k", "analytic", "MC"}}, 
+            Transpose[$CellContext`j$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{$CellContext`\[Alpha]$$, {0.1, 0.3, 0.5, 0.7, 0.9,
+          0.95, 0.98, 0.99, 0.999}}, {$CellContext`\[CapitalSigma]t$$, {1, 
+         3}}, {$CellContext`n$$, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
+         14, 15, 16, 17, 18, 19, 20}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{270., {159., 164.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6450691030559998`*^9, 3.645070163703945*^9, 3.646173976984788*^9, {
+   3.646254361680525*^9, 3.6462543784379463`*^9}, 3.6462545202789383`*^9, 
+   3.646254640433272*^9, 3.646254688399544*^9, 3.646262948881361*^9, 
+   3.646272136013496*^9, 3.646272385426499*^9, 3.646272679573999*^9, 
+   3.6462772206243753`*^9, 3.6486939535008574`*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1167, 1075},
-WindowMargins->{{Automatic, 31}, {Automatic, 27}},
+WindowSize->{908, 1116},
+WindowMargins->{{89, Automatic}, {Automatic, 5}},
 PrintingCopies->1,
 PrintingPageRange->{1, Automatic},
 FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 4, \
@@ -2307,123 +2308,121 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[579, 22, 177, 2, 92, "Title"],
-Cell[759, 26, 540, 12, 129, "Text"],
+Cell[759, 26, 113, 1, 51, "Subtitle"],
+Cell[875, 29, 540, 12, 129, "Text"],
 Cell[CellGroupData[{
-Cell[1324, 42, 143, 2, 64, "Section"],
-Cell[1470, 46, 253, 5, 30, "Text"],
-Cell[1726, 53, 122, 2, 28, "Input"]
+Cell[1440, 45, 143, 2, 64, "Section"],
+Cell[1586, 49, 253, 5, 49, "Text"],
+Cell[1842, 56, 122, 2, 28, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1885, 60, 113, 1, 51, "Subtitle"],
-Cell[CellGroupData[{
-Cell[2023, 65, 93, 1, 64, "Section"],
-Cell[2119, 68, 216, 5, 68, "Text"]
+Cell[2001, 63, 93, 1, 64, "Section"],
+Cell[2097, 66, 216, 5, 68, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2372, 78, 105, 1, 64, "Section"],
+Cell[2350, 76, 105, 1, 64, "Section"],
 Cell[CellGroupData[{
-Cell[2502, 83, 220, 3, 44, "Subsection"],
-Cell[2725, 88, 628, 17, 79, "Input"],
+Cell[2480, 81, 220, 3, 44, "Subsection"],
+Cell[2703, 86, 628, 17, 79, "Input"],
 Cell[CellGroupData[{
-Cell[3378, 109, 301, 7, 28, "Input"],
-Cell[3682, 118, 1118, 31, 50, "Output"]
+Cell[3356, 107, 301, 7, 28, "Input"],
+Cell[3660, 116, 1142, 31, 50, "Output"]
 }, Open  ]],
-Cell[4815, 152, 590, 15, 65, "Input"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[5442, 172, 209, 3, 44, "Subsection"],
-Cell[5654, 177, 518, 12, 36, "Input"],
-Cell[6175, 191, 686, 18, 64, "Input"]
+Cell[4817, 150, 556, 15, 31, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6898, 214, 97, 1, 44, "Subsection"],
-Cell[6998, 217, 655, 13, 28, "Input"]
+Cell[5410, 170, 209, 3, 44, "Subsection"],
+Cell[5622, 175, 518, 12, 36, "Input"],
+Cell[6143, 189, 686, 18, 64, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7690, 235, 111, 1, 44, "Subsection"],
-Cell[7804, 238, 740, 18, 31, "Input"]
+Cell[6866, 212, 97, 1, 44, "Subsection"],
+Cell[6966, 215, 655, 13, 46, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8581, 261, 95, 1, 44, "Subsection"],
-Cell[8679, 264, 791, 23, 63, "Input"],
-Cell[9473, 289, 107, 1, 30, "Text"],
-Cell[9583, 292, 2162, 63, 159, "Input"]
+Cell[7658, 233, 111, 1, 44, "Subsection"],
+Cell[7772, 236, 740, 18, 47, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8549, 259, 95, 1, 44, "Subsection"],
+Cell[8647, 262, 791, 23, 63, "Input"],
+Cell[9441, 287, 107, 1, 30, "Text"],
+Cell[9551, 290, 2162, 63, 159, "Input"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[11794, 361, 197, 3, 64, "Section"],
-Cell[11994, 366, 937, 27, 28, "Input"],
-Cell[12934, 395, 438, 9, 28, "Input"],
-Cell[13375, 406, 1287, 33, 114, "Input"],
+Cell[11762, 359, 197, 3, 64, "Section"],
+Cell[11962, 364, 937, 27, 46, "Input"],
+Cell[12902, 393, 438, 9, 46, "Input"],
+Cell[13343, 404, 1287, 33, 114, "Input"],
 Cell[CellGroupData[{
-Cell[14687, 443, 369, 9, 28, "Input"],
-Cell[15059, 454, 440, 8, 28, "Output"]
+Cell[14655, 441, 369, 9, 28, "Input"],
+Cell[15027, 452, 464, 8, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15536, 467, 363, 9, 28, "Input"],
-Cell[15902, 478, 303, 6, 28, "Output"]
+Cell[15528, 465, 363, 9, 28, "Input"],
+Cell[15894, 476, 325, 6, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16242, 489, 424, 10, 28, "Input"],
-Cell[16669, 501, 139, 2, 28, "Output"]
+Cell[16256, 487, 424, 10, 28, "Input"],
+Cell[16683, 499, 161, 2, 28, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16857, 509, 101, 1, 64, "Section"],
-Cell[16961, 512, 891, 24, 97, "Input"],
+Cell[16893, 507, 101, 1, 64, "Section"],
+Cell[16997, 510, 891, 24, 97, "Input"],
 Cell[CellGroupData[{
-Cell[17877, 540, 322, 9, 28, "Input"],
-Cell[18202, 551, 1984, 48, 63, "Output"]
+Cell[17913, 538, 322, 9, 28, "Input"],
+Cell[18238, 549, 2010, 49, 80, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20223, 604, 1385, 32, 114, "Input"],
-Cell[21611, 638, 4939, 91, 344, "Output"]
+Cell[20285, 603, 1385, 32, 148, "Input"],
+Cell[21673, 637, 4967, 92, 344, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26677, 734, 156, 2, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[26858, 740, 3628, 87, 335, "Input"],
+Cell[30489, 829, 3910, 74, 482, "Output"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[26599, 735, 115, 1, 64, "Section"],
+Cell[34460, 910, 115, 1, 64, "Section"],
 Cell[CellGroupData[{
-Cell[26739, 740, 110, 1, 44, "Subsection"],
+Cell[34600, 915, 135, 2, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[26874, 745, 12679, 265, 879, "Input"],
-Cell[39556, 1012, 8881, 161, 1028, "Output"]
+Cell[34760, 921, 12679, 265, 981, "Input"],
+Cell[47442, 1188, 8907, 161, 1028, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[48486, 1179, 156, 2, 44, "Subsection"],
+Cell[56398, 1355, 171, 2, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[48667, 1185, 3628, 87, 301, "Input"],
-Cell[52298, 1274, 3888, 74, 482, "Output"]
+Cell[56594, 1361, 6474, 148, 532, "Input"],
+Cell[63071, 1511, 6107, 112, 376, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[56235, 1354, 113, 1, 44, "Subsection"],
-Cell[56351, 1357, 207, 4, 30, "Text"],
+Cell[69227, 1629, 120, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[56583, 1365, 3874, 91, 370, "Input"],
-Cell[60460, 1458, 4290, 82, 316, "Output"]
+Cell[69372, 1634, 6634, 152, 532, "Input"],
+Cell[76009, 1788, 5956, 109, 420, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[64799, 1546, 119, 1, 44, "Subsection"],
+Cell[82014, 1903, 113, 1, 44, "Subsection"],
+Cell[82130, 1906, 207, 4, 30, "Text"],
 Cell[CellGroupData[{
-Cell[64943, 1551, 3923, 98, 387, "Input"],
-Cell[68869, 1651, 4151, 83, 344, "Output"]
+Cell[82362, 1914, 3874, 91, 404, "Input"],
+Cell[86239, 2007, 4316, 82, 312, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[73069, 1740, 171, 2, 44, "Subsection"],
+Cell[90604, 2095, 119, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[73265, 1746, 6474, 148, 447, "Input"],
-Cell[79742, 1896, 6073, 111, 382, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[85864, 2013, 120, 1, 44, "Subsection"],
-Cell[CellGroupData[{
-Cell[86009, 2018, 6634, 152, 447, "Input"],
-Cell[92646, 2172, 5930, 109, 376, "Output"]
-}, Open  ]]
+Cell[90748, 2100, 3923, 98, 438, "Input"],
+Cell[94674, 2200, 4182, 83, 340, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
