@@ -12,19 +12,15 @@ public:
     virtual void printDescriptor() = 0; // print a string describing the medium's variety
 
     // estimate fluence at various radii from an isotropic point source
-    void isotropicPointSourceAnalogMut(  const double c,
-                                         const double mu_t, 
-                                         const double maxr, 
-                                         const double dr, // uniformly spaced radial bins
+    void isotropicPointSourceAnalogMut(  const double c, // single-scattering albedo
+                                         const double maxr, // maximum radius to record
+                                         const double dr, // uniformly spaced radial bins of with dr
                                          const double du, // uniformly spaced direction cosine bins
                                          const size_t numsamples, 
                                          const size_t numCollisionOrders,
                                          const size_t numMoments
                                       )
     {
-        const double mu_a = mu_t * ( 1.0 - c );
-        const double mu_s = mu_t * c;
-
         // collision density
         const size_t num_r_bins = floor( maxr / dr ) + 1.0;
         size_t * collisionDensity = new size_t [num_r_bins];
@@ -153,7 +149,6 @@ public:
 
         printDescriptor();
         std::cout << "Analogmu_t c: " << c << 
-                     " mu_t: " << mu_t << 
                      " maxr: " << maxr << 
                      " dr: " << dr << 
                      " du: " << du << 

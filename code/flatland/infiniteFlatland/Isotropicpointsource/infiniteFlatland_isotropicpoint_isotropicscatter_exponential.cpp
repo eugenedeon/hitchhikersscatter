@@ -6,7 +6,7 @@ public:
     double m_mut;
     IsotropicExponentialInfiniteMedium(const double mut) : m_mut(mut){}
 
-    double samplestep() { return -log( RandomReal() ) / m_mut; } // exponential sampling with mu_t = 1
+    double samplestep() { return -log( RandomReal() ) / m_mut; }
     Vector2 sampledir( const Vector2& prevDir ) // isotropic scattering
     {
         return isotropicDirFlatland();
@@ -14,7 +14,7 @@ public:
 
     void printDescriptor()
     {
-        std::cout << "Infintie flatland isotropic point source isotropic scattering exponential random flight, mu_t = " << m_mut << std::endl;
+        std::cout << "Infinite flatland isotropic point source isotropic scattering exponential random flight, mu_t = " << m_mut << std::endl;
     }
 };
 
@@ -39,7 +39,7 @@ int main( int argc, char** argv )
 
     IsotropicExponentialInfiniteMedium sampler(mut);
 
-    sampler.isotropicPointSourceAnalogMut( c, mut, maxr, dr, du, numsamples, numCollisionOrders, numMoments );
+    sampler.isotropicPointSourceAnalogMut( c, maxr, dr, du, numsamples, numCollisionOrders, numMoments );
 
     return 0;
 }
