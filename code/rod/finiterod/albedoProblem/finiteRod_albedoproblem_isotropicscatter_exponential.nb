@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    123272,       2877]
-NotebookOptionsPosition[    120241,       2770]
-NotebookOutlinePosition[    120599,       2786]
-CellTagsIndexPosition[    120556,       2783]
+NotebookDataLength[    146189,       3217]
+NotebookOptionsPosition[    143199,       3112]
+NotebookOutlinePosition[    143611,       3130]
+CellTagsIndexPosition[    143568,       3127]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -29,9 +29,12 @@ Cell[TextData[{
  "This is code to accompany the book:\n",
  StyleBox["A Hitchhiker\[CloseCurlyQuote]s Guide to Multiple Scattering\n", 
   "Subchapter"],
+ StyleBox["\[Copyright] 2016", "Subsection"],
+ StyleBox[" ", "Section"],
  StyleBox["Eugene d\[CloseCurlyQuote]Eon \nwww.eugenedeon.com", "Subsection"]
 }], "Text",
- CellChangeTimes->{{3.6174286022468777`*^9, 3.617428710592918*^9}}],
+ CellChangeTimes->{{3.6174286022468777`*^9, 3.617428710592918*^9}, 
+   3.6638993878633547`*^9}],
 
 Cell[CellGroupData[{
 
@@ -61,14 +64,349 @@ Cell[CellGroupData[{
 Cell["Notation", "Section",
  CellChangeTimes->{{3.617428538130481*^9, 3.617428538753331*^9}}],
 
-Cell["\<\
-\[Alpha] - single-scattering albedo
-\[CapitalSigma]t - extinction coefficient
-x - position coordinate in rod (source at x = 0)
-a - length of the rod\
-\>", "Text",
+Cell[TextData[{
+ "\[Alpha] - single-scattering albedo\n\[CapitalSigma]t - extinction \
+coefficient\nx - position coordinate in rod (source at x = 0)\na - length of \
+the rod\n",
+ Cell[BoxData[
+  GraphicsBox[
+   TagBox[RasterBox[CompressedData["
+1:eJztneuvnmWVxs3MfJh/oa1OM4qHaJoY8ZOmoFgRk8mYyCdiYmKHGTUmgxxm
+1NHgqCgeQGrVTACxtFIpKrY6CAEm6gQdjEG6W6BgqbS0gBWMJ4KoVZwHnnJ7
+91prXWu9u+/u3n17Xbnded6HQ9oi5ZfrcO+/X3vOm//lr57znOec/7fDlze/
+7T2vPe+8t73vzL8ZPpz2vgv+ee1fDw8XDv/7+fDnPP38Z0mSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSjk7r1q37N0mSJOkE0D333LPY/82RpGnq9NNPf+nLXnb6
+GWecyOf1b3iD/Th8bQc+6szvrDn99PH0z7N8Xr/m8Bmf+zc63nndmsNnfG5v
++j80e+e1rzut/9o/TPGsPvWUZcuW3XzzzYv93xxJmqYGhvnXc9/92M9/7p5H
+H3usPVTOzx59tD2Mz+NDdH76s5/ZB3YOHvzLw/g8PgTn4Z/+1H0YvrrnoUce
+dh+Gr+458PBD7sPw1T37HzrgPgxf3fPggf3uw/C1nf7jvv0Pug/DV/fsfXCf
++zB8bad/+cC+vf0fam+Gr+24L9vZs/eB8Ws77ks8D/zk8Gkf+5feuf8ne4bT
+ntub6Ozec/9w2nN7E50f3797OO25vYnOfbt/PJz23N5E594f3zec9tzeRGfX
+ffcOpz23N9G5596nT3tub6Jz9657htOe2xt4bueue54+7bm9ged2dt5993Ci
+l+NDf3bcdddw2jO8HB/6M7dz53Cil+NDf7bv3DGc6OX40J87d8wNJ3o5Phxx
+5razl8PDkedH2+8kL4eH9NzyP7eKYaTZk8swI4f0GANvLLr09GLfWHQBeoE3
+Drr09GLfHIk0I35YaOn/aAQzPbS0N+1jhDEjkLQ38GwxZgSS9gaeLcY0XHGf
++9NDC/CMCzM9tADPAMxYaOnftOcIXUZQacTSvw+hpScWgBlDLNFzRCzRc0Qs
+0XNELNFzRCzRczv9x4Yr7nPjmYhe4LnxDMcYoBcXXSzJ9Dxj0cVCC0cXSzIc
+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
+VGzw8lpv8QCuVLIkCJUqDgxBl3SmBNwCb6IgKZ0pReiSNnvrJgwMlHITxs2P
+smYvIErUjdH9MNJsi9/TW/dhIpKpj5L8Nm+RZIwtE3FLZMtwbqmMkhZuWw0R
+UnFq3bd5o4/AM3aORMwZt/1CzBm3/cJgpm/zRh+9AozrxpA4yXVj7C7JdV3c
+j3ZSbd0YskuyrotrwnA3hsRJrhuTmjDgxlRMmLvMbTBuPWan+b5I4MwAwOww
+3xcJnBkAmDnzfZHAmQGAsX4LbJRIJcaaMMyHgSqvfU+rvPY9r/UuZYa54YYb
+Ni+Mfv3rX8/jx/PUU09N/ecoLZAqnd5ojhSRjJ0pcZIJr4WJSKZ8VS9AS5oo
+AbSkiRJASzFRctElbfYCq5BQyS3AVJq9xWmSW4DhZRh3mhT6MG4BJu7DuAUY
+d6lE7Bd3qZSuqmGplK6qYamUrqrdMsxEGMMrMRZjUhNmolW1xZhiH4aXYSKM
+qfdhKhFSCi1pljRZimRdl7gP49ILJ5mlzDCrV5+ybGG0e/fuefx4Pv/5z599
+9tkimeNCaR8Gqrzkwt4eXdJEyQZJ4MM4PONezxtvlB72rue1D2RhzddJdmFd
+XCe5Vd7UiokSpSLJpMWYKFEqkkxajLGJUik8ctdJhZvu9pg7YUitF6ZJaa0X
+pklprbd+J4w7TQJiGd/AqtplmP4rrKpdhkl5Bhgm5RlgmJRnXPuF8Iy1YjjP
+uPYL4RnXfiE849ovPcYg0rj2i1v0Nesk92YYgjFLuQ9zyimn/Pt73jP+Htt+
+J2xbyPavc/v3aPx/7/h/pPEf9/gPZfzlGjvMGzZePT+G2b9///Of//z3v//9
+C/Ezlaau+j29C/pdBhITJholTdLmPTaTakAX+GihBdAFPtpJNRlWu+0XQBf4
+aCfV7rCatHndYTWJk9xhNYuTbKc3vjEGiCUlGSCWlGSAWFKSAWJJSQbsF04y
+ZFhd8WF6K6biw0zUh4HkKPVhAF3qPkxxlATokvow273b7epWjFuJYYaMW4mJ
+a72uD0PoZenf0zsyzPifjOE39h5mxt+yDv8G0t1R2Ujeh5m57Ru/tGl+DHPW
+WWe94hWvePzxxxfiZypNXcAwtgbDScbWYDjJ9DWYUh8mupu3UOglfZj6LokU
+eiOkIcNqQjJplmQrvqkDs8980wHuwEDFN3VgoOJb3yXZhkzS4yUNmcIVMcV+
+r1uJ4bVeW4nhtV5bieG13mIlxtJLBWZ6eoGAiZOMnSlxkkl3SZZe3J5MdEWM
+3SXxK2LsLslFmtbdjXoyFR8m2SVZH4Zedmd9GE4yrdB7XPgwh3/zf+a3aGCY
+w4bM3gfGfzHHf32awegaMldt2DD8fH/wgx/8rKYnn3xy+JFs3bp1+KtuvPHG
+9mMb/iP2+9//fvF+baRE1ochEVLRiqn3YQBdqlZMuQ+TVnldgIF1UlqJKaKL
+CzD1CClFFxdg6hFSii4uwNQjJNuBYd6Lfci4xS6pObfYTi/nFndYnQ6RoBKT
+DpGgEjPRIqluwpCBEinD2GE1L8O4Dd76sDp1YzixpMNqiy4RyfQ8k06T3DJM
+tdkL6JI1ewFdXCumfffqpe7DvPe97fd/YJjx95n2u0ELlSIfZvyV/NBFH5mo
+ObNt27Zf/vKXq1atWrt27fij2r179wUXXLBy5cotW7Ys7q+PRMR3SY+W7+nt
+DRlAF5dnwJDpcSVfWAO6eDwDhkw6TbJlGD5NgjKMyzOVci+EShxp7BaJI43d
+InGksVukItLwRVJkxQDGJHGSxRgaJwHVpHGSbfbyOMk2e3mcZJu9fJTkRkuR
+FbPL3A/DkcY1XkiuBMZLuk4C48WukzjGpCTDt0gWaea8G3qLuVJKMlOu9bo7
+6xrJHL+7pJYltd/Gx99RIx9mzJLGYkzvw7R/WI1h1n12/TVf3rzpmms2XvOl
+qzdt3LDx6i9effVVG774hS9edcUXrrz8yiv/64rLL1v/mZFhzj///JNOOumR
+Rx65/fbb3/rWtw4vB6RZt27dL37xi8X+FZJC9QwD3FI0YSBOmr4JA3HSMTRh
+uANDoCUNko5mlFQJkvZ5t/USH2avd1tvsQlTDJL68Cgv9EJ4VLsZBmq9Pavw
+eTWMkjjAQJaUAgxkSZU+DIyS0lV1jy62G0McmHbcFIk4MG6KRBwYniK53JKa
+MMAt6TQJuCVFF+CWlGGAW3ITxl1VxyaMu6omJkxzYJb+LqllSU//VyDIksbf
+B8Z/VXmW1Psw37/99pGIhr/V+DcZ/vLxrx3+qhF7/vd7tw1/5iWXXDJ8Pffc
+c88444zhYfXq1Zs3b/7d73632L82UqJJ7+ld0Gav9WSSZq/1ZGiztwebtNnr
+Zkn9R7tLsllS/3F/d7VdlCX1H/shkpslwcd+iORmSfCxHyK5WRJATj9EcrMk
+vlFysyS36OtkSQAzsQPjdno5wFgTphIq2WiJh0o2WuKhEuEZbsIAvUS5UsQz
+Ua5keYaXey3P2HoMT5RsPSaq9fb0EqVLNlGy9RjiyUB+VPFkXICpNnuDPszR
+NHuXeh/mmSyJMAz4MGOWNBxgmMO/+HPbP3zRRSPDjH+3MZMa/w7DXzv+/3z4
+q4Z/grd9/3vDn/nCF77wec973vDwmte85uKLL/6WdJzoVa96dXGXRDwZl14q
+QZI1YZIgyZow1JOxJgz3ZKwJU/FkDizwHXcP1i61c62YeqfXBkkVK6ZSjIFV
+dW7FwKo6s2Ks/WJ9GG6/WB+mWIypnPvM5TBplTflFteNSZswQC9pEwboBYhl
+fvRS6cPUyzCWXtLD2y8pvVRSpLwDA+iSdWAq9MKDpOPFh+mzJOjDtJF1y5LA
+h2n/fMdf2MYww99t/FsBwzQfZmSYFStWHOVdNNKiaCDP1IcpFmOijVLqw5RM
+GLJRynyYigkDlRhrwliMOWCu6i3GSZWRdWWaVGn28qk192TSbXU6teYY47Zi
+GMbE5V4XY2y5t99m8lYMSZSsFZMaMmDF8EoMsWIisImsmNko90YwY62Y+ZV7
+iffiRkuRCdOPknqACU2YPkWCaCkbJUG0VCnGLHUfpm2raZbUM8z4r0O0Sxqz
+pO/d/n8jw4x/nz5LAh9m9erVK1euHB5e+cpXXn755QcPHvy5dDxozZo1kQ9D
+IiTXhyEREin0upPqZGFtjZdyodddWJNCrwswbooURUgcYNI+TJQiFadJfa23
+Mk3q3ZjKNKmlSPU+TLKndi+1K/dhJtpTQ/sltWKg/ZJaMdB+Sa0YaL9UrBhS
+iSFtXrcS49Z6owgJrJj2EJkwYMUQT8aNkAjG9IfUel1uqURIFXqJuKVa683o
+hRRjKjf0jj7M0mcYsq1uv4G0f3OTbfXc9pFhrtqw4Yabbvzvb33rmzf897Zv
+fmPrN75x/datX/v69V+9/mvXffUr11533bXXbfnCF68a/sxNmza9+MUvfstb
+3rJ27drh48knn7xhwwb1YZa+Kt9roLJLIgvrihVT8mGihXXBirHdmEolJg2S
+DsSX3dWH1Wmh1/VhXJ5x86M0RbIPPbGQSozrvVQMmR5UWCXGhZna/TCVSozl
+mWIlpt8iTcQzxUpMP0Eq8gxUedNQCaq8aagEVd40VIIqbxoq9VVe+zKiFzBk
+CMD0VV77MoqQopek/RJVYsL2S3rZnWfC2FApPUs9S+r6MJAl9X2Y0Ydp22rw
+Yfpd0pgl1bVt27YtW7aMv0T33nvv29/+9uXLl7/85S+/4oorfvvb3y72r5AU
+KrqnNyr0ujzTiMW6MS7GNLPFlmF8jGnEYsswPcY8+9zMFluG6QHGhRkow/A4
+yZZh3GdShnGfSRkmXSe5iyRYW5MyDORKpAxj+zC8ErPHXBSTVGLsRTG1Sgw8
+p5UYeOYdGPvMOzBuhMQXSfDsTpN6+8U+19u8fFIdxUm8D0OmSXyXVPReyDSp
+UoaZ4qSauDGuCRO6MeC9ZG4MeC/9g8sz4937S59h2rY69GGe7cO0f5XCXdLc
+9tFdGX6+u2oavzvkWWedNXDLr371qz8/cz/Mu971rhUrVmzcuHGxf4WkUJPu
+koomTHFYbTGmasLUhtUV74VjTOWk4VHkyUx60hSJ8EzlpClSasKkWVI1RYr8
+lsI0CeKkdJoEcRLxYazxwn2Y3m+pTJOs8WJ9GJdkdpn7YVySscZLkWTuNhfz
+cpKJmjDRwpo0YSITxiWZaGFNmjATkYwFmzRRqjZ7o13S9Jq9x02W9Mzv7Y1h
+2m9NJEsamy1H7JJ2zF29aeOyyb/XwEMPPXTSSSe9+93vbm8eeOCB8QpfaWlq
+YJhzzjuXV3mhA5N+uwEIkngZJnrDqrwQJMVlGFhVuzxjq7zuG1LrteXeqBWz
+/8hvLuBulFxoIRslskhKQ6W9R35zAXejRBZJdp0UQcuC8EzhrhieH0U8U18n
+FadJxfyo2ODltd7iAVypZEkQKlUcGIIu6UwJuAXeREFSOlOK0CVt9tZNGBgo
+5SaMmx9lzV5AlKgbcxzdD0N8mL3d/TB9pzf0YebLMIM2bXr6Gy19+9vfXoif
+qTR18Xt66z5MRDL1UZLf5i2SjLFlIm6JbBnOLZVR0sJtqyFCKk6t+zZv9BF4
+xs6RiDnjtl+IOeO2XxjM9G3e6KNXgHHdGBInuW6M3SW5rov70U6qrRtDdknW
+dXFNGO7GkDjJdWNSEwbcmIoJc5e5Dcatx+w03xcJnBkAmB3m+yKBMwMAM2e+
+LxI4MwAw1m+BjRKpxFgThvkwUOW172mV177ntd4lzjBrz/6nbd/8xnC+vm3b
+cK7fuvX6rV8fy7fD+crXvnrdV7+y5StPn7GIu3nLtZuv/fJwrvny5i9tPnwT
+73gZ73gf739++EPzY5innnrqzDPPXL169fCwED9ZabqqdHqjOVJEMnamxEnm
+p+lVvZZeaokSQEuaKAG0pIkSQEsxUXLRJW32AquQUMktwFSavcVpkluA4WUY
+d5oU+jBuASbuw7gFGHepROwXd6mUrqphqZSuqmGplK6q3TLMRBjDKzEWY1IT
+ZqJVtcWYYh+Gl2EijKn3YSoRUgotaZY0WYpkXZe4D+PSCyeZpcwwAzBM4aIQ
+T/NgmEEHDhzYt2/f1H+a0kIo7cNAlZdc2NujS5oo2SAJfBiHZ9zreeON0sPe
+9bz2gSys+TrJLqyL6yS3yptaMVGiVCSZtBgTJUpFkkmLMTZRKoVH7jqpcNPd
+HnMnDKn1wjQprfXCNCmt9cI0Ka31wjQJiKU1AUiiZL/CqtplmJRngGFSngGG
+SXnGtV8Iz1grhvOMa78QnnHtF8Izrv3SYwwijWu/uEVfs05yb4YhGLOU+zAD
+MzywMPrDH/6w2D85aWEV7ZKO8XcZSEyYaJQ0SZv32EyqAV3go4UWQBf4aCfV
+ZFjttl8AXeCjnVS7w2rS5nWH1SROcofVLE6ynd74xhgglpRkgFhSkgFiSUkG
+iCUlGbBfOMmQYXXFh+mtmIoPM1EfBpKj1IcBdKn7MMVREqBL6sNs9263q1sx
+biWGGTJuJSau9bo+DKGXpX9PryTNW8AwtgbDScbWYDjJ9DWYUh8mupu3UOgl
+fZj6LokUeiOkIcNqQjJplmQrvqkDs8980wHuwEDFN3VgoOJb3yXZhkzS4yUN
+mcIVMcV+r1uJ4bVeW4nhtV5bieG13mIlxtJLBWZ6eoGAiZOMnSlxkkl3SZZe
+3J6MJRm3EhMhTU8vbk/Gkoz1YbgVY32YZJdkfRh62Z31YTjJtELvEvdhJGne
+sj4MiZCKVky9DwPoUrViyn2YtMrrAgysk9JKTBFdXICpR0gpurgAU4+QUnRx
+AaYeIdkODPNe7EPGLXZJzbnFdno5t7jD6nSIBJWYdIgElZiJFkl1E4YMlEgZ
+xg6reRnGbfDWh9WpG8OJJR1WW3SJSGYuuCKGN3vtQ97sBXTJmr2ALq4V0757
+tXwYaSbFd0mPlu/p7Q0ZQBeXZ8CQ6XElX1gDung8A4ZMOk2yZRg+TYIyjMsz
+lXIvhEocaewWiSON3SJxpLFbpCLS8EVSZMUAxiRxksUYGicB1aRxkm328jjJ
+Nnt5nGSbvXyU5EZLkRWzy9wPw5HGNV5IrgTGS7pOAuPFrpM4xqQkw7dIFmnm
+vBt6i7lSSjJTrvW6O+sayRy/uyRJmrd6hgFuKZowECdN34SBOOkYmjDcgSHQ
+kgZJRzNKqgRJ+7zbeokPs9e7rbfYhCkGSX14lBd6ITyq3QwDtd6eVfi8GkZJ
+HGAgS0oBBrKkSh8GRknpqrpHF9uNIQ5MO26KRBwYN0UiDgxPkVxuSU0Y4JZ0
+mgTckqILcEvKMMAtuQnjrqpjE8ZdVRMTpjkwS3+XJEnz1qT39C5os9d6Mkmz
+13oytNnbg03a7HWzpP6j3SXZLKn/uL+72i7KkvqP/RDJzZLgYz9EcrMk+NgP
+kdwsCSCnHyK5WRLfKLlZklv0dbIkgJnYgXE7vRxgrAlTCZVstMRDJRst8VCJ
+8Aw3YYBeolwp4pkoV7I8w8u9lmdsPYYnSrYeE9V6e3qJ0iWbKNl6DPFkID+q
+eDIuwFSbvUEf5miaverDSDOp+i6JeDIuvVSCJGvCJEGSNWGoJ2NNGO7JWBOm
+4skcWOA77h6sXWrnWjH1Tq8NkipWTKUYA6vq3IqBVXVmxVj7xfow3H6xPkyx
+GFM595nLYdIqb8otrhuTNmGAXtImDNALEMv86KXSh6mXYSy9pIe3X1J6qaRI
+eQcG0CXrwFTohQdJ8mGkWVXFhykWY6KNUurDlEwYslHKfJiKCQOVGGvCWIzp
+fRhrwlQwZqImDB9ZR81ePrXmnky6rU6n1hxj3FYMw5i43OtijC33tgcXY2y5
+NwIbsGJSQwasmOJdMdaKicAmsmJmo9wbwYy1YuZX7iXeixstRSZMP0ra7t0P
+gzzTp0gQLWWjJIiWKsUY+TDSTIr4MCRCcn0YEiGRQq87qU4W1tZ4KRd63YU1
+KfS6AOOmSFGExAEm7cNEKVJxmuReC0OmSb0bU5kmtRSp3odJ9tTupXblPsxE
+e2pov6RWDLRfUisG2i+pFQPtl4oVQyoxpM3rVmLcWm8UIYEV0x4iEwasGOLJ
+uBESwZj+pNfF2G11GiFV6CXilmqtN6MXUoyp3NA7+jBiGGkmVfleA5VdEllY
+V6yYkg8TLawLVoztxlQqMWmQdCC+7K4+rE4Lva4P4/KMmx+lKZJ96ImFVGJc
+76ViyPSgwioxLszU7oepVGLcy2Em4pliJaY3XibimdSBAXqph0pQ5U1DJajy
+pqESVHnTUKmv8tqX5HIYuBkmApi+ymtfRhFS9JK0X6JKTNh+SS+780wYGyql
+R1mSNJOKfJio0OvyTCMW68a4GNPMFluG8TGmEYstw/QY8+xzM1tsGaYHGBdm
+oAzD4yRbhnGfSRnGfSZlmHSd5C6SYG1NyjCQK5EyjO3D8ErMHnNRTFKJsRfF
+1Cox8JxWYuCZd2DsM+/AuBESXyTBsztN6u0X+1xv8/JJdRQn8T4MmSbxXVLR
+eyHTpEoZZoqTauLGuCZM6MaA95K5MeC99A8uz9xx54+0rZZmVZPukoomTHFY
+bTGmasLUhtUV74VjTOWk4VHkyUx60hSJ8EzlpClSasKkWVI1RYr8lsI0CeKk
+dJoEcRLxYazxwn2Y3m+pTJOs8WJ9GJdkdpn7YVySscZLkWTuNhfzcpKJmjDR
+wpo0YSITxiWZaGFNmjATkYwFmzRRqjZ7o13S9Jq9ypKkmdTAMOecdy6v8kIH
+Jv12AxAk8TJM9IZVeSFIisswsKp2ecZWed03pNZry71RK2b/kd9cwN0oudBC
+NkpkkZSGSnuP/OYC7kaJLJLsOimClgXhmcJdMTw/inimvk4qTpOK+VGxwctr
+vcUDuFLJkiBUqjgwBF3SmRJwC7yJgqR0phShS9rsrZswMFDKTRg3P8qavYAo
+UTdG98NIsy1+T2/dh4lIpj5K8tu8RZIxtkzELZEtw7mlMkpauG01REjFqXXf
+5o0+As/YORIxZ9z2CzFn3PYLg5m+zRt99AowrhtD4iTXjbG7JNd1cT/aSbV1
+Y8guybourgnD3RgSJ7luTGrCgBtTMWHuMrfBuPWYneb7IoEzAwCzw3xfJHBm
+AGDmzPdFAmcGAMb6LbBRIpUYa8IwHwaqvPY9rfLa97zWK4aRZlKVTm80R4pI
+xs6UOMmE18JEJFO+qhegJU2UAFrSRAmgpZgoueiSNnuBVUio5BZgKs3e4jTJ
+LcDwMow7TQp9GLcAE/dh3AKMu1Qi9ou7VEpX1bBUSlfVsFRKV9VuGWYijOGV
+GIsxqQkz0araYkyxD8PLMBHG1PswlQgphZY0S5osRbKuS9yHcemFk4wYRppJ
+pX0YqPKSC3t7dEkTJRskgQ/j8Ix7PW+8UXrYu57XPpCFNV8n2YV1cZ3kVnlT
+KyZKlIokkxZjokSpSDJpMcYmSqXwyF0nFW6622PuhCG1XpgmpbVemCaltd76
+nTDuNAmIZXwDq2qXYfqvsKp2GSblGWCYlGeAYVKece0XwjPWiuE849ovhGdc
++4XwjGu/9BiDSOPaL27R16yT3JthCMaoDyPNpOr39C7odxlITJholDRJm/fY
+TKoBXeCjhRZAF/hoJ9VkWO22XwBd4KOdVLvDatLmdYfVJE5yh9UsTrKd3vjG
+GCCWlGSAWFKSAWJJSQaIJSUZsF84yZBhdcWH6a2Yig8zUR8GkqPUhwF0qfsw
+xVESoEvqw2z3brerWzFuJYYZMm4lJq71uj4MoRfd0yvNsIBhbA2Gk4ytwXCS
+6WswpT5MdDdvodBL+jD1XRIp9EZIQ4bVhGTSLMlWfFMHZp/5pgPcgYGKb+rA
+QMW3vkuyDZmkx0saMoUrYor9XrcSw2u9thJTuSKm2O+tV2IsvVRgpqcXCJg4
+ydiZEieZdJdk6cXtyURXxNhdEr8ixu6SXKRp3d2oJ1PxYZJdkvVh6GV31ofh
+JNMKvfJhpFmV9WFIhFS0Yup9GECXqhVT7sOkVV4XYGCdlFZiiujiAkw9QkrR
+xQWYeoSUoosLMPUIyXZgmPdiHzJusUtqzi2208u5xR1Wp0MkqMSkQySoxEy0
+SKqbMGSgRMowdljNyzBug7c+rJ7HFTGpCbODXhETkcxccEUMb/bah7zZC+iS
+NXsBXVwrpn33avkw0kyK75IeLd/T2xsygC4uz4Ah0+NKvrAGdPF4BgyZdJpk
+yzB8mgRlGJdnKuVeCJU40tgtEkcau0XiSGO3SEWk4YukyIoBjEniJIsxNE4C
+qknjJNvs5XGSbfbyOMk2e/koyY2WIitml7kfhiONa7yQXAmMl3SdBMaLXSdx
+jElJhm+RLNLMeTf0FnOllGSmXOt1d9Y1ktEuSToBNTDMP77pTes+u37e57L1
+n+mfx4/tKz+f/sy64YwP7eM0z7rLnj7jQ/s4vXPpZU+f8aF9hOejPJd8+tP9
+1/GhPXvn0iO/Xtq9n8L51KWX9F/Hh/Y83fPJSz41nP6Zn098Cj+2Ax/neT75
+SfzYDnyc1/n4Jz8BH9uBj/M7F3/i4/CxHftmOB/7uPNx+Nrej8/TOh+9+OLx
+6/jQnqd1Lrr4Y+PX8aE9T+187KOHv44P/XP/h549H/noX762N/3L8eO8z4cv
+uqh9Hc5/fOADYhhp9vQPb3zj361YoaOjo6Mz2+e5z33uLbfcstj/zZEkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSToqPfHEEz/84Q9vvfXW/fv3L/aPRZIkSZIk
+qaT777//JS95yUtf+tJTTz11+fLlH/zgBxf7RyRJkiRJkpTr0KFDd9xxx5/+
+9Kfh+dprr122bNnOnTsX+wclSZIkSZJU1W9+85sdO3YMDLNx48bF/rFIkiRJ
+kiTluvLKK1/96lcP9LJq1arh6+c+97nF/hFJ0gLqj3/842L/ECRpyjp48OCT
+Tz652D8KSTrWWr9+/Qte8IKbbrrpiSeeGD6uXLlSDCPNtm677bbF/iFI0pQl
+hpFOTJ122mlnn332+Pz4448vX75cDCPNtsQw0uxJDCOdmHrHO95x8sknP/qM
+3vnOdy5btuzSSy9d7B+UJC2gxDDS7EkMI52Y2rFjx6pVq1asWPGiF71o/fr1
+a9asufDCCxf7ByVJCygxjDR7EsNIJ6wOHTq0b98+FR2lE0RiGGn2NDDMY489
+9mtJkiRppvXd7353sf+DI0lT1sFn9AtJkiRppvWd73xnsf+DI0lTlrIkSZKk
+E0HKkqTZkxhGkiTpRJAYRpo9iWEkSZJOBIlhpNmTGEaSJOlEkBhGmj2JYSRJ
+kk4EiWGk2ZMux5AkSToRdOjQocX+IUiSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmStJj6f2loWjE=
+     "], {{0, 126}, {748, 0}}, {0, 255},
+     ColorFunction->RGBColor],
+    BoxForm`ImageTag["Byte", ColorSpace -> ColorProfileData[CompressedData["
+1:eJyVlwdYU8kWx+eWFEISSiACUkJvIr1L70VBqmAjJIGEEkIgKNiRRQXXgogF
+K7oqYlsLIIsNsSOCvb9YUFDWxYINlTdJAH2+3e99b75v7v3l3DNn/mdm7s2M
+YWpOTBoKAMgjw0sMe4afWMwujMXhD//CfF4qAsFCBV6AigVbJMpCVQHIFuaL
+Y0L8WZOSklkkKUABGagAd2DL5uSJ/KKjI8E/lvc3gSwguGYji/XPfn9b1Li8
+PA4ASDTkVG4eJxvyYQBwOkckzgeA0ArtxjPyRTLuhqwhhgIhf5FxupyJqjJO
+VbCJ3CcuJgCyGwBkKpstTgeAHgjtrAJOOoxD50K2E3IFQsiVkL05fDa00a9D
+HpOdnQNZPjgWqT/ESf+PmKkjMdns9BFW5CIv5EBBniiLXfh/Dsf/LtlZkuE+
+DGGl8sWhMbKc4bhtyMyJkDEV8gFh6oQoyOqQmwVcub+M2/mS0PghfyknLwCO
+GWBCfsdlB0ZA1gUApUgy4/2G2IwtlreF/qi/ID8sbogTxDkxQ/HRDGHWhEhF
+HHQ2nxc2zBW8vKDYYZ80QXAYZDhX6K4iflyiQifaWCBImACZDrk1LzM2Yqjt
+1SJ+wIRhH7EkRqYZzi3anSYOjlH4YNTsvOG8MCMOW96XFmSnfH5cqKItFsnl
+BQYp+sUm8YTxQ3owvijfP2bIv0iUJV/fMnsFLytEZjeCvD2vIHa47dl8uKgU
+uWM3M9jh0QrN2AtRfnTckJ6PIBIEgEDAAhJYU0EOyACC9t6GXvhL8SQYsIEY
+pAMesBmyDLdIlD8RwmssKAJ/QuKBvJF2/vKnPFAA7V9HrIqrDUiTPy2Qt8gE
+zyBn4zq4N+6JR8KrL6wOuBvuPtyOpTLcKzGIGEgMJQYTLUd0cKDqLFjFQPA3
+tgh458HsZFqEwzl8j0d4RugkPCbcIEgJd0ACeCqPMuQ1XVAs/kk5C4wHUhgt
+eCi7VBizZ9gHN4OqnXF/3Avqh9pxJq4DbHAnmIkf7gNzc4bWHxVKRrR9H8uf
++5Op/jGfITvdiu48pCJ1ZGYCRrx+jhLwwxhx4T3iZ09sMXYIO4edwi5gzVgD
+YGEnsEasDTsm45GV8FS+EoZ7i5Fry4RxBMM+dnV2PXZf/qt39pACsXy+QT5v
+Zr7sJQjIERWKBen8fJYf/ArzWGFCztgxLAc7excAZN90xSfjLVP+rUaYF7/b
+ck8C4F4GjenfbWxjAI4+A4Dx/rvN+A18pVYAcKyDIxEXKGyyvxRAABT4wdQA
+2kAfGAMLmJMDcAGewBcEgXAQBeJAEpgGR50PsqHqGWA2WABKQTlYAVaD9WAz
+2AZ2gb3gIGgAzeAUOAsugQ5wA9yDa6MLvAR94D0YQBCEhNAQBqKNGCCmiDXi
+gLgh3kgQEonEIElICpKOCBEJMhtZiJQjFch6ZCtSi/yOHEVOIReQTuQO8gjp
+Qd4gn1EMpaIaqB5qhtqibqgfGoHGoVPRdDQXLUJL0GXoWrQG3YPWo6fQS+gN
+VIq+RPsxgCljTMwQs8HcsAAsCkvG0jAxNhcrw6qwGmwf1gTn+homxXqxTzgR
+Z+As3Aauz1A8HufgufhcfCm+Ht+F1+Ot+DX8Ed6HfyPQCLoEa4IHIYwwiZBO
+mEEoJVQRdhCOEM7Ad6eL8J5IJDKJ5kRX+G4mETOIs4hLiRuJ+4kniZ3EJ8R+
+EomkTbImeZGiSGxSPqmUtI60h3SCdJXURfpIViYbkB3IweRkspBcTK4i7yYf
+J18lPycPKKkqmSp5KEUpcZUKlZYrbVdqUrqi1KU0QFGjmFO8KHGUDMoCylrK
+PsoZyn3KW2VlZSNld+WJygLl+cprlQ8on1d+pPyJqk61ogZQp1Al1GXUndST
+1DvUtzQazYzmS0um5dOW0Wppp2kPaR/pDPpYehidS59Hr6bX06/SX6koqZiq
++KlMUylSqVI5pHJFpVdVSdVMNUCVrTpXtVr1qOot1X41hpq9WpRattpStd1q
+F9S61UnqZupB6lz1EvVt6qfVnzAwhjEjgMFhLGRsZ5xhdGkQNcw1wjQyNMo1
+9mq0a/Rpqms6aSZoztSs1jymKWViTDNmGDOLuZx5kHmT+XmU3ii/UbxRS0bt
+G3V11Aet0Vq+WjytMq39Wje0PmuztIO0M7VXajdoP9DBdax0JurM0Nmkc0an
+d7TGaM/RnNFlow+OvquL6lrpxujO0t2m26bbr6evF6In0lund1qvV5+p76uf
+oV+pf1y/x4Bh4G0gMKg0OGHwgqXJ8mNlsdayWll9hrqGoYYSw62G7YYDRuZG
+8UbFRvuNHhhTjN2M04wrjVuM+0wMTMabzDapM7lrqmTqZso3XWN6zvSDmblZ
+otkiswazbnMt8zDzIvM68/sWNAsfi1yLGovrlkRLN8tMy42WHVaolbMV36ra
+6oo1au1iLbDeaN05hjDGfYxwTM2YWzZUGz+bAps6m0djmWMjxxaPbRj7ytbE
+Ntl2pe052292znZZdtvt7tmr24fbF9s32b9xsHLgOFQ7XHekOQY7znNsdHzt
+ZO3Ec9rkdNuZ4TzeeZFzi/NXF1cXscs+lx5XE9cU1w2ut9w03KLdlrqddye4
++7vPc292/+Th4pHvcdDjL08bz0zP3Z7d48zH8cZtH/fEy8iL7bXVS+rN8k7x
+3uIt9TH0YfvU+Dz2Nfbl+u7wfe5n6Zfht8fvlb+dv9j/iP+HAI+AOQEnA7HA
+kMCywPYg9aD4oPVBD4ONgtOD64L7QpxDZoWcDCWERoSuDL0VphfGCasN6wt3
+DZ8T3hpBjYiNWB/xONIqUhzZNB4dHz5+1fj7E0wnCCc0RIGosKhVUQ+izaNz
+o/+YSJwYPbF64rMY+5jZMediGbHTY3fHvo/zj1sedy/eIl4S35KgkjAloTbh
+Q2JgYkWidJLtpDmTLiXpJAmSGpNJyQnJO5L7JwdNXj25a4rzlNIpN6eaT505
+9cI0nWlZ045NV5nOnn4ohZCSmLI75Qs7il3D7k8NS92Q2scJ4KzhvOT6ciu5
+PTwvXgXveZpXWkVad7pX+qr0Hr4Pv4rfKwgQrBe8zgjN2JzxITMqc2fmYFZi
+1v5scnZK9lGhujBT2JqjnzMzp1NkLSoVSXM9clfn9okjxDvykLypeY35GnDz
+3CaxkPwieVTgXVBd8HFGwoxDM9VmCme2FVoVLil8XhRc9NssfBZnVstsw9kL
+Zj+a4zdn61xkburclnnG80rmdc0Pmb9rAWVB5oLLxXbFFcXvFiYubCrRK5lf
+8uSXkF/qSuml4tJbizwXbV6MLxYsbl/iuGTdkm9l3LKL5XblVeVflnKWXvzV
+/te1vw4uS1vWvtxl+aYVxBXCFTdX+qzcVaFWUVTxZNX4VfWVrMqyynerp6++
+UOVUtXkNZY1kjXRt5NrGdSbrVqz7sp6//ka1f/X+Dboblmz4sJG78eom3037
+NuttLt/8eYtgy+2tIVvra8xqqrYRtxVse7Y9Yfu539x+q92hs6N8x9edwp3S
+XTG7Wmtda2t36+5eXofWSep69kzZ07E3cG/jPpt9W/cz95cfAAckB178nvL7
+zYMRB1sOuR3ad9j08IYjjCNl9Uh9YX1fA79B2pjU2Hk0/GhLk2fTkT/G/rGz
+2bC5+pjmseXHKcdLjg+eKDrRf1J0svdU+qknLdNb7p2edPp668TW9jMRZ86f
+DT57+pzfuRPnvc43X/C4cPSi28WGSy6X6tuc245cdr58pN2lvf6K65XGDveO
+ps5xncev+lw9dS3w2tnrYdcv3Zhwo/Nm/M3bt6bckt7m3u6+k3Xn9d2CuwP3
+5t8n3C97oPqg6qHuw5p/Wf5rv9RFeuxR4KO2x7GP7z3hPHn5NO/pl66SZ7Rn
+Vc8Nntd2O3Q39wT3dLyY/KLrpejlQG/pn2p/bnhl8erwX75/tfVN6ut6LX49
++GbpW+23O985vWvpj+5/+D77/cCHso/aH3d9cvt07nPi5+cDM76Qvqz9avm1
+6VvEt/uD2YODIraYLd8KYLCiaWkAvNkJAC0J7h06AKDQFWcueUEU50Q5gX9i
+xblMXuDOZacvAPHzAYiEe5RNsJpCpsK7bPsd5wtQR8eROlTy0hwdFLGo8ORC
++Dg4+FYPAFITAF/Fg4MDGwcHv26HYu8AcDJXcdaTFdkZcouRjC4bz/sIfir/
+Bs1scpE=
+       "], "RGB", "XYZ"], Interleaving -> True],
+    Selectable->False],
+   BaseStyle->"ImageGraphics",
+   ImageSizeRaw->{748, 126},
+   PlotRange->{{0, 748}, {0, 126}}]]]
+}], "Text",
  CellChangeTimes->{{3.617428487341361*^9, 3.617428516514864*^9}, {
-  3.62117873415422*^9, 3.621178738599084*^9}}]
+  3.62117873415422*^9, 3.621178738599084*^9}, {3.663895280000622*^9, 
+  3.66389528030798*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -84,7 +422,7 @@ Cell["Reflectance/Transmittance", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"R", "[", 
+  RowBox[{"finrodalbedoiso`R", "[", 
    RowBox[{"a_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_"}], "]"}], ":=", 
   FractionBox["\[Alpha]", 
    RowBox[{
@@ -96,11 +434,12 @@ Cell[BoxData[
        SqrtBox[
         RowBox[{"1", "-", "\[Alpha]"}]]}], "]"}]}], "-", "\[Alpha]", "+", 
     "2"}]]}]], "Input",
- CellChangeTimes->{{3.6211788319809732`*^9, 3.621178886778017*^9}}],
+ CellChangeTimes->{{3.6211788319809732`*^9, 3.621178886778017*^9}, {
+  3.6638959992421494`*^9, 3.66389600496697*^9}}],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"T", "[", 
+  RowBox[{"finrodalbedoiso`T", "[", 
    RowBox[{"a_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_"}], "]"}], ":=", 
   FractionBox[
    RowBox[{"2", 
@@ -121,12 +460,13 @@ Cell[BoxData[
       RowBox[{"\[CapitalSigma]t", " ", "a", 
        SqrtBox[
         RowBox[{"1", "-", "\[Alpha]"}]]}], "]"}]}]}]]}]], "Input",
- CellChangeTimes->{{3.62137522443165*^9, 3.621375306559001*^9}}],
+ CellChangeTimes->{{3.62137522443165*^9, 3.621375306559001*^9}, 
+   3.663896009952943*^9}],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"R", "[", 
+   RowBox[{"finrodalbedoiso`R", "[", 
     RowBox[{"a_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_", ",", "n_"}], 
     "]"}], ":=", 
    RowBox[{
@@ -135,14 +475,14 @@ Cell[BoxData[{
      RowBox[{
       RowBox[{"SeriesCoefficient", "[", 
        RowBox[{
-        RowBox[{"R", "[", 
+        RowBox[{"finrodalbedoiso`R", "[", 
          RowBox[{"a", ",", "A", ",", "\[CapitalSigma]t"}], "]"}], ",", 
         RowBox[{"{", 
          RowBox[{"A", ",", "0", ",", "n"}], "}"}]}], "]"}], "/.", 
       RowBox[{"A", "\[Rule]", "\[Alpha]"}]}], ")"}]}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"T", "[", 
+  RowBox[{"finrodalbedoiso`T", "[", 
    RowBox[{"a_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_", ",", "n_"}], 
    "]"}], ":=", 
   RowBox[{
@@ -151,12 +491,13 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"SeriesCoefficient", "[", 
       RowBox[{
-       RowBox[{"T", "[", 
+       RowBox[{"finrodalbedoiso`T", "[", 
         RowBox[{"a", ",", "A", ",", "\[CapitalSigma]t"}], "]"}], ",", 
        RowBox[{"{", 
         RowBox[{"A", ",", "0", ",", "n"}], "}"}]}], "]"}], "/.", 
      RowBox[{"A", "\[Rule]", "\[Alpha]"}]}], ")"}]}]}]}], "Input",
- CellChangeTimes->{{3.621524064815125*^9, 3.62152410787437*^9}}]
+ CellChangeTimes->{{3.621524064815125*^9, 3.62152410787437*^9}, {
+  3.663896011065927*^9, 3.663896020605071*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -166,7 +507,7 @@ Cell["\[OpenCurlyQuote]Radiance\[CloseCurlyQuote]", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"LR", "[", 
+  RowBox[{"finrodalbedoiso`LR", "[", 
    RowBox[{"x_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_", ",", "a_"}], 
    "]"}], ":=", 
   FractionBox[
@@ -216,12 +557,13 @@ Cell[BoxData[
         RowBox[{"1", "-", "\[Alpha]"}]], " ", "\[CapitalSigma]t"}], 
       "]"}]}]}]]}]], "Input",
  CellChangeTimes->{{3.617430690623348*^9, 3.6174307057929173`*^9}, {
-  3.617430826778767*^9, 3.617430831298792*^9}, {3.619594091183975*^9, 
-  3.619594114394599*^9}, {3.621376280155333*^9, 3.621376287471984*^9}}],
+   3.617430826778767*^9, 3.617430831298792*^9}, {3.619594091183975*^9, 
+   3.619594114394599*^9}, {3.621376280155333*^9, 3.621376287471984*^9}, 
+   3.663896013892693*^9}],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"LL", "[", 
+  RowBox[{"finrodalbedoiso`LL", "[", 
    RowBox[{"x_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_", ",", "a_"}], 
    "]"}], ":=", 
   RowBox[{"-", 
@@ -259,7 +601,7 @@ Cell[BoxData[
  CellChangeTimes->{{3.617430716019354*^9, 3.617430719357438*^9}, {
    3.61743083377562*^9, 3.617430837914253*^9}, {3.619594163099494*^9, 
    3.6195941960739183`*^9}, {3.621376232471241*^9, 3.6213762397233067`*^9}, 
-   3.621376273746087*^9}]
+   3.621376273746087*^9, 3.663896015313962*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -269,19 +611,20 @@ Cell["Fluence", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"\[Phi]", "[", 
+  RowBox[{"finrodalbedoiso`\[Phi]", "[", 
    RowBox[{"x_", ",", "\[Alpha]_", ",", "\[CapitalSigma]t_", ",", "a_"}], 
    "]"}], ":=", 
   RowBox[{
-   RowBox[{"LR", "[", 
+   RowBox[{"finrodalbedoiso`LR", "[", 
     RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "a"}], "]"}], 
    "+", 
-   RowBox[{"LL", "[", 
+   RowBox[{"finrodalbedoiso`LL", "[", 
     RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "a"}], 
     "]"}]}]}]], "Input",
  CellChangeTimes->{{3.61742826600518*^9, 3.617428300462263*^9}, {
   3.6174283455645227`*^9, 3.617428382979632*^9}, {3.619594141002194*^9, 
-  3.619594157053108*^9}, {3.621376290449107*^9, 3.621376296271452*^9}}]
+  3.619594157053108*^9}, {3.621376290449107*^9, 3.621376296271452*^9}, {
+  3.6638960811743317`*^9, 3.663896084806882*^9}}]
 }, Open  ]]
 }, Open  ]],
 
@@ -292,7 +635,7 @@ Cell["Monte Carlo comparisons", "Section",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"ppoints", "[", 
+  RowBox[{"finrodalbedoiso`ppoints", "[", 
    RowBox[{"xs_", ",", "dx_", ",", "maxx_", ",", "\[CapitalSigma]t_"}], "]"}],
    ":=", 
   RowBox[{
@@ -316,17 +659,19 @@ Cell[BoxData[
    RowBox[{"[", 
     RowBox[{"1", ";;", 
      RowBox[{"-", "2"}]}], "]"}], "]"}]}]], "Input",
- CellChangeTimes->{{3.626910198824244*^9, 3.626910199516247*^9}}],
+ CellChangeTimes->{{3.626910198824244*^9, 3.626910199516247*^9}, 
+   3.66389610418858*^9}],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"fs", "=", 
+  RowBox[{"finrodalbedoiso`fs", "=", 
    RowBox[{
    "FileNames", "[", 
     "\"\<code/rod/finiterod/albedoProblem/data/finiterod_albedoproblem_\
 isotropicscatter_exp_c0.7_mut1_*\>\"", "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.62117906528048*^9, 3.621179076986329*^9}, 
-   3.626910201288172*^9, {3.6410049028359957`*^9, 3.641004908819663*^9}}],
+   3.626910201288172*^9, {3.6410049028359957`*^9, 3.641004908819663*^9}, 
+   3.6638961071102467`*^9}],
 
 Cell[CellGroupData[{
 
@@ -337,7 +682,7 @@ Cell["Reflectance/Transmittance", "Subsection",
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"MCR", "[", "f_", "]"}], ":=", 
+   RowBox[{"finrodalbedoiso`MCR", "[", "f_", "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
@@ -359,7 +704,7 @@ Cell[BoxData[{
           RowBox[{"3", ",", "4"}], "]"}], "]"}]}], "}"}]}]}], 
     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"MCT", "[", "f_", "]"}], ":=", 
+  RowBox[{"finrodalbedoiso`MCT", "[", "f_", "]"}], ":=", 
   RowBox[{"Module", "[", 
    RowBox[{
     RowBox[{"{", 
@@ -381,27 +726,28 @@ Cell[BoxData[{
    "\[IndentingNewLine]", "]"}]}]}], "Input",
  CellChangeTimes->{{3.621375422324044*^9, 3.62137543814576*^9}, {
   3.6213755163946466`*^9, 3.621375558778143*^9}, {3.6213756028533087`*^9, 
-  3.621375620966989*^9}}],
+  3.621375620966989*^9}, {3.663896140301559*^9, 3.663896141828919*^9}}],
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"Rs", "=", 
+  RowBox[{"finrodalbedoiso`Rs", "=", 
    RowBox[{"Table", "[", 
     RowBox[{
-     RowBox[{"MCR", "[", "f", "]"}], ",", 
+     RowBox[{"finrodalbedoiso`MCR", "[", "f", "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"f", ",", "fs"}], "}"}]}], "]"}]}], 
+      RowBox[{"f", ",", "finrodalbedoiso`fs"}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Ts", "=", 
+  RowBox[{"finrodalbedoiso`Ts", "=", 
    RowBox[{"Table", "[", 
     RowBox[{
-     RowBox[{"MCT", "[", "f", "]"}], ",", 
+     RowBox[{"finrodalbedoiso`MCT", "[", "f", "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"f", ",", "fs"}], "}"}]}], "]"}]}], 
+      RowBox[{"f", ",", "finrodalbedoiso`fs"}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.621375563645904*^9, 3.621375573193748*^9}, {
-  3.6213756262729683`*^9, 3.621375631158824*^9}}],
+  3.6213756262729683`*^9, 3.621375631158824*^9}, {3.663896143229046*^9, 
+  3.663896149236631*^9}}],
 
 Cell[CellGroupData[{
 
@@ -410,7 +756,7 @@ Cell[BoxData[
   RowBox[{"Show", "[", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"ListLogLinearPlot", "[", 
-     RowBox[{"Rs", ",", 
+     RowBox[{"finrodalbedoiso`Rs", ",", 
       RowBox[{"PlotRange", "\[Rule]", 
        RowBox[{"{", 
         RowBox[{
@@ -421,7 +767,7 @@ Cell[BoxData[
          RowBox[{"PointSize", "[", "Medium", "]"}], ",", "Black"}], "}"}]}]}],
       "]"}], ",", "\[IndentingNewLine]", 
     RowBox[{"ListLogLinearPlot", "[", 
-     RowBox[{"Ts", ",", 
+     RowBox[{"finrodalbedoiso`Ts", ",", 
       RowBox[{"PlotRange", "\[Rule]", 
        RowBox[{"{", 
         RowBox[{
@@ -433,7 +779,7 @@ Cell[BoxData[
       "]"}], ",", "\[IndentingNewLine]", 
     RowBox[{"LogLinearPlot", "[", 
      RowBox[{
-      RowBox[{"R", "[", 
+      RowBox[{"finrodalbedoiso`R", "[", 
        RowBox[{"a", ",", "0.7", ",", "1"}], "]"}], ",", 
       RowBox[{"{", 
        RowBox[{"a", ",", "0.1", ",", "100"}], "}"}], ",", 
@@ -441,7 +787,7 @@ Cell[BoxData[
     "\[IndentingNewLine]", 
     RowBox[{"LogLinearPlot", "[", 
      RowBox[{
-      RowBox[{"T", "[", 
+      RowBox[{"finrodalbedoiso`T", "[", 
        RowBox[{"a", ",", "0.7", ",", "1"}], "]"}], ",", 
       RowBox[{"{", 
        RowBox[{"a", ",", "0.1", ",", "100"}], "}"}], ",", 
@@ -464,7 +810,7 @@ finite rod\>\""}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]",
   3.621375896853005*^9, 3.621375900873979*^9}, {3.621378242733172*^9, 
   3.621378247026016*^9}, {3.621489135965961*^9, 3.6214891918181667`*^9}, {
   3.627002171073029*^9, 3.6270021755031433`*^9}, {3.627002211764443*^9, 
-  3.627002214909219*^9}}],
+  3.627002214909219*^9}, {3.663896160733477*^9, 3.663896165140647*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{{{}, {{}, 
@@ -1400,23 +1746,24 @@ finite rod\"", TraditionalForm]}},
    3.621378247371912*^9}, {3.621489141193077*^9, 3.621489155902309*^9}, 
    3.621489192114481*^9, 3.62576024981173*^9, 3.626910187388587*^9, 
    3.627002159649403*^9, {3.6270021928352633`*^9, 3.627002199715967*^9}, 
-   3.627002233903487*^9, 3.641169413575226*^9}]
+   3.627002233903487*^9, 3.641169413575226*^9, 3.663895287588098*^9, 
+   3.6638959839700737`*^9, 3.663896352836375*^9, 3.6638964195277147`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"fs2", "=", 
+  RowBox[{"finrodalbedoiso`fs2", "=", 
    RowBox[{
    "FileNames", "[", 
     "\"\<code/rod/finiterod/albedoProblem/data/finiterod_albedoproblem_\
 isotropicscatter_exp_*length2.6*\>\"", "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.621378009517479*^9, 3.6213780356847353`*^9}, {
-  3.6410049245626993`*^9, 3.641004932400288*^9}}],
+   3.6410049245626993`*^9, 3.641004932400288*^9}, 3.663896171587447*^9}],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"MCR2", "[", "f_", "]"}], ":=", 
+   RowBox[{"finrodalbedoiso`MCR2", "[", "f_", "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
@@ -1438,7 +1785,7 @@ Cell[BoxData[{
           RowBox[{"3", ",", "4"}], "]"}], "]"}]}], "}"}]}]}], 
     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"MCT2", "[", "f_", "]"}], ":=", 
+  RowBox[{"finrodalbedoiso`MCT2", "[", "f_", "]"}], ":=", 
   RowBox[{"Module", "[", 
    RowBox[{
     RowBox[{"{", 
@@ -1459,46 +1806,45 @@ Cell[BoxData[{
          RowBox[{"4", ",", "4"}], "]"}], "]"}]}], "}"}]}]}], 
    "\[IndentingNewLine]", "]"}]}]}], "Input",
  CellChangeTimes->{{3.6213781395363617`*^9, 3.6213781404568644`*^9}, {
-  3.621378170478622*^9, 3.6213781725098677`*^9}}],
+  3.621378170478622*^9, 3.6213781725098677`*^9}, {3.6638961747482023`*^9, 
+  3.663896176050872*^9}}],
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"Rs2", "=", 
+  RowBox[{"finrodalbedoiso`Rs2", "=", 
    RowBox[{"Table", "[", 
     RowBox[{
-     RowBox[{"MCR2", "[", "f", "]"}], ",", 
+     RowBox[{"finrodalbedoiso`MCR2", "[", "f", "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"f", ",", "fs2"}], "}"}]}], "]"}]}], 
+      RowBox[{"f", ",", "finrodalbedoiso`fs2"}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Ts2", "=", 
+  RowBox[{"finrodalbedoiso`Ts2", "=", 
    RowBox[{"Table", "[", 
     RowBox[{
-     RowBox[{"MCT2", "[", "f", "]"}], ",", 
+     RowBox[{"finrodalbedoiso`MCT2", "[", "f", "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"f", ",", "fs2"}], "}"}]}], "]"}]}], ";"}]}], "Input",
+      RowBox[{"f", ",", "finrodalbedoiso`fs2"}], "}"}]}], "]"}]}], 
+  ";"}]}], "Input",
  CellChangeTimes->{{3.6213780453641243`*^9, 3.621378055754368*^9}, {
-  3.6213781755594053`*^9, 3.621378176230043*^9}}],
+  3.6213781755594053`*^9, 3.621378176230043*^9}, {3.663896179002674*^9, 
+  3.66389618510717*^9}}],
 
 Cell[CellGroupData[{
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"a", "=", "2.6"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"mut", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+Cell[BoxData[
  RowBox[{"finiterodvarycplot", "=", 
   RowBox[{"Show", "[", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"ListPlot", "[", 
-     RowBox[{"Rs2", ",", 
+     RowBox[{"finrodalbedoiso`Rs2", ",", 
       RowBox[{"PlotStyle", "\[Rule]", 
        RowBox[{"{", 
         RowBox[{
          RowBox[{"PointSize", "[", "Medium", "]"}], ",", "Black"}], "}"}]}]}],
       "]"}], ",", "\[IndentingNewLine]", 
     RowBox[{"ListPlot", "[", 
-     RowBox[{"Ts2", ",", 
+     RowBox[{"finrodalbedoiso`Ts2", ",", 
       RowBox[{"PlotStyle", "\[Rule]", 
        RowBox[{"{", 
         RowBox[{
@@ -1508,10 +1854,10 @@ Cell[BoxData[{
      RowBox[{
       RowBox[{"{", 
        RowBox[{
-        RowBox[{"R", "[", 
-         RowBox[{"a", ",", "c", ",", "mut"}], "]"}], ",", 
-        RowBox[{"T", "[", 
-         RowBox[{"a", ",", "c", ",", "mut"}], "]"}]}], "}"}], ",", 
+        RowBox[{"finrodalbedoiso`R", "[", 
+         RowBox[{"2.6", ",", "c", ",", "1"}], "]"}], ",", 
+        RowBox[{"finrodalbedoiso`T", "[", 
+         RowBox[{"2.6", ",", "c", ",", "1"}], "]"}]}], "}"}], ",", 
       RowBox[{"{", 
        RowBox[{"c", ",", "0.01", ",", ".99"}], "}"}], ",", 
       RowBox[{"PlotRange", "\[Rule]", 
@@ -1533,12 +1879,12 @@ Cell[BoxData[{
         "\"\<Single scattering albedo: \[Alpha]\>\"", ",", 
          "\"\<Total Reflectance/Transmittance (R/T): isotropically-scattering \
 finite rod\>\""}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]", 
-   "]"}]}]}], "Input",
+   "]"}]}]], "Input",
  CellChangeTimes->{{3.621378203022271*^9, 3.621378213893745*^9}, {
   3.621464689694865*^9, 3.621464724468961*^9}, {3.62148840891051*^9, 
   3.621488420043668*^9}, {3.6214890512454987`*^9, 3.6214890647396*^9}, {
   3.627002219682967*^9, 3.627002222562274*^9}, {3.6414262896857777`*^9, 
-  3.641426295205367*^9}}],
+  3.641426295205367*^9}, {3.663896309635529*^9, 3.663896334955261*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{{{}, {{}, 
@@ -1634,7 +1980,9 @@ finite rod\"", TraditionalForm]}},
   GridLines->{None, None},
   GridLinesStyle->Directive[
     GrayLevel[0.5, 0.4]],
+  ImageMargins->0.,
   ImageSize->450,
+  ImageSizeRaw->Automatic,
   Method->{},
   PlotRange->{{0.205685, 0.999}, {0, 0.56377}},
   PlotRangeClipping->True,
@@ -1648,7 +1996,9 @@ finite rod\"", TraditionalForm]}},
    3.621464698014497*^9, 3.621464705353319*^9}, {3.6214884155479317`*^9, 
    3.621488420464678*^9}, {3.6214890609740562`*^9, 3.621489065374176*^9}, 
    3.625760251331221*^9, 3.6269101886336737`*^9, 3.627002160985126*^9, 
-   3.627002200918947*^9, 3.6270022351979647`*^9, 3.641169414427841*^9}]
+   3.627002200918947*^9, 3.6270022351979647`*^9, 3.641169414427841*^9, 
+   3.66389528822827*^9, 3.663895984535079*^9, 3.663896353060906*^9, 
+   3.663896420047*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -1657,75 +2007,66 @@ Cell[CellGroupData[{
 Cell["Select simulation", "Subsection",
  CellChangeTimes->{{3.621359323868861*^9, 3.6213593277232857`*^9}}],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
- RowBox[{"fs", "=", 
-  RowBox[{
-  "FileNames", "[", 
-   "\"\<code/rod/finiterod/albedoProblem/data/finiterod_albedoproblem_\
-isotropicscatter_exp_c0.7_mut0.8*\>\"", "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"filename", "=", 
-   RowBox[{"fs", "[", 
+  RowBox[{"finrodalbedoiso`fs", "=", 
+   RowBox[{
+   "FileNames", "[", 
+    "\"\<code/rod/finiterod/albedoProblem/data/finiterod_albedoproblem_\
+isotropicscatter_exp_c0.7_mut0.8*\>\"", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"finrodalbedoiso`filename", "=", 
+   RowBox[{"finrodalbedoiso`fs", "[", 
     RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"data", "=", 
+  RowBox[{"finrodalbedoiso`data", "=", 
    RowBox[{"Import", "[", 
-    RowBox[{"filename", ",", "\"\<Table\>\""}], "]"}]}], 
+    RowBox[{"finrodalbedoiso`filename", ",", "\"\<Table\>\""}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"\[CapitalSigma]t", "=", 
-   RowBox[{"data", "[", 
+  RowBox[{"finrodalbedoiso`\[CapitalSigma]t", "=", 
+   RowBox[{"finrodalbedoiso`data", "[", 
     RowBox[{"[", 
      RowBox[{"1", ",", "11"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"\[Alpha]", "=", 
-   RowBox[{"data", "[", 
+  RowBox[{"finrodalbedoiso`\[Alpha]", "=", 
+   RowBox[{"finrodalbedoiso`data", "[", 
     RowBox[{"[", 
      RowBox[{"2", ",", "3"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"a", "=", 
-   RowBox[{"data", "[", 
+  RowBox[{"finrodalbedoiso`a", "=", 
+   RowBox[{"finrodalbedoiso`data", "[", 
     RowBox[{"[", 
      RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"dx", "=", 
-   RowBox[{"data", "[", 
+  RowBox[{"finrodalbedoiso`dx", "=", 
+   RowBox[{"finrodalbedoiso`data", "[", 
     RowBox[{"[", 
      RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"numcollorders", "=", 
-   RowBox[{"data", "[", 
+  RowBox[{"finrodalbedoiso`numcollorders", "=", 
+   RowBox[{"finrodalbedoiso`data", "[", 
     RowBox[{"[", 
      RowBox[{"2", ",", "11"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"nummoments", "=", 
-   RowBox[{"data", "[", 
+  RowBox[{"finrodalbedoiso`nummoments", "=", 
+   RowBox[{"finrodalbedoiso`data", "[", 
     RowBox[{"[", 
      RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{
-   RowBox[{"g", "=", 
-    RowBox[{"data", "[", 
-     RowBox[{"[", 
-      RowBox[{"1", ",", 
-       RowBox[{"-", "1"}]}], "]"}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+  RowBox[{"finrodalbedoiso`g", "=", 
+   RowBox[{"finrodalbedoiso`data", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", 
+      RowBox[{"-", "1"}]}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"densmom", "=", 
-   RowBox[{"data", "[", 
+  RowBox[{"finrodalbedoiso`densmom", "=", 
+   RowBox[{"finrodalbedoiso`data", "[", 
     RowBox[{"[", "11", "]"}], "]"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.621359320941193*^9, 3.621359321214015*^9}, {
-  3.6213767265602922`*^9, 3.621376771569817*^9}, {3.621376817069009*^9, 
-  3.621376828166058*^9}, {3.641004942658716*^9, 3.641004946154497*^9}}],
-
-Cell[BoxData[
- RowBox[{"{", \
-"\<\"code/rod/finiterod/albedoProblem/data/finiteRod_albedoproblem_\
-isotropicscatter_exp_c0.7_mut0.8_length2.2.txt\"\>", "}"}]], "Output",
- CellChangeTimes->{3.641004946448757*^9, 3.6411694144697657`*^9}]
-}, Open  ]]
+   3.6213767265602922`*^9, 3.621376771569817*^9}, {3.621376817069009*^9, 
+   3.621376828166058*^9}, {3.641004942658716*^9, 3.641004946154497*^9}, 
+   3.6638987063742933`*^9, {3.663898765828249*^9, 3.663898803602673*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1738,8 +2079,8 @@ Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"pointsCL", " ", "=", " ", 
-    RowBox[{"data", "[", 
+   RowBox[{"finrodalbedoiso`pointsCL", " ", "=", " ", 
+    RowBox[{"finrodalbedoiso`data", "[", 
      RowBox[{"[", "10", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
@@ -1747,20 +2088,24 @@ Cell[BoxData[{
     " ", "collision", " ", "density", " ", "into", " ", "L"}], " ", 
    "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"plotpointsCL", "=", 
-   RowBox[{"ppoints", "[", 
-    RowBox[{"pointsCL", ",", "dx", ",", "a", ",", "\[CapitalSigma]t"}], 
-    "]"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"finrodalbedoiso`plotpointsCL", "=", 
+   RowBox[{"finrodalbedoiso`ppoints", "[", 
+    RowBox[{
+    "finrodalbedoiso`pointsCL", ",", "finrodalbedoiso`dx", ",", 
+     "finrodalbedoiso`a", ",", "finrodalbedoiso`\[CapitalSigma]t"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"pointsCR", " ", "=", " ", 
-   RowBox[{"data", "[", 
+  RowBox[{"finrodalbedoiso`pointsCR", " ", "=", " ", 
+   RowBox[{"finrodalbedoiso`data", "[", 
     RowBox[{"[", "12", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"plotpointsCR", "=", 
-    RowBox[{"ppoints", "[", 
-     RowBox[{"pointsCR", ",", "dx", ",", "a", ",", "\[CapitalSigma]t"}], 
-     "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"finrodalbedoiso`plotpointsCR", "=", 
+    RowBox[{"finrodalbedoiso`ppoints", "[", 
+     RowBox[{
+     "finrodalbedoiso`pointsCR", ",", "finrodalbedoiso`dx", ",", 
+      "finrodalbedoiso`a", ",", "finrodalbedoiso`\[CapitalSigma]t"}], "]"}]}],
+    ";"}], "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
    "divide", " ", "by", " ", "\[CapitalSigma]t", " ", "to", " ", "convert", 
@@ -1768,29 +2113,32 @@ Cell[BoxData[{
    "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"plotpoints\[Phi]", "=", 
-    RowBox[{"ppoints", "[", 
+   RowBox[{"finrodalbedoiso`plotpoints\[Phi]", "=", 
+    RowBox[{"finrodalbedoiso`ppoints", "[", 
      RowBox[{
-      RowBox[{"pointsCL", "+", "pointsCR"}], ",", "dx", ",", "maxx", ",", 
-      "\[CapitalSigma]t"}], "]"}]}], ";"}], 
+      RowBox[{"finrodalbedoiso`pointsCL", "+", "finrodalbedoiso`pointsCR"}], 
+      ",", "finrodalbedoiso`dx", ",", "finrodalbedoiso`maxx", ",", 
+      "finrodalbedoiso`\[CapitalSigma]t"}], "]"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"plot\[Phi]", "=", 
+  RowBox[{"finrodalbedoiso`plot\[Phi]", "=", 
    RowBox[{"Show", "[", "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"ListPlot", "[", 
-      RowBox[{"plotpoints\[Phi]", ",", 
+      RowBox[{"finrodalbedoiso`plotpoints\[Phi]", ",", 
        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
        RowBox[{"PlotStyle", "\[Rule]", 
         RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
      "\[IndentingNewLine]", 
      RowBox[{"Plot", "[", 
       RowBox[{
-       RowBox[{"\[Phi]", "[", 
-        RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "a"}], 
+       RowBox[{"finrodalbedoiso`\[Phi]", "[", 
+        RowBox[{
+        "x", ",", "finrodalbedoiso`\[Alpha]", ",", 
+         "finrodalbedoiso`\[CapitalSigma]t", ",", "finrodalbedoiso`a"}], 
         "]"}], ",", 
        RowBox[{"{", 
-        RowBox[{"x", ",", "0", ",", "a"}], "}"}], ",", 
+        RowBox[{"x", ",", "0", ",", "finrodalbedoiso`a"}], "}"}], ",", 
        RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], 
      "\[IndentingNewLine]", ",", 
      RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
@@ -1805,39 +2153,43 @@ Cell[BoxData[{
           RowBox[{
           "\"\<Finite rod, albedo problem, isotropic scattering, fluence \
 \[Phi][x], \[Alpha] = \>\"", "<>", 
-           RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+           RowBox[{"ToString", "[", "finrodalbedoiso`\[Alpha]", "]"}], "<>", 
            "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", "<>", 
-           RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}], "<>", 
-           "\"\<, a = \>\"", "<>", 
-           RowBox[{"ToString", "[", "a", "]"}]}]}], "}"}]}], "}"}]}]}], 
-    "\[IndentingNewLine]", "]"}]}], 
+           RowBox[{"ToString", "[", "finrodalbedoiso`\[CapitalSigma]t", "]"}],
+            "<>", "\"\<, a = \>\"", "<>", 
+           RowBox[{"ToString", "[", "finrodalbedoiso`a", "]"}]}]}], "}"}]}], 
+       "}"}]}]}], "\[IndentingNewLine]", "]"}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"plotLL", "=", 
+  RowBox[{"finrodalbedoiso`plotLL", "=", 
    RowBox[{"Show", "[", "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"ListPlot", "[", 
-      RowBox[{"plotpointsCL", ",", 
+      RowBox[{"finrodalbedoiso`plotpointsCL", ",", 
        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
        RowBox[{"PlotStyle", "\[Rule]", 
         RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
      "\[IndentingNewLine]", 
      RowBox[{"Plot", "[", 
       RowBox[{
-       RowBox[{"LL", "[", 
-        RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "a"}], 
+       RowBox[{"finrodalbedoiso`LL", "[", 
+        RowBox[{
+        "x", ",", "finrodalbedoiso`\[Alpha]", ",", 
+         "finrodalbedoiso`\[CapitalSigma]t", ",", "finrodalbedoiso`a"}], 
         "]"}], ",", 
        RowBox[{"{", 
-        RowBox[{"x", ",", "0", ",", "a"}], "}"}], ",", 
+        RowBox[{"x", ",", "0", ",", "finrodalbedoiso`a"}], "}"}], ",", 
        RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
      "\[IndentingNewLine]", 
      RowBox[{"Plot", "[", 
       RowBox[{
-       RowBox[{"\[Phi]", "[", 
-        RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "a"}], 
+       RowBox[{"finrodalbedoiso`\[Phi]", "[", 
+        RowBox[{
+        "x", ",", "finrodalbedoiso`\[Alpha]", ",", 
+         "finrodalbedoiso`\[CapitalSigma]t", ",", "finrodalbedoiso`a"}], 
         "]"}], ",", 
        RowBox[{"{", 
-        RowBox[{"x", ",", "0", ",", "a"}], "}"}], ",", 
+        RowBox[{"x", ",", "0", ",", "finrodalbedoiso`a"}], "}"}], ",", 
        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
        RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], 
      "\[IndentingNewLine]", ",", 
@@ -1854,39 +2206,44 @@ Cell[BoxData[{
           RowBox[{
           "\"\<Finite rod, albedo problem, isotropic scattering, \
 \!\(\*SubscriptBox[\(L\), \(-\)]\)[x], \[Alpha] = \>\"", "<>", 
-           RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+           RowBox[{"ToString", "[", "finrodalbedoiso`\[Alpha]", "]"}], "<>", 
            "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", "<>", 
-           RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}], "<>", 
-           "\"\<, a = \>\"", "<>", 
-           RowBox[{"ToString", "[", "a", "]"}]}]}], "}"}]}], "}"}]}], ",", 
+           RowBox[{"ToString", "[", "finrodalbedoiso`\[CapitalSigma]t", "]"}],
+            "<>", "\"\<, a = \>\"", "<>", 
+           RowBox[{"ToString", "[", "finrodalbedoiso`a", "]"}]}]}], "}"}]}], 
+       "}"}]}], ",", 
      RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
     "]"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"plotLR", "=", 
+  RowBox[{"finrodalbedoiso`plotLR", "=", 
    RowBox[{"Show", "[", "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"ListPlot", "[", 
-      RowBox[{"plotpointsCR", ",", 
+      RowBox[{"finrodalbedoiso`plotpointsCR", ",", 
        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
        RowBox[{"PlotStyle", "\[Rule]", 
         RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
      "\[IndentingNewLine]", 
      RowBox[{"Plot", "[", 
       RowBox[{
-       RowBox[{"LR", "[", 
-        RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "a"}], 
+       RowBox[{"finrodalbedoiso`LR", "[", 
+        RowBox[{
+        "x", ",", "finrodalbedoiso`\[Alpha]", ",", 
+         "finrodalbedoiso`\[CapitalSigma]t", ",", "finrodalbedoiso`a"}], 
         "]"}], ",", 
        RowBox[{"{", 
-        RowBox[{"x", ",", "0", ",", "a"}], "}"}], ",", 
+        RowBox[{"x", ",", "0", ",", "finrodalbedoiso`a"}], "}"}], ",", 
        RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
      "\[IndentingNewLine]", 
      RowBox[{"Plot", "[", 
       RowBox[{
-       RowBox[{"\[Phi]", "[", 
-        RowBox[{"x", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "a"}], 
+       RowBox[{"finrodalbedoiso`\[Phi]", "[", 
+        RowBox[{
+        "x", ",", "finrodalbedoiso`\[Alpha]", ",", 
+         "finrodalbedoiso`\[CapitalSigma]t", ",", "finrodalbedoiso`a"}], 
         "]"}], ",", 
        RowBox[{"{", 
-        RowBox[{"x", ",", "0", ",", "a"}], "}"}], ",", 
+        RowBox[{"x", ",", "0", ",", "finrodalbedoiso`a"}], "}"}], ",", 
        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
        RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], 
      "\[IndentingNewLine]", ",", 
@@ -1903,18 +2260,19 @@ Cell[BoxData[{
           RowBox[{
           "\"\<Finite rod, albedo problem, isotropic scattering, \
 \!\(\*SubscriptBox[\(L\), \(+\)]\)[x], \[Alpha] = \>\"", "<>", 
-           RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+           RowBox[{"ToString", "[", "finrodalbedoiso`\[Alpha]", "]"}], "<>", 
            "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", "<>", 
-           RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}], "<>", 
-           "\"\<, a = \>\"", "<>", 
-           RowBox[{"ToString", "[", "a", "]"}]}]}], "}"}]}], "}"}]}], ",", 
+           RowBox[{"ToString", "[", "finrodalbedoiso`\[CapitalSigma]t", "]"}],
+            "<>", "\"\<, a = \>\"", "<>", 
+           RowBox[{"ToString", "[", "finrodalbedoiso`a", "]"}]}]}], "}"}]}], 
+       "}"}]}], ",", 
      RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
     "]"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.62137680103444*^9, 3.621376802432927*^9}, {
   3.621376842160684*^9, 3.6213768578699207`*^9}, {3.6213769229156723`*^9, 
   3.6213769349772587`*^9}, {3.621376988337002*^9, 3.621377009257203*^9}, {
   3.6213770454405107`*^9, 3.62137708286693*^9}, {3.6257602290993958`*^9, 
-  3.625760234309094*^9}}],
+  3.625760234309094*^9}, {3.66389881050737*^9, 3.663898952879287*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{{{}, {{}, 
@@ -2021,7 +2379,8 @@ fCyS6+dS+DT8Z2pmJkHuCF6hUZBF4T/X3GFu
    3.6213770831235313`*^9, 3.6213771188774633`*^9, {3.621489546242169*^9, 
    3.621489557766838*^9}, 3.625760251572598*^9, 3.626910189108556*^9, 
    3.627002161553631*^9, 3.6270022014338093`*^9, 3.627002235935289*^9, 
-   3.641169414520864*^9}],
+   3.641169414520864*^9, 3.663895288339957*^9, 3.663895984610997*^9, 
+   3.6638989537607937`*^9}],
 
 Cell[BoxData[
  GraphicsBox[{{{}, {{}, 
@@ -2161,7 +2520,8 @@ fCyS6+dS+DT8Z2pmJkHuCF6hUZBF4T/X3GFu
    3.6213770831235313`*^9, 3.6213771188774633`*^9, {3.621489546242169*^9, 
    3.621489557766838*^9}, 3.625760251572598*^9, 3.626910189108556*^9, 
    3.627002161553631*^9, 3.6270022014338093`*^9, 3.627002235935289*^9, 
-   3.64116941458906*^9}],
+   3.641169414520864*^9, 3.663895288339957*^9, 3.663895984610997*^9, 
+   3.663898953827673*^9}],
 
 Cell[BoxData[
  GraphicsBox[{{{}, {{}, 
@@ -2301,7 +2661,8 @@ fCyS6+dS+DT8Z2pmJkHuCF6hUZBF4T/X3GFu
    3.6213770831235313`*^9, 3.6213771188774633`*^9, {3.621489546242169*^9, 
    3.621489557766838*^9}, 3.625760251572598*^9, 3.626910189108556*^9, 
    3.627002161553631*^9, 3.6270022014338093`*^9, 3.627002235935289*^9, 
-   3.641169414650463*^9}]
+   3.641169414520864*^9, 3.663895288339957*^9, 3.663895984610997*^9, 
+   3.663898953886839*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -2315,37 +2676,38 @@ Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"Rs", "=", 
+  RowBox[{"finrodalbedoiso`Rs", "=", 
    RowBox[{"N", "[", 
     RowBox[{"{", 
-     RowBox[{"data", "[", 
+     RowBox[{"finrodalbedoiso`data", "[", 
       RowBox[{"[", "6", "]"}], "]"}], "}"}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"ns", "=", 
+  RowBox[{"finrodalbedoiso`ns", "=", 
    RowBox[{"Table", "[", 
     RowBox[{"n", ",", 
      RowBox[{"{", 
       RowBox[{"n", ",", "0", ",", 
-       RowBox[{"numcollorders", "-", "1"}]}], "}"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+       RowBox[{"finrodalbedoiso`numcollorders", "-", "1"}]}], "}"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"analytic", "=", 
+  RowBox[{"finrodalbedoiso`analytic", "=", 
    RowBox[{"Table", "[", 
     RowBox[{
-     RowBox[{"R", "[", 
-      RowBox[{"a", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "n"}], 
-      "]"}], ",", 
+     RowBox[{"finrodalbedoiso`R", "[", 
+      RowBox[{
+      "finrodalbedoiso`a", ",", "finrodalbedoiso`\[Alpha]", ",", 
+       "finrodalbedoiso`\[CapitalSigma]t", ",", "n"}], "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"n", ",", "ns"}], "}"}]}], "]"}]}], 
+      RowBox[{"n", ",", "finrodalbedoiso`ns"}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"j", "=", 
+  RowBox[{"finrodalbedoiso`j", "=", 
    RowBox[{"Join", "[", 
     RowBox[{
-     RowBox[{"{", "ns", "}"}], ",", 
-     RowBox[{"{", "analytic", "}"}], ",", "Rs"}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+     RowBox[{"{", "finrodalbedoiso`ns", "}"}], ",", 
+     RowBox[{"{", "finrodalbedoiso`analytic", "}"}], ",", 
+     "finrodalbedoiso`Rs"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
   RowBox[{"Join", "[", 
    RowBox[{
@@ -2353,11 +2715,12 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{"\"\<n\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], 
       "}"}], "}"}], ",", 
-    RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], "\[IndentingNewLine]", 
-  "]"}]}], "Input",
+    RowBox[{"Transpose", "[", "finrodalbedoiso`j", "]"}]}], "]"}], 
+  "\[IndentingNewLine]", "]"}]}], "Input",
  CellChangeTimes->{{3.621359462271472*^9, 3.621359519826496*^9}, {
   3.621359610039978*^9, 3.621359631348999*^9}, {3.621359686715735*^9, 
-  3.621359698586138*^9}, {3.621524149929329*^9, 3.621524170799697*^9}}],
+  3.621359698586138*^9}, {3.621524149929329*^9, 3.621524170799697*^9}, {
+  3.66389896022162*^9, 3.6638989895305033`*^9}}],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2390,7 +2753,8 @@ Cell[BoxData[
    3.6213596901948233`*^9, 3.621359699022088*^9}, {3.62152415326414*^9, 
    3.6215241710442457`*^9}, 3.625760252415883*^9, 3.626910190721938*^9, 
    3.627002163511145*^9, 3.627002203237743*^9, 3.6270022375255203`*^9, 
-   3.641169415637047*^9}]
+   3.641169415637047*^9, 3.663895288534576*^9, 3.663895984761641*^9, 
+   3.6638989942132063`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -2403,37 +2767,38 @@ Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"Ts", "=", 
+  RowBox[{"finrodalbedoiso`Ts", "=", 
    RowBox[{"N", "[", 
     RowBox[{"{", 
-     RowBox[{"data", "[", 
+     RowBox[{"finrodalbedoiso`data", "[", 
       RowBox[{"[", "8", "]"}], "]"}], "}"}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"ns", "=", 
+  RowBox[{"finrodalbedoiso`ns", "=", 
    RowBox[{"Table", "[", 
     RowBox[{"n", ",", 
      RowBox[{"{", 
       RowBox[{"n", ",", "0", ",", 
-       RowBox[{"numcollorders", "-", "1"}]}], "}"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+       RowBox[{"finrodalbedoiso`numcollorders", "-", "1"}]}], "}"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"analytic", "=", 
+  RowBox[{"finrodalbedoiso`analytic", "=", 
    RowBox[{"Table", "[", 
     RowBox[{
-     RowBox[{"T", "[", 
-      RowBox[{"a", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "n"}], 
-      "]"}], ",", 
+     RowBox[{"finrodalbedoiso`T", "[", 
+      RowBox[{
+      "finrodalbedoiso`a", ",", "finrodalbedoiso`\[Alpha]", ",", 
+       "finrodalbedoiso`\[CapitalSigma]t", ",", "n"}], "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"n", ",", "ns"}], "}"}]}], "]"}]}], 
+      RowBox[{"n", ",", "finrodalbedoiso`ns"}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"j", "=", 
+  RowBox[{"finrodalbedoiso`j", "=", 
    RowBox[{"Join", "[", 
     RowBox[{
-     RowBox[{"{", "ns", "}"}], ",", 
-     RowBox[{"{", "analytic", "}"}], ",", "Ts"}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+     RowBox[{"{", "finrodalbedoiso`ns", "}"}], ",", 
+     RowBox[{"{", "finrodalbedoiso`analytic", "}"}], ",", 
+     "finrodalbedoiso`Ts"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
   RowBox[{"Join", "[", 
    RowBox[{
@@ -2441,9 +2806,10 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{"\"\<n\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], 
       "}"}], "}"}], ",", 
-    RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], "\[IndentingNewLine]", 
-  "]"}]}], "Input",
- CellChangeTimes->{{3.621524208574045*^9, 3.621524228260559*^9}}],
+    RowBox[{"Transpose", "[", "finrodalbedoiso`j", "]"}]}], "]"}], 
+  "\[IndentingNewLine]", "]"}]}], "Input",
+ CellChangeTimes->{{3.621524208574045*^9, 3.621524228260559*^9}, {
+  3.663899049210086*^9, 3.663899080358646*^9}}],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2473,7 +2839,8 @@ Cell[BoxData[
    TableForm[BoxForm`e$]]]], "Output",
  CellChangeTimes->{{3.62152421143856*^9, 3.621524230721519*^9}, 
    3.625760252433497*^9, 3.626910190797522*^9, 3.6270021635818357`*^9, 
-   3.6270022033209257`*^9, 3.627002237575569*^9, 3.6411694156876087`*^9}]
+   3.6270022033209257`*^9, 3.627002237575569*^9, 3.6411694156876087`*^9, 
+   3.663895288583805*^9, 3.6638959848096743`*^9, 3.663899080774234*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -2485,15 +2852,17 @@ Cell["Nth order fluence/density", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"nth\[Phi]", "=", 
-   RowBox[{"data", "[", 
+  RowBox[{"finrodalbedoiso`nth\[Phi]", "=", 
+   RowBox[{"finrodalbedoiso`data", "[", 
     RowBox[{"[", 
      RowBox[{
-      RowBox[{"16", "+", "numcollorders", "+", "1"}], ";;", 
+      RowBox[{"16", "+", "finrodalbedoiso`numcollorders", "+", "1"}], ";;", 
       RowBox[{"16", "+", 
-       RowBox[{"2", "numcollorders"}]}]}], "]"}], "]"}]}], ";"}]], "Input",
+       RowBox[{"2", "finrodalbedoiso`numcollorders"}]}]}], "]"}], "]"}]}], 
+  ";"}]], "Input",
  CellChangeTimes->{{3.626910380499174*^9, 3.6269104093826036`*^9}, {
-  3.626910661702427*^9, 3.626910669113546*^9}}],
+  3.626910661702427*^9, 3.626910669113546*^9}, {3.663899084047657*^9, 
+  3.663899089196335*^9}}],
 
 Cell[CellGroupData[{
 
@@ -2504,39 +2873,44 @@ Cell[BoxData[
     RowBox[{"order", ":"}]}], "*)"}], "\[IndentingNewLine]", 
   RowBox[{
    RowBox[{
-    RowBox[{"n", "=", "2"}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{"finrodalbedoiso`n", "=", "2"}], ";"}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"Clear", "[", "c", "]"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{"phin", "=", 
-    RowBox[{
-     RowBox[{"SeriesCoefficient", "[", 
-      RowBox[{
-       RowBox[{"\[Phi]", "[", 
-        RowBox[{"x", ",", "c", ",", "\[CapitalSigma]t", ",", "a"}], "]"}], 
-       ",", 
-       RowBox[{"{", 
-        RowBox[{"c", ",", "0", ",", "n"}], "}"}]}], "]"}], 
-     SuperscriptBox["\[Alpha]", "n"]}]}], "\[IndentingNewLine]", 
-   RowBox[{"plotphin", "=", 
+    RowBox[{"Clear", "[", 
+     RowBox[{"c", ",", "x"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"finrodalbedoiso`phin", "=", 
+     RowBox[{
+      RowBox[{"SeriesCoefficient", "[", 
+       RowBox[{
+        RowBox[{"finrodalbedoiso`\[Phi]", "[", 
+         RowBox[{
+         "x", ",", "c", ",", "finrodalbedoiso`\[CapitalSigma]t", ",", 
+          "finrodalbedoiso`a"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"c", ",", "0", ",", "finrodalbedoiso`n"}], "}"}]}], "]"}], 
+      SuperscriptBox["finrodalbedoiso`\[Alpha]", "finrodalbedoiso`n"]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{"finrodalbedoiso`plotphin", "=", 
     RowBox[{"Show", "[", "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"ListPlot", "[", 
        RowBox[{
-        RowBox[{"ppoints", "[", 
+        RowBox[{"finrodalbedoiso`ppoints", "[", 
          RowBox[{
-          RowBox[{"nth\[Phi]", "[", 
+          RowBox[{"finrodalbedoiso`nth\[Phi]", "[", 
            RowBox[{"[", 
-            RowBox[{"n", "+", "2"}], "]"}], "]"}], ",", "dx", ",", "a", ",", 
-          "\[CapitalSigma]t"}], "]"}], ",", 
+            RowBox[{"finrodalbedoiso`n", "+", "2"}], "]"}], "]"}], ",", 
+          "finrodalbedoiso`dx", ",", "finrodalbedoiso`a", ",", 
+          "finrodalbedoiso`\[CapitalSigma]t"}], "]"}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
         RowBox[{"PlotStyle", "\[Rule]", 
          RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
       "\[IndentingNewLine]", 
       RowBox[{"Plot", "[", 
-       RowBox[{"phin", ",", 
+       RowBox[{"finrodalbedoiso`phin", ",", 
         RowBox[{"{", 
-         RowBox[{"x", ",", "0", ",", "a"}], "}"}], ",", 
+         RowBox[{"x", ",", "0", ",", "finrodalbedoiso`a"}], "}"}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], 
       "\[IndentingNewLine]", ",", 
       RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
@@ -2551,53 +2925,19 @@ Cell[BoxData[
            RowBox[{
            "\"\<Semi-Infinite Rod, isotropic point, isotropic scattering, \
 \[Phi][x|\>\"", "<>", 
-            RowBox[{"ToString", "[", "n", "]"}], "<>", 
+            RowBox[{"ToString", "[", "finrodalbedoiso`n", "]"}], "<>", 
             "\"\<], \[Alpha] = \>\"", "<>", 
-            RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+            RowBox[{"ToString", "[", "finrodalbedoiso`\[Alpha]", "]"}], "<>", 
             "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", "<>", 
-            RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}], "}"}]}], 
-        "}"}]}], ",", 
+            RowBox[{
+            "ToString", "[", "finrodalbedoiso`\[CapitalSigma]t", "]"}]}]}], 
+          "}"}]}], "}"}]}], ",", 
       RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", 
      "]"}]}]}]}]], "Input",
  CellChangeTimes->{{3.626910446342752*^9, 3.6269104599356337`*^9}, {
-  3.626910544922385*^9, 3.626910557754134*^9}, {3.6269106186109858`*^9, 
-  3.626910683610846*^9}}],
-
-Cell[BoxData[
- RowBox[{"0.48999999999999994`", " ", 
-  RowBox[{"(", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"-", "0.08613426714653923`"}], " ", 
-     RowBox[{"Cosh", "[", 
-      RowBox[{"1.7600000000000002`", "\[VeryThinSpace]", "-", 
-       RowBox[{"0.8`", " ", "x"}]}], "]"}]}], "+", 
-    RowBox[{"0.051613459146915154`", " ", "x", " ", 
-     RowBox[{"Cosh", "[", 
-      RowBox[{"1.7600000000000002`", "\[VeryThinSpace]", "-", 
-       RowBox[{"0.8`", " ", "x"}]}], "]"}]}], "+", 
-    RowBox[{"0.013763589105844043`", " ", 
-     SuperscriptBox["x", "2"], " ", 
-     RowBox[{"Cosh", "[", 
-      RowBox[{"1.7600000000000002`", "\[VeryThinSpace]", "-", 
-       RowBox[{"0.8`", " ", "x"}]}], "]"}]}], "+", 
-    RowBox[{"0.1297820369513892`", " ", 
-     RowBox[{"Sinh", "[", 
-      RowBox[{"1.7600000000000002`", "\[VeryThinSpace]", "-", 
-       RowBox[{"0.8`", " ", "x"}]}], "]"}]}], "+", 
-    RowBox[{"0.017204486382305054`", " ", "x", " ", 
-     RowBox[{"Sinh", "[", 
-      RowBox[{"1.7600000000000002`", "\[VeryThinSpace]", "-", 
-       RowBox[{"0.8`", " ", "x"}]}], "]"}]}], "+", 
-    RowBox[{"0.013763589105844043`", " ", 
-     SuperscriptBox["x", "2"], " ", 
-     RowBox[{"Sinh", "[", 
-      RowBox[{"1.7600000000000002`", "\[VeryThinSpace]", "-", 
-       RowBox[{"0.8`", " ", "x"}]}], "]"}]}]}], ")"}]}]], "Output",
- CellChangeTimes->{
-  3.626910499507222*^9, {3.626910542814506*^9, 3.626910559173977*^9}, {
-   3.626910618972459*^9, 3.626910683811447*^9}, 3.627002163660791*^9, 
-   3.6270022033963423`*^9, 3.6270022376519547`*^9, 3.641169415771717*^9}],
+   3.626910544922385*^9, 3.626910557754134*^9}, {3.6269106186109858`*^9, 
+   3.626910683610846*^9}, {3.663899091385207*^9, 3.663899152029779*^9}, 
+   3.663899325829585*^9}],
 
 Cell[BoxData[
  GraphicsBox[{{{}, {{}, 
@@ -2761,15 +3101,19 @@ XwPzyMDB71cLZhFJt9ftCunJIcPixJ207GwUHzeiRfkuGf4PFmxyEg==
  CellChangeTimes->{
   3.626910499507222*^9, {3.626910542814506*^9, 3.626910559173977*^9}, {
    3.626910618972459*^9, 3.626910683811447*^9}, 3.627002163660791*^9, 
-   3.6270022033963423`*^9, 3.6270022376519547`*^9, 3.6411694158028584`*^9}]
+   3.6270022033963423`*^9, 3.6270022376519547`*^9, 3.641169415771717*^9, 
+   3.663895288664317*^9, 3.663895984884837*^9, 3.6638991523184433`*^9, 
+   3.663899207656425*^9, 3.663899326730783*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{892, 1051},
-WindowMargins->{{Automatic, 48}, {Automatic, 38}},
+WindowSize->{990, 1100},
+WindowMargins->{{Automatic, 304}, {Automatic, 4}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
 FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 4, \
 2014)",
 StyleDefinitions->"Default.nb"
@@ -2786,94 +3130,90 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 228, 3, 148, "Title"],
-Cell[811, 27, 309, 6, 120, "Text"],
+Cell[580, 22, 228, 3, 92, "Title"],
+Cell[811, 27, 410, 9, 129, "Text"],
 Cell[CellGroupData[{
-Cell[1145, 37, 143, 2, 64, "Section"],
-Cell[1291, 41, 253, 5, 49, "Text"],
-Cell[1547, 48, 122, 2, 28, "Input"]
+Cell[1246, 40, 143, 2, 64, "Section"],
+Cell[1392, 44, 253, 5, 49, "Text"],
+Cell[1648, 51, 122, 2, 28, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1706, 55, 113, 1, 51, "Subtitle"],
+Cell[1807, 58, 113, 1, 51, "Subtitle"],
 Cell[CellGroupData[{
-Cell[1844, 60, 93, 1, 64, "Section"],
-Cell[1940, 63, 286, 7, 87, "Text"]
+Cell[1945, 63, 93, 1, 64, "Section"],
+Cell[2041, 66, 20410, 342, 213, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2263, 75, 105, 1, 64, "Section"],
+Cell[22488, 413, 105, 1, 64, "Section"],
 Cell[CellGroupData[{
-Cell[2393, 80, 162, 2, 44, "Subsection"],
-Cell[2558, 84, 492, 14, 58, "Input"],
-Cell[3053, 100, 735, 23, 66, "Input"],
-Cell[3791, 125, 1141, 33, 50, "Input"]
+Cell[22618, 418, 162, 2, 44, "Subsection"],
+Cell[22783, 422, 558, 15, 58, "Input"],
+Cell[23344, 439, 777, 24, 66, "Input"],
+Cell[24124, 465, 1254, 34, 50, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4969, 163, 133, 1, 44, "Subsection"],
-Cell[5105, 166, 1691, 53, 71, "Input"],
-Cell[6799, 221, 1341, 40, 71, "Input"]
+Cell[25415, 504, 133, 1, 44, "Subsection"],
+Cell[25551, 507, 1735, 54, 71, "Input"],
+Cell[27289, 563, 1379, 40, 71, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8177, 266, 97, 1, 44, "Subsection"],
-Cell[8277, 269, 594, 14, 28, "Input"]
+Cell[28705, 608, 97, 1, 44, "Subsection"],
+Cell[28805, 611, 693, 15, 28, "Input"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8920, 289, 110, 1, 64, "Section"],
-Cell[9033, 292, 836, 26, 46, "Input"],
-Cell[9872, 320, 356, 8, 80, "Input"],
+Cell[29547, 632, 110, 1, 64, "Section"],
+Cell[29660, 635, 877, 27, 46, "Input"],
+Cell[30540, 664, 400, 9, 63, "Input"],
 Cell[CellGroupData[{
-Cell[10253, 332, 162, 2, 44, "Subsection"],
-Cell[10418, 336, 1617, 47, 182, "Input"],
-Cell[12038, 385, 575, 18, 63, "Input"],
+Cell[30965, 677, 162, 2, 44, "Subsection"],
+Cell[31130, 681, 1695, 47, 182, "Input"],
+Cell[32828, 730, 720, 19, 63, "Input"],
 Cell[CellGroupData[{
-Cell[12638, 407, 2359, 59, 199, "Input"],
-Cell[15000, 468, 44790, 934, 318, "Output"]
+Cell[33573, 753, 2469, 59, 199, "Input"],
+Cell[36045, 814, 44886, 935, 318, "Output"]
 }, Open  ]],
-Cell[59805, 1405, 337, 8, 80, "Input"],
-Cell[60145, 1415, 1573, 46, 182, "Input"],
-Cell[61721, 1463, 557, 17, 46, "Input"],
+Cell[80946, 1752, 376, 8, 63, "Input"],
+Cell[81325, 1762, 1656, 47, 182, "Input"],
+Cell[82984, 1811, 704, 19, 46, "Input"],
 Cell[CellGroupData[{
-Cell[62303, 1484, 2217, 56, 233, "Input"],
-Cell[64523, 1542, 5850, 108, 314, "Output"]
+Cell[83713, 1834, 2185, 52, 199, "Input"],
+Cell[85901, 1888, 5989, 112, 314, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[70422, 1656, 107, 1, 44, "Subsection"],
+Cell[91939, 2006, 107, 1, 44, "Subsection"],
+Cell[92049, 2009, 2384, 59, 233, "Input"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[70554, 1661, 1995, 59, 267, "Input"],
-Cell[72552, 1722, 235, 4, 46, "Output"]
+Cell[94470, 2073, 110, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[94605, 2078, 8507, 196, 845, "Input"],
+Cell[103115, 2276, 5616, 106, 251, "Output"],
+Cell[108734, 2384, 7484, 139, 252, "Output"],
+Cell[116221, 2525, 7484, 139, 251, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[72836, 1732, 110, 1, 44, "Subsection"],
+Cell[123754, 2670, 164, 2, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[72971, 1737, 7313, 179, 658, "Input"],
-Cell[80287, 1918, 5544, 105, 251, "Output"],
-Cell[85834, 2025, 7413, 138, 252, "Output"],
-Cell[93250, 2165, 7414, 138, 251, "Output"]
+Cell[123943, 2676, 1762, 46, 165, "Input"],
+Cell[125708, 2724, 1439, 32, 210, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[100713, 2309, 164, 2, 44, "Subsection"],
+Cell[127196, 2762, 113, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[100902, 2315, 1459, 44, 131, "Input"],
-Cell[102364, 2361, 1367, 31, 210, "Output"]
+Cell[127334, 2767, 1617, 44, 165, "Input"],
+Cell[128954, 2813, 1336, 29, 210, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[103780, 2398, 113, 1, 44, "Subsection"],
+Cell[130339, 2848, 162, 2, 44, "Subsection"],
+Cell[130504, 2852, 505, 12, 46, "Input"],
 Cell[CellGroupData[{
-Cell[103918, 2403, 1315, 42, 131, "Input"],
-Cell[105236, 2447, 1264, 28, 210, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[106549, 2481, 162, 2, 44, "Subsection"],
-Cell[106714, 2485, 389, 10, 28, "Input"],
-Cell[CellGroupData[{
-Cell[107128, 2499, 2536, 64, 234, "Input"],
-Cell[109667, 2565, 1555, 34, 57, "Output"],
-Cell[111225, 2601, 8952, 162, 274, "Output"]
+Cell[131034, 2868, 3028, 71, 304, "Input"],
+Cell[134065, 2941, 9070, 164, 240, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
