@@ -78,18 +78,22 @@ if 1:
 numsamples = 10000000
 numorders = 10
 nummoments = 10
-c = 0.7
-length = 2.2
-dx = length / 101
-mut = 0.8
-g = 0.7
-filename = 'data/finiteRod_albedoproblem_isotropicscatter_exp_c' + str(c) + '_mut' + str(mut) + '_length' + str(length) + '.txt'
-print 'computing: ' + filename
-os.system( './finiteRod_albedoproblem_isotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(length) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' > ' + filename )
 
-dx = length / 51
+for c in [0.3, 0.7, 0.9]:
 
-filename = 'data/finiteRod_albedoproblem_anisotropicscatter_exp_c' + str(c) + '_mut' + str(mut) + '_length' + str(length) + '_g' + str(g) + '.txt'
-print 'computing: ' + filename
-os.system( './finiteRod_albedoproblem_anisotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(length) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str(g) + ' > ' + filename )
+    for length in [0.3, 1.0, 3.0]:
+        dx = length / 101
+        for mut in [1.0, 3.0]:
+
+            filename = 'data/finiteRod_albedoproblem_isotropicscatter_exp_c' + str(c) + '_mut' + str(mut) + '_length' + str(length) + '.txt'
+            print 'computing: ' + filename
+            os.system( './finiteRod_albedoproblem_isotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(length) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' > ' + filename )
+
+            dx = length / 51
+
+            for g in [-0.5, 0.3, 0.7]:
+
+                filename = 'data/batch_finiteRod_albedoproblem_anisotropicscatter_exp_c' + str(c) + '_mut' + str(mut) + '_length' + str(length) + '_g' + str(g) + '.txt'
+                print 'computing: ' + filename
+                os.system( './finiteRod_albedoproblem_anisotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(length) + ' ' + str(dx) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str(g) + ' > ' + filename )
 
