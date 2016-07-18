@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    192013,       3578]
-NotebookOptionsPosition[    189861,       3501]
-NotebookOutlinePosition[    190220,       3517]
-CellTagsIndexPosition[    190177,       3514]
+NotebookDataLength[    235285,       4583]
+NotebookOptionsPosition[    232200,       4475]
+NotebookOutlinePosition[    232559,       4491]
+CellTagsIndexPosition[    232516,       4488]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2684,6 +2684,217 @@ Cell[BoxData[
    3.677732530491909*^9, 3.677732575387307*^9}, {3.67773262624527*^9, 
    3.677732626881268*^9}, {3.677733587018524*^9, 3.67773359373038*^9}, {
    3.677733695708984*^9, 3.677733735194667*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fluence: Classical Diffusion Approximation", "Subsection",
+ CellChangeTimes->{{3.677816765958473*^9, 3.677816771845015*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Diffusion", "[", 
+   RowBox[{"r_", ",", "\[CapitalSigma]t_", ",", "\[Alpha]_", ",", "b_"}], 
+   "]"}], ":=", 
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{
+      RowBox[{"-", "r"}], " ", 
+      SqrtBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Alpha]"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"3", "-", 
+          RowBox[{"b", " ", "\[Alpha]"}]}], ")"}]}]], " ", 
+      "\[CapitalSigma]t"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"3", "-", 
+      RowBox[{"b", " ", "\[Alpha]"}]}], ")"}], " ", "\[CapitalSigma]t"}], 
+   RowBox[{"4", " ", "\[Pi]", " ", "r"}]]}]], "Input",
+ CellChangeTimes->{{3.677816791637267*^9, 3.6778168114929457`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fluence: Grosjean Modified Diffusion Approximation", "Subsection",
+ CellChangeTimes->{{3.677816774596739*^9, 3.677816784500757*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Grosjean", "[", 
+   RowBox[{"r_", ",", "\[CapitalSigma]t_", ",", "\[Alpha]_", ",", "b_"}], 
+   "]"}], ":=", 
+  RowBox[{
+   FractionBox[
+    SuperscriptBox["E", 
+     RowBox[{
+      RowBox[{"-", "r"}], " ", "\[CapitalSigma]t"}]], 
+    RowBox[{"4", " ", "Pi", " ", 
+     SuperscriptBox["r", "2"]}]], "+", 
+   RowBox[{
+    FractionBox["\[Alpha]", 
+     RowBox[{"1", "-", "\[Alpha]"}]], 
+    FractionBox["1", "\[CapitalSigma]t"], " ", 
+    RowBox[{"diffusionMode", "[", 
+     RowBox[{
+      FractionBox["1", 
+       RowBox[{
+        SqrtBox["3"], " ", 
+        SqrtBox[
+         FractionBox[
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "1"}], "+", "\[Alpha]"}], ")"}], " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "3"}], "+", 
+             RowBox[{"b", " ", "\[Alpha]"}]}], ")"}]}], 
+          RowBox[{"6", "+", 
+           RowBox[{"b", " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "1"}], "+", "\[Alpha]"}], ")"}], "2"]}], "-", 
+           RowBox[{"3", " ", "\[Alpha]"}]}]]], " ", "\[CapitalSigma]t"}]], 
+      ",", "3", ",", "r"}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.677818374426221*^9, 3.6778183755012817`*^9}, {
+  3.677818459213233*^9, 3.677818470657873*^9}, {3.67781869057456*^9, 
+  3.677818690915695*^9}, {3.677818780636148*^9, 3.677818790602096*^9}, {
+  3.6778221986513443`*^9, 3.677822199826388*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{
+   RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Grosjean", "[", 
+    RowBox[{"r", ",", "\[CapitalSigma]t", ",", "\[Alpha]", ",", "b"}], "]"}], 
+   ",", 
+   RowBox[{"Assumptions", "\[Rule]", 
+    RowBox[{
+     RowBox[{"\[CapitalSigma]t", ">", "0"}], "&&", 
+     RowBox[{"\[Alpha]", ">", "0"}], "&&", 
+     RowBox[{"\[Alpha]", "<", "1"}], "&&", 
+     RowBox[{"b", ">", 
+      RowBox[{"-", "1"}]}], "&&", 
+     RowBox[{"b", "<", "1"}]}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.677818792631892*^9, 3.6778188166986103`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{
+     RowBox[{"-", "r"}], " ", "\[CapitalSigma]t"}]], "-", 
+   FractionBox[
+    RowBox[{"3", " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"-", 
+        SqrtBox["3"]}], " ", "r", " ", 
+       SqrtBox[
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "1"}], "+", "\[Alpha]"}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "3"}], "+", 
+            RowBox[{"b", " ", "\[Alpha]"}]}], ")"}]}], 
+         RowBox[{"6", "+", 
+          RowBox[{"b", " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "1"}], "+", "\[Alpha]"}], ")"}], "2"]}], "-", 
+          RowBox[{"3", " ", "\[Alpha]"}]}]]], " ", "\[CapitalSigma]t"}]], " ",
+      "r", " ", "\[Alpha]", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "3"}], "+", 
+       RowBox[{"b", " ", "\[Alpha]"}]}], ")"}], " ", "\[CapitalSigma]t"}], 
+    RowBox[{"6", "+", 
+     RowBox[{"b", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Alpha]"}], ")"}], "2"]}], "-", 
+     RowBox[{"3", " ", "\[Alpha]"}]}]]}], 
+  RowBox[{"4", " ", "\[Pi]", " ", 
+   SuperscriptBox["r", "2"]}]]], "Output",
+ CellChangeTimes->{{3.677818815335395*^9, 3.677818817938361*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Nth-collided fluence - Gaussian approximation", "Subsection",
+ CellChangeTimes->{{3.677822130970708*^9, 3.6778221390894127`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"inf3Disopointlinanisoscatter`twomomentGaussian", "[", 
+   RowBox[{"r_", ",", "m0_", ",", "m2_"}], "]"}], ":=", 
+  FractionBox[
+   RowBox[{"3", " ", 
+    SqrtBox[
+     FractionBox["3", "2"]], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"3", " ", "m0", " ", 
+        SuperscriptBox["r", "2"]}], 
+       RowBox[{"2", " ", "m2"}]]}]], " ", 
+    SuperscriptBox["m0", 
+     RowBox[{"5", "/", "2"}]]}], 
+   RowBox[{"2", " ", 
+    SuperscriptBox["m2", 
+     RowBox[{"3", "/", "2"}]], " ", 
+    SuperscriptBox["\[Pi]", 
+     RowBox[{"3", "/", "2"}]]}]]}]], "Input",
+ CellChangeTimes->{{3.6778221507467957`*^9, 3.6778221653419952`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Gaussian", "[", 
+   RowBox[{
+   "r_", ",", "\[CapitalSigma]t_", ",", "\[Alpha]_", ",", "b_", ",", "n_"}], 
+   "]"}], ":=", 
+  RowBox[{"inf3Disopointlinanisoscatter`twomomentGaussian", "[", 
+   RowBox[{"r", ",", 
+    FractionBox[
+     SuperscriptBox["\[Alpha]", "n"], "\[CapitalSigma]t"], ",", 
+    FractionBox[
+     RowBox[{"2", " ", 
+      SuperscriptBox["3", 
+       RowBox[{"-", "n"}]], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["b", 
+         RowBox[{"2", "+", "n"}]], "+", 
+        RowBox[{
+         SuperscriptBox["3", 
+          RowBox[{"2", "+", "n"}]], " ", 
+         RowBox[{"(", 
+          RowBox[{"1", "+", "n"}], ")"}]}], "-", 
+        RowBox[{
+         SuperscriptBox["3", 
+          RowBox[{"1", "+", "n"}]], " ", "b", " ", 
+         RowBox[{"(", 
+          RowBox[{"2", "+", "n"}], ")"}]}]}], ")"}], " ", 
+      SuperscriptBox["\[Alpha]", "n"]}], 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "3"}], "+", "b"}], ")"}], "2"], " ", 
+      SuperscriptBox["\[CapitalSigma]t", "3"]}]]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6778222058885508`*^9, 3.677822217424992*^9}, {
+  3.6778222768106937`*^9, 3.6778222812499228`*^9}}]
 }, Open  ]]
 }, Open  ]],
 
@@ -3233,6 +3444,769 @@ and ensure the data path is setup correctly."]],
 
 Cell[CellGroupData[{
 
+Cell["\<\
+Fluence - Diffusion Approximations (Classical and Grosjean) Comparison to MC\
+\>", "Subsection",
+ CellChangeTimes->{{3.649259702897419*^9, 3.64925971462465*^9}, {
+  3.649893943340941*^9, 3.649893948401101*^9}, {3.650003121496348*^9, 
+  3.650003148370801*^9}, {3.650007172824812*^9, 3.6500071827023907`*^9}, {
+  3.677818304662986*^9, 3.67781830791696*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"alpha", ",", "\[CapitalSigma]t"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Length", "[", "inf3Disopointlinanisoscatter`simulations", "]"}], ">", 
+      "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "maxr", ",", "dr", ",", "points\[Phi]", ",", 
+         "plotpoints\[Phi]", ",", "logplot\[Phi]", ",", "plot\[Phi]", ",", 
+         "exact1points"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"inf3Disopointlinanisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "3", "]"}], "]"}], "\[Equal]", "b"}]}], "&"}]}], 
+           "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{"-", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"maxr", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dr", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"points\[Phi]", " ", "=", " ", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", "4", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "divide", " ", "by", " ", "\[CapitalSigma]t", " ", "to", " ", 
+          "convert", " ", "collision", " ", "density", " ", "into", " ", 
+          "fluence"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"plotpoints\[Phi]", "=", 
+         RowBox[{"inf3Disopointlinanisoscatter`ppoints", "[", 
+          RowBox[{
+          "points\[Phi]", ",", "dr", ",", "maxr", ",", "\[CapitalSigma]t"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"plot\[Phi]", "=", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Show", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ListPlot", "[", 
+             RowBox[{"plotpoints\[Phi]", ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], "  ", 
+               RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Grosjean", "[", 
+                RowBox[{
+                "r", ",", "\[CapitalSigma]t", ",", "\[Alpha]", ",", "b"}], 
+                "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], "  ", 
+               RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Diffusion", "[", 
+                RowBox[{
+                "r", ",", "\[CapitalSigma]t", ",", "\[Alpha]", ",", "b"}], 
+                "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"FrameLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"4", " ", "Pi", " ", 
+                  SuperscriptBox["r", "2"], " ", 
+                  RowBox[{"\[Phi]", "[", "r", "]"}]}], ","}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"r", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]",
+            "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"logplot\[Phi]", "=", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Show", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ListLogPlot", "[", 
+             RowBox[{"plotpoints\[Phi]", ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"LogPlot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], "  ", 
+               RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Grosjean", "[", 
+                RowBox[{
+                "r", ",", "\[CapitalSigma]t", ",", "\[Alpha]", ",", "b"}], 
+                "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"LogPlot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], "  ", 
+               RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Diffusion", "[", 
+                RowBox[{
+                "r", ",", "\[CapitalSigma]t", ",", "\[Alpha]", ",", "b"}], 
+                "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"FrameLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"4", " ", "Pi", " ", 
+                  SuperscriptBox["r", "2"], " ", 
+                  RowBox[{"\[Phi]", "[", "r", "]"}]}], ","}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"r", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]",
+            "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"pp", "=", 
+         RowBox[{"Show", "[", 
+          RowBox[{
+           RowBox[{"GraphicsGrid", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"{", 
+               RowBox[{"plot\[Phi]", ",", "logplot\[Phi]"}], "}"}], "}"}], 
+             ",", 
+             RowBox[{"ImageSize", "\[Rule]", "800"}]}], "]"}], ",", 
+           RowBox[{"PlotLabel", "->", 
+            RowBox[{
+            "\"\<Classical (dashed) and Grosjean Modified (thin) Diffusion \
+Approximation\\nInfinite 3D medium, isotropic point source, linearly \
+anisotropic scattering, fluence \[Phi][r], \[Alpha] = \>\"", "<>", 
+             RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+             "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", 
+             "<>", 
+             RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}], "<>", 
+             "\"\<, b = \>\"", "<>", 
+             RowBox[{"ToString", "[", "b", "]"}]}]}]}], "]"}]}]}]}], 
+      "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "0.8"}], "}"}], ",", 
+     "inf3Disopointlinanisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalSigma]t", ",", "1"}], "}"}], ",", 
+     "inf3Disopointlinanisoscatter`muts"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "inf3Disopointlinanisoscatter`bs"}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.677635680415991*^9, 3.6776357292481947`*^9}, {
+   3.677635826937529*^9, 3.677635835257657*^9}, 3.6776488419987698`*^9, {
+   3.67781829528452*^9, 3.677818361123105*^9}, {3.677818395098062*^9, 
+   3.677818400630786*^9}, {3.677818434261928*^9, 3.677818444610421*^9}, 
+   3.677818865666829*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`b$$ = -0.9, $CellContext`\[Alpha]$$ = 
+    0.8, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], 0.8}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
+      0.9, 0.95, 0.99, 0.999}}, {{
+       Hold[$CellContext`\[CapitalSigma]t$$], 1}, {1, 3}}, {
+      Hold[$CellContext`b$$], {-0.9, 0.7}}}, Typeset`size$$ = {
+    800., {146., 151.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$9463328$$ = 
+    0, $CellContext`\[CapitalSigma]t$9463329$$ = 
+    False, $CellContext`b$9463330$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`b$$ = -0.9, $CellContext`\[Alpha]$$ = 
+        0.8, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9463328$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$9463329$$, False], 
+        Hold[$CellContext`b$$, $CellContext`b$9463330$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[inf3Disopointlinanisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`maxr$, $CellContext`dr$, \
+$CellContext`points\[Phi]$, $CellContext`plotpoints\[Phi]$, \
+$CellContext`logplot\[Phi]$, $CellContext`plot\[Phi]$, \
+$CellContext`exact1points$}, $CellContext`data$ = Part[
+            SelectFirst[
+            inf3Disopointlinanisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$, 
+              Part[#, 3] == $CellContext`b$$]& ], -1]; $CellContext`maxr$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`dr$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`points\[Phi]$ = 
+          Part[$CellContext`data$, 4]; $CellContext`plotpoints\[Phi]$ = 
+          inf3Disopointlinanisoscatter`ppoints[$CellContext`points\[Phi]$, \
+$CellContext`dr$, $CellContext`maxr$, $CellContext`\[CapitalSigma]t$$]; \
+$CellContext`plot\[Phi]$ = Quiet[
+            Show[
+             
+             ListPlot[$CellContext`plotpoints\[Phi]$, PlotRange -> All, 
+              PlotStyle -> PointSize[0.01]], 
+             Plot[
+             4 Pi $CellContext`r^2 
+              inf3Disopointlinanisoscatter`\[Phi]Grosjean[$CellContext`r, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$, $CellContext`b$$], \
+{$CellContext`r, 0, $CellContext`maxr$}, PlotRange -> All], 
+             Plot[
+             4 Pi $CellContext`r^2 
+              inf3Disopointlinanisoscatter`\[Phi]Diffusion[$CellContext`r, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$, $CellContext`b$$], \
+{$CellContext`r, 0, $CellContext`maxr$}, PlotRange -> All, PlotStyle -> 
+              Dashed], Frame -> True, 
+             FrameLabel -> {{
+               4 Pi $CellContext`r^2 $CellContext`\[Phi][$CellContext`r], 
+                Null}, {$CellContext`r, Null}}]]; $CellContext`logplot\[Phi]$ = 
+          Quiet[
+            Show[
+             
+             ListLogPlot[$CellContext`plotpoints\[Phi]$, PlotRange -> All, 
+              PlotStyle -> PointSize[0.01]], 
+             LogPlot[
+             4 Pi $CellContext`r^2 
+              inf3Disopointlinanisoscatter`\[Phi]Grosjean[$CellContext`r, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$, $CellContext`b$$], \
+{$CellContext`r, 0, $CellContext`maxr$}, PlotRange -> All], 
+             LogPlot[
+             4 Pi $CellContext`r^2 
+              inf3Disopointlinanisoscatter`\[Phi]Diffusion[$CellContext`r, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$, $CellContext`b$$], \
+{$CellContext`r, 0, $CellContext`maxr$}, PlotRange -> All, PlotStyle -> 
+              Dashed], Frame -> True, 
+             FrameLabel -> {{
+               4 Pi $CellContext`r^2 $CellContext`\[Phi][$CellContext`r], 
+                Null}, {$CellContext`r, Null}}]]; $CellContext`pp = Show[
+            
+            GraphicsGrid[{{$CellContext`plot\[Phi]$, $CellContext`logplot\
+\[Phi]$}}, ImageSize -> 800], PlotLabel -> 
+            StringJoin[
+             "Classical (dashed) and Grosjean Modified (thin) Diffusion \
+Approximation\nInfinite 3D medium, isotropic point source, linearly \
+anisotropic scattering, fluence \[Phi][r], \[Alpha] = ", 
+              ToString[$CellContext`\[Alpha]$$], 
+              ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+              ToString[$CellContext`\[CapitalSigma]t$$], ", b = ", 
+              ToString[$CellContext`b$$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.8}, {0.01, 0.1, 0.3, 
+         0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
+         0.999}}, {{$CellContext`\[CapitalSigma]t$$, 1}, {1, 
+         3}}, {$CellContext`b$$, {-0.9, 0.7}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{845., {215., 220.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.677635718244424*^9, 3.677635730916739*^9}, 
+   3.677635840097584*^9, 3.677648843490073*^9, {3.677818383050539*^9, 
+   3.6778184009843493`*^9}, {3.6778184361151*^9, 3.677818445400259*^9}, 
+   3.677818866906209*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["N-th collided Fluence - Approximations", "Subsection",
+ CellChangeTimes->{{3.649259702897419*^9, 3.64925971462465*^9}, {
+  3.649893943340941*^9, 3.649893948401101*^9}, {3.650003121496348*^9, 
+  3.650003125748569*^9}, {3.67763541090819*^9, 3.67763541224439*^9}, {
+  3.677637193479684*^9, 3.677637204399332*^9}, {3.6777291790236*^9, 
+  3.67772918059769*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Length", "[", "inf3Disopointlinanisoscatter`simulations", "]"}], ">", 
+      "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "maxr", ",", "dr", ",", "points\[Phi]", ",", 
+         "plotpoints\[Phi]", ",", "logplot\[Phi]", ",", "plot\[Phi]", ",", 
+         "exact1points", ",", "numorders"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"inf3Disopointlinanisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "3", "]"}], "]"}], "\[Equal]", "b"}]}], "&"}]}], 
+           "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{"-", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"maxr", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dr", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"numorders", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"points\[Phi]", " ", "=", " ", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"9", "+", "numorders", "+", "n", "+", "1"}], "]"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "divide", " ", "by", " ", "\[CapitalSigma]t", " ", "to", " ", 
+          "convert", " ", "collision", " ", "density", " ", "into", " ", 
+          "fluence"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"plotpoints\[Phi]", "=", 
+         RowBox[{"inf3Disopointlinanisoscatter`ppoints", "[", 
+          RowBox[{
+          "points\[Phi]", ",", "dr", ",", "maxr", ",", "\[CapitalSigma]t"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"seriesclassical", "=", 
+         RowBox[{
+          SuperscriptBox["\[Alpha]", "n"], 
+          RowBox[{"SeriesCoefficient", "[", 
+           RowBox[{
+            RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Diffusion", "[", 
+             RowBox[{"r", ",", "\[CapitalSigma]t", ",", "C", ",", "b"}], 
+             "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"C", ",", "0", ",", "n"}], "}"}]}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"seriesG", "=", 
+         RowBox[{
+          SuperscriptBox["\[Alpha]", "n"], 
+          RowBox[{"SeriesCoefficient", "[", 
+           RowBox[{
+            RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Grosjean", "[", 
+             RowBox[{"r", ",", "\[CapitalSigma]t", ",", "C", ",", "b"}], 
+             "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"C", ",", "0", ",", "n"}], "}"}]}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"plot\[Phi]", "=", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Show", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ListPlot", "[", 
+             RowBox[{"plotpoints\[Phi]", ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], 
+               RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Gaussian", "[", 
+                RowBox[{
+                "r", ",", "\[CapitalSigma]t", ",", "\[Alpha]", ",", "b", ",", 
+                 "n"}], "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], "seriesclassical"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"Dashed", ",", "Blue"}], "}"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], "seriesG"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"DotDashed", ",", "Gray"}], "}"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"FrameLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"4", " ", "Pi", " ", 
+                  SuperscriptBox["r", "2"], " ", 
+                  RowBox[{"\[Phi]", "[", 
+                   RowBox[{"r", "|", "n"}], "]"}]}], ","}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"r", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]",
+            "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"logplot\[Phi]", "=", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Show", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ListLogPlot", "[", 
+             RowBox[{"plotpoints\[Phi]", ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"LogPlot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], 
+               RowBox[{"inf3Disopointlinanisoscatter`\[Phi]Gaussian", "[", 
+                RowBox[{
+                "r", ",", "\[CapitalSigma]t", ",", "\[Alpha]", ",", "b", ",", 
+                 "n"}], "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"LogPlot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], "seriesclassical"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"Dashed", ",", "Blue"}], "}"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"LogPlot", "[", 
+             RowBox[{
+              RowBox[{"4", " ", "Pi", " ", 
+               SuperscriptBox["r", "2"], "seriesG"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "0", ",", "maxr"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"DotDashed", ",", "Gray"}], "}"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"FrameLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"4", " ", "Pi", " ", 
+                  SuperscriptBox["r", "2"], " ", 
+                  RowBox[{"\[Phi]", "[", 
+                   RowBox[{"r", "|", "n"}], "]"}]}], ","}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"r", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]",
+            "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"pp", "=", 
+         RowBox[{"Show", "[", 
+          RowBox[{
+           RowBox[{"GraphicsGrid", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"{", 
+               RowBox[{"plot\[Phi]", ",", "logplot\[Phi]"}], "}"}], "}"}], 
+             ",", 
+             RowBox[{"ImageSize", "\[Rule]", "1000"}]}], "]"}], ",", 
+           RowBox[{"PlotLabel", "->", 
+            RowBox[{
+            "\"\<Approximate solutions, Gaussian (thin) Classical Diffusion \
+(Dashed) Grosjean (Dot-Dashed)\\nInfinite 3D medium, isotropic point source, \
+linearly-anisotropic scattering, n-th scattered fluence \[Phi][r|n], \[Alpha] \
+= \>\"", "<>", 
+             RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+             "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", 
+             "<>", 
+             RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}], "<>", 
+             "\"\<, b = \>\"", "<>", 
+             RowBox[{"ToString", "[", "b", "]"}]}]}]}], "]"}]}]}]}], 
+      "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "0.8"}], "}"}], ",", 
+     "inf3Disopointlinanisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalSigma]t", ",", "1"}], "}"}], ",", 
+     "inf3Disopointlinanisoscatter`muts"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "inf3Disopointlinanisoscatter`bs"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "3"}], "}"}], ",", 
+     RowBox[{"Range", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+        "NumberQ", "[", "inf3Disopointlinanisoscatter`numcollorders", "]"}], 
+        ",", "inf3Disopointlinanisoscatter`numcollorders", ",", "1"}], "]"}], 
+      "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.677637105519678*^9, 3.677637109350318*^9}, 
+   3.677646100911153*^9, 3.6776488354325447`*^9, {3.6777291913178062`*^9, 
+   3.677729223187541*^9}, {3.6777292587463303`*^9, 3.6777292766859007`*^9}, {
+   3.677729313878039*^9, 3.6777293393240213`*^9}, {3.677729482951395*^9, 
+   3.677729566454194*^9}, {3.677729661018585*^9, 3.677729694039755*^9}, {
+   3.6777297251204433`*^9, 3.677729786862499*^9}, {3.677729913231659*^9, 
+   3.6777299353249807`*^9}, 3.677730877200514*^9, {3.6778214756345253`*^9, 
+   3.6778215547352943`*^9}, {3.677821591846136*^9, 3.677821595301622*^9}, {
+   3.677821656786668*^9, 3.677821681101017*^9}, {3.677821863651805*^9, 
+   3.67782186553155*^9}, {3.677822294344337*^9, 3.677822302064646*^9}, {
+   3.677822335925872*^9, 3.6778223363598824`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`b$$ = 0.7, $CellContext`n$$ = 
+    3, $CellContext`\[Alpha]$$ = 0.8, $CellContext`\[CapitalSigma]t$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], 0.8}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
+      0.9, 0.95, 0.99, 0.999}}, {{
+       Hold[$CellContext`\[CapitalSigma]t$$], 1}, {1, 3}}, {
+      Hold[$CellContext`b$$], {-0.9, 0.7}}, {{
+       Hold[$CellContext`n$$], 3}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}}}, 
+    Typeset`size$$ = {1000., {179., 183.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$9981195$$ = 
+    0, $CellContext`\[CapitalSigma]t$9981196$$ = 
+    False, $CellContext`b$9981197$$ = False, $CellContext`n$9981198$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`b$$ = -0.9, $CellContext`n$$ = 
+        3, $CellContext`\[Alpha]$$ = 0.8, $CellContext`\[CapitalSigma]t$$ = 
+        1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9981195$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$9981196$$, False], 
+        Hold[$CellContext`b$$, $CellContext`b$9981197$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$9981198$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[inf3Disopointlinanisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`maxr$, $CellContext`dr$, \
+$CellContext`points\[Phi]$, $CellContext`plotpoints\[Phi]$, \
+$CellContext`logplot\[Phi]$, $CellContext`plot\[Phi]$, \
+$CellContext`exact1points$, $CellContext`numorders$}, $CellContext`data$ = 
+          Part[
+            SelectFirst[
+            inf3Disopointlinanisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$, 
+              Part[#, 3] == $CellContext`b$$]& ], -1]; $CellContext`maxr$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`dr$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`numorders$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`points\[Phi]$ = 
+          Part[$CellContext`data$, 
+            9 + $CellContext`numorders$ + $CellContext`n$$ + 
+            1]; $CellContext`plotpoints\[Phi]$ = 
+          inf3Disopointlinanisoscatter`ppoints[$CellContext`points\[Phi]$, \
+$CellContext`dr$, $CellContext`maxr$, $CellContext`\[CapitalSigma]t$$]; \
+$CellContext`seriesclassical = $CellContext`\[Alpha]$$^$CellContext`n$$ 
+           SeriesCoefficient[
+             
+             inf3Disopointlinanisoscatter`\[Phi]Diffusion[$CellContext`r, \
+$CellContext`\[CapitalSigma]t$$, C, $CellContext`b$$], {
+             C, 0, $CellContext`n$$}]; $CellContext`seriesG = $CellContext`\
+\[Alpha]$$^$CellContext`n$$ SeriesCoefficient[
+             
+             inf3Disopointlinanisoscatter`\[Phi]Grosjean[$CellContext`r, \
+$CellContext`\[CapitalSigma]t$$, C, $CellContext`b$$], {
+             C, 0, $CellContext`n$$}]; $CellContext`plot\[Phi]$ = Quiet[
+            Show[
+             
+             ListPlot[$CellContext`plotpoints\[Phi]$, PlotRange -> All, 
+              PlotStyle -> PointSize[0.01]], 
+             Plot[
+             4 Pi $CellContext`r^2 
+              inf3Disopointlinanisoscatter`\[Phi]Gaussian[$CellContext`r, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$, $CellContext`b$$, \
+$CellContext`n$$], {$CellContext`r, 0, $CellContext`maxr$}, PlotRange -> All], 
+             Plot[
+             4 Pi $CellContext`r^2 $CellContext`seriesclassical, \
+{$CellContext`r, 0, $CellContext`maxr$}, PlotRange -> All, 
+              PlotStyle -> {Dashed, Blue}], 
+             Plot[
+             4 Pi $CellContext`r^2 $CellContext`seriesG, {$CellContext`r, 
+               0, $CellContext`maxr$}, PlotRange -> All, 
+              PlotStyle -> {DotDashed, Gray}], Frame -> True, 
+             FrameLabel -> {{4 Pi $CellContext`r^2 $CellContext`\[Phi][
+                  Alternatives[$CellContext`r, $CellContext`n$$]], 
+                Null}, {$CellContext`r, Null}}]]; $CellContext`logplot\[Phi]$ = 
+          Quiet[
+            Show[
+             
+             ListLogPlot[$CellContext`plotpoints\[Phi]$, PlotRange -> All, 
+              PlotStyle -> PointSize[0.01]], 
+             LogPlot[
+             4 Pi $CellContext`r^2 
+              inf3Disopointlinanisoscatter`\[Phi]Gaussian[$CellContext`r, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$, $CellContext`b$$, \
+$CellContext`n$$], {$CellContext`r, 0, $CellContext`maxr$}], 
+             LogPlot[
+             4 Pi $CellContext`r^2 $CellContext`seriesclassical, \
+{$CellContext`r, 0, $CellContext`maxr$}, PlotRange -> All, 
+              PlotStyle -> {Dashed, Blue}], 
+             LogPlot[
+             4 Pi $CellContext`r^2 $CellContext`seriesG, {$CellContext`r, 
+               0, $CellContext`maxr$}, PlotRange -> All, 
+              PlotStyle -> {DotDashed, Gray}], Frame -> True, 
+             FrameLabel -> {{4 Pi $CellContext`r^2 $CellContext`\[Phi][
+                  Alternatives[$CellContext`r, $CellContext`n$$]], 
+                Null}, {$CellContext`r, Null}}]]; $CellContext`pp = Show[
+            
+            GraphicsGrid[{{$CellContext`plot\[Phi]$, $CellContext`logplot\
+\[Phi]$}}, ImageSize -> 1000], PlotLabel -> 
+            StringJoin[
+             "Approximate solutions, Gaussian (thin) Classical Diffusion \
+(Dashed) Grosjean (Dot-Dashed)\nInfinite 3D medium, isotropic point source, \
+linearly-anisotropic scattering, n-th scattered fluence \[Phi][r|n], \[Alpha] \
+= ", 
+              ToString[$CellContext`\[Alpha]$$], 
+              ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+              ToString[$CellContext`\[CapitalSigma]t$$], ", b = ", 
+              ToString[$CellContext`b$$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.8}, {0.01, 0.1, 0.3, 
+         0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
+         0.999}}, {{$CellContext`\[CapitalSigma]t$$, 1}, {1, 
+         3}}, {$CellContext`b$$, {-0.9, 0.7}}, {{$CellContext`n$$, 3}, {1, 2, 
+         3, 4, 5, 6, 7, 8, 9, 10}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     
+     ImageSizeCache->{1045., {261., 266.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.67763711161556*^9, 3.677646102910976*^9, 3.6777206340074387`*^9, {
+   3.677729271825474*^9, 3.677729277547893*^9}, 3.677729340402296*^9, 
+   3.677729566964229*^9, 3.6777296020409393`*^9, {3.677729664821155*^9, 
+   3.677729694798265*^9}, 3.677729756440464*^9, 3.6777297873599653`*^9, {
+   3.677729924294672*^9, 3.677729935893814*^9}, {3.677821530446349*^9, 
+   3.6778215569357224`*^9}, 3.677821597288032*^9, 3.677821682162562*^9, 
+   3.677821867486677*^9, 3.677822303220717*^9, 3.677822338269072*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
 Cell["Compare moments of \[Phi]", "Subsection",
  CellChangeTimes->{{3.650041676191098*^9, 3.6500416791649113`*^9}}],
 
@@ -3500,7 +4474,7 @@ and ensure the data path is setup correctly."]],
 }, Open  ]]
 },
 WindowSize->{1022, 1016},
-WindowMargins->{{Automatic, -9}, {22, Automatic}},
+WindowMargins->{{Automatic, 53}, {59, Automatic}},
 FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 4, \
 2014)",
 StyleDefinitions->"Default.nb"
@@ -3541,41 +4515,72 @@ Cell[CellGroupData[{
 Cell[149846, 2531, 307, 4, 44, "Subsection"],
 Cell[150156, 2537, 3584, 104, 157, "Input"],
 Cell[153743, 2643, 1655, 42, 85, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[155435, 2690, 130, 1, 44, "Subsection"],
+Cell[155568, 2693, 783, 22, 55, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[156388, 2720, 138, 1, 44, "Subsection"],
+Cell[156529, 2723, 1530, 42, 79, "Input"],
+Cell[CellGroupData[{
+Cell[158084, 2769, 578, 14, 28, "Input"],
+Cell[158665, 2785, 1429, 43, 91, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[155447, 2691, 197, 3, 64, "Section"],
-Cell[155647, 2696, 1051, 28, 46, "Input"],
-Cell[156701, 2726, 1131, 29, 46, "Input"],
-Cell[157835, 2757, 439, 9, 46, "Input"],
-Cell[CellGroupData[{
-Cell[158299, 2770, 1904, 47, 165, "Input"],
-Cell[160206, 2819, 702, 12, 28, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[160945, 2836, 428, 10, 28, "Input"],
-Cell[161376, 2848, 519, 9, 28, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[161932, 2862, 373, 9, 28, "Input"],
-Cell[162308, 2873, 272, 6, 28, "Output"]
-}, Open  ]],
-Cell[162595, 2882, 1723, 42, 80, "Input"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[164355, 2929, 141, 2, 64, "Section"],
-Cell[CellGroupData[{
-Cell[164521, 2935, 321, 4, 44, "Subsection"],
-Cell[CellGroupData[{
-Cell[164867, 2943, 7744, 179, 733, "Input"],
-Cell[172614, 3124, 5470, 105, 450, "Output"]
+Cell[160143, 2834, 135, 1, 44, "Subsection"],
+Cell[160281, 2837, 715, 21, 76, "Input"],
+Cell[160999, 2860, 1282, 36, 74, "Input"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[178133, 3235, 115, 1, 44, "Subsection"],
+Cell[162330, 2902, 197, 3, 64, "Section"],
+Cell[162530, 2907, 1051, 28, 46, "Input"],
+Cell[163584, 2937, 1131, 29, 46, "Input"],
+Cell[164718, 2968, 439, 9, 46, "Input"],
 Cell[CellGroupData[{
-Cell[178273, 3240, 6498, 161, 513, "Input"],
-Cell[184774, 3403, 5035, 92, 304, "Output"]
+Cell[165182, 2981, 1904, 47, 165, "Input"],
+Cell[167089, 3030, 702, 12, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[167828, 3047, 428, 10, 28, "Input"],
+Cell[168259, 3059, 519, 9, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[168815, 3073, 373, 9, 28, "Input"],
+Cell[169191, 3084, 272, 6, 28, "Output"]
+}, Open  ]],
+Cell[169478, 3093, 1723, 42, 80, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[171238, 3140, 141, 2, 64, "Section"],
+Cell[CellGroupData[{
+Cell[171404, 3146, 321, 4, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[171750, 3154, 7744, 179, 733, "Input"],
+Cell[179497, 3335, 5470, 105, 450, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[185016, 3446, 365, 6, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[185406, 3456, 8950, 204, 805, "Input"],
+Cell[194359, 3662, 6116, 115, 452, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[200524, 3783, 362, 5, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[200911, 3792, 11780, 266, 897, "Input"],
+Cell[212694, 4060, 7729, 143, 544, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[220472, 4209, 115, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[220612, 4214, 6498, 161, 513, "Input"],
+Cell[227113, 4377, 5035, 92, 304, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
