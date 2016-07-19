@@ -1,7 +1,8 @@
 import sys
 import os
 
-os.mkdir('data')
+if not os.path.exists('data'):
+    os.mkdir('data')
 
 # compile MC simulator
 os.system('g++ finiteRod_albedoproblem_isotropicscatter_exponential.cpp -o finiteRod_albedoproblem_isotropicscatter_exponential -O3 -I ../../../include/')

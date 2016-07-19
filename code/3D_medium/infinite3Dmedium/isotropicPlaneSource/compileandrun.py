@@ -1,6 +1,6 @@
 # Compile and run simulations: 
 
-# FLATLAND INFINITE MEDIUM ISOTROPIC POINT SOURCE
+# 3D INFINITE MEDIUM ISOTROPIC PLANE SOURCE
 
 import sys
 import os
@@ -10,7 +10,7 @@ if not os.path.exists('data'):
 	os.mkdir('data')
 
 # classical - various phase functions
-os.system('g++ infiniteFlatland_isotropicpoint_isotropicscatter_exponential.cpp -o infiniteFlatland_isotropicpoint_isotropicscatter_exponential -O3 -I ../../../include/')
+os.system('g++ infinite3D_isotropicplane_isotropicscatter_exponential.cpp -o infinite3D_isotropicplane_isotropicscatter_exponential -O3 -I ../../../include/')
 
 cs = [ 0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 0.999 ]
 
@@ -26,6 +26,6 @@ for mut in [1.0,3.0]:
 		du = 2.0 / 30.0
 		numorders = 50
 		nummoments = 5
-		filename = 'data/infflatland_isotropicpoint_isotropicscatter_c' + str(c) + '_mut' + str(mut) + '.txt'
+		filename = 'data/inf3d_isotropicplane_isotropicscatter_c' + str(c) + '_mut' + str(mut) + '.txt'
 		print 'computing: ' + filename
-		os.system( './infiniteFlatland_isotropicpoint_isotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(du) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' > ' + filename )
+		os.system( './infinite3d_isotropicplane_isotropicscatter_exponential ' + str(c) + ' ' + str(mut) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(du) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' > ' + filename )

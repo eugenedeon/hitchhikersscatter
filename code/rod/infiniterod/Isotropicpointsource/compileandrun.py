@@ -1,7 +1,8 @@
 import sys
 import os
 
-os.mkdir('data')
+if not os.path.exists('data'):
+	os.mkdir('data')
 
 # internal distributions
 os.system('g++ infiniteRod_isotropicpoint_isotropicscatter_exponential.cpp -o infiniteRod_isotropicpoint_isotropicscatter_exponential -O3 -I ../../../include/')
