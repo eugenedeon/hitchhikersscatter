@@ -1,6 +1,8 @@
 import sys
 import os
 
+os.mkdir('data')
+
 # internal distributions
 os.system('g++ halfRod_albedoproblem_anisotropicscatter_exponential.cpp -o halfRod_albedoproblem_anisotropicscatter_exponential -O3 -I ../../../include/')
 

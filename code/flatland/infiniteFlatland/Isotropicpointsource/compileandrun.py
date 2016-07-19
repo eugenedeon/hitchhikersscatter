@@ -6,6 +6,8 @@ import sys
 import os
 import math
 
+os.mkdir('data')
+
 # classical - various phase functions
 os.system('g++ infiniteFlatland_isotropicpoint_isotropicscatter_exponential.cpp -o infiniteFlatland_isotropicpoint_isotropicscatter_exponential -O3 -I ../../../include/')
 
