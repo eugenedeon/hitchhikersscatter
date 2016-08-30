@@ -17,7 +17,7 @@ public:
 
     void printDescriptor()
     {
-        std::cout << "Half-space white-sky albedo problem, isotropic scattering, exponential random flight." << std::endl;
+        std::cout << "Half-space white-sky albedo problem, isotropic scattering, exponential random flight, mu_t = " << mu_t << std::endl;
     }
 };
 
@@ -40,7 +40,7 @@ int main( int argc, char** argv )
 
     IsotropicExponentialHalfspaceWhiteSkyAlbedo sampler( mu_t );
 
-    sampler.HalfSpaceEstimatorAnalog( c, mu_t, du, dz, maxz, numsamples, numCollisionOrders, numMoments );
+    sampler.HalfSpaceEstimatorAnalog( c, du, dz, maxz, numsamples, numCollisionOrders, numMoments );
 
     return 0;
 }

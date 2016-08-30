@@ -15,7 +15,6 @@ public:
 
     // estimate albedo, internal distribution and moments for a half-space scattering problem with vacuum boundary conditions
     void HalfSpaceEstimatorAnalog(  const double c,               // single-scattering albedo
-                                    const double mu_t,            // inverse mean free path
                                     const double du,              // resolution of exitant angular distribution bins (u = cos theta )
                                     const double dz,              // resolution of depth-based quantities
                                     const double maxz,            // maximum depth recorded
@@ -25,6 +24,7 @@ public:
                                   )
     {
         const size_t numubins = size_t( floor( 1.0 / du ) ) + 1;
+        const size_t numubins_internal = size_t( floor( 2.0 / du ) ) + 1;
 
         size_t countExitingParticles = 0; // used to estimate total albedo
 
@@ -46,11 +46,20 @@ public:
 
         // internal density
         const size_t num_z_bins = size_t( floor( maxz / dz ) ) + 1;
-        size_t * density = new size_t [num_z_bins+1]; // add one bin for rounding safety
+        size_t * density = new size_t [num_z_bins];
 
         for( size_t i = 0; i <= num_z_bins; ++i )
         {
             density[i] = 0;
+        }
+
+        // internal angular collision density
+        const size_t num_internal_angular_density_entries = num_z_bins * numubins_internal;
+        size_t * density_angular = new size_t [num_internal_angular_density_entries];
+
+        for( size_t i = 0; i <= num_internal_angular_density_entries; ++i )
+        {
+            density_angular[i] = 0;
         }
 
         // collision density of arbitrary order
@@ -93,7 +102,8 @@ public:
             pos += dir * step;
 
             while( true )
-            {                
+            {    
+                const double u = -dir.z;            
                 if( pos.z <= 0.0 )
                 {
                     //escape
@@ -102,8 +112,7 @@ public:
                     {   
                         perOrderExitingParticles[collisionOrder]++;
                     }
-
-                    const double u = -dir.z;
+                    
                     const size_t u_index = discreteMap( 0.0, 1.0, du, u );
                     exitantDistribution[u_index]++;
                     if( 1 == collisionOrder ) exitantDistributionSingle[u_index]++;
@@ -122,6 +131,10 @@ public:
                 const size_t z_index = discreteMap( 0.0, maxz, dz, pos.z );
 
                 density[z_index]++;
+
+                const size_t u_index_internal = discreteMap( -1.0, 1.0, du, u );
+                assert(z_index * numubins_internal + u_index_internal < num_internal_angular_density_entries);
+                density_angular[z_index * numubins_internal + u_index_internal]++;
 
                 for( size_t m = 0; m < numMoments; ++m )
                 {
@@ -156,7 +169,6 @@ public:
 
         printDescriptor();
         std::cout << "Analogmu_t c: " << c << 
-                     " mu_t: " << mu_t << 
                      " du: " << du << 
                      " maxz: " << maxz << 
                      " dz: " << dz << 
@@ -197,14 +209,21 @@ public:
         std::cout << "Internal density:\n";
         for( size_t i = 0; i < num_z_bins; ++i )
         {
-            std::cout << double( density[i] ) / ( double( numsamples ) * mu_t * dz ) << " ";
+            std::cout << double( density[i] ) / ( double( numsamples ) * dz ) << " ";
         }
         std::cout << std::endl;
 
         std::cout << "Density Moments:\n";
         for( size_t m = 0; m < numMoments; m++ )
         {
-            std::cout << all_orders_moments[m] / ( double( numsamples ) * mu_t ) << " ";
+            std::cout << all_orders_moments[m] / ( double( numsamples ) ) << " ";
+        }
+        std::cout << std::endl;
+
+        std::cout << "Angular Moments:\n";
+        for( size_t m = 0; m < numMoments; m++ )
+        {
+            std::cout << angular_moments[m] / ( double( numsamples ) ) << " ";
         }
         std::cout << std::endl;
 
@@ -213,7 +232,7 @@ public:
         {
             for( size_t m = 0; m < numMoments; ++m )
             {
-                std::cout << double( per_order_moments[order + m * numCollisionOrders ] ) / ( double( numsamples ) * mu_t ) << " ";
+                std::cout << double( per_order_moments[order + m * numCollisionOrders ] ) / ( double( numsamples ) ) << " ";
             }
             std::cout << std::endl;
         }
@@ -224,18 +243,23 @@ public:
             for( size_t ri = 0; ri < num_z_bins; ++ri )
             {
                 const size_t collision_i = ri + num_z_bins * ( ci - 1 );
-                std::cout << double( collisionDensities[collision_i] ) / ( double( numsamples ) * mu_t * dz ) << " ";
+                std::cout << double( collisionDensities[collision_i] ) / ( double( numsamples ) * dz ) << " ";
             }
             std::cout << std::endl;
         }
 
-        std::cout << "Angular Moments:\n";
-        for( size_t m = 0; m < numMoments; m++ )
+        std::cout << "Internal Angular Collision Densities:\n";
+        for( size_t zi = 0; zi < num_z_bins; ++zi )
         {
-            std::cout << angular_moments[m] / ( double( numsamples ) ) << " ";
+            for( size_t ui = 0; ui < numubins_internal; ++ui )
+            {
+                const size_t collision_angular_i = zi * numubins_internal + ui;
+                std::cout << double( density_angular[collision_angular_i] ) / ( double( numsamples ) * 2.0 * du * dz ) << " ";
+            }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
 
         delete [] density;
+        delete [] density_angular;
     }
 };
