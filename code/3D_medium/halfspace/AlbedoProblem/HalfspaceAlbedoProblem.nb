@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    347226,       7962]
-NotebookOptionsPosition[    338260,       7656]
-NotebookOutlinePosition[    338668,       7674]
-CellTagsIndexPosition[    338625,       7671]
+NotebookDataLength[    347747,       7971]
+NotebookOptionsPosition[    338739,       7664]
+NotebookOutlinePosition[    339149,       7682]
+CellTagsIndexPosition[    339106,       7679]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1359,70 +1359,65 @@ Cell[CellGroupData[{
 Cell["Delta-Illumination spatial fluence moments", "Subsection",
  CellChangeTimes->{{3.6815535079824953`*^9, 3.6815535142994843`*^9}}],
 
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"halfspaceAlbedoProblemIsotropic`x", "[", 
+    RowBox[{"c_", ",", "0", ",", "ui_", ",", "Hmoment_"}], "]"}], ":=", "1"}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"halfspaceAlbedoProblemIsotropic`x", "[", 
+   RowBox[{"c_", ",", "n_", ",", "ui_", ",", "Hmoment_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"n", "!"}], 
+   RowBox[{"(", 
+    RowBox[{
+     SuperscriptBox["ui", "n"], "+", 
+     RowBox[{
+      FractionBox["c", 
+       RowBox[{"2", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"1", "-", "c"}], ")"}], 
+         RowBox[{"1", "/", "2"}]]}]], 
+      RowBox[{"Sum", "[", 
+       RowBox[{
+        RowBox[{
+         FractionBox[
+          RowBox[{"Hmoment", "[", "j", "]"}], 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"n", "-", "j"}], ")"}], "!"}]], 
+         RowBox[{"x", "[", 
+          RowBox[{"c", ",", 
+           RowBox[{"n", "-", "j"}], ",", "ui", ",", "Hmoment"}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", "1", ",", "n"}], "}"}]}], "]"}]}]}], 
+    ")"}]}]}]}], "Input",
+ CellChangeTimes->{{3.6815530242924223`*^9, 3.6815531195418386`*^9}, {
+  3.681706406277114*^9, 3.681706413366148*^9}, {3.681706479018536*^9, 
+  3.681706497854917*^9}, {3.6817066449696712`*^9, 3.681706645890155*^9}}],
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"halfspaceAlbedoProblemIsotropic`spatialMoments", "[", 
-   RowBox[{"c_", ",", "ui_", ",", "H_", ",", "Hmoment_"}], "]"}], ":=", 
-  RowBox[{"{", "\[IndentingNewLine]", " ", 
-   RowBox[{
-    FractionBox[
-     RowBox[{"H", "[", "ui", "]"}], 
-     SuperscriptBox[
-      RowBox[{"(", 
-       RowBox[{"1", "-", "c"}], ")"}], 
-      RowBox[{"1", "/", "2"}]]], ",", "\[IndentingNewLine]", " ", 
-    RowBox[{
-     FractionBox[
-      RowBox[{"H", "[", "ui", "]"}], 
-      SuperscriptBox[
-       RowBox[{"(", 
-        RowBox[{"1", "-", "c"}], ")"}], 
-       RowBox[{"1", "/", "2"}]]], " ", 
+   RowBox[{"c_", ",", "ui_", ",", "H_", ",", "Hmoment_"}], "]"}], ":=", " ", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"H", "[", "ui", "]"}], 
+    SuperscriptBox[
      RowBox[{"(", 
-      RowBox[{"ui", "+", 
-       FractionBox[
-        RowBox[{"c", " ", 
-         RowBox[{"Hmoment", "[", "1", "]"}]}], 
-        RowBox[{"2", " ", 
-         SqrtBox[
-          RowBox[{"1", "-", "c"}]]}]]}], ")"}]}], ",", "\[IndentingNewLine]", 
-    
+      RowBox[{"1", "-", "c"}], ")"}], 
+     RowBox[{"1", "/", "2"}]]], 
+   RowBox[{"Table", "[", 
     RowBox[{
-     FractionBox[
-      RowBox[{"H", "[", "ui", "]"}], 
-      SuperscriptBox[
-       RowBox[{"(", 
-        RowBox[{"1", "-", "c"}], ")"}], 
-       RowBox[{"1", "/", "2"}]]], " ", 
-     RowBox[{"(", 
-      RowBox[{"2", " ", 
-       RowBox[{"(", 
-        RowBox[{
-         SuperscriptBox["ui", "2"], "+", 
-         FractionBox[
-          RowBox[{"c", " ", 
-           RowBox[{"(", 
-            RowBox[{
-             RowBox[{
-              RowBox[{"Hmoment", "[", "1", "]"}], " ", 
-              RowBox[{"(", 
-               RowBox[{"ui", "+", 
-                FractionBox[
-                 RowBox[{"c", " ", 
-                  RowBox[{"Hmoment", "[", "1", "]"}]}], 
-                 RowBox[{"2", " ", 
-                  SqrtBox[
-                   RowBox[{"1", "-", "c"}]]}]]}], ")"}]}], "+", 
-             RowBox[{"Hmoment", "[", "2", "]"}]}], ")"}]}], 
-          RowBox[{"2", " ", 
-           SqrtBox[
-            RowBox[{"1", "-", "c"}]]}]]}], ")"}]}], ")"}]}]}], 
-   "\[IndentingNewLine]", "}"}]}]], "Input",
- CellChangeTimes->{{3.681552418562767*^9, 3.681552420152713*^9}, {
-   3.681553226475425*^9, 3.681553275074917*^9}, 3.681553306154273*^9, 
-   3.681553337578692*^9, {3.681553398841259*^9, 3.681553413597411*^9}, {
-   3.681553454847499*^9, 3.681553463849519*^9}, {3.681553527545508*^9, 
-   3.681553528620264*^9}}]
+     RowBox[{"halfspaceAlbedoProblemIsotropic`x", "[", 
+      RowBox[{"c", ",", "n", ",", "ui", ",", "Hmoment"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "0", ",", "4"}], "}"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.681706397415625*^9, 3.681706432714485*^9}, {
+   3.6817065040710077`*^9, 3.681706505046466*^9}, {3.681706578572641*^9, 
+   3.681706580810482*^9}, 3.681706649393506*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1568,7 +1563,7 @@ Cell[BoxData[
   3.67808722764205*^9, {3.6780873339701023`*^9, 3.67808735395572*^9}, 
    3.679765663228611*^9, 3.679778031999332*^9, 3.679780658798781*^9, 
    3.680341303428151*^9, 3.681349367605083*^9, {3.6813601610707912`*^9, 
-   3.68136017943259*^9}}]
+   3.68136017943259*^9}, 3.681706366380859*^9, 3.681880087504066*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1588,7 +1583,8 @@ Cell[BoxData[
  CellChangeTimes->{
   3.67808742158805*^9, 3.6797656633290863`*^9, 3.6797780320938597`*^9, 
    3.679780662289702*^9, 3.680341303673196*^9, 3.6813493676379147`*^9, {
-   3.681360161131063*^9, 3.6813601794661283`*^9}}]
+   3.681360161131063*^9, 3.6813601794661283`*^9}, 3.6817063664462633`*^9, 
+   3.681880087533504*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1609,7 +1605,8 @@ Cell[BoxData[
  CellChangeTimes->{
   3.678087429768113*^9, 3.679765663399321*^9, 3.679778032115913*^9, 
    3.679780663951962*^9, 3.680341303747439*^9, 3.6813493677007837`*^9, {
-   3.681360161176878*^9, 3.681360179514822*^9}}]
+   3.681360161176878*^9, 3.681360179514822*^9}, 3.681706366490959*^9, 
+   3.681880087554422*^9}]
 }, Open  ]],
 
 Cell[BoxData[{
@@ -1855,7 +1852,7 @@ Cell[BoxData[
  CellChangeTimes->{
   3.6780875316116457`*^9, {3.6780876290961123`*^9, 3.678087661094594*^9}, 
    3.679765663840742*^9, 3.679778032761354*^9, 3.679780775481172*^9, 
-   3.680341304879633*^9, 3.681349662484387*^9}]
+   3.680341304879633*^9, 3.681349662484387*^9, 3.681880088349099*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2488,7 +2485,7 @@ indexed matched boundary\"", TraditionalForm]}},
    3.678087955693734*^9}, {3.67824356642969*^9, 3.6782435765297737`*^9}, 
    3.678243617271042*^9, 3.6797656647039843`*^9, 3.679778033591619*^9, 
    3.679780779999057*^9, 3.680341305932749*^9, {3.681349642203829*^9, 
-   3.681349663220643*^9}}]
+   3.681349663220643*^9}, 3.681880088997178*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -2575,18 +2572,17 @@ space\\nincidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=\>\"", "<>",
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`ui$$ = 0.25, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`ui$$ = 0.1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`ui$$], {0.1, 0.25, 0.5, 1}}}, Typeset`size$$ = {
-    362.6650390625, {101.52263573317362`, 9.208984375}}, Typeset`update$$ = 0,
-     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`ui$919462$$ = 0}, 
+    360., {130., 134.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`ui$1996694$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`ui$$ = 0.1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`ui$$, $CellContext`ui$919462$$, 0]}, 
+        Hold[$CellContext`ui$$, $CellContext`ui$1996694$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -2619,7 +2615,7 @@ $CellContext`ui$$]], {$CellContext`c, 0.001, 0.9999}, PlotRange -> All]],
                "), indexed-matched boundary"]}}]]], 
       "Specifications" :> {{$CellContext`ui$$, {0.1, 0.25, 0.5, 1}}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{399., {89., 92.}},
+     ImageSizeCache->{405., {173., 179.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -2634,7 +2630,7 @@ $CellContext`ui$$]], {$CellContext`c, 0.001, 0.9999}, PlotRange -> All]],
   3.678243803720525*^9, {3.678243862430122*^9, 3.678243919649342*^9}, {
    3.678244850878378*^9, 3.678244872837129*^9}, 3.6782449759668913`*^9, 
    3.6797656647874117`*^9, 3.679778033715375*^9, 3.679780785570218*^9, 
-   3.680341306186005*^9, 3.6813496633457823`*^9}]
+   3.680341306186005*^9, 3.6813496633457823`*^9, 3.681880089088526*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -2767,18 +2763,17 @@ Cell[BoxData[
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`ui$$ = 0.5, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`ui$$ = 0.1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`ui$$], {0.1, 0.25, 0.5, 1}}}, Typeset`size$$ = {
-    392.5373828125, {130.93181542067362`, 9.208984375}}, Typeset`update$$ = 0,
-     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`ui$1051216$$ = 0}, 
+    360., {136., 141.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`ui$2001161$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`ui$$ = 0.1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`ui$$, $CellContext`ui$1051216$$, 0]}, 
+        Hold[$CellContext`ui$$, $CellContext`ui$2001161$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -2829,7 +2824,7 @@ $CellContext`n][$CellContext`\[Alpha], $CellContext`ui$$], Null}, {
                "), indexed-matched boundary"]}}]]], 
       "Specifications" :> {{$CellContext`ui$$, {0.1, 0.25, 0.5, 1}}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{429., {104., 107.}},
+     ImageSizeCache->{405., {180., 186.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -2845,7 +2840,7 @@ $CellContext`n][$CellContext`\[Alpha], $CellContext`ui$$], Null}, {
    3.678244876676355*^9, 3.678244970897399*^9, {3.678245179862151*^9, 
    3.678245209781083*^9}, 3.6783534640482407`*^9, 3.67976566553354*^9, 
    3.679778034467782*^9, 3.679780801432678*^9, 3.6803413069803743`*^9, 
-   3.681349663928796*^9, 3.681349707290015*^9}]
+   3.681349663928796*^9, 3.681349707290015*^9, 3.681880089659569*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -3032,13 +3027,12 @@ Cell[BoxData[
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`ui$$], {0.1, 0.25, 0.5, 1}}}, Typeset`size$$ = {
-    776.64, {120., 122.2568477474602}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`ui$1052527$$ = 0}, 
+    1079., {166., 170.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`ui$2001608$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`ui$$ = 0.1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`ui$$, $CellContext`ui$1052527$$, 0]}, 
+        Hold[$CellContext`ui$$, $CellContext`ui$2001608$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -3109,7 +3103,7 @@ space\nincidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=",
 Rigorous Diffusion (thin), Grosjean1 (DotDashed)"]}}]]}]], 
       "Specifications" :> {{$CellContext`ui$$, {0.1, 0.25, 0.5, 1}}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{4.503599627370496*^15, {155., 158.}},
+     ImageSizeCache->{4.503599627370496*^15, {209., 215.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -3127,7 +3121,8 @@ Rigorous Diffusion (thin), Grosjean1 (DotDashed)"]}}]]}]],
    3.678372930366005*^9}, 3.6783739343226147`*^9, 3.678373980012702*^9, {
    3.678374025397338*^9, 3.6783740510904417`*^9}, 3.678376310810396*^9, 
    3.6797656657507467`*^9, 3.679778034684558*^9, 3.679780811611343*^9, 
-   3.680341307371166*^9, 3.68134966410231*^9, 3.681349716196246*^9}]
+   3.680341307371166*^9, 3.68134966410231*^9, 3.681349716196246*^9, 
+   3.6818800898238792`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -3855,7 +3850,7 @@ indexed-matched boundary\\nClassical Diffusion (dashed), Rigorous Diffusion \
    3.678376522954358*^9, 3.678376677249661*^9, {3.67837670947663*^9, 
    3.6783767349944277`*^9}, 3.6797656734688253`*^9, 3.679778041951199*^9, 
    3.6797808441136827`*^9, 3.6803413166706133`*^9, 3.6813496700767097`*^9, 
-   3.681349729686664*^9}]
+   3.681349729686664*^9, 3.68188009572871*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -4496,7 +4491,7 @@ space\\nwhite-sky illumination, indexed-matched boundary\"",
    3.6783533021203547`*^9}, 3.678353463538197*^9, 3.678353743833808*^9, 
    3.678353814230276*^9, 3.6797656743053617`*^9, 3.679778042772705*^9, 
    3.679780849965819*^9, 3.68034131767962*^9, 3.681349670770096*^9, 
-   3.68134973557722*^9}]
+   3.68134973557722*^9, 3.681880096426106*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5332,7 +5327,8 @@ indexed-matched boundary\"", TraditionalForm]}},
  CellChangeTimes->{{3.6783546456037407`*^9, 3.678354662972131*^9}, {
    3.678354695203496*^9, 3.6783547187797194`*^9}, 3.679765674422832*^9, 
    3.679778042888412*^9, 3.679780853173368*^9, 3.6803413178812227`*^9, 
-   3.6813496708737173`*^9, 3.681349737910804*^9, 3.681350186353311*^9}]
+   3.6813496708737173`*^9, 3.681349737910804*^9, 3.681350186353311*^9, 
+   3.6818800965379887`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -5727,7 +5723,8 @@ space\\nWhite-sky illumination, indexed-matched boundary\\nPomraning \
  CellChangeTimes->{{3.6783796342412577`*^9, 3.678379642195406*^9}, 
    3.678379680263198*^9, {3.678380055960987*^9, 3.678380065757395*^9}, 
    3.679765678346946*^9, 3.679778047051753*^9, 3.6797808604387712`*^9, 
-   3.680341323113636*^9, 3.6813496748884163`*^9, 3.681350196613082*^9}]
+   3.680341323113636*^9, 3.6813496748884163`*^9, 3.681350196613082*^9, 
+   3.681880100519148*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -5924,16 +5921,15 @@ Cell[BoxData[
        Hold[$CellContext`\[Alpha]$$], 0.8}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
       0.9, 0.95, 0.99, 0.999}}, {{
        Hold[$CellContext`ui$$], 0.25}, {0.1, 0.25, 0.5, 1}}}, 
-    Typeset`size$$ = {
-    366.9912109375, {293.201438972342, 20.468933653735796`}}, 
-    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$2131459$$ = 0, $CellContext`ui$2131460$$ = 0}, 
+    Typeset`size$$ = {500., {179., 183.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$2089562$$ = 0, $CellContext`ui$2089563$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`ui$$ = 0.25, $CellContext`\[Alpha]$$ = 
         0.8}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2131459$$, 0], 
-        Hold[$CellContext`ui$$, $CellContext`ui$2131460$$, 0]}, 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2089562$$, 0], 
+        Hold[$CellContext`ui$$, $CellContext`ui$2089563$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -5994,13 +5990,14 @@ $CellContext`ui$$, $CellContext`u], {$CellContext`u, 0, 1}, PlotRange -> All],
 \(o\)]\)): isotropically-scattering half space\nincidence \
 (\!\(\*SubscriptBox[\(u\), \(i\)]\)=", 
               ToString[$CellContext`ui$$], 
+              
               "), indexed-matched boundary\nTotal (thin), Single-Scatter \
 (dashed), Double-scatter (thick)"]}}]], 
       "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.8}, {0.01, 0.1, 0.3, 
          0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
          0.999}}, {{$CellContext`ui$$, 0.25}, {0.1, 0.25, 0.5, 1}}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{403., {204., 207.}},
+     ImageSizeCache->{545., {236., 242.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -6022,7 +6019,7 @@ $CellContext`ui$$, $CellContext`u], {$CellContext`u, 0, 1}, PlotRange -> All],
    3.678383407679491*^9}, {3.678383437867269*^9, 3.6783834644885473`*^9}, {
    3.678383528129384*^9, 3.6783835460155478`*^9}, 3.678386530096539*^9, 
    3.679765678635023*^9, 3.679778047385944*^9, 3.6797808920674067`*^9, 
-   3.680341323232682*^9, 3.681350205577718*^9}]
+   3.680341323232682*^9, 3.681350205577718*^9, 3.681880100565007*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -6246,19 +6243,19 @@ Cell[BoxData[
       0.9, 0.95, 0.99, 0.999}}, {{
        Hold[$CellContext`ui$$], 0.5}, {0.1, 0.25, 0.5, 1}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1}}}, Typeset`size$$ = {
-    259.2, {67., 68.17419354838711}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$3826559$$ = 0, $CellContext`ui$3826560$$ = 
-    0, $CellContext`\[CapitalSigma]t$3826561$$ = False}, 
+    1079., {166., 170.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$2089835$$ = 
+    0, $CellContext`ui$2089836$$ = 
+    0, $CellContext`\[CapitalSigma]t$2089837$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`ui$$ = 0.5, $CellContext`\[Alpha]$$ = 
         0.99, $CellContext`\[CapitalSigma]t$$ = 1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$3826559$$, 0], 
-        Hold[$CellContext`ui$$, $CellContext`ui$3826560$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2089835$$, 0], 
+        Hold[$CellContext`ui$$, $CellContext`ui$2089836$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$3826561$$, False]}, 
+$CellContext`\[CapitalSigma]t$2089837$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -6283,47 +6280,45 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 4]; $CellContext`maxz$ =
             Floor[$CellContext`numzs$/5]]]; $CellContext`fluence3$ = Part[
            halfspaceAlbedoProblemIsotropic`plotpoints[
             Part[$CellContext`imdata$, 13], $CellContext`dz$], 
-           Span[1, -1, $CellContext`stride$]]; 
-        Quiet[$CellContext`pp = GraphicsRow[{
+           Span[1, -1, $CellContext`stride$]]; Quiet[
+          GraphicsRow[{
+            Show[
              Show[
-              Show[
-               Plot[
-               2 Pi halfspaceAlbedoProblemIsotropic`\[Phi]exact[$CellContext`\
-z, $CellContext`\[Alpha]$$, $CellContext`ui$$], {$CellContext`z, 
-                 0, $CellContext`maxz$/5}, PlotRange -> All], 
-               ListPlot[$CellContext`fluence$, PlotStyle -> {
-                  PointSize[0.004], Black}]], Frame -> True, ImageSize -> 500,
-               FrameLabel -> {{
-                 $CellContext`\[Phi][$CellContext`z], Null}, {$CellContext`z, 
-                 
-                 StringJoin[
-                 "Fluence \[Phi](z): isotropically-scattering half space\n\
+              Plot[
+              2 Pi halfspaceAlbedoProblemIsotropic`\[Phi]exact[$CellContext`z,\
+ $CellContext`\[Alpha]$$, $CellContext`ui$$], {$CellContext`z, 
+                0, $CellContext`maxz$/5}, PlotRange -> All], 
+              ListPlot[$CellContext`fluence$, PlotStyle -> {
+                 PointSize[0.004], Black}]], Frame -> True, ImageSize -> 500, 
+             FrameLabel -> {{
+                $CellContext`\[Phi][$CellContext`z], Null}, {$CellContext`z, 
+                StringJoin[
+                "Fluence \[Phi](z): isotropically-scattering half space\n\
 incidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=", 
-                  ToString[$CellContext`ui$$], 
-                  "), indexed-matched boundary, \[Alpha] = ", 
-                  ToString[$CellContext`\[Alpha]$$]]}}], 
+                 ToString[$CellContext`ui$$], 
+                 "), indexed-matched boundary, \[Alpha] = ", 
+                 ToString[$CellContext`\[Alpha]$$]]}}], 
+            Show[
              Show[
-              Show[
-               LogPlot[
-               2 Pi halfspaceAlbedoProblemIsotropic`\[Phi]exact[$CellContext`\
-z, $CellContext`\[Alpha]$$, $CellContext`ui$$], {$CellContext`z, 
-                 0, $CellContext`maxz$}, PlotRange -> All], 
-               ListLogPlot[$CellContext`fluence3$, PlotStyle -> {
-                  PointSize[0.004], Black}]], Frame -> True, ImageSize -> 500,
-               FrameLabel -> {{
-                 $CellContext`\[Phi][$CellContext`z], Null}, {$CellContext`z, 
-                 
-                 StringJoin[
-                 "Fluence \[Phi](z): isotropically-scattering half space\n\
+              LogPlot[
+              2 Pi halfspaceAlbedoProblemIsotropic`\[Phi]exact[$CellContext`z,\
+ $CellContext`\[Alpha]$$, $CellContext`ui$$], {$CellContext`z, 
+                0, $CellContext`maxz$}, PlotRange -> All], 
+              ListLogPlot[$CellContext`fluence3$, PlotStyle -> {
+                 PointSize[0.004], Black}]], Frame -> True, ImageSize -> 500, 
+             FrameLabel -> {{
+                $CellContext`\[Phi][$CellContext`z], Null}, {$CellContext`z, 
+                StringJoin[
+                "Fluence \[Phi](z): isotropically-scattering half space\n\
 incidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=", 
-                  ToString[$CellContext`ui$$], 
-                  "), indexed-matched boundary, \[Alpha] = ", 
-                  ToString[$CellContext`\[Alpha]$$]]}}]}]]], 
+                 ToString[$CellContext`ui$$], 
+                 "), indexed-matched boundary, \[Alpha] = ", 
+                 ToString[$CellContext`\[Alpha]$$]]}}]}]]], 
       "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.99}, {0.01, 0.1, 0.3, 
          0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 0.999}}, {{$CellContext`ui$$, 0.5}, {
          0.1, 0.25, 0.5, 1}}, {$CellContext`\[CapitalSigma]t$$, {1}}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{296., {128., 131.}},
+     ImageSizeCache->{1124., {236., 242.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -6342,7 +6337,7 @@ incidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=",
    3.679023659599296*^9, 3.679023904155217*^9, 3.679024056475607*^9, 
    3.679765678934637*^9, 3.6797780475545187`*^9, 3.679778358414218*^9, 
    3.679780925309901*^9, 3.680341323478178*^9, 3.68134947413279*^9, 
-   3.681350408532567*^9, 3.681350695053619*^9}]
+   3.681350408532567*^9, 3.681350695053619*^9, 3.6818801006934137`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -6456,10 +6451,8 @@ Cell[BoxData[
                 RowBox[{"{", 
                  RowBox[{"z", ",", 
                   RowBox[{
-                  "\"\<Fluence \[Phi](z): isotropically-scattering half space\
-\\nincidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=\>\"", "<>", 
-                   RowBox[{"ToString", "[", "ui", "]"}], "<>", 
-                   "\"\<), indexed-matched boundary, \[Alpha] = \>\"", "<>", 
+                  "\"\<Fluence \[Phi](z): isotropically-scattering half space \
+white-Sky illumination\\n indexed-matched boundary, \[Alpha] = \>\"", "<>", 
                    RowBox[{"ToString", "[", "\[Alpha]", "]"}]}]}], "}"}]}], 
                "}"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
            "\[IndentingNewLine]", 
@@ -6495,10 +6488,8 @@ Cell[BoxData[
                 RowBox[{"{", 
                  RowBox[{"z", ",", 
                   RowBox[{
-                  "\"\<Fluence \[Phi](z): isotropically-scattering half space\
-\\nincidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=\>\"", "<>", 
-                   RowBox[{"ToString", "[", "ui", "]"}], "<>", 
-                   "\"\<), indexed-matched boundary, \[Alpha] = \>\"", "<>", 
+                  "\"\<Fluence \[Phi](z): isotropically-scattering half space \
+white-Sky illumination\\n indexed-matched boundary, \[Alpha] = \>\"", "<>", 
                    RowBox[{"ToString", "[", "\[Alpha]", "]"}]}]}], "}"}]}], 
                "}"}]}]}], "\[IndentingNewLine]", "]"}]}], 
           "\[IndentingNewLine]", "}"}], "]"}], "\[IndentingNewLine]", 
@@ -6507,7 +6498,7 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{
       RowBox[{"{", 
-       RowBox[{"\[Alpha]", ",", "0.99"}], "}"}], ",", 
+       RowBox[{"\[Alpha]", ",", "0.3"}], "}"}], ",", 
       "halfspaceAlbedoProblemIsotropic`alphas"}], "}"}], ",", 
     "\[IndentingNewLine]", 
     RowBox[{"{", 
@@ -6541,31 +6532,31 @@ Cell[BoxData[
    3.681350617607449*^9, 3.681350619603817*^9}, {3.681350840373707*^9, 
    3.681350840788444*^9}, {3.6813599747657347`*^9, 3.681359986836121*^9}, {
    3.681360027202428*^9, 3.681360034345829*^9}, {3.681360095377928*^9, 
-   3.68136009562429*^9}}],
+   3.68136009562429*^9}, {3.681875947633127*^9, 3.681875947934149*^9}, {
+   3.6818759924260283`*^9, 3.681876002740102*^9}, {3.681876048596408*^9, 
+   3.6818760565049953`*^9}, 3.681876097031455*^9}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    0.99, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    0.3, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`\[Alpha]$$], 0.99}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
+       Hold[$CellContext`\[Alpha]$$], 0.3}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
       0.9, 0.95, 0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1}}}, Typeset`size$$ = {
-    259.2, {67., 68.17419354838711}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$289908$$ = 
-    0, $CellContext`\[CapitalSigma]t$289909$$ = False}, 
+    1079., {166., 170.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$2101836$$ = 
+    0, $CellContext`\[CapitalSigma]t$2101837$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`\[Alpha]$$ = 
-        0.99, $CellContext`\[CapitalSigma]t$$ = 1}, 
-      "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$289908$$, 0], 
+        0.3, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2101836$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$289909$$, False]}, 
+$CellContext`\[CapitalSigma]t$2101837$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -6602,10 +6593,8 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 3]; $CellContext`maxz$ =
              FrameLabel -> {{
                 $CellContext`\[Phi][$CellContext`z], Null}, {$CellContext`z, 
                 StringJoin[
-                "Fluence \[Phi](z): isotropically-scattering half space\n\
-incidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=", 
-                 ToString[$CellContext`ui], 
-                 "), indexed-matched boundary, \[Alpha] = ", 
+                "Fluence \[Phi](z): isotropically-scattering half space \
+white-Sky illumination\n indexed-matched boundary, \[Alpha] = ", 
                  ToString[$CellContext`\[Alpha]$$]]}}], 
             Show[
              Show[
@@ -6618,16 +6607,14 @@ incidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=",
              FrameLabel -> {{
                 $CellContext`\[Phi][$CellContext`z], Null}, {$CellContext`z, 
                 StringJoin[
-                "Fluence \[Phi](z): isotropically-scattering half space\n\
-incidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=", 
-                 ToString[$CellContext`ui], 
-                 "), indexed-matched boundary, \[Alpha] = ", 
+                "Fluence \[Phi](z): isotropically-scattering half space \
+white-Sky illumination\n indexed-matched boundary, \[Alpha] = ", 
                  ToString[$CellContext`\[Alpha]$$]]}}]}]]], 
-      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.99}, {0.01, 0.1, 0.3, 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.3}, {0.01, 0.1, 0.3, 
          0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
          0.999}}, {$CellContext`\[CapitalSigma]t$$, {1}}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{296., {118., 121.}},
+     ImageSizeCache->{1124., {224., 230.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -6638,7 +6625,10 @@ incidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=",
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{3.681360579419942*^9}]
+ CellChangeTimes->{
+  3.681360579419942*^9, {3.681875936196521*^9, 3.681875951786643*^9}, 
+   3.681876007776989*^9, {3.68187605413654*^9, 3.681876063614493*^9}, 
+   3.681876177515793*^9, 3.681880102883608*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -6718,35 +6708,55 @@ Cell[BoxData[
            RowBox[{"-", "1"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
         RowBox[{"Show", "[", "\[IndentingNewLine]", 
          RowBox[{
-          RowBox[{"Plot", "[", 
+          RowBox[{"Show", "[", "\[IndentingNewLine]", 
            RowBox[{
-            RowBox[{"Pi", " ", 
-             RowBox[{"halfspaceAlbedoProblemIsotropic`Lexact", "[", 
-              RowBox[{"z", ",", "\[Alpha]", ",", "u"}], "]"}]}], ",", 
-            RowBox[{"{", 
-             RowBox[{"u", ",", 
-              RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}], ",", 
-          "\[IndentingNewLine]", 
-          RowBox[{"Plot", "[", 
-           RowBox[{
-            RowBox[{"Pi", " ", 
+            RowBox[{"Plot", "[", 
              RowBox[{
-             "halfspaceAlbedoProblemIsotropic`Lrigorousdiffusion", "[", 
-              RowBox[{"z", ",", "\[Alpha]", ",", "u"}], "]"}]}], ",", 
-            RowBox[{"{", 
-             RowBox[{"u", ",", 
-              RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
-            RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], ",", 
-          "\[IndentingNewLine]", 
-          RowBox[{"ListPlot", "[", 
-           RowBox[{
-            RowBox[{"pointsLz", "[", 
-             RowBox[{"[", 
-              RowBox[{"1", ";;", 
-               RowBox[{"-", "2"}], ";;", "3"}], "]"}], "]"}], ",", 
-            RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}]}], 
-         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], 
-     "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+              RowBox[{"Pi", " ", 
+               RowBox[{"halfspaceAlbedoProblemIsotropic`Lexact", "[", 
+                RowBox[{"z", ",", "\[Alpha]", ",", "u"}], "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"u", ",", 
+                RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"Pi", " ", 
+               RowBox[{
+               "halfspaceAlbedoProblemIsotropic`Lrigorousdiffusion", "[", 
+                RowBox[{"z", ",", "\[Alpha]", ",", "u"}], "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"u", ",", 
+                RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", "Dashed"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"ListPlot", "[", 
+             RowBox[{
+              RowBox[{"pointsLz", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ";;", 
+                 RowBox[{"-", "2"}], ";;", "3"}], "]"}], "]"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}]}], 
+           "\[IndentingNewLine]", "]"}], ",", 
+          RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", "500"}], ",", 
+          RowBox[{"FrameLabel", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"L", "[", 
+                RowBox[{"z", ",", "u"}], "]"}], ","}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"u", ",", 
+               RowBox[{
+               "\"\<Radiance L(z,u): isotropically-scattering half space \
+white-Sky illumination\\n indexed-matched boundary, exact(thin), rigorous \
+diffusion (dashed), \[Alpha] = \>\"", "<>", 
+                RowBox[{"ToString", "[", "\[Alpha]", "]"}]}]}], "}"}]}], 
+            "}"}]}]}], "\[IndentingNewLine]", "]"}]}]}], 
+      "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+     "\[IndentingNewLine]", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"{", 
@@ -6805,7 +6815,9 @@ Cell[BoxData[
    3.681360786573388*^9}, {3.6813608620194683`*^9, 3.681360904398485*^9}, 
    3.6813613088712387`*^9, {3.681361366698917*^9, 3.681361415656047*^9}, {
    3.6813615256335297`*^9, 3.6813616100685053`*^9}, {3.681362280045043*^9, 
-   3.681362280338359*^9}}],
+   3.681362280338359*^9}, {3.6818788696414633`*^9, 3.6818788769353237`*^9}, {
+   3.681878912441152*^9, 3.681878995651082*^9}, {3.681879995092889*^9, 
+   3.68188000141918*^9}, 3.6818802295315228`*^9}],
 
 Cell[BoxData[
  TagBox[
@@ -6835,19 +6847,18 @@ Cell[BoxData[
       215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 
       229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 
       243, 244, 245, 246, 247, 248, 249, 250}}}, Typeset`size$$ = {
-    377.7216796875, {82.32741553484198, 20.468933653735796`}}, 
-    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Alpha]$1622545$$ = 
-    0, $CellContext`\[CapitalSigma]t$1622546$$ = 
-    False, $CellContext`n$1622547$$ = 0}, 
+    500., {170., 174.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$2584327$$ = 
+    0, $CellContext`\[CapitalSigma]t$2584328$$ = 
+    False, $CellContext`n$2584329$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`n$$ = 3, $CellContext`\[Alpha]$$ = 
         0.7, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$1622545$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2584327$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$1622546$$, False], 
-        Hold[$CellContext`n$$, $CellContext`n$1622547$$, 0]}, 
+$CellContext`\[CapitalSigma]t$2584328$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$2584329$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -6872,16 +6883,25 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 3]; $CellContext`maxz$ =
            Part[$CellContext`imdata$, -
              halfspaceAlbedoProblemIsotropic`numz + $CellContext`n$$ - 
             2], $CellContext`du$, -1]; Show[
-          Plot[
-          Pi halfspaceAlbedoProblemIsotropic`Lexact[$CellContext`z$, \
+          Show[
+           Plot[
+           Pi halfspaceAlbedoProblemIsotropic`Lexact[$CellContext`z$, \
 $CellContext`\[Alpha]$$, $CellContext`u], {$CellContext`u, -1, 1}], 
-          Plot[
-          Pi halfspaceAlbedoProblemIsotropic`Lrigorousdiffusion[$CellContext`\
+           Plot[
+           Pi halfspaceAlbedoProblemIsotropic`Lrigorousdiffusion[$CellContext`\
 z$, $CellContext`\[Alpha]$$, $CellContext`u], {$CellContext`u, -1, 1}, 
-           PlotStyle -> Dashed], 
-          ListPlot[
-           Part[$CellContext`pointsLz, 
-            Span[1, -2, 3]], PlotStyle -> Black]]], 
+            PlotStyle -> Dashed], 
+           ListPlot[
+            Part[$CellContext`pointsLz, 
+             Span[1, -2, 3]], PlotStyle -> Black]], Frame -> True, ImageSize -> 
+          500, FrameLabel -> {{
+             $CellContext`L[$CellContext`z$, $CellContext`u], 
+             Null}, {$CellContext`u, 
+             StringJoin[
+             "Radiance L(z,u): isotropically-scattering half space white-Sky \
+illumination\n indexed-matched boundary, exact(thin), rigorous diffusion \
+(dashed), \[Alpha] = ", 
+              ToString[$CellContext`\[Alpha]$$]]}}]], 
       "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.7}, {0.01, 0.1, 0.3, 
          0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
          0.999}}, {$CellContext`\[CapitalSigma]t$$, {
@@ -6903,7 +6923,7 @@ z$, $CellContext`\[Alpha]$$, $CellContext`u], {$CellContext`u, -1, 1},
          220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233,
           234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 
          247, 248, 249, 250}}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{414., {115., 118.}},
+     ImageSizeCache->{545., {241., 247.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -6914,22 +6934,7 @@ z$, $CellContext`\[Alpha]$$, $CellContext`u], {$CellContext`u, -1, 1},
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.67978151355532*^9, 3.679781556568242*^9}, {
-   3.6797820854536448`*^9, 3.679782089437457*^9}, {3.679782128992425*^9, 
-   3.679782153625799*^9}, 3.679782276104517*^9, {3.679782309383368*^9, 
-   3.679782327053411*^9}, 3.679782364572837*^9, {3.6797824006334133`*^9, 
-   3.679782416633115*^9}, 3.679782474526322*^9, {3.6797825059710217`*^9, 
-   3.6797825458356237`*^9}, {3.679782716447329*^9, 3.679782731593*^9}, 
-   3.679782786435155*^9, 3.679782824377336*^9, {3.6797829120961514`*^9, 
-   3.67978292648422*^9}, {3.6797829623972797`*^9, 3.67978298410286*^9}, {
-   3.679783057839334*^9, 3.6797830721621647`*^9}, {3.679783114635*^9, 
-   3.679783136268126*^9}, 3.680090451937675*^9, 3.680341327822694*^9, 
-   3.6813509295497513`*^9, {3.6813570993578*^9, 3.681357109293438*^9}, {
-   3.681360686290584*^9, 3.6813606915193367`*^9}, 3.68136078706439*^9, {
-   3.68136084357957*^9, 3.681360889341858*^9}, 3.681361309480345*^9, {
-   3.6813613672317753`*^9, 3.681361416054542*^9}, {3.6813615261024237`*^9, 
-   3.6813616103591967`*^9}, {3.681361836287547*^9, 3.6813618625336437`*^9}, 
-   3.6813622822848597`*^9}]
+ CellChangeTimes->{3.681880231843911*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -7045,13 +7050,14 @@ Cell[BoxData[
    3.681363144688005*^9}, {3.681363178487775*^9, 3.6813631786146297`*^9}, {
    3.681363377486508*^9, 3.681363377692432*^9}, {3.681534387287829*^9, 
    3.6815344304136887`*^9}, {3.681534480790941*^9, 3.681534485677236*^9}, {
-   3.6815345393565617`*^9, 3.6815345401159286`*^9}}],
+   3.6815345393565617`*^9, 3.6815345401159286`*^9}, 3.681880007034378*^9, {
+   3.6818802756397047`*^9, 3.681880278024098*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`ui$$ = 1, $CellContext`\[Alpha]$$ = 
-    0.999, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`ui$$ = 0.5, $CellContext`\[Alpha]$$ = 
+    0.99, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
@@ -7059,19 +7065,19 @@ Cell[BoxData[
       0.9, 0.95, 0.99, 0.999}}, {{
        Hold[$CellContext`ui$$], 0.5}, {0.1, 0.25, 0.5, 1}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1}}}, Typeset`size$$ = {
-    245., {7.372, 10.372}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$1700343$$ = 
-    0, $CellContext`ui$1700344$$ = 
-    0, $CellContext`\[CapitalSigma]t$1700345$$ = False}, 
+    337., {12.134033203125, 17.865966796875}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$2606266$$ = 0, $CellContext`ui$2606267$$ = 
+    0, $CellContext`\[CapitalSigma]t$2606268$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`ui$$ = 0.5, $CellContext`\[Alpha]$$ = 
         0.99, $CellContext`\[CapitalSigma]t$$ = 1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$1700343$$, 0], 
-        Hold[$CellContext`ui$$, $CellContext`ui$1700344$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2606266$$, 0], 
+        Hold[$CellContext`ui$$, $CellContext`ui$2606267$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$1700345$$, False]}, 
+$CellContext`\[CapitalSigma]t$2606268$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -7101,7 +7107,7 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 4]; TableForm[{
          0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 0.999}}, {{$CellContext`ui$$, 0.5}, {
          0.1, 0.25, 0.5, 1}}, {$CellContext`\[CapitalSigma]t$$, {1}}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{281., {70., 73.}},
+     ImageSizeCache->{382., {84., 90.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -7112,11 +7118,7 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 4]; TableForm[{
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.681362792231444*^9, 3.681362808014308*^9}, {
-   3.68136284330089*^9, 3.681362845850347*^9}, {3.6813630664971457`*^9, 
-   3.681363101795093*^9}, {3.681363145337493*^9, 3.6813631791769238`*^9}, 
-   3.681363378012702*^9, 3.681534431499647*^9, {3.681534481482038*^9, 
-   3.681534486170862*^9}, 3.681534540435342*^9}]
+ CellChangeTimes->{3.681880279712525*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -7225,24 +7227,25 @@ Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    0.01, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    0.99, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`\[Alpha]$$], 0.99}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
       0.9, 0.95, 0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1}}}, Typeset`size$$ = {
-    286., {7.372, 10.372}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$1702062$$ = 
-    0, $CellContext`\[CapitalSigma]t$1702063$$ = False}, 
+    337., {12.134033203125, 17.865966796875}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$2109033$$ = 
+    0, $CellContext`\[CapitalSigma]t$2109034$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`\[Alpha]$$ = 
         0.99, $CellContext`\[CapitalSigma]t$$ = 1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$1702062$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2109033$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$1702063$$, False]}, 
+$CellContext`\[CapitalSigma]t$2109034$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -7270,7 +7273,7 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 3]; TableForm[{
          0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
          0.999}}, {$CellContext`\[CapitalSigma]t$$, {1}}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{322., {59., 62.}},
+     ImageSizeCache->{382., {71., 77.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -7285,7 +7288,7 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 3]; TableForm[{
    3.68136284330089*^9, 3.681362845850347*^9}, {3.6813630664971457`*^9, 
    3.681363101795093*^9}, {3.681363145337493*^9, 3.6813631791769238`*^9}, 
    3.681363378012702*^9, {3.681363515852689*^9, 3.68136353181986*^9}, 
-   3.681534724229622*^9}]
+   3.681534724229622*^9, 3.6818801046013937`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -7340,7 +7343,7 @@ Cell[BoxData[
              RowBox[{"imdata", "[", 
               RowBox[{"[", "15", "]"}], "]"}], "[", 
              RowBox[{"[", 
-              RowBox[{"1", ";;", "3"}], "]"}], "]"}]}], "]"}], ",", 
+              RowBox[{"1", ";;", "5"}], "]"}], "]"}]}], "]"}], ",", 
           "\[IndentingNewLine]", 
           RowBox[{"Join", "[", 
            RowBox[{
@@ -7404,13 +7407,15 @@ Cell[BoxData[
    3.681363377486508*^9, 3.681363377692432*^9}, {3.6813635019124403`*^9, 
    3.681363531437456*^9}, {3.681534712953725*^9, 3.681534723690467*^9}, {
    3.681535006242292*^9, 3.6815350176337223`*^9}, {3.6815514458354387`*^9, 
-   3.681551465318316*^9}, 3.681551982076336*^9, 3.681553250515729*^9}],
+   3.681551465318316*^9}, 3.681551982076336*^9, 3.681553250515729*^9, {
+   3.681706329252136*^9, 3.681706329409402*^9}, {3.681706374927372*^9, 
+   3.681706380412676*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`ui$$ = 0.1, $CellContext`\[Alpha]$$ = 
-    0.7, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`ui$$ = 0.5, $CellContext`\[Alpha]$$ = 
+    0.99, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
@@ -7418,19 +7423,19 @@ Cell[BoxData[
       0.9, 0.95, 0.99, 0.999}}, {{
        Hold[$CellContext`ui$$], 0.5}, {0.1, 0.25, 0.5, 1}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1}}}, Typeset`size$$ = {
-    230., {7.372, 10.372}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$1771490$$ = 
-    0, $CellContext`ui$1771491$$ = 
-    0, $CellContext`\[CapitalSigma]t$1771492$$ = False}, 
+    484., {12.134033203125, 17.865966796875}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$2109061$$ = 0, $CellContext`ui$2109062$$ = 
+    0, $CellContext`\[CapitalSigma]t$2109063$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`ui$$ = 0.5, $CellContext`\[Alpha]$$ = 
         0.99, $CellContext`\[CapitalSigma]t$$ = 1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$1771490$$, 0], 
-        Hold[$CellContext`ui$$, $CellContext`ui$1771491$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2109061$$, 0], 
+        Hold[$CellContext`ui$$, $CellContext`ui$2109062$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$1771492$$, False]}, 
+$CellContext`\[CapitalSigma]t$2109063$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -7448,7 +7453,7 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 4]; TableForm[{
            Join[{"MC:"}, 
             Part[
              Part[$CellContext`imdata$, 15], 
-             Span[1, 3]]], 
+             Span[1, 5]]], 
            Join[{"Analytic:"}, 
             
             halfspaceAlbedoProblemIsotropic`spatialMoments[$CellContext`\
@@ -7460,7 +7465,7 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 4]; TableForm[{
          0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 0.999}}, {{$CellContext`ui$$, 0.5}, {
          0.1, 0.25, 0.5, 1}}, {$CellContext`\[CapitalSigma]t$$, {1}}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{266., {70., 73.}},
+     ImageSizeCache->{529., {84., 90.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -7477,7 +7482,8 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 4]; TableForm[{
    3.681363378012702*^9, {3.681363515852689*^9, 3.68136353181986*^9}, 
    3.681534724229622*^9, {3.68153500990979*^9, 3.681535017903261*^9}, {
    3.681551454532667*^9, 3.681551465766432*^9}, 3.68155198267594*^9, {
-   3.68155324294741*^9, 3.6815532519740553`*^9}}]
+   3.68155324294741*^9, 3.6815532519740553`*^9}, 3.6817063298195877`*^9, 
+   3.681706378098892*^9, 3.68170651539703*^9, 3.681880104649427*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -7588,24 +7594,25 @@ Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    0.1, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    0.99, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`\[Alpha]$$], 0.99}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
       0.9, 0.95, 0.99, 0.999}}, {
       Hold[$CellContext`\[CapitalSigma]t$$], {1}}}, Typeset`size$$ = {
-    235., {7.372, 10.372}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$1703201$$ = 
-    0, $CellContext`\[CapitalSigma]t$1703202$$ = False}, 
+    316., {12.134033203125, 17.865966796875}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$2109119$$ = 
+    0, $CellContext`\[CapitalSigma]t$2109120$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`\[Alpha]$$ = 
         0.99, $CellContext`\[CapitalSigma]t$$ = 1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$1703201$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$2109119$$, 0], 
         Hold[$CellContext`\[CapitalSigma]t$$, \
-$CellContext`\[CapitalSigma]t$1703202$$, False]}, 
+$CellContext`\[CapitalSigma]t$2109120$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -7633,7 +7640,7 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 3]; TableForm[{
          0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
          0.999}}, {$CellContext`\[CapitalSigma]t$$, {1}}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{271., {59., 62.}},
+     ImageSizeCache->{361., {71., 77.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -7648,14 +7655,15 @@ $CellContext`imdata$ = Part[$CellContext`sim$, 3]; TableForm[{
    3.68136284330089*^9, 3.681362845850347*^9}, {3.6813630664971457`*^9, 
    3.681363101795093*^9}, {3.681363145337493*^9, 3.6813631791769238`*^9}, 
    3.681363378012702*^9, {3.681363515852689*^9, 3.68136353181986*^9}, 
-   3.681534724229622*^9, {3.68153500990979*^9, 3.681535017903261*^9}}]
+   3.681534724229622*^9, {3.68153500990979*^9, 3.681535017903261*^9}, 
+   3.681880104703672*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1050, 948},
-WindowMargins->{{Automatic, 14}, {Automatic, 0}},
+WindowMargins->{{170, Automatic}, {52, Automatic}},
 PrintingCopies->1,
 PrintingPageRange->{1, Automatic},
 FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 28, \
@@ -7769,26 +7777,26 @@ Cell[29471, 927, 108, 1, 64, "Section"],
 Cell[CellGroupData[{
 Cell[29604, 932, 272, 4, 44, "Subsection"],
 Cell[29879, 938, 124, 1, 30, "Text"],
-Cell[30006, 941, 2922, 71, 225, "Input"]
+Cell[30006, 941, 2922, 71, 157, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[32965, 1017, 236, 3, 44, "Subsection"],
-Cell[33204, 1022, 1072, 28, 98, "Input"]
+Cell[33204, 1022, 1072, 28, 94, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[34313, 1055, 141, 1, 44, "Subsection"],
 Cell[34457, 1058, 124, 1, 30, "Text"],
-Cell[34584, 1061, 1000, 28, 83, "Input"]
+Cell[34584, 1061, 1000, 28, 70, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[35621, 1094, 274, 4, 44, "Subsection"],
 Cell[35898, 1100, 124, 1, 30, "Text"],
-Cell[36025, 1103, 1213, 32, 104, "Input"]
+Cell[36025, 1103, 1213, 32, 91, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[37275, 1140, 180, 2, 44, "Subsection"],
-Cell[37458, 1144, 1140, 31, 83, "Input"],
-Cell[38601, 1177, 2273, 61, 194, "Input"]
+Cell[37458, 1144, 1140, 31, 70, "Input"],
+Cell[38601, 1177, 2273, 61, 176, "Input"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
@@ -7806,160 +7814,161 @@ Cell[CellGroupData[{
 Cell[44396, 1353, 100, 1, 64, "Section"],
 Cell[CellGroupData[{
 Cell[44521, 1358, 134, 1, 44, "Subsection"],
-Cell[44658, 1361, 2216, 63, 230, "Input"]
+Cell[44658, 1361, 1321, 37, 97, "Input"],
+Cell[45982, 1400, 787, 19, 76, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[46911, 1429, 136, 1, 44, "Subsection"],
-Cell[47050, 1432, 1644, 49, 213, "Input"]
+Cell[46806, 1424, 136, 1, 44, "Subsection"],
+Cell[46945, 1427, 1644, 49, 213, "Input"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[48743, 1487, 245, 3, 64, "Section"],
+Cell[48638, 1482, 245, 3, 64, "Section"],
 Cell[CellGroupData[{
-Cell[49013, 1494, 154, 2, 44, "Subsection"],
-Cell[49170, 1498, 392, 9, 54, "Input"],
+Cell[48908, 1489, 154, 2, 44, "Subsection"],
+Cell[49065, 1493, 392, 9, 54, "Input"],
 Cell[CellGroupData[{
-Cell[49587, 1511, 1869, 47, 201, "Input"],
-Cell[51459, 1560, 457, 10, 32, "Output"]
+Cell[49482, 1506, 1869, 47, 201, "Input"],
+Cell[51354, 1555, 501, 10, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[51953, 1575, 337, 8, 32, "Input"],
-Cell[52293, 1585, 266, 5, 32, "Output"]
+Cell[51892, 1570, 337, 8, 32, "Input"],
+Cell[52232, 1580, 316, 6, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[52596, 1595, 336, 8, 32, "Input"],
-Cell[52935, 1605, 314, 6, 32, "Output"]
+Cell[52585, 1591, 336, 8, 32, "Input"],
+Cell[52924, 1601, 362, 7, 32, "Output"]
 }, Open  ]],
-Cell[53264, 1614, 1312, 33, 96, "Input"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[54613, 1652, 207, 3, 44, "Subsection"],
-Cell[54823, 1657, 444, 9, 54, "Input"],
-Cell[55270, 1668, 1423, 36, 180, "Input"]
+Cell[53301, 1611, 1312, 33, 96, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[56730, 1709, 94, 1, 44, "Subsection"],
-Cell[56827, 1712, 668, 19, 32, "Input"],
-Cell[57498, 1733, 638, 18, 54, "Input"]
+Cell[54650, 1649, 207, 3, 44, "Subsection"],
+Cell[54860, 1654, 444, 9, 54, "Input"],
+Cell[55307, 1665, 1423, 36, 180, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[56767, 1706, 94, 1, 44, "Subsection"],
+Cell[56864, 1709, 668, 19, 32, "Input"],
+Cell[57535, 1730, 638, 18, 54, "Input"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[58185, 1757, 104, 1, 64, "Section"],
+Cell[58222, 1754, 104, 1, 64, "Section"],
 Cell[CellGroupData[{
-Cell[58314, 1762, 106, 1, 44, "Subsection"],
-Cell[58423, 1765, 1592, 38, 138, "Input"],
+Cell[58351, 1759, 106, 1, 44, "Subsection"],
+Cell[58460, 1762, 1592, 38, 138, "Input"],
 Cell[CellGroupData[{
-Cell[60040, 1807, 836, 22, 54, "Input"],
-Cell[60879, 1831, 973, 26, 54, "Output"]
+Cell[60077, 1804, 836, 22, 54, "Input"],
+Cell[60916, 1828, 995, 26, 54, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[61889, 1862, 1953, 47, 243, "Input"],
-Cell[63845, 1911, 25418, 579, 267, "Output"]
+Cell[61948, 1859, 1953, 47, 243, "Input"],
+Cell[63904, 1908, 25440, 579, 267, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[89312, 2496, 137, 1, 44, "Subsection"],
+Cell[89393, 2493, 137, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[89474, 2501, 3066, 71, 327, "Input"],
-Cell[92543, 2574, 2954, 62, 369, "Output"]
+Cell[89555, 2498, 3066, 71, 327, "Input"],
+Cell[92624, 2571, 2942, 61, 369, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[95546, 2642, 317, 5, 44, "Subsection"],
+Cell[95615, 2638, 317, 5, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[95888, 2651, 4786, 113, 411, "Input"],
-Cell[100677, 2766, 3805, 81, 379, "Output"]
+Cell[95957, 2647, 4786, 113, 411, "Input"],
+Cell[100746, 2762, 3790, 80, 383, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[104531, 2853, 189, 2, 44, "Subsection"],
+Cell[104585, 2848, 189, 2, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[104745, 2859, 7571, 165, 809, "Input"],
-Cell[112319, 3026, 5176, 103, 441, "Output"]
+Cell[104799, 2854, 7571, 165, 809, "Input"],
+Cell[112373, 3021, 5185, 103, 441, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[117544, 3135, 125, 1, 44, "Subsection"],
+Cell[117607, 3130, 125, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[117694, 3140, 4345, 101, 545, "Input"],
-Cell[122042, 3243, 36189, 614, 377, "Output"]
+Cell[117757, 3135, 4345, 101, 545, "Input"],
+Cell[122105, 3238, 36210, 614, 377, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[158280, 3863, 262, 5, 44, "Subsection"],
+Cell[158364, 3858, 262, 5, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[158567, 3872, 2648, 62, 327, "Input"],
-Cell[161218, 3936, 24335, 562, 277, "Output"]
+Cell[158651, 3867, 2648, 62, 327, "Input"],
+Cell[161302, 3931, 24357, 562, 277, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[185590, 4503, 3651, 93, 411, "Input"],
-Cell[189244, 4598, 34932, 736, 288, "Output"]
+Cell[185696, 4498, 3651, 93, 411, "Input"],
+Cell[189350, 4593, 34960, 737, 288, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[224225, 5340, 121, 1, 44, "Subsection"],
+Cell[224359, 5336, 121, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[224371, 5345, 2142, 52, 314, "Input"],
-Cell[226516, 5399, 19140, 330, 361, "Output"]
+Cell[224505, 5341, 2142, 52, 314, "Input"],
+Cell[226650, 5395, 19166, 331, 361, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[245717, 5736, 100, 1, 64, "Section"],
+Cell[245877, 5733, 100, 1, 64, "Section"],
 Cell[CellGroupData[{
-Cell[245842, 5741, 7746, 173, 600, "Input"],
-Cell[253591, 5916, 5768, 108, 495, "Output"]
+Cell[246002, 5738, 7746, 173, 600, "Input"],
+Cell[253751, 5913, 5763, 108, 495, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[259408, 6030, 117, 1, 64, "Section"],
+Cell[259563, 6027, 117, 1, 64, "Section"],
 Cell[CellGroupData[{
-Cell[259550, 6035, 188, 2, 44, "Subsection"],
+Cell[259705, 6032, 188, 2, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[259763, 6041, 9068, 193, 910, "Input"],
-Cell[268834, 6236, 5798, 108, 495, "Output"]
+Cell[259918, 6038, 9068, 193, 910, "Input"],
+Cell[268989, 6233, 5731, 106, 495, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[274681, 6350, 245, 3, 44, "Subsection"],
+Cell[274769, 6345, 245, 3, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[274951, 6357, 8882, 186, 889, "Input"],
-Cell[283836, 6545, 4854, 95, 471, "Output"]
+Cell[275039, 6352, 8799, 184, 1015, "Input"],
+Cell[283841, 6538, 4815, 92, 471, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[288739, 6646, 242, 3, 44, "Subsection"],
+Cell[288705, 6636, 242, 3, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[289006, 6653, 7314, 154, 579, "Input"],
-Cell[296323, 6809, 7494, 122, 393, "Output"]
+Cell[288972, 6643, 8391, 176, 726, "Input"],
+Cell[297366, 6821, 6817, 115, 505, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[303866, 6937, 144, 1, 44, "Subsection"],
+Cell[304232, 6942, 144, 1, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[304035, 6942, 5160, 105, 390, "Input"],
-Cell[309198, 7049, 3593, 69, 191, "Output"]
+Cell[304401, 6947, 5234, 106, 390, "Input"],
+Cell[309638, 7055, 3320, 65, 225, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[312840, 7124, 184, 2, 44, "Subsection"],
+Cell[313007, 7126, 184, 2, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[313049, 7130, 4537, 91, 327, "Input"],
-Cell[317589, 7223, 3168, 64, 165, "Output"]
+Cell[313216, 7132, 4537, 91, 327, "Input"],
+Cell[317756, 7225, 3216, 65, 165, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[320806, 7293, 283, 3, 44, "Subsection"],
+Cell[321021, 7296, 283, 3, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[321114, 7300, 5253, 106, 390, "Input"],
-Cell[326370, 7408, 3736, 71, 191, "Output"]
+Cell[321329, 7303, 5353, 108, 390, "Input"],
+Cell[326685, 7413, 3849, 72, 191, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[330155, 7485, 226, 3, 44, "Subsection"],
+Cell[330583, 7491, 226, 3, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[330406, 7492, 4588, 92, 327, "Input"],
-Cell[334997, 7586, 3211, 64, 165, "Output"]
+Cell[330834, 7498, 4588, 92, 327, "Input"],
+Cell[335425, 7592, 3262, 66, 165, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
