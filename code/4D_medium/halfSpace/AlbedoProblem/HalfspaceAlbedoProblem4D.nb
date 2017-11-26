@@ -1,0 +1,648 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     22526,        640]
+NotebookOptionsPosition[     20544,        565]
+NotebookOutlinePosition[     20899,        581]
+CellTagsIndexPosition[     20856,        578]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["4D Half Space, Albedo Problem, Isotropic Scattering", "Title",
+ CellChangeTimes->{{3.61742787362737*^9, 3.617427885266508*^9}, {
+  3.619592656668026*^9, 3.619592662680479*^9}, {3.621178701559973*^9, 
+  3.621178702944907*^9}, {3.626744457954844*^9, 3.626744459455998*^9}, {
+  3.6270128566699667`*^9, 3.62701287183559*^9}, {3.677299024329054*^9, 
+  3.677299024855452*^9}, {3.67808633514688*^9, 3.678086343217737*^9}, {
+  3.717601730891873*^9, 3.717601731679225*^9}, {3.719420471915697*^9, 
+  3.719420472187089*^9}}],
+
+Cell["Exponential Random Flight", "Subtitle",
+ CellChangeTimes->{{3.619594484416584*^9, 3.6195944880949802`*^9}}],
+
+Cell[TextData[{
+ "This is code to accompany the book:\n",
+ StyleBox["A Hitchhiker\[CloseCurlyQuote]s Guide to Multiple Scattering\n", 
+  "Subchapter"],
+ StyleBox["\[Copyright] 2017", "Subsection"],
+ StyleBox[" ", "Section"],
+ StyleBox["Eugene d\[CloseCurlyQuote]Eon \nwww.eugenedeon.com", "Subsection"]
+}], "Text",
+ CellChangeTimes->{{3.6174286022468777`*^9, 3.617428710592918*^9}, {
+  3.6410039396211576`*^9, 3.641003945296226*^9}, {3.645060407236547*^9, 
+  3.645060444609275*^9}, {3.6772990291112137`*^9, 3.677299029295004*^9}, {
+  3.717601735937079*^9, 3.7176017360151987`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Path Setup", "Section",
+ CellChangeTimes->{{3.640928920990849*^9, 3.64092892141395*^9}, {
+  3.640928986491934*^9, 3.640928986905283*^9}}],
+
+Cell["\<\
+Put a file at ~/.hitchhikerpath with the path to your hitchhiker repo so that \
+these worksheets can find the MC data from the C++ simulations for \
+verification\
+\>", "Text",
+ CellChangeTimes->{{3.640928926126832*^9, 3.6409289600754013`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"Import", "[", "\"\<~/.hitchhikerpath\>\"", "]"}], "]"}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notation", "Section",
+ CellChangeTimes->{{3.617428538130481*^9, 3.617428538753331*^9}}],
+
+Cell["\<\
+\[Alpha] - single-scattering albedo
+\[CapitalSigma]t - extinction coefficient
+x - depth in medium (positive inside the scattering half space)
+u = cos \[Theta] - direction cosine\
+\>", "Text",
+ CellChangeTimes->{{3.617428487341361*^9, 3.617428516514864*^9}, {
+  3.62117873415422*^9, 3.621178738599084*^9}, {3.626744515152608*^9, 
+  3.6267445586349487`*^9}, {3.627012891843924*^9, 3.627012912866523*^9}, {
+  3.649256344957097*^9, 3.649256385822545*^9}, {3.678086358929956*^9, 
+  3.678086372624774*^9}, {3.7176017850695677`*^9, 3.71760178515758*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Load MC Data", "Section",
+ CellChangeTimes->{{3.617427964847665*^9, 3.617427965662361*^9}, {
+  3.6174280073412037`*^9, 3.617428007556081*^9}, {3.640936210100869*^9, 
+  3.640936211771452*^9}, {3.678086953635509*^9, 3.6780869562832727`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Delta Incidence", "Subsection",
+ CellChangeTimes->{{3.678086946572081*^9, 3.678086967675282*^9}, {
+  3.6780871170653467`*^9, 3.678087119758628*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`deltafs", "=", 
+   RowBox[{
+   "FileNames", "[", 
+    "\"\<code/4D_medium/halfSpace/albedoProblem/data/albedoproblem_delta*.txt\
+\>\"", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.678086976996827*^9, 3.678087014259712*^9}, {
+  3.678087065568762*^9, 3.678087110199113*^9}, {3.678087140544381*^9, 
+  3.678087140934195*^9}, {3.7176019733265743`*^9, 3.7176019863798447`*^9}, {
+  3.719420496173562*^9, 3.71942050807489*^9}, {3.719420658851705*^9, 
+  3.7194207083020906`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "FourDhalfspaceAlbedoProblemIsotropic`indexdelta", "[", "x_", "]"}], ":=", 
+   
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"data", ",", "\[Alpha]", ",", "\[CapitalSigma]t", ",", "ui"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"data", "=", 
+       RowBox[{"Import", "[", 
+        RowBox[{"x", ",", "\"\<Table\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\[CapitalSigma]t", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", 
+          RowBox[{"-", "1"}]}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"\[Alpha]", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "3"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      
+      RowBox[{"ui", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", 
+          RowBox[{"-", "4"}]}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\[Alpha]", ",", "\[CapitalSigma]t", ",", "ui", ",", "data"}], 
+       "}"}]}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.717602088693499*^9, 3.719420512616444*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`simulationsdelta", "=", 
+   RowBox[{
+   "FourDhalfspaceAlbedoProblemIsotropic`indexdelta", "/@", 
+    "FourDhalfspaceAlbedoProblemIsotropic`deltafs"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`alphas", "=", 
+  RowBox[{"Union", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "&"}], "/@", 
+    "FourDhalfspaceAlbedoProblemIsotropic`simulationsdelta"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.717602097237547*^9, 3.7176021025415163`*^9}, {
+  3.7194205381862793`*^9, 3.719420538205521*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.01`", ",", "0.1`", ",", "0.3`", ",", "0.5`", ",", "0.7`", ",", "0.8`", 
+   ",", "0.9`", ",", "0.95`", ",", "0.99`", ",", "0.999`"}], "}"}]], "Output",\
+
+ CellChangeTimes->{
+  3.7176021061830873`*^9, 3.717602285835648*^9, 3.7194205852257347`*^9, 
+   3.719420673688282*^9, 3.7194207169075537`*^9, {3.7197085531624804`*^9, 
+   3.719708562276905*^9}, 3.7206706333095083`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`muts", "=", 
+  RowBox[{"Union", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "&"}], "/@", 
+    "FourDhalfspaceAlbedoProblemIsotropic`simulationsdelta"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.717602125902042*^9, 3.717602127102022*^9}, {
+  3.719420538213131*^9, 3.719420538217038*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", "1", "}"}]], "Output",
+ CellChangeTimes->{
+  3.717602285910326*^9, 3.7194205852963552`*^9, 3.7194206737593527`*^9, 
+   3.719420717035308*^9, {3.7197085532456512`*^9, 3.719708562539844*^9}, 
+   3.720670633439562*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`uis", "=", 
+  RowBox[{"Union", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "[", 
+      RowBox[{"[", "3", "]"}], "]"}], "&"}], "/@", 
+    "FourDhalfspaceAlbedoProblemIsotropic`simulationsdelta"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7176021285498466`*^9, 3.717602129750001*^9}, {
+  3.719420538224167*^9, 3.719420538229619*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.1`", ",", "0.25`", ",", "0.5`", ",", "1"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.7176022859678383`*^9, 3.7194205853628607`*^9, 3.719420673826789*^9, 
+   3.719420717123131*^9, {3.719708553328827*^9, 3.719708562642488*^9}, 
+   3.720670633509223*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`numcollorders", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`simulationsdelta", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "4", "]"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`maxz", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`simulationsdelta", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "4", "]"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+  RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`dz", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`simulationsdelta", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "4", "]"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "9"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`numz", "=", 
+   RowBox[{"Floor", "[", 
+    RowBox[{
+    "FourDhalfspaceAlbedoProblemIsotropic`maxz", "/", 
+     "FourDhalfspaceAlbedoProblemIsotropic`dz"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.717602131327672*^9, 3.7176021427903023`*^9}, {
+  3.7194205382374363`*^9, 3.719420538271348*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Util", "Subsection",
+ CellChangeTimes->{{3.6783815697884808`*^9, 3.678381570148775*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`plotpoints", "[", 
+    RowBox[{"data_", ",", "du_"}], "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"du", " ", "i"}], " ", "-", " ", 
+        RowBox[{"0.5", " ", "du"}]}], ",", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "data", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6783815736105022`*^9, 3.678381617418*^9}, {
+   3.6783828408499107`*^9, 3.678382841109769*^9}, 3.7176022035002317`*^9, 
+   3.71942053828041*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`plotpoints2", "[", 
+    RowBox[{"data_", ",", "du_"}], "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"du", " ", "i"}], " ", "-", " ", 
+        RowBox[{"0.5", " ", "du"}]}], ",", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], 
+        FractionBox[
+         SqrtBox[
+          RowBox[{"1", "-", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"du", " ", "i"}], " ", "-", " ", 
+              RowBox[{"0.5", " ", "du"}]}], ")"}], "2"]}]], "2"]}]}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "data", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.717603604961042*^9, 3.7176036356972*^9}, {
+   3.717603676380837*^9, 3.7176036808350058`*^9}, 3.719420538289749*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`plotpoints", "[", 
+    RowBox[{"data_", ",", "d_", ",", "min_"}], "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"min", "+", 
+        RowBox[{"d", " ", "i"}], " ", "-", " ", 
+        RowBox[{"0.5", " ", "d"}]}], ",", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "data", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.679782606935545*^9, 3.6797826436214*^9}, 
+   3.7176022048282337`*^9, 3.719420538300395*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["H-function", "Section",
+ CellChangeTimes->{{3.719420832643147*^9, 3.71942083360322*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`H", "[", 
+   RowBox[{"c_", ",", "u_"}], "]"}], ":=", 
+  RowBox[{"Exp", "[", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"-", "1"}], "Pi"], 
+    RowBox[{"NIntegrate", "[", 
+     RowBox[{
+      RowBox[{
+       FractionBox["u", 
+        RowBox[{"1", "+", 
+         RowBox[{
+          SuperscriptBox["u", "2"], 
+          SuperscriptBox["t", "2"]}]}]], 
+       RowBox[{"Log", "[", 
+        RowBox[{"1", "-", 
+         RowBox[{"c", 
+          FractionBox[
+           RowBox[{"2", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "1"}], "+", 
+              SqrtBox[
+               RowBox[{"1", "+", 
+                SuperscriptBox["t", "2"]}]]}], ")"}]}], 
+           SuperscriptBox["t", "2"]]}]}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "0", ",", "Infinity"}], "}"}]}], "]"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.719420885478262*^9, 3.7194209655844393`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Albedo", "Section",
+ CellChangeTimes->{{3.678351849474118*^9, 3.678351854522242*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Exact Solution", "Subsection",
+ CellChangeTimes->{{3.57810145582381*^9, 3.57810146131748*^9}, {
+  3.678086667711203*^9, 3.6780866708386106`*^9}, {3.6783518807977543`*^9, 
+  3.678351882542946*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`albedoexact", "[", 
+   RowBox[{"\[Alpha]_", ",", "ui_"}], "]"}], ":=", 
+  RowBox[{"1", "-", 
+   RowBox[{
+    SqrtBox[
+     RowBox[{"1", "-", "\[Alpha]"}]], 
+    RowBox[{"FourDhalfspaceAlbedoProblemIsotropic`H", "[", 
+     RowBox[{"\[Alpha]", ",", "ui"}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.578101465840554*^9, 3.5781015027088823`*^9}, {
+  3.67808667418025*^9, 3.6780867412371283`*^9}, {3.678243522617496*^9, 
+  3.678243524540243*^9}, {3.678353149811701*^9, 3.6783531690275507`*^9}, {
+  3.717616405546089*^9, 3.717616409058095*^9}, {3.719420888665985*^9, 
+  3.719420889560924*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Albedo Benchmarks", "Section",
+ CellChangeTimes->{{3.6782455819149513`*^9, 3.678245590673798*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Albedo - Delta Illumination - General incidence", "Subsection",
+ CellChangeTimes->{{3.6782436990841293`*^9, 3.678243709674959*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"p", "=", 
+   RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "Rs", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Rs", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], ",", 
+             RowBox[{
+              RowBox[{"#", "[", 
+               RowBox[{"[", "4", "]"}], "]"}], "[", 
+              RowBox[{"[", 
+               RowBox[{"3", ",", "3"}], "]"}], "]"}]}], "}"}], "&"}], "/@", 
+          RowBox[{"Select", "[", 
+           RowBox[{
+           "FourDhalfspaceAlbedoProblemIsotropic`simulationsdelta", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"#", "[", 
+               RowBox[{"[", "3", "]"}], "]"}], "\[Equal]", "ui"}], "&"}]}], 
+           "]"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Quiet", "[", 
+         RowBox[{"Show", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Show", "[", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"ListLogLinearPlot", "[", 
+              RowBox[{"Rs", ",", 
+               RowBox[{"PlotStyle", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"PointSize", "[", "0.01", "]"}], ",", "Black"}], 
+                 "}"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"LogLinearPlot", "[", 
+              RowBox[{
+               RowBox[{"Quiet", "[", 
+                RowBox[{
+                "FourDhalfspaceAlbedoProblemIsotropic`albedoexact", "[", 
+                 RowBox[{"c", ",", "ui"}], "]"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"c", ",", "0.001", ",", ".9999"}], "}"}], ",", 
+               RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]}], 
+            "\[IndentingNewLine]", "]"}], ",", 
+           RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+           RowBox[{"FrameLabel", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"R", "[", 
+                 RowBox[{"\[Alpha]", ",", "ui"}], "]"}], ","}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<Single scattering albedo: \[Alpha]\>\"", ",", 
+                RowBox[{
+                "\"\<Total Reflectance/Albedo \
+R(\[Alpha],\!\(\*SubscriptBox[\(u\), \(i\)]\)): isotropically-scattering half \
+space\\nincidence (\!\(\*SubscriptBox[\(u\), \(i\)]\)=\>\"", "<>", 
+                 RowBox[{"ToString", "[", "ui", "]"}], "<>", 
+                 "\"\<), indexed-matched boundary\>\""}]}], "}"}]}], 
+             "}"}]}]}], "\[IndentingNewLine]", "]"}], "]"}]}]}], 
+      "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{"ui", ",", "FourDhalfspaceAlbedoProblemIsotropic`uis"}], 
+      "}"}]}], "]"}]}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.678243714363831*^9, 3.678243802473928*^9}, {
+   3.6782438372745743`*^9, 3.678243918405334*^9}, {3.678244848477655*^9, 
+   3.678244871652142*^9}, 3.678244974528975*^9, {3.717617191165825*^9, 
+   3.717617195237575*^9}, {3.717627896661762*^9, 3.717627897402671*^9}, {
+   3.717627981313841*^9, 3.7176279832089653`*^9}, {3.7176282907020187`*^9, 
+   3.7176282911469297`*^9}, {3.71942104295612*^9, 3.719421047364233*^9}, {
+   3.719708586861709*^9, 3.7197085871249*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`ui$$ = 0.1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`ui$$], {0.1, 0.25, 0.5, 1}}}, Typeset`size$$ = {
+    360., {130., 134.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`ui$10747246$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`ui$$ = 0.1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`ui$$, $CellContext`ui$10747246$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`Rs$}, $CellContext`Rs$ = Map[{
+            Part[#, 1], 
+            Part[
+             Part[#, 4], 3, 3]}& , 
+           Select[
+           FourDhalfspaceAlbedoProblemIsotropic`simulationsdelta, 
+            Part[#, 3] == $CellContext`ui$$& ]]; Quiet[
+          Show[
+           Show[
+            ListLogLinearPlot[$CellContext`Rs$, PlotStyle -> {
+               PointSize[0.01], Black}], 
+            LogLinearPlot[
+             Quiet[
+              
+              FourDhalfspaceAlbedoProblemIsotropic`albedoexact[$CellContext`c,\
+ $CellContext`ui$$]], {$CellContext`c, 0.001, 0.9999}, PlotRange -> All]], 
+           Frame -> True, FrameLabel -> {{
+              $CellContext`R[$CellContext`\[Alpha], $CellContext`ui$$], 
+              Null}, {"Single scattering albedo: \[Alpha]", 
+              StringJoin[
+              "Total Reflectance/Albedo R(\[Alpha],\!\(\*SubscriptBox[\(u\), \
+\(i\)]\)): isotropically-scattering half space\nincidence \
+(\!\(\*SubscriptBox[\(u\), \(i\)]\)=", 
+               ToString[$CellContext`ui$$], 
+               "), indexed-matched boundary"]}}]]], 
+      "Specifications" :> {{$CellContext`ui$$, {0.1, 0.25, 0.5, 1}}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{405., {173., 179.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.719421048255597*^9, 3.719708588088752*^9, 
+  3.7206706339890413`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{230, Automatic}, {61, Automatic}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 28, \
+2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 519, 7, 148, "Title"],
+Cell[1102, 31, 113, 1, 51, "Subtitle"],
+Cell[1218, 34, 581, 11, 129, "Text"],
+Cell[CellGroupData[{
+Cell[1824, 49, 143, 2, 64, "Section"],
+Cell[1970, 53, 253, 5, 49, "Text"],
+Cell[2226, 60, 122, 2, 32, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2385, 67, 93, 1, 64, "Section"],
+Cell[2481, 70, 557, 10, 87, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3075, 85, 245, 3, 64, "Section"],
+Cell[CellGroupData[{
+Cell[3345, 92, 154, 2, 44, "Subsection"],
+Cell[3502, 96, 546, 11, 54, "Input"],
+Cell[4051, 109, 1225, 34, 138, "Input"],
+Cell[CellGroupData[{
+Cell[5301, 147, 654, 16, 117, "Input"],
+Cell[5958, 165, 416, 9, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6411, 179, 400, 10, 54, "Input"],
+Cell[6814, 191, 243, 5, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7094, 201, 401, 10, 54, "Input"],
+Cell[7498, 213, 294, 6, 32, "Output"]
+}, Open  ]],
+Cell[7807, 222, 1410, 34, 201, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9254, 261, 94, 1, 44, "Subsection"],
+Cell[9351, 264, 723, 20, 54, "Input"],
+Cell[10077, 286, 988, 29, 82, "Input"],
+Cell[11068, 317, 693, 19, 54, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11810, 342, 94, 1, 64, "Section"],
+Cell[11907, 345, 988, 31, 93, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12932, 381, 91, 1, 64, "Section"],
+Cell[CellGroupData[{
+Cell[13048, 386, 202, 3, 44, "Subsection"],
+Cell[13253, 391, 662, 14, 56, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13964, 411, 104, 1, 64, "Section"],
+Cell[CellGroupData[{
+Cell[14093, 416, 137, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[14255, 421, 3498, 78, 390, "Input"],
+Cell[17756, 501, 2736, 58, 369, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

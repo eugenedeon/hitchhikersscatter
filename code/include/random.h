@@ -29,6 +29,12 @@ double GaussStep()
   return fabs( RandomGauss() ) / sqrt( 2.0 / M_PI );
 }
 
+// step-distrubion p(s) = s e^(-s)
+double Gamma2Step()
+{
+  return -log( RandomReal() * RandomReal() );
+}
+
 double PearsonStep()
 {
   return 1.0;
