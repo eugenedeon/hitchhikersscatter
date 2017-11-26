@@ -1,0 +1,3306 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    138363,       3298]
+NotebookOptionsPosition[    134038,       3148]
+NotebookOutlinePosition[    134444,       3166]
+CellTagsIndexPosition[    134401,       3163]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Infinite Flatland medium, Isotropic Line Source, Isotropic Scattering\
+\>", "Title",
+ CellChangeTimes->{{3.61742787362737*^9, 3.617427885266508*^9}, {
+  3.619592656668026*^9, 3.619592662680479*^9}, {3.621178701559973*^9, 
+  3.621178702944907*^9}, {3.626744457954844*^9, 3.626744459455998*^9}, {
+  3.6270128566699667`*^9, 3.62701287183559*^9}, {3.677299024329054*^9, 
+  3.677299024855452*^9}, {3.67790827338146*^9, 3.6779082739162197`*^9}, {
+  3.7116905328174334`*^9, 3.711690536230246*^9}}],
+
+Cell["Exponential Random Flight", "Subtitle",
+ CellChangeTimes->{{3.619594484416584*^9, 3.6195944880949802`*^9}}],
+
+Cell[TextData[{
+ "This is code to accompany the book:\n",
+ StyleBox["A Hitchhiker\[CloseCurlyQuote]s Guide to Multiple Scattering\n", 
+  "Subchapter"],
+ StyleBox["\[Copyright] 2017", "Subsection"],
+ StyleBox[" ", "Section"],
+ StyleBox["Eugene d\[CloseCurlyQuote]Eon \nwww.eugenedeon.com", "Subsection"]
+}], "Text",
+ CellChangeTimes->{{3.6174286022468777`*^9, 3.617428710592918*^9}, {
+  3.6410039396211576`*^9, 3.641003945296226*^9}, {3.645060407236547*^9, 
+  3.645060444609275*^9}, {3.6772990291112137`*^9, 3.677299029295004*^9}, {
+  3.720648391599619*^9, 3.72064839177035*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Path Setup", "Section",
+ CellChangeTimes->{{3.640928920990849*^9, 3.64092892141395*^9}, {
+  3.640928986491934*^9, 3.640928986905283*^9}}],
+
+Cell["\<\
+Put a file at ~/.hitchhikerpath with the path to your hitchhiker repo so that \
+these worksheets can find the MC data from the C++ simulations for \
+verification\
+\>", "Text",
+ CellChangeTimes->{{3.640928926126832*^9, 3.6409289600754013`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"Import", "[", "\"\<~/.hitchhikerpath\>\"", "]"}], "]"}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notation", "Section",
+ CellChangeTimes->{{3.617428538130481*^9, 3.617428538753331*^9}}],
+
+Cell["\<\
+\[Alpha] - single-scattering albedo
+\[CapitalSigma]t - extinction coefficient
+x - scalar position coordinate in medium (distance from line source at \
+origin)
+u = cos \[Theta] - direction cosine\
+\>", "Text",
+ CellChangeTimes->{{3.617428487341361*^9, 3.617428516514864*^9}, {
+  3.62117873415422*^9, 3.621178738599084*^9}, {3.626744515152608*^9, 
+  3.6267445586349487`*^9}, {3.627012891843924*^9, 3.627012912866523*^9}, {
+  3.649256344957097*^9, 3.649256385822545*^9}, {3.677908311529962*^9, 
+  3.677908325042219*^9}, {3.711690624432962*^9, 3.711690624520018*^9}, {
+  3.712777519575593*^9, 3.7127775199025097`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Analytic solutions", "Section",
+ CellChangeTimes->{{3.627013027925056*^9, 3.627013030948131*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Generalized Caseology quantities for Flatland [d\[CloseCurlyQuote]Eon \
+2017]", "Subsection",
+ CellChangeTimes->{{3.6774776567694683`*^9, 3.67747765747231*^9}, {
+  3.67747833237188*^9, 3.6774783443299837`*^9}, {3.712777604011121*^9, 
+  3.712777605078426*^9}, {3.720662749189961*^9, 3.7206627799141607`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"flatland`CaseN0", "[", 
+   RowBox[{"c_", ",", "v_"}], "]"}], ":=", 
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["c", "2"], " ", 
+    SuperscriptBox["v", "2"]}], 
+   RowBox[{"2", " ", "\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       SuperscriptBox["v", "2"]}], ")"}], 
+     RowBox[{"3", "/", "2"}]]}]]}]], "Input",
+ CellChangeTimes->{{3.711690854936923*^9, 3.711690857637542*^9}, {
+  3.712777570579957*^9, 3.712777572418549*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"flatland`Casev0", "[", "c_", "]"}], ":=", 
+  FractionBox["1", 
+   SqrtBox[
+    RowBox[{"1", "-", 
+     SuperscriptBox["c", "2"]}]]]}]], "Input",
+ CellChangeTimes->{
+  3.677478195414242*^9, {3.677478595620187*^9, 3.677478607699188*^9}, {
+   3.71169063715819*^9, 3.711690649576314*^9}, 3.712777577134264*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{
+   RowBox[{"flatland`CaseN0", "[", 
+    RowBox[{"c", ",", 
+     RowBox[{"flatland`Casev0", "[", "c", "]"}]}], "]"}], ",", 
+   RowBox[{"Assumptions", "\[Rule]", 
+    RowBox[{"0", "<", "c", "<", "1"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.712778221997205*^9, 3.7127782437666807`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  SqrtBox[
+   RowBox[{"1", "-", 
+    SuperscriptBox["c", "2"]}]], 
+  RowBox[{"2", " ", "c", " ", "\[Pi]"}]]], "Output",
+ CellChangeTimes->{{3.712778239617897*^9, 3.712778244094458*^9}, 
+   3.712793681398767*^9, 3.7141037652695293`*^9, 3.716484137534054*^9, 
+   3.717216123605247*^9, 3.717709941501925*^9, 3.720652327750288*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"flatland`Case\[Psi]0", "[", 
+   RowBox[{"u_", ",", "v0_", ",", "c_", ",", "z_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["c", 
+    RowBox[{"2", " ", "Pi"}]], 
+   FractionBox["v0", 
+    RowBox[{"v0", "-", 
+     RowBox[{
+      RowBox[{"Sign", "[", "z", "]"}], "u"}]}]]}]}]], "Input",
+ CellChangeTimes->{{3.6779997021186533`*^9, 3.677999752315556*^9}, {
+   3.67799978953563*^9, 3.677999810171295*^9}, {3.67800046092441*^9, 
+   3.678000471198715*^9}, {3.711696663254401*^9, 3.71169666417345*^9}, 
+   3.7127775973556833`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"flatland`CaseN", "[", 
+   RowBox[{"c_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"v", 
+   RowBox[{"(", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"flatland`Case\[Lambda]", "[", 
+       RowBox[{"v", ",", "c"}], "]"}], "2"], "+", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{"c", " ", "v"}], "2"], ")"}], "2"]}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.711695877445901*^9, 3.7116959144010983`*^9}, {
+  3.712725418770331*^9, 3.712725435364148*^9}, {3.712777584324499*^9, 
+  3.712777585924312*^9}, {3.712787477567765*^9, 3.712787477966803*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"flatland`Case\[Lambda]", "[", 
+   RowBox[{"v_", ",", "c_"}], "]"}], ":=", 
+  FractionBox[
+   SqrtBox[
+    RowBox[{"1", "-", 
+     SuperscriptBox["v", "2"]}]], "2"]}]], "Input",
+ CellChangeTimes->{{3.7206518609968557`*^9, 3.720651866935646*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fluence - Rigorous Diffusion Approximation", "Subsection",
+ CellChangeTimes->{{3.65000762860603*^9, 3.650007632916854*^9}, {
+  3.712777723774082*^9, 3.712777726163744*^9}, {3.7206628045966597`*^9, 
+  3.720662807426588*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]rigourousDiffusion", "[", 
+   RowBox[{"x_", ",", "\[CapitalSigma]t_", ",", "\[Alpha]_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"2", " ", "Pi"}]], 
+     FractionBox[
+      SuperscriptBox["E", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"Abs", "[", "x", "]"}]}], " ", 
+        RowBox[{"\[CapitalSigma]t", "/", "#"}]}]], 
+      RowBox[{" ", 
+       RowBox[{"flatland`CaseN0", "[", 
+        RowBox[{"\[Alpha]", ",", "#"}], "]"}]}]]}], "&"}], "[", 
+   RowBox[{"flatland`Casev0", "[", "\[Alpha]", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.677477704440878*^9, 3.677477713137025*^9}, {
+   3.677477886676087*^9, 3.677477912994403*^9}, {3.677477948321556*^9, 
+   3.6774780118993483`*^9}, {3.677908710388933*^9, 3.677908745024817*^9}, {
+   3.677909746720396*^9, 3.677909748103641*^9}, 3.6779099003556957`*^9, {
+   3.711691251483301*^9, 3.711691252105722*^9}, 3.712725493391885*^9, {
+   3.712777627854414*^9, 3.7127776330207033`*^9}, {3.712777992305345*^9, 
+   3.7127779953834476`*^9}, {3.72066266812191*^9, 3.720662670342997*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{
+   RowBox[{"infFlatlandisolineisoscatter`\[Phi]rigourousDiffusion", "[", 
+    RowBox[{"x", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], "]"}], ",", 
+   RowBox[{"Assumptions", "\[Rule]", 
+    RowBox[{
+     RowBox[{"0", "<", "\[Alpha]", "<", "1"}], "&&", 
+     RowBox[{"\[CapitalSigma]t", ">", "0"}]}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.712628145894411*^9, 3.7126281714917603`*^9}, 
+   3.712777638800408*^9, {3.7206626781993303`*^9, 3.7206626839528503`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{
+     RowBox[{"-", 
+      SqrtBox[
+       RowBox[{"1", "-", 
+        SuperscriptBox["\[Alpha]", "2"]}]]}], " ", "\[CapitalSigma]t", " ", 
+     RowBox[{"Abs", "[", "x", "]"}]}]], " ", "\[Alpha]"}], 
+  SqrtBox[
+   RowBox[{"1", "-", 
+    SuperscriptBox["\[Alpha]", "2"]}]]]], "Output",
+ CellChangeTimes->{{3.7126281500233707`*^9, 3.712628171879648*^9}, 
+   3.712777740038961*^9, {3.7127779990827503`*^9, 3.7127780060529623`*^9}, 
+   3.71410376547233*^9, 3.716484137812087*^9, 3.717216123873378*^9, 
+   3.7177099418055773`*^9, {3.720652324474416*^9, 3.720652328082458*^9}, 
+   3.720662684341998*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fluence - Exact solution 1 - Caseology Generalization", "Subsection",
+ CellChangeTimes->{{3.712777758329535*^9, 3.712777763952425*^9}, {
+  3.7206627401120253`*^9, 3.7206627429248133`*^9}, {3.720662815555285*^9, 
+  3.720662818896557*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]exact1", "[", 
+   RowBox[{"x_", ",", "\[CapitalSigma]t_", ",", "\[Alpha]_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"infFlatlandisolineisoscatter`\[Phi]rigourousDiffusion", "[", 
+    RowBox[{"x", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], "]"}], "+", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"2", " ", "Pi"}]], 
+    RowBox[{"NIntegrate", "[", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{" ", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"-", "\[CapitalSigma]t"}], " ", 
+           RowBox[{
+            RowBox[{"Abs", "[", "x", "]"}], " ", "/", "v"}]}]], " "}], 
+        RowBox[{" ", 
+         RowBox[{"flatland`CaseN", "[", 
+          RowBox[{"\[Alpha]", ",", "v"}], "]"}]}]], 
+       FractionBox[
+        SqrtBox[
+         RowBox[{"1", "-", 
+          SuperscriptBox["v", "2"]}]], "2"]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"v", ",", "0", ",", "1"}], "}"}]}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.711696061293791*^9, 3.711696063211938*^9}, 
+   3.7126239997570057`*^9, {3.712725475001519*^9, 3.7127254755212812`*^9}, {
+   3.712725513342712*^9, 3.712725515517253*^9}, {3.712777766753652*^9, 
+   3.712777771125589*^9}, {3.712785539398774*^9, 3.712785539964498*^9}, 
+   3.712785699193284*^9, {3.712785899980596*^9, 3.712785903411504*^9}, {
+   3.7127860061486387`*^9, 3.71278600746662*^9}, 3.720652313902821*^9, {
+   3.720652419568421*^9, 3.720652447220245*^9}, {3.720652524104714*^9, 
+   3.720652577876362*^9}, {3.720652609078067*^9, 3.720652609277478*^9}, {
+   3.720652640712632*^9, 3.7206526409592247`*^9}, {3.720652683149137*^9, 
+   3.720652683436645*^9}, 3.720652727078947*^9, {3.720652854211527*^9, 
+   3.720652864796493*^9}, {3.720659195755581*^9, 3.720659197337178*^9}, {
+   3.7206627302482357`*^9, 3.720662735261692*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fluence - Exact solution 2 - Fourier Transform", "Subsection",
+ CellChangeTimes->{{3.717710013135962*^9, 3.717710022928671*^9}, {
+  3.720662850031713*^9, 3.720662858006899*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]exact2", "[", 
+   RowBox[{"x_", ",", "\[CapitalSigma]t_", ",", "c_"}], "]"}], ":=", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"z", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"c", " ", "\[Pi]"}], "+", 
+        RowBox[{"2", " ", 
+         SqrtBox[
+          RowBox[{"1", "-", 
+           SuperscriptBox["c", "2"], "+", 
+           SuperscriptBox["z", "2"]}]]}], "+", 
+        RowBox[{"2", " ", "c", " ", 
+         RowBox[{"ArcSin", "[", 
+          FractionBox["c", 
+           SqrtBox[
+            RowBox[{"1", "+", 
+             SuperscriptBox["z", "2"]}]]], "]"}]}]}], ")"}], " ", 
+      RowBox[{"BesselJ", "[", 
+       RowBox[{"0", ",", 
+        RowBox[{"z", " ", 
+         RowBox[{"Abs", "[", "x", "]"}]}]}], "]"}]}], 
+     RowBox[{"2", " ", "\[Pi]", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         SuperscriptBox["c", "2"], "+", 
+         SuperscriptBox["z", "2"]}], ")"}], 
+       RowBox[{"3", "/", "2"}]]}]], ",", 
+    RowBox[{"{", 
+     RowBox[{"z", ",", "0", ",", "Infinity"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.71771003168569*^9, 3.717710031836212*^9}, {
+  3.717710129939385*^9, 3.717710148538212*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]exact3", "[", 
+   RowBox[{"x_", ",", "\[CapitalSigma]t_", ",", "c_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"BesselK", "[", 
+     RowBox[{"0", ",", 
+      RowBox[{"Abs", "[", "x", "]"}]}], "]"}], "\[Pi]"], "+", 
+   RowBox[{"NIntegrate", "[", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"c", " ", "z", " ", 
+       RowBox[{"(", 
+        RowBox[{"\[Pi]", "+", 
+         RowBox[{"\[Pi]", " ", 
+          SuperscriptBox["z", "2"]}], "+", 
+         RowBox[{"2", " ", "c", " ", 
+          SqrtBox[
+           RowBox[{"1", "-", 
+            SuperscriptBox["c", "2"], "+", 
+            SuperscriptBox["z", "2"]}]]}], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["z", "2"]}], ")"}], " ", 
+          RowBox[{"ArcSin", "[", 
+           FractionBox["c", 
+            SqrtBox[
+             RowBox[{"1", "+", 
+              SuperscriptBox["z", "2"]}]]], "]"}]}]}], ")"}], " ", 
+       RowBox[{"BesselJ", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{"z", " ", 
+          RowBox[{"Abs", "[", "x", "]"}]}]}], "]"}]}], 
+      RowBox[{"2", " ", "\[Pi]", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["z", "2"]}], ")"}], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          SuperscriptBox["c", "2"], "+", 
+          SuperscriptBox["z", "2"]}], ")"}], 
+        RowBox[{"3", "/", "2"}]]}]], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "0", ",", "Infinity"}], "}"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.7177108280682592`*^9, 3.717710837812915*^9}, 
+   3.717710979556205*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]exact4", "[", 
+   RowBox[{"x_", ",", "\[CapitalSigma]t_", ",", "c_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"BesselK", "[", 
+     RowBox[{"0", ",", 
+      RowBox[{"Abs", "[", "x", "]"}]}], "]"}], "\[Pi]"], "+", 
+   FractionBox[
+    RowBox[{"c", " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"-", 
+        SqrtBox[
+         RowBox[{"1", "-", 
+          SuperscriptBox["c", "2"]}]]}], " ", 
+       RowBox[{"Abs", "[", "x", "]"}]}]]}], 
+    RowBox[{"2", " ", 
+     SqrtBox[
+      RowBox[{"1", "-", 
+       SuperscriptBox["c", "2"]}]]}]], "+", 
+   RowBox[{"NIntegrate", "[", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"c", " ", "z", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox["c", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             SuperscriptBox["z", "2"]}], ")"}], " ", 
+           RowBox[{"(", 
+            RowBox[{"1", "-", 
+             SuperscriptBox["c", "2"], "+", 
+             SuperscriptBox["z", "2"]}], ")"}]}]], "+", 
+         FractionBox[
+          RowBox[{"ArcSin", "[", 
+           FractionBox["c", 
+            SqrtBox[
+             RowBox[{"1", "+", 
+              SuperscriptBox["z", "2"]}]]], "]"}], 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"1", "-", 
+             SuperscriptBox["c", "2"], "+", 
+             SuperscriptBox["z", "2"]}], ")"}], 
+           RowBox[{"3", "/", "2"}]]]}], ")"}], " ", 
+       RowBox[{"BesselJ", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{"Abs", "[", "x", "]"}], " ", "z"}]}], "]"}]}], "\[Pi]"], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "0", ",", "Infinity"}], "}"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.717711225807659*^9, 3.717711235667238*^9}, {
+  3.7177112856009207`*^9, 3.717711288300638*^9}, {3.717711393979843*^9, 
+  3.717711395347947*^9}, {3.717711560845257*^9, 3.717711610201449*^9}, {
+  3.717711659412315*^9, 3.717711684626189*^9}, {3.717711735246071*^9, 
+  3.717711740970992*^9}, {3.71771186997573*^9, 3.717711874706923*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]exact5", "[", 
+   RowBox[{"x_", ",", "\[CapitalSigma]t_", ",", "c_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"BesselK", "[", 
+     RowBox[{"0", ",", 
+      RowBox[{"Abs", "[", "x", "]"}]}], "]"}], "\[Pi]"], "+", 
+   FractionBox[
+    RowBox[{"c", " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"-", 
+        SqrtBox[
+         RowBox[{"1", "-", 
+          SuperscriptBox["c", "2"]}]]}], " ", 
+       RowBox[{"Abs", "[", "x", "]"}]}]]}], 
+    RowBox[{"2", " ", 
+     SqrtBox[
+      RowBox[{"1", "-", 
+       SuperscriptBox["c", "2"]}]]}]], "+", 
+   RowBox[{"NIntegrate", "[", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"c", " ", "z", " ", 
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"ArcSin", "[", 
+          FractionBox["c", 
+           SqrtBox[
+            RowBox[{"1", "+", 
+             SuperscriptBox["z", "2"]}]]], "]"}], 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"1", "-", 
+            SuperscriptBox["c", "2"], "+", 
+            SuperscriptBox["z", "2"]}], ")"}], 
+          RowBox[{"3", "/", "2"}]]], ")"}], " ", 
+       RowBox[{"BesselJ", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{"Abs", "[", "x", "]"}], " ", "z"}]}], "]"}]}], "\[Pi]"], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "0", ",", "Infinity"}], "}"}]}], "]"}], "+", 
+   RowBox[{"Chop", "[", 
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"4", " ", 
+       SuperscriptBox["\[Pi]", "2"], " ", 
+       RowBox[{"Abs", "[", "x", "]"}]}]], 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Abs", "[", "x", "]"}], " ", 
+        RowBox[{"MeijerG", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"1", ",", "1", ",", 
+              FractionBox["3", "2"]}], "}"}], ",", 
+            RowBox[{"{", "}"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             FractionBox["3", "2"], "}"}], ",", 
+            RowBox[{"{", "}"}]}], "}"}], ",", 
+          FractionBox[
+           RowBox[{"2", " ", "\[ImaginaryI]"}], 
+           RowBox[{"Abs", "[", "x", "]"}]], ",", 
+          FractionBox["1", "2"]}], "]"}]}], "+", 
+       RowBox[{"\[Pi]", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "2"}], " ", "\[ImaginaryI]"}], "+", 
+          RowBox[{"\[ImaginaryI]", " ", "\[Pi]", " ", 
+           RowBox[{"Abs", "[", "x", "]"}], " ", 
+           RowBox[{"BesselI", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{"Abs", "[", "x", "]"}]}], "]"}]}], "+", 
+          RowBox[{"4", " ", 
+           RowBox[{"Abs", "[", "x", "]"}], " ", 
+           RowBox[{"BesselK", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{
+              SqrtBox[
+               RowBox[{"1", "-", 
+                SuperscriptBox["c", "2"]}]], " ", 
+              RowBox[{"Abs", "[", "x", "]"}]}]}], "]"}]}], "-", 
+          RowBox[{
+           RowBox[{"Abs", "[", "x", "]"}], " ", 
+           RowBox[{"BesselI", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{"Abs", "[", "x", "]"}]}], "]"}], " ", 
+           RowBox[{"Log", "[", "4", "]"}]}], "+", 
+          RowBox[{"2", " ", 
+           RowBox[{"Abs", "[", "x", "]"}], " ", 
+           RowBox[{"BesselI", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{"Abs", "[", "x", "]"}]}], "]"}], " ", 
+           RowBox[{"Log", "[", 
+            RowBox[{"Abs", "[", "x", "]"}], "]"}]}], "-", 
+          RowBox[{"\[Pi]", " ", 
+           RowBox[{"Abs", "[", "x", "]"}], " ", 
+           RowBox[{"StruveH", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{"\[ImaginaryI]", " ", 
+              RowBox[{"Abs", "[", "x", "]"}]}]}], "]"}]}], "+", 
+          RowBox[{"2", " ", 
+           RowBox[{"Abs", "[", "x", "]"}], " ", 
+           RowBox[{
+            SuperscriptBox["Hypergeometric0F1Regularized", 
+             TagBox[
+              RowBox[{"(", 
+               RowBox[{"1", ",", "0"}], ")"}],
+              Derivative],
+             MultilineFunction->None], "[", 
+            RowBox[{"1", ",", 
+             FractionBox[
+              SuperscriptBox[
+               RowBox[{"Abs", "[", "x", "]"}], "2"], "4"]}], "]"}]}]}], 
+         ")"}]}]}], ")"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.717712525544416*^9, 3.717712533426139*^9}, {
+  3.717712659057938*^9, 3.71771266123403*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]exact5", "[", 
+   RowBox[{"x_", ",", "\[CapitalSigma]t_", ",", "c_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"BesselK", "[", 
+     RowBox[{"0", ",", 
+      RowBox[{"Abs", "[", "x", "]"}]}], "]"}], "\[Pi]"], "+", 
+   FractionBox[
+    RowBox[{"c", " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"-", 
+        SqrtBox[
+         RowBox[{"1", "-", 
+          SuperscriptBox["c", "2"]}]]}], " ", 
+       RowBox[{"Abs", "[", "x", "]"}]}]]}], 
+    RowBox[{"2", " ", 
+     SqrtBox[
+      RowBox[{"1", "-", 
+       SuperscriptBox["c", "2"]}]]}]], "+", 
+   RowBox[{"NIntegrate", "[", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"c", " ", "z", " ", 
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"ArcSin", "[", 
+          FractionBox["c", 
+           SqrtBox[
+            RowBox[{"1", "+", 
+             SuperscriptBox["z", "2"]}]]], "]"}], 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"1", "-", 
+            SuperscriptBox["c", "2"], "+", 
+            SuperscriptBox["z", "2"]}], ")"}], 
+          RowBox[{"3", "/", "2"}]]], ")"}], " ", 
+       RowBox[{"BesselJ", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{"Abs", "[", "x", "]"}], " ", "z"}]}], "]"}]}], "\[Pi]"], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "0", ",", "Infinity"}], "}"}]}], "]"}], "+", 
+   FractionBox[
+    RowBox[{"BesselK", "[", 
+     RowBox[{"0", ",", 
+      RowBox[{
+       SqrtBox[
+        RowBox[{"1", "-", 
+         SuperscriptBox["c", "2"]}]], " ", 
+       RowBox[{"Abs", "[", "x", "]"}]}]}], "]"}], "\[Pi]"], "-", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"BesselI", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"Abs", "[", "x", "]"}]}], "]"}], " ", 
+     RowBox[{"Log", "[", "4", "]"}]}], 
+    RowBox[{"4", " ", "\[Pi]"}]], "+", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"BesselI", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"Abs", "[", "x", "]"}]}], "]"}], " ", 
+     RowBox[{"Log", "[", 
+      RowBox[{"Abs", "[", "x", "]"}], "]"}]}], 
+    RowBox[{"2", " ", "\[Pi]"}]], "+", 
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["Hypergeometric0F1Regularized", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"1", ",", "0"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"1", ",", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"Abs", "[", "x", "]"}], "2"], "4"]}], "]"}], 
+    RowBox[{"2", " ", "\[Pi]"}]], "+", 
+   RowBox[{"Re", "[", 
+    FractionBox[
+     RowBox[{"MeijerG", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", 
+           FractionBox["3", "2"]}], "}"}], ",", 
+         RowBox[{"{", "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          FractionBox["3", "2"], "}"}], ",", 
+         RowBox[{"{", "}"}]}], "}"}], ",", 
+       FractionBox[
+        RowBox[{"2", " ", "\[ImaginaryI]"}], 
+        RowBox[{"Abs", "[", "x", "]"}]], ",", 
+       FractionBox["1", "2"]}], "]"}], 
+     RowBox[{"4", " ", 
+      SuperscriptBox["\[Pi]", "2"]}]], "]"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.7177130738043003`*^9, {3.717713135513556*^9, 3.717713142084025*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Nth-scattered Fluence", "Subsection",
+ CellChangeTimes->{{3.712780813838382*^9, 3.712780817141139*^9}, {
+  3.72066288416201*^9, 3.7206628844277554`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]", "[", 
+   RowBox[{"r_", ",", "\[CapitalSigma]t_", ",", "c_", ",", "n_"}], "]"}], ":=", 
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["2", 
+     RowBox[{
+      RowBox[{"-", "n"}], "/", "2"}]], " ", 
+    SuperscriptBox["c", "n"], " ", 
+    SuperscriptBox["\[CapitalSigma]t", 
+     FractionBox["n", "2"]], " ", 
+    SuperscriptBox[
+     RowBox[{"Abs", "[", "r", "]"}], 
+     RowBox[{"n", "/", "2"}]], " ", 
+    RowBox[{"BesselK", "[", 
+     RowBox[{
+      FractionBox["n", "2"], ",", 
+      RowBox[{"\[CapitalSigma]t", " ", 
+       RowBox[{"Abs", "[", "r", "]"}]}]}], "]"}]}], 
+   RowBox[{
+    SqrtBox["\[Pi]"], " ", 
+    RowBox[{"Gamma", "[", 
+     FractionBox[
+      RowBox[{"1", "+", "n"}], "2"], "]"}]}]]}]], "Input",
+ CellChangeTimes->{{3.712788519547443*^9, 3.712788592497919*^9}, 
+   3.7127886490449543`*^9, {3.7127927420641108`*^9, 3.712792752846161*^9}, 
+   3.7127934504090023`*^9, {3.712793490745205*^9, 3.712793500231718*^9}, 
+   3.712793621449847*^9, 3.7206630626730013`*^9, {3.720663505131364*^9, 
+   3.720663510177113*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", " ", 
+  RowBox[{
+   RowBox[{"infFlatlandisolineisoscatter`\[Phi]", "[", 
+    RowBox[{"x", ",", "1", ",", "c", ",", "n"}], "]"}], ",", 
+   RowBox[{"x", "\[Rule]", "0"}], ",", 
+   RowBox[{"Assumptions", "\[Rule]", 
+    RowBox[{
+     RowBox[{"0", "<", "c", "<", "1"}], "&&", 
+     RowBox[{"n", ">", "0"}], "&&", 
+     RowBox[{"n", "\[Element]", "Integers"}]}]}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   SuperscriptBox["c", "n"], " ", 
+   RowBox[{"Gamma", "[", 
+    FractionBox["n", "2"], "]"}]}], 
+  RowBox[{"2", " ", 
+   SqrtBox["\[Pi]"], " ", 
+   RowBox[{"Gamma", "[", 
+    FractionBox[
+     RowBox[{"1", "+", "n"}], "2"], "]"}]}]]], "Output",
+ CellChangeTimes->{3.712794437781723*^9, 3.714103771727047*^9, 
+  3.716484145271002*^9, 3.7172161283761883`*^9, 3.717709949860529*^9, 
+  3.720652336386352*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Moments", "Subsection",
+ CellChangeTimes->{{3.7131411973437843`*^9, 3.7131411994646997`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]m", "[", 
+   RowBox[{"c_", ",", "\[CapitalSigma]t_", ",", "m_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"EvenQ", "[", "m", "]"}], ",", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["2", "m"], " ", 
+      SuperscriptBox["c", "n"], " ", 
+      SuperscriptBox["\[CapitalSigma]t", 
+       RowBox[{
+        RowBox[{"-", "m"}], "-", "1"}]], " ", 
+      RowBox[{"Gamma", "[", 
+       FractionBox[
+        RowBox[{"1", "+", "m"}], "2"], "]"}], " ", 
+      RowBox[{"Gamma", "[", 
+       RowBox[{
+        FractionBox["1", "2"], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", "m", "+", "n"}], ")"}]}], "]"}]}], 
+     RowBox[{
+      SqrtBox["\[Pi]"], " ", 
+      RowBox[{"Gamma", "[", 
+       FractionBox[
+        RowBox[{"1", "+", "n"}], "2"], "]"}]}]], ",", "0"}], "]"}]}]], "Input",\
+
+ CellChangeTimes->{
+  3.713141112249996*^9, 3.713141249322619*^9, {3.713141300881448*^9, 
+   3.713141321284669*^9}, 3.7131525031844263`*^9, {3.720663339160781*^9, 
+   3.72066336523279*^9}, {3.7206634008936987`*^9, 3.720663401182197*^9}, {
+   3.7206635277323627`*^9, 3.720663533673149*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`\[Phi]m", "[", 
+   RowBox[{"c_", ",", "\[CapitalSigma]t_", ",", 
+    RowBox[{"m_", "?", "IntegerQ"}]}], "]"}], ":=", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"EvenQ", "[", "m", "]"}], ",", 
+    RowBox[{"-", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          SuperscriptBox["c", "2"]}], ")"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "-", 
+         FractionBox["m", "2"]}]], " ", 
+       SuperscriptBox["\[CapitalSigma]t", 
+        RowBox[{
+         RowBox[{"-", "m"}], "-", "1"}]], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "c"}], " ", "\[Pi]", " ", 
+          RowBox[{"m", "!"}]}], "-", 
+         RowBox[{
+          SuperscriptBox["2", "m"], " ", 
+          SuperscriptBox[
+           RowBox[{"Gamma", "[", 
+            FractionBox[
+             RowBox[{"1", "+", "m"}], "2"], "]"}], "2"], " ", 
+          RowBox[{"Hypergeometric2F1", "[", 
+           RowBox[{
+            RowBox[{"-", 
+             FractionBox["1", "2"]}], ",", 
+            RowBox[{"-", 
+             FractionBox["m", "2"]}], ",", 
+            FractionBox["1", "2"], ",", 
+            SuperscriptBox["c", "2"]}], "]"}]}]}], ")"}]}], "\[Pi]"]}], ",", 
+    "0"}], "]"}]}]], "Input",
+ CellChangeTimes->{
+  3.71314143646826*^9, 3.720663197792739*^9, 3.720663250075819*^9, {
+   3.720663440949538*^9, 3.720663441221025*^9}, {3.72066353891201*^9, 
+   3.7206635458166122`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TableForm", "[", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"infFlatlandisolineisoscatter`\[Phi]m", "[", 
+      RowBox[{"c", ",", "1", ",", "m"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"m", ",", "0", ",", "6", ",", "2"}], "}"}]}], "]"}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.713141444974934*^9, 3.713141446966258*^9}, {
+   3.713141490924293*^9, 3.7131414957706413`*^9}, 3.720663197810766*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      FractionBox["1", 
+       RowBox[{"1", "-", "c"}]]},
+     {
+      FractionBox["1", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "c"}], ")"}], "2"]]},
+     {
+      FractionBox[
+       RowBox[{"3", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "3"}], "+", "c"}], ")"}]}], 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "c"}], ")"}], "3"]]},
+     {
+      FractionBox[
+       RowBox[{"45", " ", 
+        RowBox[{"(", 
+         RowBox[{"5", "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "4"}], "+", "c"}], ")"}], " ", "c"}]}], ")"}]}], 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "c"}], ")"}], "4"]]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.7131414471820793`*^9, 3.7131414960909853`*^9, 
+  3.71410377574828*^9, 3.716484148107424*^9, 3.717216132878744*^9, 
+  3.717709953087449*^9, 3.7206523418881474`*^9, 3.7206632610400753`*^9, 
+  3.7206635574821167`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Radiance (Angular Flux)", "Subsection",
+ CellChangeTimes->{{3.677999905214446*^9, 3.677999909654085*^9}}],
+
+Cell["Generalized Caseology - Asymptotic Solution:", "Text",
+ CellChangeTimes->{{3.680094512719681*^9, 3.680094516767017*^9}, {
+  3.720663918670216*^9, 3.7206639302527723`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`LrigourousDiffusion", "[", 
+   RowBox[{"z_", ",", "u_", ",", "\[CapitalSigma]t_", ",", "\[Alpha]_"}], 
+   "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"2", " ", "Pi"}]], 
+     RowBox[{"flatland`Case\[Psi]0", "[", 
+      RowBox[{"u", ",", "#", ",", "\[Alpha]", ",", "z"}], "]"}], " ", 
+     FractionBox[
+      SuperscriptBox["E", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"Abs", "[", "z", "]"}]}], 
+        RowBox[{"\[CapitalSigma]t", "/", "#"}]}]], 
+      RowBox[{"flatland`CaseN0", "[", 
+       RowBox[{"\[Alpha]", ",", "#"}], "]"}]]}], "&"}], "[", 
+   RowBox[{"flatland`Casev0", "[", "\[Alpha]", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.677999927620357*^9, 3.678000012148102*^9}, {
+   3.678000484165168*^9, 3.678000487974477*^9}, 3.678076027061718*^9, {
+   3.720663810187787*^9, 3.720663834187331*^9}}],
+
+Cell["Generalized Caseology - Exact Solution:", "Text",
+ CellChangeTimes->{{3.680094520016176*^9, 3.680094523966784*^9}, {
+  3.7206639252794237`*^9, 3.7206639351814528`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`Lexact", "[", 
+   RowBox[{"z_", ",", "u_", ",", "\[CapitalSigma]t_", ",", "\[Alpha]_"}], 
+   "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"infFlatlandisolineisoscatter`LrigourousDiffusion", "[", 
+    RowBox[{"z", ",", "u", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], "]"}], 
+   "+", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"2", "Pi"}]], 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"flatland`Case\[Lambda]", "[", 
+        RowBox[{"u", ",", "\[Alpha]"}], "]"}], 
+       FractionBox[
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"-", 
+          FractionBox[
+           RowBox[{
+            RowBox[{"Abs", "[", "z", "]"}], "\[CapitalSigma]t"}], "u"]}]], 
+        RowBox[{"flatland`CaseN", "[", 
+         RowBox[{"\[Alpha]", ",", "u"}], "]"}]], 
+       RowBox[{"HeavisideTheta", "[", 
+        RowBox[{"1", "-", "u"}], "]"}], " ", 
+       RowBox[{"HeavisideTheta", "[", "u", "]"}], 
+       FractionBox[
+        SqrtBox[
+         RowBox[{"1", "-", 
+          SuperscriptBox["u", "2"]}]], "2"]}], "\[IndentingNewLine]", "+", 
+      RowBox[{
+       FractionBox["1", "Pi"], 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"-", 
+             FractionBox[
+              RowBox[{
+               RowBox[{"Abs", "[", "z", "]"}], "\[CapitalSigma]t"}], "v"]}]], 
+           
+           RowBox[{"flatland`CaseN", "[", 
+            RowBox[{"\[Alpha]", ",", "v"}], "]"}]], 
+          FractionBox["\[Alpha]", 
+           RowBox[{"2", " "}]], " ", 
+          FractionBox["v", 
+           RowBox[{"v", "-", "u"}]], 
+          FractionBox[
+           SqrtBox[
+            RowBox[{"1", "-", 
+             SuperscriptBox["v", "2"]}]], "2"]}], "\[IndentingNewLine]", ",", 
+         
+         RowBox[{"{", 
+          RowBox[{"v", ",", "0", ",", "u", ",", "1"}], "}"}], ",", 
+         RowBox[{"Method", "\[Rule]", "\"\<PrincipalValue\>\""}], ",", 
+         RowBox[{"PrecisionGoal", "\[Rule]", "5"}]}], "]"}]}]}], 
+     ")"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.678000532282261*^9, 3.6780005792642*^9}, {
+   3.678000796029112*^9, 3.6780008702969437`*^9}, 3.678000968695101*^9, {
+   3.678001025791593*^9, 3.67800105143756*^9}, {3.6780011441540403`*^9, 
+   3.6780011504411097`*^9}, {3.678001308770701*^9, 3.67800134422493*^9}, {
+   3.6780013945462093`*^9, 3.678001428369752*^9}, {3.678001460432681*^9, 
+   3.6780014623037357`*^9}, {3.678001689730974*^9, 3.6780016915960693`*^9}, {
+   3.6780760326489773`*^9, 3.678076035393125*^9}, {3.7206639388830643`*^9, 
+   3.7206639576573467`*^9}, {3.720663991056478*^9, 3.72066399151156*^9}, 
+   3.720664063965087*^9, {3.7206641835350037`*^9, 3.720664186377265*^9}, {
+   3.720664239420636*^9, 3.7206642407264023`*^9}, {3.7206660285222797`*^9, 
+   3.720666028753243*^9}, {3.720666185948862*^9, 3.720666186098442*^9}, {
+   3.720666427209881*^9, 3.7206664547347527`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["load MC data", "Section",
+ CellChangeTimes->{{3.617427964847665*^9, 3.617427965662361*^9}, {
+  3.6174280073412037`*^9, 3.617428007556081*^9}, {3.640936210100869*^9, 
+  3.640936211771452*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`ppoints", "[", 
+   RowBox[{"zs_", ",", "dz_", ",", "maxz_", ",", "\[CapitalSigma]t_"}], "]"}],
+   ":=", 
+  RowBox[{
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"dz", 
+         RowBox[{"(", "i", ")"}]}], "-", 
+        RowBox[{"0.5", "dz"}], "-", "maxz"}], ",", 
+       RowBox[{
+        RowBox[{"zs", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "/", "\[CapitalSigma]t"}]}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "zs", "]"}]}], "}"}]}], "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"2", ";;", 
+     RowBox[{"-", "2"}]}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.649259548120679*^9, 3.649259580851676*^9}, 
+   3.649259648546113*^9, 3.649272737713811*^9, {3.649872151012321*^9, 
+   3.649872155817502*^9}, {3.649872287579906*^9, 3.649872295382456*^9}, {
+   3.649873946236698*^9, 3.649873946606134*^9}, {3.67763497212794*^9, 
+   3.677634993533287*^9}, 3.677908970130492*^9, {3.677909077868765*^9, 
+   3.6779091138981333`*^9}, {3.677909825154756*^9, 3.677909825429763*^9}, 
+   3.712778466670109*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`ppointsu", "[", 
+   RowBox[{"xs_", ",", "du_", ",", "\[CapitalSigma]t_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "1.0"}], " ", "+", 
+        RowBox[{"du", 
+         RowBox[{"(", "i", ")"}]}], "-", 
+        RowBox[{"0.5", "du"}]}], ",", 
+       RowBox[{
+        RowBox[{"xs", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "\[CapitalSigma]t"}], ")"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "xs", "]"}]}], "}"}]}], "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ";;", 
+     RowBox[{"-", "1"}]}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.65005053586198*^9, 3.650050559346901*^9}, {
+   3.650052337069436*^9, 3.650052338883011*^9}, {3.650054000091523*^9, 
+   3.6500540027961807`*^9}, {3.6500610330520782`*^9, 3.650061039645021*^9}, {
+   3.650061175369117*^9, 3.6500611770751762`*^9}, 3.6776349935423813`*^9, 
+   3.67769687034093*^9, 3.677909120316702*^9, 3.7127784666760883`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`fs", "=", 
+   RowBox[{
+   "FileNames", "[", 
+    "\"\<code/flatland/infiniteFlatland/Isotropiclinesource/data/infflatland_\
+isotropicline_isotropicscatter*\>\"", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.649258997497517*^9, 3.649259056909771*^9}, {
+   3.677634993548717*^9, 3.677635035914689*^9}, {3.677909153212695*^9, 
+   3.677909162424593*^9}, {3.711690995250684*^9, 3.71169103810968*^9}, 
+   3.711691070581153*^9, 3.712778466680435*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"infFlatlandisolineisoscatter`index", "[", "x_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"data", ",", "\[Alpha]", ",", "\[CapitalSigma]t"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"data", "=", 
+       RowBox[{"Import", "[", 
+        RowBox[{"x", ",", "\"\<Table\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\[CapitalSigma]t", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "13"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"\[Alpha]", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "3"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      
+      RowBox[{"{", 
+       RowBox[{"\[Alpha]", ",", "\[CapitalSigma]t", ",", "data"}], "}"}]}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`simulations", "=", 
+   RowBox[{
+   "infFlatlandisolineisoscatter`index", "/@", 
+    "infFlatlandisolineisoscatter`fs"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"infFlatlandisolineisoscatter`alphas", "=", 
+  RowBox[{"Union", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "&"}], "/@", 
+    "infFlatlandisolineisoscatter`simulations"}], 
+   "]"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{
+  3.6492592625325613`*^9, {3.6492592978251047`*^9, 3.649259344735507*^9}, {
+   3.677634993555244*^9, 3.677634993574909*^9}, {3.677909176444273*^9, 
+   3.677909191331388*^9}, {3.7127784666854057`*^9, 3.712778466695154*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.01`", ",", "0.1`", ",", "0.3`", ",", "0.5`", ",", "0.7`", ",", "0.8`", 
+   ",", "0.9`", ",", "0.95`", ",", "0.99`", ",", "0.999`"}], "}"}]], "Output",\
+
+ CellChangeTimes->{{3.6492593340730467`*^9, 3.649259345386384*^9}, 
+   3.6492728336816893`*^9, 3.649273048786715*^9, 3.649872047826997*^9, 
+   3.649893114157404*^9, 3.6500036915248747`*^9, 3.6500519274937677`*^9, 
+   3.650052046258376*^9, 3.6500539651569767`*^9, 3.65204425181022*^9, 
+   3.652044585898918*^9, {3.6776350179173107`*^9, 3.677635047794334*^9}, 
+   3.677635195107129*^9, 3.677909198764577*^9, 3.679695069339271*^9, 
+   3.679783297482606*^9, 3.680095251065445*^9, 3.6803475251765947`*^9, 
+   3.711691074321334*^9, {3.712622666157874*^9, 3.712622678476956*^9}, 
+   3.712778486295981*^9, 3.714103780468602*^9, 3.717710378534219*^9, 
+   3.720652343900333*^9, 3.720652377847748*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"infFlatlandisolineisoscatter`muts", "=", 
+  RowBox[{"Union", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "&"}], "/@", 
+    "infFlatlandisolineisoscatter`simulations"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.649259354702409*^9, 3.649259356389621*^9}, {
+  3.677634993581637*^9, 3.6776349935856857`*^9}, {3.6779091939636993`*^9, 
+  3.67790919616299*^9}, {3.712778466702783*^9, 3.712778466705258*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", "3"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6492593567324333`*^9, 3.64927283372799*^9, 3.649273048831053*^9, 
+   3.6498720478446417`*^9, 3.649893114193157*^9, 3.650003691549798*^9, 
+   3.650051927519335*^9, 3.650052046426083*^9, 3.650053965178225*^9, 
+   3.65204425196731*^9, 3.652044585906145*^9, {3.6776350179720163`*^9, 
+   3.677635047819257*^9}, 3.677635195136368*^9, 3.677909201183156*^9, 
+   3.679695069454064*^9, 3.67978329782976*^9, 3.68009525109137*^9, 
+   3.6803475253310623`*^9, 3.7116910743856792`*^9, {3.71262266620019*^9, 
+   3.712622678539195*^9}, 3.712778486321227*^9, 3.714103780486969*^9, 
+   3.717710378611005*^9, 3.720652343989807*^9, 3.720652377947363*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`numcollorders", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"infFlatlandisolineisoscatter`simulations", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "3", "]"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`maxz", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"infFlatlandisolineisoscatter`simulations", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "3", "]"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+  RowBox[{"infFlatlandisolineisoscatter`dz", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"infFlatlandisolineisoscatter`simulations", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "3", "]"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`numz", "=", 
+   RowBox[{"Floor", "[", 
+    RowBox[{"2", 
+     RowBox[{
+     "infFlatlandisolineisoscatter`maxz", "/", 
+      "infFlatlandisolineisoscatter`dz"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.649259364357733*^9, 3.649259369850224*^9}, {
+  3.649259425898975*^9, 3.6492594278860903`*^9}, {3.65003919983913*^9, 
+  3.650039207159321*^9}, {3.65005218250033*^9, 3.650052203385788*^9}, {
+  3.650052251813343*^9, 3.65005228487663*^9}, {3.652044391350597*^9, 
+  3.652044399500836*^9}, {3.677634993592737*^9, 3.677634993627224*^9}, {
+  3.6779092035389843`*^9, 3.677909229222406*^9}, {3.71277846671224*^9, 
+  3.712778466725932*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Compare Deterministic and MC", "Section",
+ CellChangeTimes->{{3.617428104753593*^9, 3.6174281129212646`*^9}, 
+   3.650052258917198*^9}],
+
+Cell[CellGroupData[{
+
+Cell["Fluence - Exact solution 1 (Caseology) comparison to MC", "Subsection",
+ CellChangeTimes->{{3.649259702897419*^9, 3.64925971462465*^9}, {
+  3.649893943340941*^9, 3.649893948401101*^9}, {3.650003121496348*^9, 
+  3.650003125748569*^9}, {3.67763541090819*^9, 3.67763541224439*^9}, {
+  3.6779843648616056`*^9, 3.67798436576482*^9}, {3.680254782892*^9, 
+  3.680254790850697*^9}, {3.712778539409977*^9, 3.712778539553678*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Length", "[", "infFlatlandisolineisoscatter`simulations", "]"}], ">", 
+      "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "maxz", ",", "dz", ",", "points\[Phi]", ",", 
+         "plotpoints\[Phi]", ",", "logplot\[Phi]", ",", "plot\[Phi]", ",", 
+         "exact1points", ",", "numpoints", ",", "skip"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"infFlatlandisolineisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"maxz", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dz", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"points\[Phi]", " ", "=", " ", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", "4", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "divide", " ", "by", " ", "\[CapitalSigma]t", " ", "to", " ", 
+          "convert", " ", "collision", " ", "density", " ", "into", " ", 
+          "fluence"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"plotpoints\[Phi]", "=", 
+         RowBox[{"infFlatlandisolineisoscatter`ppoints", "[", 
+          RowBox[{
+          "points\[Phi]", ",", "dz", ",", "maxz", ",", "\[CapitalSigma]t"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"exact1points", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Quiet", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"#", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+              RowBox[{"infFlatlandisolineisoscatter`\[Phi]exact1", "[", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], ",", "\[CapitalSigma]t", ",",
+                 "\[Alpha]"}], "]"}]}], "}"}], "]"}], "&"}], " ", "/@", 
+          "plotpoints\[Phi]"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"numpoints", "=", 
+         RowBox[{"Length", "[", "plotpoints\[Phi]", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"skip", "=", 
+         RowBox[{"Floor", "[", 
+          RowBox[{"numpoints", " ", 
+           FractionBox["6", "7"], 
+           FractionBox["1", "2"]}], "]"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"plot\[Phi]", "=", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Show", "[", "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"ListPlot", "[", 
+              RowBox[{
+               RowBox[{"exact1points", "[", 
+                RowBox[{"[", 
+                 RowBox[{"skip", ";;", 
+                  RowBox[{"-", "skip"}]}], "]"}], "]"}], ",", 
+               RowBox[{"PlotRange", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", "6"}], "}"}]}], ",", 
+               RowBox[{"Joined", "\[Rule]", "True"}]}], "]"}], ","}], "*)"}], 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"infFlatlandisolineisoscatter`\[Phi]exact1", "[", 
+               RowBox[{"z", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], "]"}],
+               ",", 
+              RowBox[{"{", 
+               RowBox[{"z", ",", 
+                RowBox[{"-", 
+                 FractionBox["maxz", "7"]}], ",", 
+                FractionBox["maxz", "7"]}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{
+              "infFlatlandisolineisoscatter`\[Phi]rigourousDiffusion", "[", 
+               RowBox[{"z", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], "]"}],
+               ",", 
+              RowBox[{"{", 
+               RowBox[{"z", ",", 
+                RowBox[{"-", 
+                 FractionBox["maxz", "7"]}], ",", 
+                FractionBox["maxz", "7"]}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"Red", ",", "Dashed"}], "}"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"ListPlot", "[", 
+             RowBox[{
+              RowBox[{"plotpoints\[Phi]", "[", 
+               RowBox[{"[", 
+                RowBox[{"skip", ";;", 
+                 RowBox[{"-", "skip"}]}], "]"}], "]"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"Black", ",", 
+                 RowBox[{"PointSize", "[", ".01", "]"}]}], "}"}]}]}], "]"}], 
+            ",", "\[IndentingNewLine]", 
+            RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"FrameLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", " ", 
+                RowBox[{
+                 RowBox[{"\[Phi]", "[", "z", "]"}], ","}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"z", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]",
+            "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"logplot\[Phi]", "=", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Show", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ListLogPlot", "[", 
+             RowBox[{"exact1points", ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"Joined", "\[Rule]", "True"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"LogPlot", "[", 
+             RowBox[{
+              RowBox[{
+              "infFlatlandisolineisoscatter`\[Phi]rigourousDiffusion", "[", 
+               RowBox[{"z", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], "]"}],
+               ",", 
+              RowBox[{"{", 
+               RowBox[{"z", ",", 
+                RowBox[{"-", "maxz"}], ",", "maxz"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"Red", ",", "Dashed"}], "}"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"ListLogPlot", "[", 
+             RowBox[{
+              RowBox[{"plotpoints\[Phi]", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ";;", 
+                 RowBox[{"-", "1"}], ";;", "3"}], "]"}], "]"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"Black", ",", 
+                 RowBox[{"PointSize", "[", ".01", "]"}]}], "}"}]}]}], "]"}], 
+            ",", "\[IndentingNewLine]", 
+            RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"FrameLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", " ", 
+                RowBox[{
+                 RowBox[{"\[Phi]", "[", "z", "]"}], ","}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"z", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]",
+            "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"GraphicsGrid", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{"plot\[Phi]", ",", "logplot\[Phi]"}], "}"}], "}"}], ",", 
+            RowBox[{"ImageSize", "\[Rule]", "800"}]}], "]"}], ",", 
+          RowBox[{"PlotLabel", "->", 
+           RowBox[{
+           "\"\<Exact solution 1 (thin), Rigorous Diffusion component \
+(dashed)\\nInfinite Flatland, isotropic line source, isotropic scattering, \
+fluence \[Phi][z], \[Alpha] = \>\"", "<>", 
+            RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+            "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", "<>", 
+            RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}]}], 
+         "]"}]}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "0.95"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalSigma]t", ",", "1"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`muts"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.649259789611609*^9, 3.649259851754438*^9}, {
+   3.649259907663431*^9, 3.649259992296626*^9}, {3.649260050094636*^9, 
+   3.649260065849139*^9}, 3.649260129895323*^9, {3.649260309183428*^9, 
+   3.6492603094557133`*^9}, {3.649260371404566*^9, 3.64926040211484*^9}, 
+   3.649272745810855*^9, {3.649272859097014*^9, 3.649272862208322*^9}, {
+   3.649272894311653*^9, 3.64927289769634*^9}, {3.6492730110286016`*^9, 
+   3.6492730250756083`*^9}, {3.649273106353642*^9, 3.649273109077507*^9}, {
+   3.649273170203189*^9, 3.649273170411021*^9}, {3.649872238500237*^9, 
+   3.649872259049232*^9}, {3.649894400589272*^9, 3.6498944384501762`*^9}, {
+   3.650002365346281*^9, 3.650002380352285*^9}, {3.6500024298360243`*^9, 
+   3.650002446810408*^9}, {3.650002497701038*^9, 3.650002523956849*^9}, {
+   3.650002571560855*^9, 3.6500026508115797`*^9}, {3.65000269281654*^9, 
+   3.650002759659141*^9}, {3.6500027916908703`*^9, 3.65000282619895*^9}, {
+   3.650002862772669*^9, 3.6500028906111307`*^9}, {3.650002926853812*^9, 
+   3.650002948093389*^9}, {3.650002982083981*^9, 3.6500030086453667`*^9}, 
+   3.650003351221335*^9, {3.652044423309552*^9, 3.6520444258771887`*^9}, {
+   3.6776351179958277`*^9, 3.677635144851108*^9}, {3.677635279645838*^9, 
+   3.677635279874563*^9}, {3.677635348820468*^9, 3.677635364740595*^9}, {
+   3.677635407216456*^9, 3.677635407407715*^9}, 3.677635481374805*^9, {
+   3.677643080681561*^9, 3.677643081049223*^9}, {3.6776433348108273`*^9, 
+   3.677643356335271*^9}, {3.67790926966325*^9, 3.677909379037674*^9}, {
+   3.677909462531189*^9, 3.677909472472584*^9}, {3.6779095173126287`*^9, 
+   3.677909523033042*^9}, {3.67790955544232*^9, 3.677909577981249*^9}, {
+   3.677909644421946*^9, 3.677909646717564*^9}, 3.677909722880938*^9, {
+   3.677977698292851*^9, 3.6779777026080027`*^9}, {3.677989349259351*^9, 
+   3.6779893495308037`*^9}, {3.677991176662137*^9, 3.677991177151177*^9}, {
+   3.677997654793582*^9, 3.677997710004799*^9}, {3.677997753665367*^9, 
+   3.677997770442068*^9}, {3.677997805447775*^9, 3.6779978348699217`*^9}, {
+   3.6779978649667387`*^9, 3.677997900157544*^9}, {3.677997943806903*^9, 
+   3.677997981217029*^9}, 3.677999222318939*^9, {3.680255208025041*^9, 
+   3.6802552081782846`*^9}, {3.680255376086072*^9, 3.6802553822515917`*^9}, {
+   3.680255614220665*^9, 3.680255614492786*^9}, {3.680255646646821*^9, 
+   3.680255649880785*^9}, {3.680267255645938*^9, 3.680267256012416*^9}, {
+   3.712625404138406*^9, 3.712625404655751*^9}, {3.712625448131949*^9, 
+   3.7126254601743193`*^9}, {3.712625590647851*^9, 3.712625624077505*^9}, 
+   3.7126256606827927`*^9, {3.7126257169782352`*^9, 3.712625768462255*^9}, {
+   3.7127784669122972`*^9, 3.712778466944702*^9}, {3.712778549422394*^9, 
+   3.71277855590163*^9}, {3.712778701982369*^9, 3.7127787042782784`*^9}, {
+   3.712778969407589*^9, 3.712778973229891*^9}, {3.7206629643487663`*^9, 
+   3.720662975698595*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
+    0.95, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], 0.95}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
+      0.9, 0.95, 0.99, 0.999}}, {{
+       Hold[$CellContext`\[CapitalSigma]t$$], 1}, {1, 3}}}, Typeset`size$$ = {
+    800., {146., 151.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$8099238$$ = 
+    0, $CellContext`\[CapitalSigma]t$8099239$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Alpha]$$ = 
+        0.95, $CellContext`\[CapitalSigma]t$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$8099238$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$8099239$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[infFlatlandisolineisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`maxz$, $CellContext`dz$, \
+$CellContext`points\[Phi]$, $CellContext`plotpoints\[Phi]$, \
+$CellContext`logplot\[Phi]$, $CellContext`plot\[Phi]$, \
+$CellContext`exact1points$, $CellContext`numpoints$, $CellContext`skip$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            infFlatlandisolineisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`maxz$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`dz$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`points\[Phi]$ = 
+          Part[$CellContext`data$, 4]; $CellContext`plotpoints\[Phi]$ = 
+          infFlatlandisolineisoscatter`ppoints[$CellContext`points\[Phi]$, \
+$CellContext`dz$, $CellContext`maxz$, $CellContext`\[CapitalSigma]t$$]; \
+$CellContext`exact1points$ = Map[Quiet[{
+              Part[#, 1], 
+              infFlatlandisolineisoscatter`\[Phi]exact1[
+               
+               Part[#, 
+                1], $CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[Alpha]$$]}]& , $CellContext`plotpoints\[Phi]$]; \
+$CellContext`numpoints$ = 
+          Length[$CellContext`plotpoints\[Phi]$]; $CellContext`skip$ = 
+          Floor[$CellContext`numpoints$ (6/7) (1/
+             2)]; $CellContext`plot\[Phi]$ = Quiet[
+            Show[
+             Plot[
+              
+              infFlatlandisolineisoscatter`\[Phi]exact1[$CellContext`z, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$], {$CellContext`z, \
+-($CellContext`maxz$/7), $CellContext`maxz$/7}, PlotRange -> All], 
+             Plot[
+              
+              infFlatlandisolineisoscatter`\[Phi]rigourousDiffusion[$\
+CellContext`z, $CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$], \
+{$CellContext`z, -($CellContext`maxz$/7), $CellContext`maxz$/7}, PlotRange -> 
+              All, PlotStyle -> {Red, Dashed}], 
+             ListPlot[
+              Part[$CellContext`plotpoints\[Phi]$, 
+               Span[$CellContext`skip$, -$CellContext`skip$]], PlotRange -> 
+              All, PlotStyle -> {Black, 
+                PointSize[0.01]}], Frame -> True, FrameLabel -> {{
+                $CellContext`\[Phi][$CellContext`z], Null}, {$CellContext`z, 
+                Null}}]]; $CellContext`logplot\[Phi]$ = Quiet[
+            Show[
+             
+             ListLogPlot[$CellContext`exact1points$, PlotRange -> All, Joined -> 
+              True], 
+             LogPlot[
+              
+              infFlatlandisolineisoscatter`\[Phi]rigourousDiffusion[$\
+CellContext`z, $CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$], \
+{$CellContext`z, -$CellContext`maxz$, $CellContext`maxz$}, PlotRange -> All, 
+              PlotStyle -> {Red, Dashed}], 
+             ListLogPlot[
+              Part[$CellContext`plotpoints\[Phi]$, 
+               Span[1, -1, 3]], PlotRange -> All, PlotStyle -> {Black, 
+                PointSize[0.01]}], Frame -> True, FrameLabel -> {{
+                $CellContext`\[Phi][$CellContext`z], Null}, {$CellContext`z, 
+                Null}}]]; Show[
+           
+           GraphicsGrid[{{$CellContext`plot\[Phi]$, \
+$CellContext`logplot\[Phi]$}}, ImageSize -> 800], PlotLabel -> 
+           StringJoin[
+            "Exact solution 1 (thin), Rigorous Diffusion component (dashed)\n\
+Infinite Flatland, isotropic line source, isotropic scattering, fluence \
+\[Phi][z], \[Alpha] = ", 
+             ToString[$CellContext`\[Alpha]$$], 
+             ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+             ToString[$CellContext`\[CapitalSigma]t$$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.95}, {0.01, 0.1, 0.3, 
+         0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
+         0.999}}, {{$CellContext`\[CapitalSigma]t$$, 1}, {1, 3}}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{845., {203., 209.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6492599960399323`*^9, {3.649260054751576*^9, 3.6492600667267723`*^9}, 
+   3.649260130666471*^9, 3.6492603097120123`*^9, 3.649260404452841*^9, 
+   3.649260520526636*^9, 3.649261009294073*^9, {3.6492728228080807`*^9, 
+   3.649272833844741*^9}, 3.649272870547728*^9, 3.6492729014170713`*^9, {
+   3.649273033207165*^9, 3.6492730488975773`*^9}, 3.649273110752254*^9, {
+   3.6492731576796923`*^9, 3.6492731709316483`*^9}, 3.649893125231133*^9, 
+   3.64989444074127*^9, 3.650002380670837*^9, 3.6500024551855*^9, {
+   3.65000251145569*^9, 3.6500025310761137`*^9}, {3.6500026145656157`*^9, 
+   3.650002659356792*^9}, {3.6500027078910933`*^9, 3.6500027600243883`*^9}, {
+   3.650002803133861*^9, 3.6500028298210363`*^9}, 3.650002894229841*^9, 
+   3.6500029521809187`*^9, {3.650002987365321*^9, 3.65000300904708*^9}, {
+   3.650003679137001*^9, 3.650003691694615*^9}, 3.650052048527351*^9, 
+   3.652044587533841*^9, 3.6776351474170723`*^9, 3.677635195389729*^9, 
+   3.677635287620723*^9, 3.677635365314539*^9, 3.677635418007964*^9, 
+   3.677636017956352*^9, 3.677643089993937*^9, {3.6776433489075623`*^9, 
+   3.677643362981777*^9}, 3.6779093808736773`*^9, 3.6779095236397753`*^9, {
+   3.677909555770639*^9, 3.677909579167877*^9}, 3.677909653848359*^9, {
+   3.6779097138766203`*^9, 3.677909723777276*^9}, 3.677977702992084*^9, 
+   3.6779893511612453`*^9, 3.677991179097116*^9, 3.677997712906951*^9, 
+   3.6779977708482857`*^9, {3.677997820240286*^9, 3.677997835595409*^9}, {
+   3.6779978817993298`*^9, 3.677997900434719*^9}, {3.677997964879243*^9, 
+   3.6779979842489233`*^9}, 3.677999225798959*^9, 3.679695071104806*^9, 
+   3.6802556212098627`*^9, 3.680255659824772*^9, 3.680267264264544*^9, 
+   3.68034752863072*^9, 3.711693721237224*^9, 3.711693838767482*^9, 
+   3.711694257891485*^9, 3.711696074382976*^9, 3.712624041661893*^9, {
+   3.712625334558326*^9, 3.712625345941293*^9}, {3.712625452018153*^9, 
+   3.7126254783590384`*^9}, {3.7126256014141912`*^9, 3.712625627298688*^9}, {
+   3.712625706288849*^9, 3.7126257720660467`*^9}, 3.712627907015996*^9, 
+   3.712627990813059*^9, 3.712628061813415*^9, 3.712778564390781*^9, 
+   3.7127789190609903`*^9, {3.712778951836445*^9, 3.712778973791597*^9}, 
+   3.712785928826528*^9, 3.712793663771081*^9, 3.720662994426135*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["N-th collided Fluence - Exact solution (1) comparison to MC", \
+"Subsection",
+ CellChangeTimes->{{3.649259702897419*^9, 3.64925971462465*^9}, {
+  3.649893943340941*^9, 3.649893948401101*^9}, {3.650003121496348*^9, 
+  3.650003125748569*^9}, {3.67763541090819*^9, 3.67763541224439*^9}, {
+  3.677637193479684*^9, 3.677637197879541*^9}, {3.677986500109044*^9, 
+  3.677986500707782*^9}, {3.6779871693602552`*^9, 3.6779871698391323`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Length", "[", "infFlatlandisolineisoscatter`simulations", "]"}], ">", 
+      "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "maxz", ",", "dz", ",", "points\[Phi]", ",", 
+         "plotpoints\[Phi]", ",", "logplot\[Phi]", ",", "plot\[Phi]", ",", 
+         "exact1points", ",", "numorders"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"infFlatlandisolineisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"maxz", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dz", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"numorders", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"points\[Phi]", " ", "=", " ", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"9", "+", "numorders", "+", "n", "+", "1"}], "]"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "divide", " ", "by", " ", "\[CapitalSigma]t", " ", "to", " ", 
+          "convert", " ", "collision", " ", "density", " ", "into", " ", 
+          "fluence"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"plotpoints\[Phi]", "=", 
+         RowBox[{"infFlatlandisolineisoscatter`ppoints", "[", 
+          RowBox[{
+          "points\[Phi]", ",", "dz", ",", "maxz", ",", "\[CapitalSigma]t"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"exact1points", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Quiet", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"#", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+              RowBox[{"infFlatlandisolineisoscatter`\[Phi]", "[", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], ",", "\[CapitalSigma]t", ",",
+                 "\[Alpha]", ",", "n"}], "]"}]}], "}"}], "]"}], "&"}], " ", "/@",
+           "plotpoints\[Phi]"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"plot\[Phi]", "=", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Show", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ListPlot", "[", 
+             RowBox[{"plotpoints\[Phi]", ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Plot", "[", " ", 
+             RowBox[{
+              RowBox[{"infFlatlandisolineisoscatter`\[Phi]", "[", 
+               RowBox[{
+                RowBox[{"Abs", "[", "z", "]"}], ",", "\[CapitalSigma]t", ",", 
+                "\[Alpha]", ",", "n"}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"z", ",", 
+                RowBox[{"-", "maxz"}], ",", "maxz"}], "}"}], ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"FrameLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", " ", 
+                RowBox[{
+                 RowBox[{"\[Phi]", "[", 
+                  RowBox[{"\"\<z|\>\"", "<>", 
+                   RowBox[{"ToString", "[", "n", "]"}]}], "]"}], ","}], "}"}],
+                ",", 
+               RowBox[{"{", 
+                RowBox[{"z", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]",
+            "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"logplot\[Phi]", "=", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Show", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ListLogPlot", "[", 
+             RowBox[{"plotpoints\[Phi]", ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"PlotStyle", "\[Rule]", 
+               RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"ListLogPlot", "[", 
+             RowBox[{"exact1points", ",", 
+              RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+              RowBox[{"Joined", "\[Rule]", "True"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"FrameLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", " ", 
+                RowBox[{
+                 RowBox[{"\[Phi]", "[", 
+                  RowBox[{"\"\<z|\>\"", "<>", 
+                   RowBox[{"ToString", "[", "n", "]"}]}], "]"}], ","}], "}"}],
+                ",", 
+               RowBox[{"{", 
+                RowBox[{"z", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]",
+            "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"GraphicsGrid", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{"plot\[Phi]", ",", "logplot\[Phi]"}], "}"}], "}"}], ",", 
+            RowBox[{"ImageSize", "\[Rule]", "800"}]}], "]"}], ",", 
+          RowBox[{"PlotLabel", "->", 
+           RowBox[{
+           "\"\<Exact solution (1)\\nInfinite Flatland, isotropic line \
+source, isotropic scattering, n-th scattered fluence \[Phi][z|n], \[Alpha] = \
+\>\"", "<>", 
+            RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+            "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", "<>", 
+            RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}]}], 
+         "]"}]}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "0.99"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalSigma]t", ",", "1"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`muts"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "1"}], "}"}], ",", 
+     RowBox[{"Range", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+         "NumberQ", "[", "infFlatlandisolineisoscatter`numcollorders", "]"}], 
+         ",", "infFlatlandisolineisoscatter`numcollorders", ",", "1"}], 
+        "]"}]}], "]"}]}], "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.6776366813739443`*^9, 3.677636702591022*^9}, {
+   3.677636824776952*^9, 3.677636836119492*^9}, {3.6776369220064573`*^9, 
+   3.677637003415887*^9}, {3.677637078179029*^9, 3.6776370809729567`*^9}, 
+   3.677645990377006*^9, 3.67764605285905*^9, {3.677985327985332*^9, 
+   3.67798535085845*^9}, {3.677985783187911*^9, 3.677985828958002*^9}, {
+   3.677986312941249*^9, 3.677986364482108*^9}, {3.6779864613140593`*^9, 
+   3.677986469358404*^9}, {3.677986512618416*^9, 3.6779865147111177`*^9}, {
+   3.677986592405829*^9, 3.677986618801169*^9}, {3.677987181649899*^9, 
+   3.677987194642441*^9}, {3.677991187318972*^9, 3.677991187601441*^9}, {
+   3.677991275055421*^9, 3.677991276068413*^9}, 3.7127372215779*^9, {
+   3.712737312953129*^9, 3.7127374464362783`*^9}, {3.712737504463722*^9, 
+   3.712737580734887*^9}, {3.7127731904070463`*^9, 3.712773203661669*^9}, {
+   3.7127735664717503`*^9, 3.7127735860641527`*^9}, {3.712774654846375*^9, 
+   3.712774674447*^9}, {3.7127792936467733`*^9, 3.712779310134492*^9}, {
+   3.712779348695992*^9, 3.712779393254978*^9}, {3.712779686697735*^9, 
+   3.7127796967849693`*^9}, {3.712780841671873*^9, 3.712780855118144*^9}, 
+   3.712780920243853*^9, 3.7127810049938726`*^9, {3.712781235013269*^9, 
+   3.712781269183543*^9}, {3.712781648487795*^9, 3.712781720847224*^9}, 
+   3.712781835767219*^9, 3.7127832916716843`*^9, {3.712783364098031*^9, 
+   3.712783366202444*^9}, {3.712783416831421*^9, 3.712783430380196*^9}, {
+   3.712783523304983*^9, 3.712783532685136*^9}, {3.7127837408515882`*^9, 
+   3.712783743873756*^9}, {3.7127839842844963`*^9, 3.7127839847654*^9}, {
+   3.7206630147938538`*^9, 3.720663018807963*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 11, $CellContext`\[Alpha]$$ = 
+    0.95, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], 0.99}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
+      0.9, 0.95, 0.99, 0.999}}, {{
+       Hold[$CellContext`\[CapitalSigma]t$$], 1}, {1, 3}}, {{
+       Hold[$CellContext`n$$], 1}, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 
+      13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 
+      31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 
+      49, 50}}}, Typeset`size$$ = {800., {146., 150.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$594339$$ = 
+    0, $CellContext`\[CapitalSigma]t$594340$$ = 
+    False, $CellContext`n$594341$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 1, $CellContext`\[Alpha]$$ = 
+        0.99, $CellContext`\[CapitalSigma]t$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$594339$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$594340$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$594341$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[infFlatlandisolineisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`maxz$, $CellContext`dz$, \
+$CellContext`points\[Phi]$, $CellContext`plotpoints\[Phi]$, \
+$CellContext`logplot\[Phi]$, $CellContext`plot\[Phi]$, \
+$CellContext`exact1points$, $CellContext`numorders$}, $CellContext`data$ = 
+          Part[
+            SelectFirst[
+            infFlatlandisolineisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`maxz$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`dz$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`numorders$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`points\[Phi]$ = 
+          Part[$CellContext`data$, 
+            9 + $CellContext`numorders$ + $CellContext`n$$ + 
+            1]; $CellContext`plotpoints\[Phi]$ = 
+          infFlatlandisolineisoscatter`ppoints[$CellContext`points\[Phi]$, \
+$CellContext`dz$, $CellContext`maxz$, $CellContext`\[CapitalSigma]t$$]; \
+$CellContext`exact1points$ = Map[Quiet[{
+              Part[#, 1], 
+              infFlatlandisolineisoscatter`\[Phi][
+               
+               Part[#, 
+                1], $CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$, \
+$CellContext`n$$]}]& , $CellContext`plotpoints\[Phi]$]; $CellContext`plot\
+\[Phi]$ = Quiet[
+            Show[
+             
+             ListPlot[$CellContext`plotpoints\[Phi]$, PlotRange -> All, 
+              PlotStyle -> PointSize[0.01]], 
+             Plot[
+              infFlatlandisolineisoscatter`\[Phi][
+               
+               Abs[$CellContext`z], $CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[Alpha]$$, $CellContext`n$$], {$CellContext`z, \
+-$CellContext`maxz$, $CellContext`maxz$}, PlotRange -> All], Frame -> True, 
+             FrameLabel -> {{
+                $CellContext`\[Phi][
+                 StringJoin["z|", 
+                  ToString[$CellContext`n$$]]], Null}, {$CellContext`z, 
+                Null}}]]; $CellContext`logplot\[Phi]$ = Quiet[
+            Show[
+             
+             ListLogPlot[$CellContext`plotpoints\[Phi]$, PlotRange -> All, 
+              PlotStyle -> PointSize[0.01]], 
+             
+             ListLogPlot[$CellContext`exact1points$, PlotRange -> All, Joined -> 
+              True], Frame -> True, FrameLabel -> {{
+                $CellContext`\[Phi][
+                 StringJoin["z|", 
+                  ToString[$CellContext`n$$]]], Null}, {$CellContext`z, 
+                Null}}]]; Show[
+           
+           GraphicsGrid[{{$CellContext`plot\[Phi]$, \
+$CellContext`logplot\[Phi]$}}, ImageSize -> 800], PlotLabel -> 
+           StringJoin[
+            "Exact solution (1)\nInfinite 3D, isotropic plane source, \
+isotropic scattering, n-th scattered fluence \[Phi][z|n], \[Alpha] = ", 
+             ToString[$CellContext`\[Alpha]$$], 
+             ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+             ToString[$CellContext`\[CapitalSigma]t$$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.99}, {0.01, 0.1, 0.3, 
+         0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
+         0.999}}, {{$CellContext`\[CapitalSigma]t$$, 1}, {1, 
+         3}}, {{$CellContext`n$$, 1}, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 
+         12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 
+         29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 
+         46, 47, 48, 49, 50}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{845., {216., 222.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.6776369624142933`*^9, 3.677637008246682*^9}, 
+   3.677637083481748*^9, 3.677646002344372*^9, 3.677646059362926*^9, 
+   3.67798582999487*^9, {3.677986321076977*^9, 3.677986367986567*^9}, {
+   3.67798651660744*^9, 3.677986526036768*^9}, 3.677986592650831*^9, 
+   3.677986626577219*^9, 3.67798719998837*^9, 3.677991195467228*^9, 
+   3.6779992541251707`*^9, 3.679695074226317*^9, 3.68034753186841*^9, 
+   3.712737222047748*^9, 3.712737294035838*^9, {3.712737352379574*^9, 
+   3.712737446959263*^9}, {3.712737491268989*^9, 3.712737581025807*^9}, {
+   3.7127731949798594`*^9, 3.712773204064093*^9}, {3.712773575783684*^9, 
+   3.712773586527543*^9}, {3.712774661324301*^9, 3.712774677751958*^9}, 
+   3.712779326321713*^9, {3.7127793584546747`*^9, 3.7127793936902122`*^9}, {
+   3.7127796878299103`*^9, 3.712779697197248*^9}, 3.7127808557544117`*^9, 
+   3.7127809238441353`*^9, 3.712781009015499*^9, 3.712781269509327*^9, {
+   3.712781653266213*^9, 3.712781721488008*^9}, 3.712783297652864*^9, 
+   3.712783369722447*^9, 3.7127834307896137`*^9, 3.7127834871826973`*^9, 
+   3.712783533421936*^9, 3.712783697587017*^9, 3.712783749172472*^9, 
+   3.712783939355442*^9, 3.712783985119873*^9, 3.712788409871915*^9, 
+   3.716484167673163*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fluence Moments", "Section",
+ CellChangeTimes->{{3.6803478365620737`*^9, 3.680347839512732*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Moments of the total fluence", "Subsection",
+ CellChangeTimes->{{3.680385732833807*^9, 3.680385736880108*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Length", "[", "infFlatlandisolineisoscatter`simulations", "]"}], ">", 
+      "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "nummoments", ",", "\[Phi]moments", ",", "ks", ",", 
+         "analytic", ",", "j"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"infFlatlandisolineisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"nummoments", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "15"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\[Phi]moments", "=", 
+         RowBox[{"N", "[", 
+          RowBox[{"{", 
+           FractionBox[
+            RowBox[{"data", "[", 
+             RowBox[{"[", "6", "]"}], "]"}], "\[CapitalSigma]t"], "}"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ks", "=", 
+         RowBox[{"{", 
+          RowBox[{"Table", "[", 
+           RowBox[{"k", ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "0", ",", 
+              RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"analytic", "=", 
+         RowBox[{"{", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Re", "[", 
+             RowBox[{"infFlatlandisolineisoscatter`\[Phi]m", "[", 
+              RowBox[{"\[Alpha]", ",", "\[CapitalSigma]t", ",", "m"}], "]"}], 
+             "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"m", ",", "0", ",", 
+              RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}], "}"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"j", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{"ks", ",", "analytic", ",", "\[Phi]moments"}], "]"}]}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
+             "}"}], ",", 
+           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "0.95"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalSigma]t", ",", "3"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`muts"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.650041688841194*^9, 3.650041705608346*^9}, 
+   3.650042056240006*^9, {3.650042170542794*^9, 3.65004232530101*^9}, {
+   3.650042374114872*^9, 3.650042374646285*^9}, {3.6500426332834272`*^9, 
+   3.65004266394592*^9}, {3.652044486040279*^9, 3.652044486152093*^9}, {
+   3.6803478500290194`*^9, 3.680347859197233*^9}, {3.6803481398099823`*^9, 
+   3.6803482532961493`*^9}, {3.6803838590798807`*^9, 3.680383897858781*^9}, {
+   3.6803839702232037`*^9, 3.680384017595558*^9}, {3.680384083049057*^9, 
+   3.680384119316133*^9}, {3.6803850193555813`*^9, 3.6803850300636673`*^9}, {
+   3.680385512160377*^9, 3.680385562569627*^9}, 3.6803856063043337`*^9, {
+   3.720663197718157*^9, 3.720663197740775*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
+    0.999, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], 0.95}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
+      0.9, 0.95, 0.99, 0.999}}, {{
+       Hold[$CellContext`\[CapitalSigma]t$$], 3}, {1, 3}}}, Typeset`size$$ = {
+    235., {50.634033203125, 56.365966796875}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$8143047$$ = 
+    0, $CellContext`\[CapitalSigma]t$8143048$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Alpha]$$ = 
+        0.95, $CellContext`\[CapitalSigma]t$$ = 3}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$8143047$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$8143048$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[infFlatlandisolineisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`nummoments$, $CellContext`\
+\[Phi]moments$, $CellContext`ks$, $CellContext`analytic$, $CellContext`j$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            infFlatlandisolineisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`nummoments$ = 
+          Part[$CellContext`data$, 2, 15]; $CellContext`\[Phi]moments$ = 
+          N[{Part[$CellContext`data$, 
+               6]/$CellContext`\[CapitalSigma]t$$}]; $CellContext`ks$ = {
+            Table[$CellContext`k, {$CellContext`k, 
+              0, $CellContext`nummoments$ - 1}]}; $CellContext`analytic$ = {
+            Table[
+             Re[
+              
+              infFlatlandisolineisoscatter`\[Phi]m[$CellContext`\[Alpha]$$, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`m]], {$CellContext`m, 
+              0, $CellContext`nummoments$ - 1}]}; $CellContext`j$ = 
+          Join[$CellContext`ks$, $CellContext`analytic$, \
+$CellContext`\[Phi]moments$]; TableForm[
+           Join[{{"k", "analytic", "MC"}}, 
+            Transpose[$CellContext`j$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.95}, {0.01, 0.1, 0.3, 
+         0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
+         0.999}}, {{$CellContext`\[CapitalSigma]t$$, 3}, {1, 3}}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{280., {109., 115.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6803480784925528`*^9, {3.680348198112212*^9, 3.68034825359324*^9}, {
+   3.680383865528825*^9, 3.680383898195774*^9}, {3.6803839754746847`*^9, 
+   3.680384017805707*^9}, {3.680384083273312*^9, 3.6803841195818453`*^9}, {
+   3.6803850220056868`*^9, 3.68038503041959*^9}, {3.68038553336122*^9, 
+   3.6803855630025253`*^9}, 3.680385607905734*^9, 3.720663204626677*^9, 
+   3.720663420669551*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Moments of the n-th collided fluence", "Subsection",
+ CellChangeTimes->{{3.68038574208819*^9, 3.6803857478076487`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Length", "[", "infFlatlandisolineisoscatter`simulations", "]"}], ">", 
+      "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "nummoments", ",", "\[Phi]moments", ",", "ks", ",", 
+         "analytic", ",", "j"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"infFlatlandisolineisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"nummoments", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "15"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\[Phi]moments", "=", 
+         RowBox[{"N", "[", 
+          FractionBox[
+           RowBox[{"{", 
+            RowBox[{"data", "[", 
+             RowBox[{"[", 
+              RowBox[{"9", "+", "n"}], "]"}], "]"}], "}"}], 
+           "\[CapitalSigma]t"], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ks", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{"k", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", 
+             RowBox[{"nummoments", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"analytic", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"Re", "[", 
+            RowBox[{"infFlatlandisolineisoscatter`\[Phi]m", "[", 
+             RowBox[{
+             "\[Alpha]", ",", "\[CapitalSigma]t", ",", "k", ",", "n"}], "]"}],
+             "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "ks"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"j", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", "ks", "}"}], ",", 
+           RowBox[{"{", "analytic", "}"}], ",", "\[Phi]moments"}], "]"}]}], 
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"TableForm", "[", "\[IndentingNewLine]", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<k\>\"", ",", "\"\<analytic\>\"", ",", "\"\<MC\>\""}], "}"}],
+             "}"}], ",", 
+           RowBox[{"Transpose", "[", "j", "]"}]}], "]"}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "0.95"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`alphas"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalSigma]t", ",", "3"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`muts"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "11"}], "}"}], ",", 
+     RowBox[{"Range", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+        "NumberQ", "[", "infFlatlandisolineisoscatter`numcollorders", "]"}], 
+        ",", "infFlatlandisolineisoscatter`numcollorders", ",", "1"}], "]"}], 
+      "]"}]}], "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.677637984177693*^9, 3.677638024055588*^9}, 
+   3.6776380618215*^9, {3.6803857601236067`*^9, 3.6803857866274977`*^9}, {
+   3.7206631977478724`*^9, 3.72066319777712*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 8, $CellContext`\[Alpha]$$ = 
+    0.7, $CellContext`\[CapitalSigma]t$$ = 3, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], 0.95}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
+      0.9, 0.95, 0.99, 0.999}}, {{
+       Hold[$CellContext`\[CapitalSigma]t$$], 3}, {1, 3}}, {{
+       Hold[$CellContext`n$$], 11}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 
+      13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 
+      31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 
+      49, 50}}}, Typeset`size$$ = {226., {46.134033203125, 51.865966796875}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Alpha]$8138970$$ = 
+    0, $CellContext`\[CapitalSigma]t$8138971$$ = 
+    False, $CellContext`n$8138972$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 11, $CellContext`\[Alpha]$$ = 
+        0.95, $CellContext`\[CapitalSigma]t$$ = 3}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$8138970$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$8138971$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$8138972$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[infFlatlandisolineisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`nummoments$, $CellContext`\
+\[Phi]moments$, $CellContext`ks$, $CellContext`analytic$, $CellContext`j$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            infFlatlandisolineisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`nummoments$ = 
+          Part[$CellContext`data$, 2, 15]; $CellContext`\[Phi]moments$ = N[{
+              
+              Part[$CellContext`data$, 
+               9 + $CellContext`n$$]}/$CellContext`\[CapitalSigma]t$$]; \
+$CellContext`ks$ = 
+          Table[$CellContext`k, {$CellContext`k, 0, $CellContext`nummoments$ - 
+             1}]; $CellContext`analytic$ = Table[
+            Re[
+             
+             infFlatlandisolineisoscatter`\[Phi]m[$CellContext`\[Alpha]$$, \
+$CellContext`\[CapitalSigma]t$$, $CellContext`k, $CellContext`n$$]], \
+{$CellContext`k, $CellContext`ks$}]; $CellContext`j$ = 
+          Join[{$CellContext`ks$}, {$CellContext`analytic$}, $CellContext`\
+\[Phi]moments$]; TableForm[
+           Join[{{"k", "analytic", "MC"}}, 
+            Transpose[$CellContext`j$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.95}, {0.01, 0.1, 0.3, 
+         0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
+         0.999}}, {{$CellContext`\[CapitalSigma]t$$, 3}, {1, 
+         3}}, {{$CellContext`n$$, 11}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+          13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 
+         30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 
+         47, 48, 49, 50}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{271., {118., 124.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.680385774187887*^9, 3.6803857869707193`*^9}, 
+   3.720663285367944*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Angular Distributions", "Section",
+ CellChangeTimes->{{3.680347825787408*^9, 3.6803478289293623`*^9}}],
+
+Cell["Exact solution (Caseology)", "Text",
+ CellChangeTimes->{{3.680095968164598*^9, 3.680095972611809*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Length", "[", "infFlatlandisolineisoscatter`simulations", "]"}], ">", 
+      "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "numorders", ",", "pointsu", ",", "plotpointsu", ",", 
+         "du", ",", "r", ",", "dz", ",", "maxz", ",", "zsim"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"infFlatlandisolineisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"numorders", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"du", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "9"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dz", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"maxz", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"pointsu", " ", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"9", "+", 
+            RowBox[{"2", " ", "numorders"}], "+", "n"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"zsim", " ", "=", " ", 
+         RowBox[{
+          RowBox[{"dz", " ", "*", " ", "n"}], "-", 
+          RowBox[{"0.5", " ", "dz"}], "-", "maxz"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"plotpointsu", "=", 
+         RowBox[{"infFlatlandisolineisoscatter`ppointsu", "[", 
+          RowBox[{"pointsu", ",", "du", ",", "\[CapitalSigma]t"}], "]"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"pp", "=", 
+         RowBox[{"Show", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"plotpointsu", ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", "Black"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"FrameLabel", "->", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", "  ", 
+                 RowBox[{
+                  FractionBox[
+                   RowBox[{"L", "[", 
+                    RowBox[{"zsim", ",", "u"}], "]"}], 
+                   SqrtBox[
+                    RowBox[{"1", "-", 
+                    SuperscriptBox["u", "2"]}]]], ","}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"u", ","}], "}"}]}], "}"}]}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{
+              FractionBox["1", 
+               RowBox[{" ", "Pi"}]], 
+              SuperscriptBox[
+               RowBox[{"(", 
+                SqrtBox[
+                 RowBox[{"1", "-", 
+                  SuperscriptBox["u", "2"]}]], ")"}], 
+               RowBox[{"-", "1"}]], "Pi", " ", 
+              RowBox[{"infFlatlandisolineisoscatter`LrigourousDiffusion", "[", 
+               RowBox[{
+               "zsim", ",", "u", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], 
+               "]"}]}], ",", 
+             RowBox[{"{", 
+              RowBox[{"u", ",", 
+               RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"Red", ",", "Dashed"}], "}"}]}]}], 
+            "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"Quiet", "[", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{
+               FractionBox["1", 
+                RowBox[{" ", "Pi"}]], 
+               SuperscriptBox[
+                RowBox[{"(", 
+                 SqrtBox[
+                  RowBox[{"1", "-", 
+                   SuperscriptBox["u", "2"]}]], ")"}], 
+                RowBox[{"-", "1"}]], "Pi", " ", 
+               RowBox[{"infFlatlandisolineisoscatter`Lexact", "[", 
+                RowBox[{
+                "zsim", ",", "u", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], 
+                "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"u", ",", 
+                RowBox[{"-", "1"}], ",", "1"}], "}"}]}], 
+             "\[IndentingNewLine]", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+           
+           RowBox[{"PlotLabel", "->", 
+            RowBox[{
+            "\"\<Infinite Flatland Medium, isotropic line source, isotropic \
+scattering\\nAngular distribution: Exact solution 1\\n \
+L[z,u]/\!\(\*SqrtBox[\(1 - \*SuperscriptBox[\(u\), \(2\)]\)]\), z = \>\"", "<>", 
+             RowBox[{"ToString", "[", "zsim", "]"}], "<>", 
+             "\"\<, \[Alpha] = \>\"", "<>", 
+             RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+             "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", 
+             "<>", 
+             RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}]}], 
+          "\[IndentingNewLine]", "]"}]}]}]}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "0.9"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalSigma]t", ",", "1"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`muts"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "127"}], "}"}], ",", 
+     RowBox[{"Range", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"NumberQ", "[", "infFlatlandisolineisoscatter`numz", "]"}], 
+        ",", "infFlatlandisolineisoscatter`numz", ",", "1"}], "]"}], "]"}]}], 
+    "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.677649498628545*^9, 3.67764956277763*^9}, {
+   3.677649962469734*^9, 3.677649963694273*^9}, {3.677650117261801*^9, 
+   3.677650122849861*^9}, {3.677650319468528*^9, 3.677650322041355*^9}, {
+   3.6776504756631613`*^9, 3.677650476046736*^9}, {3.677650514750444*^9, 
+   3.677650526324561*^9}, {3.677696676480235*^9, 3.67769669874019*^9}, {
+   3.6776967587562933`*^9, 3.6776967594508553`*^9}, 3.677696886770278*^9, {
+   3.677696966560349*^9, 3.677696978730489*^9}, {3.677721728454999*^9, 
+   3.677721728741879*^9}, 3.677721789581545*^9, {3.677999310494535*^9, 
+   3.6779994393529377`*^9}, {3.677999506081312*^9, 3.677999511304785*^9}, {
+   3.6779996008269978`*^9, 3.677999612298613*^9}, {3.6779996485247602`*^9, 
+   3.677999679007188*^9}, {3.6780000300891657`*^9, 3.678000038012619*^9}, {
+   3.6780000694852123`*^9, 3.678000069772792*^9}, {3.678000137295138*^9, 
+   3.678000146010467*^9}, {3.678000308718337*^9, 3.678000318830419*^9}, {
+   3.678000886403359*^9, 3.678000914202683*^9}, {3.678076282148603*^9, 
+   3.678076286337002*^9}, {3.678076367941476*^9, 3.678076376354701*^9}, {
+   3.678076529119947*^9, 3.6780765357537823`*^9}, {3.678076623085086*^9, 
+   3.67807664959414*^9}, {3.720663692276516*^9, 3.720663692324037*^9}, {
+   3.720666084047842*^9, 3.720666128292059*^9}, 3.7206661831455507`*^9, {
+   3.72066646222723*^9, 3.7206664653420887`*^9}, {3.720667108627967*^9, 
+   3.720667131759989*^9}, {3.720667168099903*^9, 3.720667227443687*^9}, {
+   3.720669544860731*^9, 3.720669564652813*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 127, $CellContext`\[Alpha]$$ = 
+    0.9, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], 0.9}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
+      0.9, 0.95, 0.99, 0.999}}, {{
+       Hold[$CellContext`\[CapitalSigma]t$$], 1}, {1, 3}}, {{
+       Hold[$CellContext`n$$], 127}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 
+      13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 
+      31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 
+      49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 
+      67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 
+      85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 
+      102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 
+      116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 
+      130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 
+      144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 
+      158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 
+      172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 
+      186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 
+      200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 
+      214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 
+      228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 
+      242, 243, 244, 245, 246, 247, 248, 249, 250}}}, Typeset`size$$ = {
+    360., {133., 137.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$10558004$$ = 
+    0, $CellContext`\[CapitalSigma]t$10558005$$ = 
+    False, $CellContext`n$10558006$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 127, $CellContext`\[Alpha]$$ = 
+        0.9, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$10558004$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$10558005$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$10558006$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[infFlatlandisolineisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`numorders$, \
+$CellContext`pointsu$, $CellContext`plotpointsu$, $CellContext`du$, \
+$CellContext`r$, $CellContext`dz$, $CellContext`maxz$, $CellContext`zsim$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            infFlatlandisolineisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`numorders$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`du$ = 
+          Part[$CellContext`data$, 2, 9]; $CellContext`dz$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`maxz$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`pointsu$ = 
+          Part[$CellContext`data$, 9 + 
+            2 $CellContext`numorders$ + $CellContext`n$$]; $CellContext`zsim$ = \
+$CellContext`dz$ $CellContext`n$$ - 
+           0.5 $CellContext`dz$ - $CellContext`maxz$; \
+$CellContext`plotpointsu$ = 
+          infFlatlandisolineisoscatter`ppointsu[$CellContext`pointsu$, \
+$CellContext`du$, $CellContext`\[CapitalSigma]t$$]; $CellContext`pp = Show[
+            
+            ListPlot[$CellContext`plotpointsu$, PlotRange -> All, PlotStyle -> 
+             Black, Frame -> True, 
+             FrameLabel -> {{$CellContext`L[$CellContext`zsim$, \
+$CellContext`u]/Sqrt[1 - $CellContext`u^2], Null}, {$CellContext`u, Null}}], 
+            
+            Plot[(1/Pi) Sqrt[1 - $CellContext`u^2]^(-1) Pi 
+             infFlatlandisolineisoscatter`LrigourousDiffusion[$CellContext`\
+zsim$, $CellContext`u, $CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[Alpha]$$], {$CellContext`u, -1, 1}, 
+             PlotStyle -> {Red, Dashed}], 
+            Quiet[
+             
+             Plot[(1/Pi) Sqrt[1 - $CellContext`u^2]^(-1) Pi 
+              infFlatlandisolineisoscatter`Lexact[$CellContext`zsim$, \
+$CellContext`u, $CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$], \
+{$CellContext`u, -1, 1}]], PlotLabel -> 
+            StringJoin[
+             "Infinite Flatland Medium, isotropic line source, isotropic \
+scattering\nAngular distribution: Exact solution 1\n L[z,u]/\!\(\*SqrtBox[\(1 \
+- \*SuperscriptBox[\(u\), \(2\)]\)]\), z = ", 
+              ToString[$CellContext`zsim$], ", \[Alpha] = ", 
+              ToString[$CellContext`\[Alpha]$$], 
+              ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+              ToString[$CellContext`\[CapitalSigma]t$$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.9}, {0.01, 0.1, 0.3, 
+         0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
+         0.999}}, {{$CellContext`\[CapitalSigma]t$$, 1}, {1, 
+         3}}, {{$CellContext`n$$, 127}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 
+         12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 
+         29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 
+         46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 
+         63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 
+         80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 
+         97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 
+         111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124,
+          125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 
+         138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151,
+          152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 
+         165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178,
+          179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 
+         192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205,
+          206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 
+         219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232,
+          233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 
+         246, 247, 248, 249, 250}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     
+     ImageSizeCache->{405., {203., 209.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.720663697942617*^9, 3.7206638460725727`*^9, 3.72066604090574*^9, {
+   3.720666086335047*^9, 3.720666129742044*^9}, 3.720666215319006*^9, 
+   3.720666436902213*^9, 3.720666473160694*^9, 3.7206671355285463`*^9, 
+   3.720669565194437*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"infFlatlandisolineisoscatter`LexactFourier2", "[", 
+   RowBox[{"z_", ",", "u_", ",", "\[CapitalSigma]t_", ",", "c_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"2", " ", "Pi"}]], 
+   FractionBox["1", "Pi"], 
+   RowBox[{"NIntegrate", "[", 
+    RowBox[{
+     RowBox[{
+      FractionBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Cos", "[", 
+          RowBox[{"k", " ", "z", " ", "\[CapitalSigma]t"}], "]"}], "+", 
+         RowBox[{"k", " ", "u", " ", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"k", " ", "z", " ", "\[CapitalSigma]t"}], "]"}]}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{
+          SuperscriptBox["k", "2"], 
+          SuperscriptBox["u", "2"]}]}], ")"}]], 
+      FractionBox["1", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"c", " ", 
+          SqrtBox[
+           FractionBox["1", 
+            RowBox[{"1", "+", 
+             SuperscriptBox["k", "2"]}]]]}]}], ")"}]]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "0", ",", "Infinity"}], "}"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.720666843664144*^9, 3.720666872379917*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Length", "[", "infFlatlandisolineisoscatter`simulations", "]"}], ">", 
+      "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "numorders", ",", "pointsu", ",", "plotpointsu", ",", 
+         "du", ",", "r", ",", "dz", ",", "maxz", ",", "zsim"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"infFlatlandisolineisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "\[Alpha]"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+               "\[CapitalSigma]t"}]}], "&"}]}], "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"numorders", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"du", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "9"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dz", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"maxz", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"pointsu", " ", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"9", "+", 
+            RowBox[{"2", " ", "numorders"}], "+", "n"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"zsim", " ", "=", " ", 
+         RowBox[{
+          RowBox[{"dz", " ", "*", " ", "n"}], "-", 
+          RowBox[{"0.5", " ", "dz"}], "-", "maxz"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"plotpointsu", "=", 
+         RowBox[{"infFlatlandisolineisoscatter`ppointsu", "[", 
+          RowBox[{"pointsu", ",", "du", ",", "\[CapitalSigma]t"}], "]"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"pp", "=", 
+         RowBox[{"Show", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"plotpointsu", ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", "Black"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"FrameLabel", "->", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", " ", 
+                 RowBox[{
+                  RowBox[{"Pi", " ", 
+                   RowBox[{"L", "[", 
+                    RowBox[{"zsim", ",", "u"}], "]"}]}], ","}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"u", ","}], "}"}]}], "}"}]}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{
+              FractionBox["1", 
+               RowBox[{" ", "Pi"}]], 
+              SuperscriptBox[
+               RowBox[{"(", 
+                SqrtBox[
+                 RowBox[{"1", "-", 
+                  SuperscriptBox["u", "2"]}]], ")"}], 
+               RowBox[{"-", "1"}]], "Pi", " ", 
+              RowBox[{"infFlatlandisolineisoscatter`LrigourousDiffusion", "[", 
+               RowBox[{
+               "zsim", ",", "u", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], 
+               "]"}]}], ",", 
+             RowBox[{"{", 
+              RowBox[{"u", ",", 
+               RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"Red", ",", "Dashed"}], "}"}]}]}], 
+            "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"Quiet", "[", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{
+               FractionBox["1", 
+                RowBox[{" ", "Pi"}]], 
+               SuperscriptBox[
+                RowBox[{"(", 
+                 SqrtBox[
+                  RowBox[{"1", "-", 
+                   SuperscriptBox["u", "2"]}]], ")"}], 
+                RowBox[{"-", "1"}]], "Pi", " ", 
+               RowBox[{"infFlatlandisolineisoscatter`LexactFourier2", "[", 
+                RowBox[{
+                "zsim", ",", "u", ",", "\[CapitalSigma]t", ",", "\[Alpha]"}], 
+                "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"u", ",", 
+                RowBox[{"-", "1"}], ",", "1"}], "}"}]}], 
+             "\[IndentingNewLine]", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+           
+           RowBox[{"PlotLabel", "->", 
+            RowBox[{
+            "\"\<Infinite 3D Medium, isotropic plane source, isotropic \
+scattering\\nAngular distribution: rigorous diffusion approximation\\n\[Pi] \
+L[z,u], z = \>\"", "<>", 
+             RowBox[{"ToString", "[", "zsim", "]"}], "<>", 
+             "\"\<, \[Alpha] = \>\"", "<>", 
+             RowBox[{"ToString", "[", "\[Alpha]", "]"}], "<>", 
+             "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", 
+             "<>", 
+             RowBox[{"ToString", "[", "\[CapitalSigma]t", "]"}]}]}]}], 
+          "\[IndentingNewLine]", "]"}]}]}]}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "0.9"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`alphas"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalSigma]t", ",", "1"}], "}"}], ",", 
+     "infFlatlandisolineisoscatter`muts"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "127"}], "}"}], ",", 
+     RowBox[{"Range", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"NumberQ", "[", "infFlatlandisolineisoscatter`numz", "]"}], 
+        ",", "infFlatlandisolineisoscatter`numz", ",", "1"}], "]"}], "]"}]}], 
+    "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.677649498628545*^9, 3.67764956277763*^9}, {
+   3.677649962469734*^9, 3.677649963694273*^9}, {3.677650117261801*^9, 
+   3.677650122849861*^9}, {3.677650319468528*^9, 3.677650322041355*^9}, {
+   3.6776504756631613`*^9, 3.677650476046736*^9}, {3.677650514750444*^9, 
+   3.677650526324561*^9}, {3.677696676480235*^9, 3.67769669874019*^9}, {
+   3.6776967587562933`*^9, 3.6776967594508553`*^9}, 3.677696886770278*^9, {
+   3.677696966560349*^9, 3.677696978730489*^9}, {3.677721728454999*^9, 
+   3.677721728741879*^9}, 3.677721789581545*^9, {3.677999310494535*^9, 
+   3.6779994393529377`*^9}, {3.677999506081312*^9, 3.677999511304785*^9}, {
+   3.6779996008269978`*^9, 3.677999612298613*^9}, {3.6779996485247602`*^9, 
+   3.677999679007188*^9}, {3.6780000300891657`*^9, 3.678000038012619*^9}, {
+   3.6780000694852123`*^9, 3.678000069772792*^9}, {3.678000137295138*^9, 
+   3.678000146010467*^9}, {3.678000308718337*^9, 3.678000318830419*^9}, {
+   3.678000886403359*^9, 3.678000914202683*^9}, {3.678076282148603*^9, 
+   3.678076286337002*^9}, {3.678076367941476*^9, 3.678076376354701*^9}, {
+   3.678076529119947*^9, 3.6780765357537823`*^9}, {3.678076623085086*^9, 
+   3.67807664959414*^9}, {3.720663692276516*^9, 3.720663692324037*^9}, {
+   3.720666084047842*^9, 3.720666128292059*^9}, 3.7206661831455507`*^9, {
+   3.72066646222723*^9, 3.7206664653420887`*^9}, 3.720666855362114*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 128, $CellContext`\[Alpha]$$ = 
+    0.5, $CellContext`\[CapitalSigma]t$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], 0.9}, {0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 
+      0.9, 0.95, 0.99, 0.999}}, {{
+       Hold[$CellContext`\[CapitalSigma]t$$], 1}, {1, 3}}, {{
+       Hold[$CellContext`n$$], 127}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 
+      13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 
+      31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 
+      49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 
+      67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 
+      85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 
+      102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 
+      116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 
+      130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 
+      144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 
+      158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 
+      172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 
+      186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 
+      200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 
+      214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 
+      228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 
+      242, 243, 244, 245, 246, 247, 248, 249, 250}}}, Typeset`size$$ = {
+    360., {145., 150.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$9876687$$ = 
+    0, $CellContext`\[CapitalSigma]t$9876688$$ = 
+    False, $CellContext`n$9876689$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 127, $CellContext`\[Alpha]$$ = 
+        0.9, $CellContext`\[CapitalSigma]t$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$9876687$$, 0], 
+        Hold[$CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[CapitalSigma]t$9876688$$, False], 
+        Hold[$CellContext`n$$, $CellContext`n$9876689$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[infFlatlandisolineisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`numorders$, \
+$CellContext`pointsu$, $CellContext`plotpointsu$, $CellContext`du$, \
+$CellContext`r$, $CellContext`dz$, $CellContext`maxz$, $CellContext`zsim$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            infFlatlandisolineisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`\[Alpha]$$, 
+              Part[#, 2] == $CellContext`\[CapitalSigma]t$$]& ], 
+            3]; $CellContext`numorders$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`du$ = 
+          Part[$CellContext`data$, 2, 9]; $CellContext`dz$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`maxz$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`pointsu$ = 
+          Part[$CellContext`data$, 9 + 
+            2 $CellContext`numorders$ + $CellContext`n$$]; $CellContext`zsim$ = \
+$CellContext`dz$ $CellContext`n$$ - 
+           0.5 $CellContext`dz$ - $CellContext`maxz$; \
+$CellContext`plotpointsu$ = 
+          infFlatlandisolineisoscatter`ppointsu[$CellContext`pointsu$, \
+$CellContext`du$, $CellContext`\[CapitalSigma]t$$]; $CellContext`pp = Show[
+            
+            ListPlot[$CellContext`plotpointsu$, PlotRange -> All, PlotStyle -> 
+             Black, Frame -> True, 
+             FrameLabel -> {{
+               Pi $CellContext`L[$CellContext`zsim$, $CellContext`u], 
+                Null}, {$CellContext`u, Null}}], 
+            
+            Plot[(1/Pi) Sqrt[1 - $CellContext`u^2]^(-1) Pi 
+             infFlatlandisolineisoscatter`LrigourousDiffusion[$CellContext`\
+zsim$, $CellContext`u, $CellContext`\[CapitalSigma]t$$, \
+$CellContext`\[Alpha]$$], {$CellContext`u, -1, 1}, 
+             PlotStyle -> {Red, Dashed}], 
+            Quiet[
+             
+             Plot[(1/Pi) Sqrt[1 - $CellContext`u^2]^(-1) Pi 
+              infFlatlandisolineisoscatter`LexactFourier2[$CellContext`zsim$, \
+$CellContext`u, $CellContext`\[CapitalSigma]t$$, $CellContext`\[Alpha]$$], \
+{$CellContext`u, -1, 1}]], PlotLabel -> 
+            StringJoin[
+             "Infinite 3D Medium, isotropic plane source, isotropic \
+scattering\nAngular distribution: rigorous diffusion approximation\n\[Pi] \
+L[z,u], z = ", 
+              ToString[$CellContext`zsim$], ", \[Alpha] = ", 
+              ToString[$CellContext`\[Alpha]$$], 
+              ", \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = ", 
+              ToString[$CellContext`\[CapitalSigma]t$$]]]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.9}, {0.01, 0.1, 0.3, 
+         0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 
+         0.999}}, {{$CellContext`\[CapitalSigma]t$$, 1}, {1, 
+         3}}, {{$CellContext`n$$, 127}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 
+         12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 
+         29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 
+         46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 
+         63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 
+         80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 
+         97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 
+         111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124,
+          125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 
+         138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151,
+          152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 
+         165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178,
+          179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 
+         192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205,
+          206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 
+         219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232,
+          233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 
+         246, 247, 248, 249, 250}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     
+     ImageSizeCache->{405., {216., 222.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.7206668847960367`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{939, 961},
+WindowMargins->{{5, Automatic}, {Automatic, 1}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 28, \
+2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 500, 8, 148, "Title"],
+Cell[1083, 32, 113, 1, 51, "Subtitle"],
+Cell[1199, 35, 578, 11, 129, "Text"],
+Cell[CellGroupData[{
+Cell[1802, 50, 143, 2, 64, "Section"],
+Cell[1948, 54, 253, 5, 49, "Text"],
+Cell[2204, 61, 122, 2, 32, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2363, 68, 93, 1, 64, "Section"],
+Cell[2459, 71, 624, 12, 87, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3120, 88, 103, 1, 64, "Section"],
+Cell[CellGroupData[{
+Cell[3248, 93, 313, 4, 44, "Subsection"],
+Cell[3564, 99, 525, 16, 59, "Input"],
+Cell[4092, 117, 341, 9, 61, "Input"],
+Cell[CellGroupData[{
+Cell[4458, 130, 344, 8, 32, "Input"],
+Cell[4805, 140, 355, 8, 58, "Output"]
+}, Open  ]],
+Cell[5175, 151, 556, 14, 52, "Input"],
+Cell[5734, 167, 613, 16, 47, "Input"],
+Cell[6350, 185, 279, 8, 59, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6666, 198, 229, 3, 44, "Subsection"],
+Cell[6898, 203, 1157, 25, 78, "Input"],
+Cell[CellGroupData[{
+Cell[8080, 232, 520, 10, 32, "Input"],
+Cell[8603, 244, 684, 17, 70, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9336, 267, 243, 3, 44, "Subsection"],
+Cell[9582, 272, 1876, 40, 106, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11495, 317, 183, 2, 44, "Subsection"],
+Cell[11681, 321, 1279, 36, 103, "Input"],
+Cell[12963, 359, 1696, 48, 144, "Input"],
+Cell[14662, 409, 2140, 60, 184, "Input"],
+Cell[16805, 471, 4473, 126, 323, "Input"],
+Cell[21281, 599, 3281, 104, 249, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24599, 708, 159, 2, 44, "Subsection"],
+Cell[24761, 712, 1107, 29, 74, "Input"],
+Cell[CellGroupData[{
+Cell[25893, 745, 415, 10, 32, "Input"],
+Cell[26311, 757, 444, 13, 64, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26804, 776, 99, 1, 44, "Subsection"],
+Cell[26906, 779, 1183, 32, 92, "Input"],
+Cell[28092, 813, 1525, 44, 87, "Input"],
+Cell[CellGroupData[{
+Cell[29642, 861, 478, 11, 32, "Input"],
+Cell[30123, 874, 1614, 52, 134, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31786, 932, 111, 1, 44, "Subsection"],
+Cell[31900, 935, 177, 2, 30, "Text"],
+Cell[32080, 939, 931, 23, 78, "Input"],
+Cell[33014, 964, 174, 2, 30, "Text"],
+Cell[33191, 968, 3009, 71, 236, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36249, 1045, 197, 3, 64, "Section"],
+Cell[36449, 1050, 1188, 30, 54, "Input"],
+Cell[37640, 1082, 1155, 29, 54, "Input"],
+Cell[38798, 1113, 510, 10, 75, "Input"],
+Cell[CellGroupData[{
+Cell[39333, 1127, 1646, 42, 201, "Input"],
+Cell[40982, 1171, 888, 15, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41907, 1191, 473, 10, 32, "Input"],
+Cell[42383, 1203, 731, 12, 70, "Output"]
+}, Open  ]],
+Cell[43129, 1218, 1679, 40, 117, "Input"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[44845, 1263, 141, 2, 50, "Section"],
+Cell[CellGroupData[{
+Cell[45011, 1269, 426, 5, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[45462, 1278, 12617, 266, 1108, "Input"],
+Cell[58082, 1546, 8180, 148, 429, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[66311, 1700, 438, 6, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[66774, 1710, 9536, 208, 894, "Input"],
+Cell[76313, 1920, 7153, 133, 455, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[83527, 2060, 102, 1, 64, "Section"],
+Cell[CellGroupData[{
+Cell[83654, 2065, 116, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[83795, 2070, 4250, 101, 451, "Input"],
+Cell[88048, 2173, 3895, 76, 241, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[91992, 2255, 125, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[92142, 2260, 4187, 107, 556, "Input"],
+Cell[96332, 2369, 4227, 80, 259, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[100620, 2456, 108, 1, 64, "Section"],
+Cell[100731, 2459, 108, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[100864, 2464, 8445, 190, 924, "Input"],
+Cell[109312, 2656, 7764, 131, 429, "Output"]
+}, Open  ]],
+Cell[117091, 2790, 1183, 34, 104, "Input"],
+Cell[CellGroupData[{
+Cell[118299, 2828, 8179, 185, 874, "Input"],
+Cell[126481, 3015, 7517, 128, 455, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
