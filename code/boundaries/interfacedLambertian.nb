@@ -1,0 +1,720 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24177,        712]
+NotebookOptionsPosition[     19923,        630]
+NotebookOutlinePosition[     20279,        646]
+CellTagsIndexPosition[     20236,        643]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Interfaced Lambertian BRDF", "Title",
+ CellChangeTimes->{{3.77507208883074*^9, 3.775072092011127*^9}, 
+   3.7750733251488934`*^9},ExpressionUUID->"56a70619-b89f-4c4d-b2c1-\
+3ce320731fa3"],
+
+Cell[TextData[{
+ "This is code to accompany the book:\n",
+ StyleBox["A Hitchhiker\[CloseCurlyQuote]s Guide to Multiple Scattering\n", 
+  "Subchapter"],
+ StyleBox["\[Copyright] 2019", "Subsection"],
+ StyleBox[" ", "Section"],
+ StyleBox["Eugene d\[CloseCurlyQuote]Eon \nwww.eugenedeon.com", "Subsection"]
+}], "Text",
+ CellChangeTimes->{{3.6174286022468777`*^9, 3.617428710592918*^9}, 
+   3.6461760402482853`*^9, {3.774487415674838*^9, 
+   3.77448741604445*^9}},ExpressionUUID->"0db24714-bb14-4424-8ba5-\
+122f71a09a60"],
+
+Cell[CellGroupData[{
+
+Cell["Definition", "Section",
+ CellChangeTimes->{{3.775073808451543*^9, 
+  3.7750738094042883`*^9}},ExpressionUUID->"13b45008-ce88-406e-8cdb-\
+1c3b0820213b"],
+
+Cell[TextData[{
+ "A smooth dielectric fresnel layer of relative index n over a smooth \
+Lambertian base with diffuse albedo Kd \n[Meneveaux et al. 2017 - ",
+ StyleBox["Rendering Rough Opaque Materials with Interfaced Lambertian \
+Microfacets",
+  FontSlant->"Italic"],
+ "]"
+}], "Text",
+ CellChangeTimes->{{3.775072096323804*^9, 3.7750721119465313`*^9}, {
+  3.7750738984746523`*^9, 3.775073900330299*^9}, {3.775073959930958*^9, 
+  3.775073983769039*^9}},ExpressionUUID->"ffc11bfd-d193-42f4-a13a-\
+c72243e32933"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fresnel functions", "Section",
+ CellChangeTimes->{{3.77507253081332*^9, 
+  3.775072533133375*^9}},ExpressionUUID->"f324e686-f81f-4525-9016-\
+0037eaae52d3"],
+
+Cell["Exact Fresnel reflectance for a smooth interface, FR[]:", "Text",
+ CellChangeTimes->{{3.775073658142653*^9, 
+  3.775073672681549*^9}},ExpressionUUID->"749c0038-d393-467d-a604-\
+46f4f3968dd0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"evalF", "[", 
+    RowBox[{"g_", ",", "c_"}], "]"}], ":=", 
+   RowBox[{
+    FractionBox["1", "2"], 
+    FractionBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"g", "-", "c"}], ")"}], "2"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"g", "+", "c"}], ")"}], "2"]], 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"c", 
+           RowBox[{"(", 
+            RowBox[{"g", "+", "c"}], ")"}]}], "-", "1"}], ")"}], "2"], 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"c", 
+           RowBox[{"(", 
+            RowBox[{"g", "-", "c"}], ")"}]}], "+", "1"}], ")"}], "2"]]}], 
+     ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FR", "[", 
+   RowBox[{"etaratio_", ",", "costhetai_"}], "]"}], ":=", 
+  RowBox[{"If", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["etaratio", "2"], "-", "1", "+", 
+      SuperscriptBox["costhetai", "2"]}], "\[GreaterEqual]", "0"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"evalF", "[", 
+     RowBox[{
+      SqrtBox[
+       RowBox[{
+        SuperscriptBox["etaratio", "2"], "-", "1", "+", 
+        SuperscriptBox["costhetai", "2"]}]], ",", "costhetai"}], "]"}], ",", 
+    "\[IndentingNewLine]", "1"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.5908037936158657`*^9, 3.590803859561184*^9}, {
+   3.590803991860276*^9, 3.5908040084335403`*^9}, {3.617242300761402*^9, 
+   3.617242300943184*^9}, 
+   3.775073726020639*^9},ExpressionUUID->"6ce102f6-059f-4845-bd05-\
+9ec8fce9e33c"],
+
+Cell[CellGroupData[{
+
+Cell["Hemispherical Albedo - Smooth Dielectric", "Subsection",
+ CellChangeTimes->{{3.774670407022546*^9, 3.774670409348796*^9}, {
+  3.774677298853631*^9, 
+  3.7746773014903603`*^9}},ExpressionUUID->"fd3b5e0c-e1a8-4e78-9a4a-\
+293839ed1ed0"],
+
+Cell["[Dunkle 1963, Ozisik 1973 p. 60]", "Text",
+ CellChangeTimes->{{3.774670448545478*^9, 
+  3.774670512168603*^9}},ExpressionUUID->"9164b959-ab7e-4a98-ac41-\
+2c1da720a844"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"DielectricHemisphericalAlbedo", "[", "n_", "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", "2"], "+", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"n", "-", "1"}], ")"}], 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"3", "n"}], "+", "1"}], ")"}]}], 
+    RowBox[{"6", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"n", "+", "1"}], ")"}], "2"]}]], "-", 
+   FractionBox[
+    RowBox[{"2", 
+     SuperscriptBox["n", "3"], 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", 
+       RowBox[{"2", "n"}], "-", "1"}], ")"}]}], 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", "1"}], ")"}], 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["n", "4"], "-", "1"}], ")"}]}]], "+", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"8", 
+      SuperscriptBox["n", "4"], 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "4"], "+", "1"}], ")"}]}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "1"}], ")"}], 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["n", "4"], "-", "1"}], ")"}], "2"]}]], 
+    RowBox[{"Log", "[", "n", "]"}]}], "+", 
+   RowBox[{
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["n", "2"], "-", "1"}], ")"}], "2"]}], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "1"}], ")"}], "3"]], 
+    RowBox[{"Log", "[", 
+     FractionBox[
+      RowBox[{"n", "-", "1"}], 
+      RowBox[{"n", "+", "1"}]], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.77467043005546*^9, 3.774670444702167*^9}},
+ CellLabel->
+  "In[785]:=",ExpressionUUID->"91b8808b-214e-4051-a12d-636ad7915fae"],
+
+Cell["Our approximation [Aug 2019] for  1 < \[Eta] < 3:", "Text",
+ CellChangeTimes->{{3.7746705602165937`*^9, 3.774670566680369*^9}, {
+  3.7746706233609047`*^9, 3.774670634173774*^9}, {3.774672187218717*^9, 
+  3.7746721906248617`*^9}},ExpressionUUID->"a1ae2d2e-ae3b-43bf-8ace-\
+10e66d7a852a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"DielectricHemisphericalAlbedoApprox", "[", "n_", "]"}], ":=", 
+  RowBox[{"Log", "[", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"10893", " ", "n"}], "-", "1438.2"}], 
+    RowBox[{"1", "+", 
+     RowBox[{"10212", " ", "n"}], "-", 
+     RowBox[{"774.4", " ", 
+      SuperscriptBox["n", "2"]}]}]], "]"}]}]], "Input",
+ CellChangeTimes->{{3.774670571374839*^9, 3.774670572294278*^9}, {
+  3.774670611304058*^9, 3.7746706137890053`*^9}, {3.7746707324296913`*^9, 
+  3.774670756030148*^9}, {3.77467078891892*^9, 3.7746707904740477`*^9}},
+ CellLabel->
+  "In[1622]:=",ExpressionUUID->"ae1292a6-38c2-4066-b561-de147780006c"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["BRDF", "Section",
+ CellChangeTimes->{{3.775072117475412*^9, 
+  3.775072117783846*^9}},ExpressionUUID->"af411c54-01d5-4f57-a913-\
+410684cec751"],
+
+Cell["base component of the BRDF:", "Text",
+ CellChangeTimes->{{3.775072497448501*^9, 
+  3.775072500356763*^9}},ExpressionUUID->"859dbd14-1a29-4d26-88e4-\
+1071ab695e13"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ILfb", "[", 
+   RowBox[{"ui_", ",", "uo_", ",", "Kd_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"Pi", " ", 
+     SuperscriptBox["n", "2"]}]], 
+   RowBox[{"(", 
+    RowBox[{"1", "-", 
+     RowBox[{"FR", "[", 
+      RowBox[{"n", ",", "ui"}], "]"}]}], ")"}], 
+   RowBox[{"(", 
+    RowBox[{"1", "-", 
+     RowBox[{"FR", "[", 
+      RowBox[{"n", ",", "uo"}], "]"}]}], ")"}], 
+   FractionBox["Kd", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      RowBox[{"Kd", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["n", 
+           RowBox[{"-", "2"}]], 
+          RowBox[{"(", 
+           RowBox[{"1", "-", 
+            RowBox[{"DielectricHemisphericalAlbedo", "[", "n", "]"}]}], 
+           ")"}]}]}], ")"}]}]}], ")"}]]}]}]], "Input",
+ CellChangeTimes->{{3.775072428489468*^9, 3.7750724414940557`*^9}, {
+  3.7750725138477917`*^9, 3.775072516884819*^9}},
+ CellLabel->
+  "In[1030]:=",ExpressionUUID->"46d991ec-5f3a-4341-889b-6208754c5712"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Albedo (collimated illumination)", "Section",
+ CellChangeTimes->{{3.775072254154502*^9, 
+  3.7750722611556807`*^9}},ExpressionUUID->"99a09749-f533-4205-94e5-\
+14150782ac3b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ILR", "[", 
+   RowBox[{"ui_", ",", "Kd_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{" ", 
+     SuperscriptBox["n", "2"]}]], 
+   RowBox[{"(", 
+    RowBox[{"1", "-", 
+     RowBox[{"FR", "[", 
+      RowBox[{"n", ",", "ui"}], "]"}]}], ")"}], 
+   FractionBox["Kd", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      RowBox[{"Kd", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["n", 
+           RowBox[{"-", "2"}]], 
+          RowBox[{"(", 
+           RowBox[{"1", "-", 
+            RowBox[{"DielectricHemisphericalAlbedo", "[", "n", "]"}]}], 
+           ")"}]}]}], ")"}]}]}], ")"}]], 
+   RowBox[{"(", 
+    RowBox[{"1", "-", 
+     RowBox[{"DielectricHemisphericalAlbedo", "[", "n", "]"}]}], 
+    ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.775031169120294*^9, 3.775031219373618*^9}, {
+  3.775031299513453*^9, 3.7750312997045393`*^9}, {3.7750724819603577`*^9, 
+  3.77507248579242*^9}},
+ CellLabel->
+  "In[1032]:=",ExpressionUUID->"20f80a1c-78d1-4fe8-912e-9113d60034f2"],
+
+Cell[CellGroupData[{
+
+Cell["Kd inversion (normally-incident illumination)", "Subsection",
+ CellChangeTimes->{{3.7750722637524014`*^9, 3.7750722722197313`*^9}, {
+  3.775074050304668*^9, 
+  3.775074052406467*^9}},ExpressionUUID->"6e55adac-7144-49b7-a44c-\
+833edc83a5a0"],
+
+Cell["Find Kd given Rb - the total albedo of the base layer", "Text",
+ CellChangeTimes->{{3.7750722207589407`*^9, 
+  3.7750722358813066`*^9}},ExpressionUUID->"9215e8dd-2930-416b-b1f5-\
+f359a577962d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"KdNormal", "[", 
+   RowBox[{"n_", ",", "Rb_"}], "]"}], ":=", 
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["n", "2"], " ", "Rb"}], 
+   RowBox[{"1", "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       SuperscriptBox["n", "2"]}], ")"}], " ", "Rb"}], "-", 
+    RowBox[{"FR", "[", 
+     RowBox[{"n", ",", "1"}], "]"}], "+", 
+    RowBox[{
+     RowBox[{"DielectricHemisphericalAlbedo", "[", "n", "]"}], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", "Rb", "+", 
+       RowBox[{"FR", "[", 
+        RowBox[{"n", ",", "1"}], "]"}]}], ")"}]}]}]]}]], "Input",
+ CellChangeTimes->{{3.775072280825697*^9, 3.775072307368589*^9}, 
+   3.7750724640074244`*^9, {3.775072776942266*^9, 3.775072780583037*^9}},
+ CellLabel->
+  "In[1038]:=",ExpressionUUID->"af211695-abae-451c-b562-1480ba70d4a5"],
+
+Cell[CellGroupData[{
+
+Cell["Testing", "Subsubsection",
+ CellChangeTimes->{{3.7750726639506903`*^9, 
+  3.7750726661147118`*^9}},ExpressionUUID->"253eefe9-29c6-4439-b039-\
+ddce9bd0a382"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"n", "=", "1.5"}], ",", 
+     RowBox[{"Kd", "=", "0.7"}], ",", 
+     RowBox[{"ui", "=", "0.9"}]}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"NIntegrate", "[", 
+      RowBox[{
+       RowBox[{"2", " ", "Pi", " ", "uo", " ", 
+        RowBox[{"ILfb", "[", 
+         RowBox[{"ui", ",", "uo", ",", "Kd", ",", "n"}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"uo", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", 
+     RowBox[{"ILR", "[", 
+      RowBox[{"ui", ",", "Kd", ",", "n"}], "]"}]}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.775072655830955*^9, 3.77507270231636*^9}},
+ CellLabel->
+  "In[1033]:=",ExpressionUUID->"f2bd9fdc-f859-4ba7-8726-ef6d715dbd32"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.46524450788156485`", ",", "0.4652445078815604`"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.775072693113202*^9, 3.775072702722885*^9}},
+ CellLabel->
+  "Out[1033]=",ExpressionUUID->"cf83d8e1-2e90-46f5-84d8-73cda4fb4971"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"n", "=", "1.5"}], ",", 
+     RowBox[{"ui", "=", "1"}], ",", 
+     RowBox[{"Rb", "=", "0.7531"}]}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"NIntegrate", "[", 
+     RowBox[{
+      RowBox[{"2", " ", "Pi", " ", "uo", " ", 
+       RowBox[{"ILfb", "[", 
+        RowBox[{"ui", ",", "uo", ",", 
+         RowBox[{"KdNormal", "[", 
+          RowBox[{"n", ",", "Rb"}], "]"}], ",", "n"}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"uo", ",", "0", ",", "1"}], "}"}]}], "]"}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7750727314290657`*^9, 3.77507275806754*^9}, {
+  3.775072792258333*^9, 3.775072793087191*^9}},
+ CellLabel->
+  "In[1041]:=",ExpressionUUID->"293e7bed-d18d-471c-acf2-e9e9c31685ba"],
+
+Cell[BoxData[
+ RowBox[{"{", "0.7531000000000073`", "}"}]], "Output",
+ CellChangeTimes->{{3.775072758560051*^9, 3.7750727933691883`*^9}},
+ CellLabel->
+  "Out[1041]=",ExpressionUUID->"2fc82ac7-35d9-46d3-ba8f-8905ea1adea4"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Hemispherical albedo (uniform diffuse white sky illumination)\
+\>", "Section",
+ CellChangeTimes->{{3.775072120658618*^9, 3.77507212844995*^9}, {
+  3.775072190079425*^9, 
+  3.775072195342388*^9}},ExpressionUUID->"f7fa0b8f-b988-45ad-9c5e-\
+85353724aad1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ILR", "[", 
+   RowBox[{"Kd_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{" ", 
+     SuperscriptBox["n", "2"]}]], 
+   FractionBox["Kd", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      RowBox[{"Kd", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["n", 
+           RowBox[{"-", "2"}]], 
+          RowBox[{"(", 
+           RowBox[{"1", "-", 
+            RowBox[{"DielectricHemisphericalAlbedo", "[", "n", "]"}]}], 
+           ")"}]}]}], ")"}]}]}], ")"}]], 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      RowBox[{"DielectricHemisphericalAlbedo", "[", "n", "]"}]}], ")"}], 
+    "2"]}]}]], "Input",
+ CellChangeTimes->{{3.775072202654478*^9, 3.775072206987701*^9}},
+ CellLabel->
+  "In[1044]:=",ExpressionUUID->"e0811a1f-099a-4c5a-808c-5dfec6b84904"],
+
+Cell[CellGroupData[{
+
+Cell["Kd inversion (white sky)", "Subsection",
+ CellChangeTimes->{{3.77507221638484*^9, 3.775072217901819*^9}, {
+  3.7750740549479628`*^9, 
+  3.775074063795231*^9}},ExpressionUUID->"ccbb6102-58bb-41d5-89fb-\
+5dff59577119"],
+
+Cell["Find Kd given Rb - the total albedo of the base layer", "Text",
+ CellChangeTimes->{{3.7750722207589407`*^9, 
+  3.7750722358813066`*^9}},ExpressionUUID->"a2a404f6-1e28-4dc7-8926-\
+962ad7c25314"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"KdWhiteSky", "[", 
+   RowBox[{"n_", ",", "Rb_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["n", "2"], " ", "Rb"}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"1", "-", "Rb", "+", 
+       RowBox[{
+        SuperscriptBox["n", "2"], " ", "Rb"}], "-", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", "-", "Rb"}], ")"}], " ", "#"}], " ", "+", 
+       SuperscriptBox["#", "2"]}], ")"}]}], "&"}], "[", 
+   RowBox[{"DielectricHemisphericalAlbedo", "[", "n", "]"}], "]"}]}]], "Input",\
+
+ CellChangeTimes->{{3.775072286309452*^9, 3.7750723220401783`*^9}, {
+   3.775072391206809*^9, 3.775072396913722*^9}, 3.775073062707931*^9, {
+   3.775073097096302*^9, 3.7750731391229486`*^9}},
+ CellLabel->
+  "In[1069]:=",ExpressionUUID->"67ae6906-b015-4d32-bd3c-47ddf918279c"],
+
+Cell[CellGroupData[{
+
+Cell["Testing", "Subsubsection",
+ CellChangeTimes->{{3.7750726639506903`*^9, 
+  3.7750726661147118`*^9}},ExpressionUUID->"1c9ecacb-f97b-440d-b617-\
+551548e26483"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"n", "=", "1.5"}], ",", 
+     RowBox[{"Kd", "=", "0.7"}]}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"NIntegrate", "[", 
+      RowBox[{
+       RowBox[{"2", " ", "Pi", " ", "uo", " ", 
+        RowBox[{"ILfb", "[", 
+         RowBox[{"ui", ",", "uo", ",", "Kd", ",", "n"}], "]"}], "2", " ", 
+        "ui"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"uo", ",", "0", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"ui", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", 
+     RowBox[{"ILR", "[", 
+      RowBox[{"Kd", ",", "n"}], "]"}]}], "}"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.775072655830955*^9, 3.77507270231636*^9}, {
+  3.775072901497347*^9, 3.775072921352117*^9}},
+ CellLabel->
+  "In[1045]:=",ExpressionUUID->"c3e21a76-28e8-461d-8557-4c89e306acdb"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.4405147448627549`", ",", "0.4405147444429644`"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.775072693113202*^9, 3.775072702722885*^9}, {
+  3.775072908835515*^9, 3.775072925842367*^9}},
+ CellLabel->
+  "Out[1045]=",ExpressionUUID->"f08dac96-8558-424e-b62f-8204d91f19f5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"n", "=", "1.000001"}], ",", 
+     RowBox[{"Kd", "=", "0.7"}]}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"NIntegrate", "[", 
+     RowBox[{
+      RowBox[{"2", " ", "Pi", " ", "uo", " ", 
+       RowBox[{"ILfb", "[", 
+        RowBox[{"ui", ",", "uo", ",", "Kd", ",", "n"}], "]"}], "2", " ", 
+       "ui"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"uo", ",", "0", ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"ui", ",", "0", ",", "1"}], "}"}]}], "]"}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7750729358691607`*^9, 3.775072948837631*^9}, {
+  3.7750731675775003`*^9, 3.7750731714014263`*^9}},
+ CellLabel->
+  "In[1073]:=",ExpressionUUID->"112b5d0b-499b-4e94-aaf3-ae7392db55b2"],
+
+Cell[BoxData[
+ RowBox[{"{", "0.6999945147913103`", "}"}]], "Output",
+ CellChangeTimes->{{3.775072937048335*^9, 3.775072949249816*^9}, {
+  3.775073167993024*^9, 3.7750731717181387`*^9}},
+ CellLabel->
+  "Out[1073]=",ExpressionUUID->"bf4d7382-a002-4140-aada-046a1c553e83"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"n", "=", "1.8"}], ",", 
+     RowBox[{"Rb", "=", "0.7531"}]}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"ILR", "[", 
+     RowBox[{
+      RowBox[{"KdWhiteSky", "[", 
+       RowBox[{"n", ",", "Rb"}], "]"}], ",", "n"}], "]"}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7750727314290657`*^9, 3.77507275806754*^9}, {
+  3.775072792258333*^9, 3.775072793087191*^9}, {3.775072978171282*^9, 
+  3.7750730510512877`*^9}},
+ CellLabel->
+  "In[1070]:=",ExpressionUUID->"954e6d53-786c-4c9f-b201-b53d10ea5795"],
+
+Cell[BoxData[
+ RowBox[{"{", "0.7530999999999997`", "}"}]], "Output",
+ CellChangeTimes->{{3.775072758560051*^9, 3.7750727933691883`*^9}, {
+  3.775072978802699*^9, 3.7750730642262993`*^9}, {3.77507311692614*^9, 
+  3.7750731410821323`*^9}},
+ CellLabel->
+  "Out[1070]=",ExpressionUUID->"dd0365e4-462a-47ec-a692-ea528813792b"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1119, 1038},
+WindowMargins->{{179, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 193, 3, 98, "Title",ExpressionUUID->"56a70619-b89f-4c4d-b2c1-3ce320731fa3"],
+Cell[776, 27, 516, 11, 142, "Text",ExpressionUUID->"0db24714-bb14-4424-8ba5-122f71a09a60"],
+Cell[CellGroupData[{
+Cell[1317, 42, 157, 3, 67, "Section",ExpressionUUID->"13b45008-ce88-406e-8cdb-1c3b0820213b"],
+Cell[1477, 47, 509, 11, 58, "Text",ExpressionUUID->"ffc11bfd-d193-42f4-a13a-c72243e32933"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2023, 63, 161, 3, 67, "Section",ExpressionUUID->"f324e686-f81f-4525-9016-0037eaae52d3"],
+Cell[2187, 68, 197, 3, 35, "Text",ExpressionUUID->"749c0038-d393-467d-a604-46f4f3968dd0"],
+Cell[2387, 73, 1663, 51, 168, "Input",ExpressionUUID->"6ce102f6-059f-4845-bd05-9ec8fce9e33c"],
+Cell[CellGroupData[{
+Cell[4075, 128, 239, 4, 54, "Subsection",ExpressionUUID->"fd3b5e0c-e1a8-4e78-9a4a-293839ed1ed0"],
+Cell[4317, 134, 174, 3, 35, "Text",ExpressionUUID->"9164b959-ab7e-4a98-ac41-2c1da720a844"],
+Cell[4494, 139, 1840, 64, 59, "Input",ExpressionUUID->"91b8808b-214e-4051-a12d-636ad7915fae"],
+Cell[6337, 205, 292, 4, 35, "Text",ExpressionUUID->"a1ae2d2e-ae3b-43bf-8ace-10e66d7a852a"],
+Cell[6632, 211, 647, 15, 49, "Input",ExpressionUUID->"ae1292a6-38c2-4066-b561-de147780006c"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7328, 232, 149, 3, 67, "Section",ExpressionUUID->"af411c54-01d5-4f57-a913-410684cec751"],
+Cell[7480, 237, 169, 3, 35, "Text",ExpressionUUID->"859dbd14-1a29-4d26-88e4-1071ab695e13"],
+Cell[7652, 242, 1040, 32, 55, "Input",ExpressionUUID->"46d991ec-5f3a-4341-889b-6208754c5712"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8729, 279, 179, 3, 67, "Section",ExpressionUUID->"99a09749-f533-4205-94e5-14150782ac3b"],
+Cell[8911, 284, 1073, 33, 55, "Input",ExpressionUUID->"20f80a1c-78d1-4fe8-912e-9113d60034f2"],
+Cell[CellGroupData[{
+Cell[10009, 321, 246, 4, 54, "Subsection",ExpressionUUID->"6e55adac-7144-49b7-a44c-833edc83a5a0"],
+Cell[10258, 327, 199, 3, 35, "Text",ExpressionUUID->"9215e8dd-2930-416b-b1f5-f359a577962d"],
+Cell[10460, 332, 874, 25, 57, "Input",ExpressionUUID->"af211695-abae-451c-b562-1480ba70d4a5"],
+Cell[CellGroupData[{
+Cell[11359, 361, 162, 3, 45, "Subsubsection",ExpressionUUID->"253eefe9-29c6-4439-b039-ddce9bd0a382"],
+Cell[CellGroupData[{
+Cell[11546, 368, 819, 22, 73, "Input",ExpressionUUID->"f2bd9fdc-f859-4ba7-8726-ef6d715dbd32"],
+Cell[12368, 392, 263, 6, 34, "Output",ExpressionUUID->"cf83d8e1-2e90-46f5-84d8-73cda4fb4971"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12668, 403, 840, 22, 73, "Input",ExpressionUUID->"293e7bed-d18d-471c-acf2-e9e9c31685ba"],
+Cell[13511, 427, 220, 4, 34, "Output",ExpressionUUID->"2fc82ac7-35d9-46d3-ba8f-8905ea1adea4"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13804, 439, 262, 6, 67, "Section",ExpressionUUID->"f7fa0b8f-b988-45ad-9c5e-85353724aad1"],
+Cell[14069, 447, 874, 28, 55, "Input",ExpressionUUID->"e0811a1f-099a-4c5a-808c-5dfec6b84904"],
+Cell[CellGroupData[{
+Cell[14968, 479, 222, 4, 54, "Subsection",ExpressionUUID->"ccbb6102-58bb-41d5-89fb-5dff59577119"],
+Cell[15193, 485, 199, 3, 35, "Text",ExpressionUUID->"a2a404f6-1e28-4dc7-8926-962ad7c25314"],
+Cell[15395, 490, 869, 24, 33, "Input",ExpressionUUID->"67ae6906-b015-4d32-bd3c-47ddf918279c"],
+Cell[CellGroupData[{
+Cell[16289, 518, 162, 3, 45, "Subsubsection",ExpressionUUID->"1c9ecacb-f97b-440d-b617-551548e26483"],
+Cell[CellGroupData[{
+Cell[16476, 525, 921, 25, 73, "Input",ExpressionUUID->"c3e21a76-28e8-461d-8557-4c89e306acdb"],
+Cell[17400, 552, 311, 7, 34, "Output",ExpressionUUID->"f08dac96-8558-424e-b62f-8204d91f19f5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17748, 564, 837, 22, 73, "Input",ExpressionUUID->"112b5d0b-499b-4e94-aaf3-ae7392db55b2"],
+Cell[18588, 588, 269, 5, 34, "Output",ExpressionUUID->"bf4d7382-a002-4140-aada-046a1c553e83"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18894, 598, 641, 17, 73, "Input",ExpressionUUID->"954e6d53-786c-4c9f-b201-b53d10ea5795"],
+Cell[19538, 617, 321, 6, 34, "Output",ExpressionUUID->"dd0365e4-462a-47ec-a692-ea528813792b"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
