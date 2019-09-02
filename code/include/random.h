@@ -6,14 +6,16 @@
 // Random numbers
 //////////////////////////////////////////////////////////////////////////////////
 
+// uniform random real in [0,1]
 double RandomReal()
 {
     return drand48();
 }
 
+// uniform random real in [a,b]
 double RandomReal( double a, double b )
 {
-    double r = drand48();
+    double r = RandomReal();
     return r * b + ( 1.0 - r ) * a;
 }
 
@@ -35,6 +37,19 @@ double Gamma2Step()
   return -log( RandomReal() * RandomReal() );
 }
 
+// step-distrubion p(s) = 0.5 * s e^(-s) + 0.5 * e^(-s)
+double Gamma2ExtinctionStep()
+{
+  if( RandomReal() < 0.5 )
+  {
+    return Gamma2Step();
+  }
+  else
+  {
+    return -log( RandomReal() );
+  }
+}
+
 double PearsonStep()
 {
   return 1.0;
@@ -50,6 +65,25 @@ double Chik2Step()
   return (2.0 * sqrt( log( 1.0 / ( 1.0 - RandomReal() ) ) ) ) / sqrt(M_PI);
 }
 
+double Chid3CorrelatedStep()
+{
+  return Norm( (2.0 / (M_PI ))*Vector3(RandomGauss(),RandomGauss(),RandomGauss() ) );
+}
+
+double Chid3UncorrelatedStep()
+{
+  if( RandomReal() < 0.5 )
+  {
+    const double xi = RandomReal();
+    return ( sqrt( 2.0 * M_PI * xi - M_PI * xi * xi) * fabs(RandomGauss()) )/( 2.0 * sqrt(2) );
+  }
+  else
+  {
+    const double xi = RandomReal();
+    return (sqrt(M_PI)*sqrt(log(1.0/(1.0 - xi))))/2.0;
+  }
+}
+
 // Dagum distribution p = 2, a = 2
 double Dagum22step()
 {
@@ -63,9 +97,63 @@ double LogCauchyStep( const double a )
   return exp(-( a * 1.0 / tan( M_PI * RandomReal() ) ) );
 }
 
+double PowerLawCorrelatedStep( const double mfp, const double a )
+{
+  return a * mfp * ( pow( RandomReal(), -1.0 / ( 1.0 + a ) ) - 1.0 );
+}
+
+double PowerLawUncorrelatedStep( const double mfp, const double a )
+{
+  return a * mfp * ( pow( RandomReal(), -1.0 / ( a ) ) - 1.0 );
+}
+
+double PowerLawCorrelatedTransmittance( const double s, const double a, const double l )
+{
+  return pow( (a*l)/(a*l + s), 1.0 + a);
+}
+
+double PowerLawUncorrelatedTransmittance( const double s, const double a, const double l )
+{
+  return pow( (a*l)/(a*l + s), a);
+}
+
+// random variate from Gamma distribution with paramter a > 1, from [Marsaglia and Tsang 2000]
+double RandomGamma( const double a )
+{
+  double x,v,u;
+  const double d = a - 1.0 / 3.0;
+  const double c = 1.0 / sqrt( 9.0 * d );
+  while( true )
+  {
+    do
+    {
+      x = RandomGauss();
+      v = 1.0 + c * x;
+    }
+    while( v <= 0.0 );
+
+    v = v * v * v;
+    u = RandomReal();
+    if( u < 1.0 - 0.0331 * (x*x)*(x*x) )
+    {
+      return d * v;
+    }
+    if( log(u) < 0.5 * x * x + d * ( 1.0 - v + log(v) ) )
+    {
+      return d * v;
+    }
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 // Random Directions
 //////////////////////////////////////////////////////////////////////////////////
+
+Vector2 diskSample2D( const double radius )
+{
+  const double phi = RandomReal( 0.0, 2 * M_PI );
+  return radius * sqrt( RandomReal() ) * Vector2( cos( phi ), sin( phi ) );
+}
 
 Vector3 diskSample( const double radius)
 {
@@ -106,6 +194,30 @@ Vector3 lambertDir()
     const double p = RandomReal( 0.0, 2.0 * M_PI );
     const double s = sqrt( 1.0 - w * w );
     return Vector3( s * cos(p), s * sin(p), w ); // z axis is the normal
+}
+
+// sample a Lambertian direction about normal n:
+Vector3 lambertDir(const Vector3& n)
+{
+  const Vector3 local(lambertDir());
+  Vector3 x,y;
+  buildOrthonormalBasis(x,y,n);
+  return x * local.x + y * local.y + n * local.z;
+}
+
+Vector2 lambertDirFlatland()
+{
+    const double x = RandomReal();
+    const double w = sqrt(2.0*x - x * x);
+    const double w2 = RandomReal();
+    return Vector2( sqrt( 1.0 - w * w ) * (w2 < 0.5 ? 1.0 : -1.0), w ); // y axis is the normal
+}
+
+Vector4 lambertDir4D()
+{
+  const double x = RandomReal(); 
+  const double x4 = sqrt(1.0 - pow(1.0 - x, 0.6666666666666666 ) );
+  return Vector4( sqrt( 1.0 - x4 * x4 ), x4, 0.0, 0.0 ); // y axis is the normal - watch out
 }
 
 // Henyey-Greenstein sampling

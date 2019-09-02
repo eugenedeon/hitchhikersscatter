@@ -8,6 +8,11 @@ struct Vector2{
     Vector2( const double in_x, const double in_y) 
     : x(in_x), y(in_y)
     {};
+
+    Vector2() 
+    : x(0.0), y(0.0)
+    {};
+    
   double x,y;
 
   Vector2 operator* (const double c ) const
@@ -265,4 +270,19 @@ double Norm( const Vector4& v )
 Vector4 Normalize( const Vector4& v )
 {
   return v * (1.0 / Norm( v ) );
+}
+
+ // build orthonormal basis (Building an Orthonormal Basis from a 3D Unit Vector Without Normalization, [Frisvad2012])
+ void buildOrthonormalBasis(Vector3& omega_1, Vector3& omega_2, const Vector3& omega_3)
+{
+	if(omega_3.z < -0.9999999f) 
+	{
+	   omega_1 = Vector3 ( 0.0f , -1.0f , 0.0f );
+	   omega_2 = Vector3 ( -1.0f , 0.0f , 0.0f );
+	} else {
+	   const float a = 1.0f /(1.0f + omega_3.z );
+	   const float b = -omega_3.x*omega_3 .y*a ;
+	   omega_1 = Vector3 (1.0f - omega_3.x*omega_3. x*a , b , -omega_3.x );
+	   omega_2 = Vector3 (b , 1.0f - omega_3.y*omega_3.y*a , -omega_3.y );
+	}
 }
