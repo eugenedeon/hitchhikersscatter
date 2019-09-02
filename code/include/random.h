@@ -276,6 +276,33 @@ Vector3 linanisoDir( const Vector3& in, const double b )
     }
 }
 
+// Lambertian Sphere Phase Function [Esposito and Lumme 1977]
+Vector3 lambertSphereDir( const Vector3& in)
+{
+    const double xi1 = RandomReal();
+    const double xi3 = RandomReal();
+    const double xi4 = RandomReal();
+    double w = -Sqrt(xi1*xi3) + Sqrt((-1 + xi1)*(-1 + xi3))*sin(2*Pi*xi4);
+    const double p = RandomReal( 0.0, 2.0 * M_PI );
+    const double s = sqrt( 1.0 - w * w );
+    Vector3 aligned = Vector3( w, s * cos(p), s * sin(p) );
+
+    if( in != Vector3( 0.0, 1.0, 0.0 ) )
+    {
+      const Vector3 v2 = Normalize( Vector3( 0.0, 1.0, 0.0 ) - in * in.y );
+      const Vector3 v3 = Cross( in, v2 );
+
+      return aligned.x * in + aligned.y * v2 + aligned.z * v3;
+    }
+    else
+    {
+      const Vector3 v2 = Vector3( 1.0, 0.0, 0.0 );
+      const Vector3 v3 = Vector3( 0.0, 0.0, 1.0 );
+
+      return aligned.x * in + aligned.y * v2 + aligned.z * v3;
+    }
+}
+
 // forward-scattering VMF (spherical gaussian) scattering kernel sampling
 // fails for k > 500 or so
 Vector3 forward_vmfDir( const Vector3& in, const double k )

@@ -93,6 +93,10 @@ struct Vector3{
     Vector3( const double in_x, const double in_y, const double in_z) 
     : x(in_x), y(in_y), z(in_z)
     {};
+
+    Vector3() 
+    : x(0.0), y(0.0), z(0.0)
+    {};
   double x,y,z;
 
   Vector3( const double * ptr )
