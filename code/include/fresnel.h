@@ -3,6 +3,45 @@
 #include <util.h>
 #include <vector.h>
 
+//////////////////////////////////////////////////////////////////////////////////
+// Fresnel
+//////////////////////////////////////////////////////////////////////////////////
+
+namespace fresnel
+{
+  double evalF( const double g, const double c )
+  {
+    return (pow(-c + g,2)*(1 + pow(-1 + c*(c + g),2)/pow(1 + c*(-c + g),2)))/
+      (2.*pow(c + g,2));
+  }
+
+  // costheta = 1 is normal incidence
+  // eta is ratio of new medium / current medium
+  double DielectricR( const double costheta, const double eta )
+  {
+    const double sqrtinput = eta * eta - 1.0 + costheta * costheta;
+    if( sqrtinput <= 0.0 )
+    {
+      return 1.0;
+    }
+    else
+    {
+      return evalF( sqrt( std::max( 0.0, sqrtinput ) ), costheta );
+    }
+  }
+
+  Vector3 refract( const Vector3 in, const Vector3 normal, const double etai, const double etat )
+  {
+    return (etai*(in - normal*Dot(in,normal)))/etat - 
+      normal*Sqrt(1 - (pow(etai,2)*(1 - pow(Dot(in,normal),2)))/pow(etat,2));
+  }
+
+  double refractCosine( const double ui, const double etai, const double etao )
+  {
+    return sqrt( 1.0 - etai * etai * ( 1.0 - ui * ui ) / ( etao * etao ) );
+  }
+}
+
 // exact [Dunkle 1963]
 double SmoothDielectricHemisphericalAlbedo( const double n )
 {
