@@ -1,0 +1,925 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     37611,        917]
+NotebookOptionsPosition[     33519,        836]
+NotebookOutlinePosition[     33909,        853]
+CellTagsIndexPosition[     33866,        850]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Half Rod, Isotropic Point Source, Isotropic Scattering", "Title",
+ CellChangeTimes->{{3.61742787362737*^9, 3.617427885266508*^9}, {
+  3.619592656668026*^9, 3.619592662680479*^9}, {3.761458644888989*^9, 
+  3.761458647237163*^9}},ExpressionUUID->"c419a343-d763-4fda-8e62-\
+699a9af9fb4f"],
+
+Cell["Exponential Random Flight", "Subtitle",
+ CellChangeTimes->{{3.619594484416584*^9, 
+  3.6195944880949802`*^9}},ExpressionUUID->"aaa5f98c-7109-41c6-95d2-\
+21353566709a"],
+
+Cell[TextData[{
+ "This is code to accompany the book:\n",
+ StyleBox["A Hitchhiker\[CloseCurlyQuote]s Guide to Multiple Scattering\n", 
+  "Subchapter"],
+ StyleBox["\[Copyright] 2019", "Subsection"],
+ StyleBox[" ", "Section"],
+ StyleBox["Eugene d\[CloseCurlyQuote]Eon \nwww.eugenedeon.com", "Subsection"]
+}], "Text",
+ CellChangeTimes->{{3.6174286022468777`*^9, 3.617428710592918*^9}, {
+  3.6410039396211576`*^9, 3.641003945296226*^9}, {3.645060407236547*^9, 
+  3.645060444609275*^9}, {3.663893905087059*^9, 3.663893905191037*^9}, {
+  3.761458651424798*^9, 3.761458651686799*^9}, {3.7614594532708883`*^9, 
+  3.7614594534957867`*^9}},ExpressionUUID->"0d8706ed-3c35-4a6e-8664-\
+ed1b72947665"],
+
+Cell[CellGroupData[{
+
+Cell["Path Setup", "Section",
+ CellChangeTimes->{{3.640928920990849*^9, 3.64092892141395*^9}, {
+  3.640928986491934*^9, 
+  3.640928986905283*^9}},ExpressionUUID->"948e5d1c-59b5-4382-ab3e-\
+823cd11afe04"],
+
+Cell["\<\
+Put a file at ~/.hitchhikerpath with the path to your hitchhiker repo so that \
+these worksheets can find the MC data from the C++ simulations for \
+verification\
+\>", "Text",
+ CellChangeTimes->{{3.640928926126832*^9, 
+  3.6409289600754013`*^9}},ExpressionUUID->"1bf5fe65-a14a-4193-8a9b-\
+e1ce87f42b3e"],
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"Import", "[", "\"\<~/.hitchhikerpath\>\"", "]"}], "]"}]], "Input",
+ CellLabel->
+  "In[673]:=",ExpressionUUID->"0ffa4697-7bbf-45e9-96c5-8f21271001dd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notation", "Section",
+ CellChangeTimes->{{3.617428538130481*^9, 
+  3.617428538753331*^9}},ExpressionUUID->"cb4e122f-791a-4726-ac8c-\
+84dc35deafdf"],
+
+Cell[TextData[{
+ "c - single-scattering albedo\nx - position coordinate in rod (source at x = \
+",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "0"], TraditionalForm]],ExpressionUUID->
+  "e4b26dcd-f21d-46c9-b928-db46f999be96"],
+ ")"
+}], "Text",
+ CellChangeTimes->{{3.617428487341361*^9, 3.617428516514864*^9}, {
+   3.6638943176580772`*^9, 3.6638943179266987`*^9}, {3.7614586633390713`*^9, 
+   3.761458680052774*^9}, 3.761458721896196*^9, {3.761459349382296*^9, 
+   3.761459352539853*^9}},ExpressionUUID->"aa25f1cb-4d72-4f23-8e16-\
+19478735ec0c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Analytic solutions", "Section",
+ CellChangeTimes->{{3.617428019371695*^9, 
+  3.6174280209794273`*^9}},ExpressionUUID->"25055d02-7c5b-42e5-9711-\
+0c26661f4217"],
+
+Cell[CellGroupData[{
+
+Cell["Collision-Rate Density C[x]", "Subsection",
+ CellChangeTimes->{{3.6174280405395184`*^9, 3.617428041266676*^9}, {
+  3.761459441705374*^9, 
+  3.7614594459902887`*^9}},ExpressionUUID->"298f8a9e-d5e0-4f71-ac53-\
+d6098f4a1863"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"halfrodPointSourceisoscatter`C", "[", 
+   RowBox[{"x_", ",", "c_", ",", "x0_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", "c"], 
+   RowBox[{"(", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{
+        RowBox[{"-", 
+         SqrtBox[
+          RowBox[{"1", "-", "c"}]]}], " ", 
+        RowBox[{"(", 
+         RowBox[{"x", "+", "x0"}], ")"}]}]], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "2"}], "+", 
+        RowBox[{"2", " ", 
+         SqrtBox[
+          RowBox[{"1", "-", "c"}]]}], "+", "c", "+", 
+        RowBox[{"c", " ", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"2", " ", 
+           SqrtBox[
+            RowBox[{"1", "-", "c"}]], " ", 
+           RowBox[{"Min", "[", 
+            RowBox[{"x0", ",", "x"}], "]"}]}]]}]}], ")"}]}], 
+     RowBox[{"2", " ", 
+      SqrtBox[
+       RowBox[{"1", "-", "c"}]]}]], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.61742826600518*^9, 3.617428300462263*^9}, {
+   3.6174283455645227`*^9, 3.617428382979632*^9}, {3.619594141002194*^9, 
+   3.619594157053108*^9}, {3.646276978139011*^9, 3.646276979698987*^9}, 
+   3.646277313980769*^9, {3.761458713093853*^9, 3.7614587389820347`*^9}, 
+   3.761458993890408*^9, 3.7614591283890533`*^9, {3.761459185139803*^9, 
+   3.761459194380889*^9}},
+ CellLabel->
+  "In[683]:=",ExpressionUUID->"17e2eea9-0024-4a5e-91a9-eff5fe2476e0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"halfrodPointSourceisoscatter`meanC", "[", 
+   RowBox[{"c_", ",", "x0_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"1", "-", "c"}]], "-", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       SqrtBox[
+        RowBox[{"1", "-", "c"}]]}], ")"}], " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"-", "x0"}], " ", 
+       SqrtBox[
+        RowBox[{"1", "-", "c"}]]}]]}], 
+    RowBox[{"c", 
+     RowBox[{"(", 
+      RowBox[{"1", "-", "c"}], ")"}]}]]}]}]], "Input",
+ CellChangeTimes->{{3.761461424891219*^9, 3.761461441449215*^9}, {
+  3.761461536504551*^9, 3.7614615450740547`*^9}, {3.7614616780981216`*^9, 
+  3.7614616880731*^9}},
+ CellLabel->
+  "In[684]:=",ExpressionUUID->"1ab4fb53-e269-4bd7-96eb-3f82c5fb5bca"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"halfrodPointSourceisoscatter`meanC", "[", 
+   RowBox[{"c", ",", "0"}], "]"}], "//", "FullSimplify"}]], "Input",
+ CellChangeTimes->{{3.76154406704252*^9, 3.7615440679608793`*^9}},
+ CellLabel->
+  "In[685]:=",ExpressionUUID->"cadaa439-8ef7-4266-a3fc-eb96acb649e7"],
+
+Cell[BoxData[
+ FractionBox["1", 
+  RowBox[{"1", "+", 
+   SqrtBox[
+    RowBox[{"1", "-", "c"}]], "-", "c"}]]], "Output",
+ CellChangeTimes->{{3.761544065432583*^9, 3.7615440682244873`*^9}, 
+   3.779239566723881*^9},
+ CellLabel->
+  "Out[685]=",ExpressionUUID->"dfefb39f-607f-495e-911d-9885944a22d9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"c", " ", 
+    RowBox[{"halfrodPointSourceisoscatter`meanC", "[", 
+     RowBox[{"c", ",", "0"}], "]"}]}], "+", "1"}], "//", 
+  "FullSimplify"}]], "Input",
+ CellChangeTimes->{{3.761519672602602*^9, 3.7615196758626947`*^9}},
+ CellLabel->
+  "In[686]:=",ExpressionUUID->"5fa56de6-e36b-4369-a28e-8a8bd3040d90"],
+
+Cell[BoxData[
+ FractionBox["1", 
+  SqrtBox[
+   RowBox[{"1", "-", "c"}]]]], "Output",
+ CellChangeTimes->{{3.76151967297961*^9, 3.7615196760721827`*^9}, 
+   3.779239566733223*^9},
+ CellLabel->
+  "Out[686]=",ExpressionUUID->"5a0b2bf2-a654-48ec-ae1b-a7fc17791c29"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"halfrodPointSourceisoscatter`escapeprob", "[", 
+   RowBox[{"x0_", ",", "c_"}], "]"}], ":=", 
+  FractionBox[
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      SqrtBox[
+       RowBox[{"1", "-", "c"}]]}], ")"}], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{
+      RowBox[{"-", 
+       SqrtBox[
+        RowBox[{"1", "-", "c"}]]}], " ", "x0"}]]}], "c"]}]], "Input",
+ CellChangeTimes->{{3.76146023728253*^9, 3.761460279403357*^9}},
+ CellLabel->
+  "In[687]:=",ExpressionUUID->"42ef3bab-7512-4b7a-8c7c-ce16c70ea740"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{"(", 
+   RowBox[{"halfrodPointSourceisoscatter`escapeprob", "[", 
+    RowBox[{"0", ",", "c"}], "]"}], ")"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7614604044118757`*^9, 3.761460466579247*^9}, {
+   3.761461037369835*^9, 3.761461079115118*^9}, 3.761519789785207*^9},
+ CellLabel->
+  "In[688]:=",ExpressionUUID->"49336f1e-7bc1-465e-876b-cc1fb29dbedb"],
+
+Cell[BoxData[
+ FractionBox["1", 
+  RowBox[{"1", "+", 
+   SqrtBox[
+    RowBox[{"1", "-", "c"}]]}]]], "Output",
+ CellChangeTimes->{{3.7614604614447317`*^9, 3.761460467025609*^9}, {
+   3.761461038460915*^9, 3.76146107927555*^9}, 3.7615197900915537`*^9, 
+   3.7792395667776327`*^9},
+ CellLabel->
+  "Out[688]=",ExpressionUUID->"19e451eb-473c-4bb7-b031-353089850e50"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Series", "[", 
+  RowBox[{
+   RowBox[{"halfrodPointSourceisoscatter`escapeprob", "[", 
+    RowBox[{"x0", ",", "c"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"c", ",", "0", ",", "4"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.761543997700313*^9, 3.7615440106655807`*^9}},
+ CellLabel->
+  "In[689]:=",ExpressionUUID->"d6b8f552-bba2-4496-96ab-6fdfe2ac388d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   FractionBox[
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", "x0"}]], "2"], "+", 
+   RowBox[{
+    FractionBox["1", "8"], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", "x0"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", "x0"}]}], ")"}], " ", "c"}], "+", 
+   RowBox[{
+    FractionBox["1", "16"], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", "x0"}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", "x0"}], ")"}], "2"], " ", 
+    SuperscriptBox["c", "2"]}], "+", 
+   RowBox[{
+    FractionBox["1", "384"], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", "x0"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"15", "+", 
+      RowBox[{"30", " ", "x0"}], "+", 
+      RowBox[{"18", " ", 
+       SuperscriptBox["x0", "2"]}], "+", 
+      RowBox[{"4", " ", 
+       SuperscriptBox["x0", "3"]}]}], ")"}], " ", 
+    SuperscriptBox["c", "3"]}], "+", 
+   RowBox[{
+    FractionBox["1", "768"], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", "x0"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"21", "+", 
+      RowBox[{"42", " ", "x0"}], "+", 
+      RowBox[{"27", " ", 
+       SuperscriptBox["x0", "2"]}], "+", 
+      RowBox[{"8", " ", 
+       SuperscriptBox["x0", "3"]}], "+", 
+      SuperscriptBox["x0", "4"]}], ")"}], " ", 
+    SuperscriptBox["c", "4"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "c", "]"}], "5"],
+    SeriesData[$CellContext`c, 0, {}, 0, 5, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`c, 0, {
+   Rational[1, 2] E^(-$CellContext`x0), Rational[1, 8] 
+    E^(-$CellContext`x0) (1 + 2 $CellContext`x0), Rational[1, 16] 
+    E^(-$CellContext`x0) (1 + $CellContext`x0)^2, Rational[1, 384] 
+    E^(-$CellContext`x0) (15 + 30 $CellContext`x0 + 18 $CellContext`x0^2 + 
+     4 $CellContext`x0^3), Rational[1, 768] 
+    E^(-$CellContext`x0) (21 + 42 $CellContext`x0 + 27 $CellContext`x0^2 + 
+     8 $CellContext`x0^3 + $CellContext`x0^4)}, 0, 5, 1],
+  Editable->False]], "Output",
+ CellChangeTimes->{3.761544011225477*^9, 3.779239566816752*^9},
+ CellLabel->
+  "Out[689]=",ExpressionUUID->"29632b50-0121-46d5-937e-3f4f84f862c3"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["load MC data", "Section",
+ CellChangeTimes->{{3.617427964847665*^9, 3.617427965662361*^9}, {
+  3.6174280073412037`*^9, 3.617428007556081*^9}, {3.640936210100869*^9, 
+  3.640936211771452*^9}},ExpressionUUID->"401471b8-7f7f-4b2f-9be3-\
+ce72860fa6f0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"halfrodPointSourceisoscatter`ppoints", "[", 
+   RowBox[{"xs_", ",", "dx_", ",", "maxx_", ",", "\[CapitalSigma]t_"}], "]"}],
+   ":=", 
+  RowBox[{
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"dx", 
+         RowBox[{"(", 
+          RowBox[{"i", "-", "1"}], ")"}]}], "+", 
+        RowBox[{"0.5", "dx"}]}], ",", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", "\[CapitalSigma]t"}], ")"}], 
+        RowBox[{"xs", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "xs", "]"}]}], "}"}]}], "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ";;", 
+     RowBox[{"-", "2"}]}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.617848413386137*^9, 3.6178484581160173`*^9}, {
+   3.61959273772493*^9, 3.6195927529849243`*^9}, 3.6462769978320913`*^9, 
+   3.761458774490616*^9},
+ CellLabel->
+  "In[674]:=",ExpressionUUID->"0a8465c6-9d87-4bae-891d-de17cef64917"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"halfrodPointSourceisoscatter`fs", "=", 
+   RowBox[{
+   "FileNames", "[", 
+    "\"\<code/rod/halfrod/pointSource/data/halfrod_pointsource_\
+isotropicscatter_exp*\>\"", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.617431703558316*^9, 3.61743173077596*^9}, {
+   3.61959282254521*^9, 3.6195928356726227`*^9}, {3.6409361975771008`*^9, 
+   3.640936201348721*^9}, 3.645065566454424*^9, 3.646276999345551*^9, {
+   3.7614587744946203`*^9, 3.761458789440843*^9}},
+ CellLabel->
+  "In[675]:=",ExpressionUUID->"4f037ef4-a898-43ba-82ed-f67f771e8378"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"halfrodPointSourceisoscatter`index", "[", "x_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"data", ",", "c", ",", "x0"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"data", "=", 
+       RowBox[{"Import", "[", 
+        RowBox[{"x", ",", "\"\<Table\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"x0", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "11"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"c", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "3"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      
+      RowBox[{"{", 
+       RowBox[{"c", ",", "x0", ",", "data"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"halfrodPointSourceisoscatter`simulations", "=", 
+   RowBox[{
+   "halfrodPointSourceisoscatter`index", "/@", 
+    "halfrodPointSourceisoscatter`fs"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.645065231793377*^9, 3.645065296029221*^9}, {
+   3.6450653296918097`*^9, 3.6450653865106487`*^9}, 3.6450654361720257`*^9, {
+   3.6462770009307747`*^9, 3.646277007281083*^9}, {3.761458774498715*^9, 
+   3.761458804947193*^9}},
+ CellLabel->
+  "In[676]:=",ExpressionUUID->"790f2e71-25a9-4951-8148-467201b2605d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"halfrodPointSourceisoscatter`cs", "=", 
+  RowBox[{"Union", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "&"}], "/@", 
+    "halfrodPointSourceisoscatter`simulations"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.645065448960425*^9, 3.6450654746981783`*^9}, {
+  3.646277017777326*^9, 3.646277020560364*^9}, {3.761458774516666*^9, 
+  3.76145877451975*^9}, {3.761458816741076*^9, 3.761458817026956*^9}},
+ CellLabel->
+  "In[678]:=",ExpressionUUID->"e4e8c4e7-0eaf-42d3-bd70-a8d018af7ee0"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.1`", ",", "0.3`", ",", "0.5`", ",", "0.7`", ",", "0.9`", ",", "0.95`", 
+   ",", "0.98`", ",", "0.99`", ",", "0.999`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.6450654647633867`*^9, 3.645065474997116*^9}, 
+   3.645070161322473*^9, 3.64617397571076*^9, 3.646254687365184*^9, 
+   3.64626294753141*^9, 3.6462719491004677`*^9, 3.6462721350831223`*^9, 
+   3.646272678669051*^9, 3.646277219750484*^9, 3.6486939524696493`*^9, 
+   3.663893908020751*^9, 3.761458827575595*^9, 3.779239551966567*^9},
+ CellLabel->
+  "Out[678]=",ExpressionUUID->"435f66b9-2be3-4129-a8e8-ae43c20316cb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"halfrodPointSourceisoscatter`x0s", "=", 
+  RowBox[{"Union", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "&"}], "/@", 
+    "halfrodPointSourceisoscatter`simulations"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.645065539848353*^9, 3.645065542907295*^9}, {
+  3.646277022208873*^9, 3.6462770239529*^9}, {3.761458774522972*^9, 
+  3.7614587745261707`*^9}, {3.761458808353763*^9, 3.761458808718378*^9}},
+ CellLabel->
+  "In[679]:=",ExpressionUUID->"71796cf9-e4f0-4ef2-ac9e-5cb4c109c2a6"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.2`", ",", "1", ",", "3"}], "}"}]], "Output",
+ CellChangeTimes->{3.64506554314834*^9, 3.645070161361624*^9, 
+  3.6461739757283497`*^9, 3.646254687418363*^9, 3.646262947585215*^9, 
+  3.6462719491576767`*^9, 3.646272135103839*^9, 3.646272678692589*^9, 
+  3.646277219769197*^9, 3.648693952490026*^9, 3.663893908067287*^9, 
+  3.761458827654602*^9, 3.779239552013023*^9},
+ CellLabel->
+  "Out[679]=",ExpressionUUID->"05dc805d-cbb2-4bd8-8a52-c8df06f1c292"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"halfrodPointSourceisoscatter`numcollorders", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"halfrodPointSourceisoscatter`simulations", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "[", 
+    RowBox[{"[", "3", "]"}], "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"2", ",", "11"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.646271938814583*^9, 3.646271939521427*^9}, {
+  3.6462770267672453`*^9, 3.646277028704248*^9}, {3.7614587745294113`*^9, 
+  3.761458774532568*^9}},
+ CellLabel->
+  "In[680]:=",ExpressionUUID->"d6f8abf7-e136-45c3-a0aa-3a9d625ec037"],
+
+Cell[BoxData["20"], "Output",
+ CellChangeTimes->{3.64627194920724*^9, 3.646272135156968*^9, 
+  3.646272678737818*^9, 3.646277219814145*^9, 3.648693952533187*^9, 
+  3.663893908096346*^9, 3.7614588277393293`*^9, 3.7792395520228252`*^9},
+ CellLabel->
+  "Out[680]=",ExpressionUUID->"9f4a28c6-4fc6-437c-81ef-eb63aef3b4af"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Compare Deterministic and MC", "Section",
+ CellChangeTimes->{{3.617428104753593*^9, 
+  3.6174281129212646`*^9}},ExpressionUUID->"eba2eab2-62c9-450b-8e0a-\
+f2820208fded"],
+
+Cell[CellGroupData[{
+
+Cell["Collision-rate density", "Subsection",
+ CellChangeTimes->{{3.646262885300542*^9, 3.646262887250815*^9}, 
+   3.648694165319491*^9, {3.761458893633987*^9, 
+   3.7614588959615192`*^9}},ExpressionUUID->"4e3269a9-b050-4fc2-baf8-\
+45bcf4fe8a79"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"c", ",", "x0"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Length", "[", "halfrodPointSourceisoscatter`simulations", "]"}], ">", 
+      "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "data", ",", "maxx", ",", "dx", ",", "numcollorders", ",", 
+         "nummoments", ",", "pointsCL", ",", "plotpointsCL", ",", "pointsCR", 
+         ",", "plotpointsCR", ",", "plotpointsC", ",", "plotC", ",", "plotLL",
+          ",", "plotLR", ",", "escapeMC"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{"SelectFirst", "[", 
+           RowBox[{"halfrodPointSourceisoscatter`simulations", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "c"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", "x0"}]}], "&"}]}],
+            "]"}], "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"maxx", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dx", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"numcollorders", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "11"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"nummoments", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "13"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"escapeMC", "=", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"3", ",", "3"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"pointsCL", " ", "=", " ", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", "7", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"plotpointsCL", "=", 
+         RowBox[{"halfrodPointSourceisoscatter`ppoints", "[", 
+          RowBox[{"pointsCL", ",", "dx", ",", "maxx", ",", "1"}], "]"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"pointsCR", " ", "=", " ", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", "9", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"plotpointsCR", "=", 
+         RowBox[{"halfrodPointSourceisoscatter`ppoints", "[", 
+          RowBox[{"pointsCR", ",", "dx", ",", "maxx", ",", "1"}], "]"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"plotpointsC", "=", 
+         RowBox[{"halfrodPointSourceisoscatter`ppoints", "[", 
+          RowBox[{
+           RowBox[{"pointsCL", "+", "pointsCR"}], ",", "dx", ",", "maxx", ",",
+            "1"}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"plotC", "=", 
+         RowBox[{"Show", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"plotpointsC", ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"PlotStyle", "\[Rule]", 
+              RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"halfrodPointSourceisoscatter`C", "[", 
+              RowBox[{"x", ",", "c", ",", "x0"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", "maxx"}], "}"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], 
+           "\[IndentingNewLine]", ",", 
+           RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"FrameLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"C", "[", "x", "]"}], ","}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<x\>\"", ",", 
+                RowBox[{
+                "\"\<Semi-infinite rod, point source, isotropic scattering, \
+collision density C[x], c = \>\"", "<>", 
+                 RowBox[{"ToString", "[", "c", "]"}], "<>", 
+                 "\"\<, \!\(\*SubscriptBox[\(x\), \(0\)]\) = \>\"", "<>", 
+                 RowBox[{"ToString", "[", "x0", "]"}], "<>", 
+                 "\"\<\\nEscape MC: \>\"", "<>", 
+                 RowBox[{"ToString", "[", "escapeMC", "]"}], "<>", 
+                 "\"\<\\tEscape deterministic: \>\"", "<>", 
+                 RowBox[{"ToString", "[", 
+                  RowBox[{"halfrodPointSourceisoscatter`escapeprob", "[", 
+                   RowBox[{"x0", ",", "c"}], "]"}], "]"}]}]}], "}"}]}], 
+             "}"}]}]}], "\[IndentingNewLine]", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"GraphicsGrid", "[", 
+           RowBox[{"{", 
+            RowBox[{"{", "plotC", "}"}], "}"}], "]"}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", "500"}]}], "]"}]}]}], 
+      "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Text", "[", 
+      "\"\<Uh oh!  Couldn't find MC data.  Try to evaluate this entire \
+notebook and ensure the data path is setup correctly.\>\"", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", "0.7"}], "}"}], ",", 
+     "halfrodPointSourceisoscatter`cs"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x0", ",", "halfrodPointSourceisoscatter`x0s"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6174281170020113`*^9, 3.61742813267981*^9}, 
+   3.6174287994794273`*^9, {3.617428838302623*^9, 3.617428878809485*^9}, {
+   3.6174289474455023`*^9, 3.61742896885219*^9}, {3.61742923797204*^9, 
+   3.617429325246893*^9}, {3.617429373536989*^9, 3.617429375936674*^9}, {
+   3.617429430039774*^9, 3.617429597670169*^9}, {3.617429724574465*^9, 
+   3.6174297347942553`*^9}, {3.617429794822505*^9, 3.6174298315174522`*^9}, {
+   3.6174298677304993`*^9, 3.6174298817845984`*^9}, {3.617429917431849*^9, 
+   3.617429978970625*^9}, {3.617430046618482*^9, 3.6174301175661373`*^9}, {
+   3.6174302274511757`*^9, 3.617430269908132*^9}, {3.617430851237011*^9, 
+   3.61743094294977*^9}, {3.617431018010861*^9, 3.6174310182802477`*^9}, {
+   3.617431054641918*^9, 3.6174310955544443`*^9}, {3.617431738710396*^9, 
+   3.617431780737298*^9}, {3.617431916426394*^9, 3.617431938292404*^9}, {
+   3.617432017592498*^9, 3.61743203121756*^9}, {3.617434253945896*^9, 
+   3.617434276351254*^9}, {3.617434334762925*^9, 3.617434349959379*^9}, {
+   3.617434549029696*^9, 3.617434585144499*^9}, {3.6174346161354094`*^9, 
+   3.6174346244125147`*^9}, {3.617434842916192*^9, 3.617434849707287*^9}, {
+   3.617847326305366*^9, 3.61784732690473*^9}, 3.617848051268721*^9, {
+   3.617848167301262*^9, 3.6178481676284246`*^9}, {3.61784850895185*^9, 
+   3.617848563337233*^9}, {3.617898951271072*^9, 3.617898951610284*^9}, {
+   3.618035560623592*^9, 3.618035561301065*^9}, {3.6195928393795137`*^9, 
+   3.619592840035911*^9}, {3.619594023021328*^9, 3.619594057454226*^9}, {
+   3.619594367717161*^9, 3.619594451177827*^9}, {3.619635242437984*^9, 
+   3.619635273373003*^9}, 3.6450668161459093`*^9, {3.6462541709221277`*^9, 
+   3.646254197207653*^9}, {3.646254257622604*^9, 3.646254280753685*^9}, {
+   3.646271995106873*^9, 3.646272029289276*^9}, {3.646272121445628*^9, 
+   3.646272131625037*^9}, {3.64627705380926*^9, 3.64627709157316*^9}, {
+   3.6638939570996027`*^9, 3.663893958916985*^9}, {3.761458774625083*^9, 
+   3.761458774709803*^9}, {3.761458906139863*^9, 3.761459070237589*^9}, {
+   3.7614596119354353`*^9, 3.761459612334381*^9}, {3.7614598562788553`*^9, 
+   3.761459910788039*^9}, 3.761460254382275*^9, 3.779239593611969*^9},
+ CellLabel->
+  "In[690]:=",ExpressionUUID->"dc1b5245-497e-4da9-99c9-146f8f3f46f9"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 0.7, $CellContext`x0$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], 0.7}, {0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.98, 
+      0.99, 0.999}}, {
+      Hold[$CellContext`x0$$], {0.2, 1, 3}}}, Typeset`size$$ = {
+    500., {152., 157.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`c$4243503$$ = 
+    0, $CellContext`x0$4243504$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 0.7, $CellContext`x0$$ = 0.2}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`c$$, $CellContext`c$4243503$$, 0], 
+        Hold[$CellContext`x0$$, $CellContext`x0$4243504$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      If[Length[halfrodPointSourceisoscatter`simulations] > 0, 
+        Module[{$CellContext`data$, $CellContext`maxx$, $CellContext`dx$, \
+$CellContext`numcollorders$, $CellContext`nummoments$, \
+$CellContext`pointsCL$, $CellContext`plotpointsCL$, $CellContext`pointsCR$, \
+$CellContext`plotpointsCR$, $CellContext`plotpointsC$, $CellContext`plotC$, \
+$CellContext`plotLL$, $CellContext`plotLR$, $CellContext`escapeMC$}, \
+$CellContext`data$ = Part[
+            SelectFirst[
+            halfrodPointSourceisoscatter`simulations, And[
+             Part[#, 1] == $CellContext`c$$, 
+              Part[#, 2] == $CellContext`x0$$]& ], 3]; $CellContext`maxx$ = 
+          Part[$CellContext`data$, 2, 5]; $CellContext`dx$ = 
+          Part[$CellContext`data$, 2, 7]; $CellContext`numcollorders$ = 
+          Part[$CellContext`data$, 2, 11]; $CellContext`nummoments$ = 
+          Part[$CellContext`data$, 2, 13]; $CellContext`escapeMC$ = 
+          Part[$CellContext`data$, 3, 3]; $CellContext`pointsCL$ = 
+          Part[$CellContext`data$, 7]; $CellContext`plotpointsCL$ = 
+          halfrodPointSourceisoscatter`ppoints[$CellContext`pointsCL$, \
+$CellContext`dx$, $CellContext`maxx$, 1]; $CellContext`pointsCR$ = 
+          Part[$CellContext`data$, 9]; $CellContext`plotpointsCR$ = 
+          halfrodPointSourceisoscatter`ppoints[$CellContext`pointsCR$, \
+$CellContext`dx$, $CellContext`maxx$, 1]; $CellContext`plotpointsC$ = 
+          halfrodPointSourceisoscatter`ppoints[$CellContext`pointsCL$ + \
+$CellContext`pointsCR$, $CellContext`dx$, $CellContext`maxx$, 
+            1]; $CellContext`plotC$ = Show[
+            
+            ListPlot[$CellContext`plotpointsC$, PlotRange -> All, PlotStyle -> 
+             PointSize[0.01]], 
+            Plot[
+             
+             halfrodPointSourceisoscatter`C[$CellContext`x, $CellContext`c$$, \
+$CellContext`x0$$], {$CellContext`x, 0, $CellContext`maxx$}, PlotRange -> 
+             All], Frame -> True, FrameLabel -> {{
+               C[$CellContext`x], Null}, {"x", 
+               StringJoin[
+               "Semi-infinite rod, point source, isotropic scattering, \
+collision density C[x], c = ", 
+                ToString[$CellContext`c$$], 
+                ", \!\(\*SubscriptBox[\(x\), \(0\)]\) = ", 
+                ToString[$CellContext`x0$$], "\nEscape MC: ", 
+                ToString[$CellContext`escapeMC$], "\tEscape deterministic: ", 
+                
+                ToString[
+                 
+                 halfrodPointSourceisoscatter`escapeprob[$CellContext`x0$$, \
+$CellContext`c$$]]]}}]; Show[
+           GraphicsGrid[{{$CellContext`plotC$}}], ImageSize -> 500]], 
+        Text[
+        "Uh oh!  Couldn't find MC data.  Try to evaluate this entire notebook \
+and ensure the data path is setup correctly."]], 
+      "Specifications" :> {{{$CellContext`c$$, 0.7}, {0.1, 0.3, 0.5, 0.7, 0.9,
+          0.95, 0.98, 0.99, 0.999}}, {$CellContext`x0$$, {0.2, 1, 3}}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{545., {209., 215.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.61742928183463*^9, 3.6174293258331547`*^9}, 
+   3.617429436318664*^9, {3.61742948106245*^9, 3.6174295009489727`*^9}, {
+   3.617429549372438*^9, 3.617429598132875*^9}, {3.617429727942461*^9, 
+   3.617429735895954*^9}, 3.617429800033937*^9, 3.617429832097906*^9, {
+   3.617429874504074*^9, 3.617429882154498*^9}, 3.617429920022324*^9, {
+   3.617429950258304*^9, 3.6174299799852943`*^9}, {3.6174300589071608`*^9, 
+   3.617430117980332*^9}, {3.6174302282216253`*^9, 3.6174302706886377`*^9}, {
+   3.617430871226499*^9, 3.6174309434694443`*^9}, 3.617431018710215*^9, {
+   3.6174310600334377`*^9, 3.617431096079486*^9}, {3.61743174071297*^9, 
+   3.61743178146768*^9}, 3.617431939072937*^9, {3.617432023877068*^9, 
+   3.617432031820962*^9}, {3.617434265407374*^9, 3.6174342766717987`*^9}, {
+   3.617434339799399*^9, 3.6174343511449547`*^9}, {3.617434565777495*^9, 
+   3.617434585410145*^9}, 3.617434850608314*^9, 3.617435047387048*^9, 
+   3.617779205752945*^9, {3.617847308432588*^9, 3.6178473273725863`*^9}, 
+   3.6178480525007877`*^9, 3.617848167873561*^9, {3.617848523620203*^9, 
+   3.617848532847191*^9}, 3.617848563566896*^9, 3.617898951835388*^9, 
+   3.618026897361377*^9, 3.618035300220717*^9, 3.618035562256834*^9, 
+   3.619592841193926*^9, 3.619594067437519*^9, 3.6195942133576527`*^9, 
+   3.61959436830357*^9, {3.619594405034141*^9, 3.619594451626395*^9}, 
+   3.619594681819881*^9, 3.619635281279757*^9, 3.621374422271721*^9, {
+   3.621374460559329*^9, 3.621374471675267*^9}, 3.6213745931334133`*^9, 
+   3.625760817973997*^9, 3.625761016264855*^9, 3.640936236894485*^9, 
+   3.641004208801806*^9, 3.643952948466518*^9, 3.643953128039459*^9, 
+   3.645066582360589*^9, 3.645066816790968*^9, 3.645070163356307*^9, 
+   3.646173976422086*^9, 3.646254199533277*^9, 3.646254282171978*^9, 
+   3.6462546880659*^9, 3.6462629485021563`*^9, 3.646272135540148*^9, 
+   3.6462726792068453`*^9, 3.646277220098629*^9, 3.648693953120194*^9, 
+   3.6638939086905613`*^9, 3.663893959240472*^9, 3.761459072591897*^9, {
+   3.761459888028673*^9, 3.761459911744235*^9}, 3.761460254722084*^9, 
+   3.77923955625447*^9, 3.7792395945353413`*^9},
+ CellLabel->
+  "Out[691]=",ExpressionUUID->"1a1ef415-09e4-45e3-b20b-d0a65c89e833"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{860, 925},
+WindowMargins->{{82, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 291, 4, 160, "Title",ExpressionUUID->"c419a343-d763-4fda-8e62-699a9af9fb4f"],
+Cell[873, 28, 173, 3, 53, "Subtitle",ExpressionUUID->"aaa5f98c-7109-41c6-95d2-21353566709a"],
+Cell[1049, 33, 687, 13, 142, "Text",ExpressionUUID->"0d8706ed-3c35-4a6e-8664-ed1b72947665"],
+Cell[CellGroupData[{
+Cell[1761, 50, 203, 4, 67, "Section",ExpressionUUID->"948e5d1c-59b5-4382-ab3e-823cd11afe04"],
+Cell[1967, 56, 313, 7, 58, "Text",ExpressionUUID->"1bf5fe65-a14a-4193-8a9b-e1ce87f42b3e"],
+Cell[2283, 65, 205, 4, 30, "Input",ExpressionUUID->"0ffa4697-7bbf-45e9-96c5-8f21271001dd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2525, 74, 153, 3, 67, "Section",ExpressionUUID->"cb4e122f-791a-4726-ac8c-84dc35deafdf"],
+Cell[2681, 79, 547, 13, 58, "Text",ExpressionUUID->"aa25f1cb-4d72-4f23-8e16-19478735ec0c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3265, 97, 165, 3, 67, "Section",ExpressionUUID->"25055d02-7c5b-42e5-9711-0c26661f4217"],
+Cell[CellGroupData[{
+Cell[3455, 104, 228, 4, 54, "Subsection",ExpressionUUID->"298f8a9e-d5e0-4f71-ac53-d6098f4a1863"],
+Cell[3686, 110, 1422, 39, 95, "Input",ExpressionUUID->"17e2eea9-0024-4a5e-91a9-eff5fe2476e0"],
+Cell[5111, 151, 814, 25, 60, "Input",ExpressionUUID->"1ab4fb53-e269-4bd7-96eb-3f82c5fb5bca"],
+Cell[CellGroupData[{
+Cell[5950, 180, 296, 6, 30, "Input",ExpressionUUID->"cadaa439-8ef7-4266-a3fc-eb96acb649e7"],
+Cell[6249, 188, 296, 8, 54, "Output",ExpressionUUID->"dfefb39f-607f-495e-911d-9885944a22d9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6582, 201, 351, 9, 30, "Input",ExpressionUUID->"5fa56de6-e36b-4369-a28e-8a8bd3040d90"],
+Cell[6936, 212, 260, 7, 54, "Output",ExpressionUUID->"5a0b2bf2-a654-48ec-ae1b-a7fc17791c29"]
+}, Open  ]],
+Cell[7211, 222, 566, 17, 59, "Input",ExpressionUUID->"42ef3bab-7512-4b7a-8c7c-ce16c70ea740"],
+Cell[CellGroupData[{
+Cell[7802, 243, 403, 8, 30, "Input",ExpressionUUID->"49336f1e-7bc1-465e-876b-cc1fb29dbedb"],
+Cell[8208, 253, 361, 9, 54, "Output",ExpressionUUID->"19e451eb-473c-4bb7-b031-353089850e50"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8606, 267, 385, 9, 30, "Input",ExpressionUUID->"d6b8f552-bba2-4496-96ab-6fdfe2ac388d"],
+Cell[8994, 278, 2220, 62, 93, "Output",ExpressionUUID->"29632b50-0121-46d5-937e-3f4f84f862c3"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11275, 347, 254, 4, 67, "Section",ExpressionUUID->"401471b8-7f7f-4b2f-9be3-ce72860fa6f0"],
+Cell[11532, 353, 1051, 30, 52, "Input",ExpressionUUID->"0a8465c6-9d87-4bae-891d-de17cef64917"],
+Cell[12586, 385, 574, 12, 52, "Input",ExpressionUUID->"4f037ef4-a898-43ba-82ed-f67f771e8378"],
+Cell[13163, 399, 1377, 36, 157, "Input",ExpressionUUID->"790f2e71-25a9-4951-8148-467201b2605d"],
+Cell[CellGroupData[{
+Cell[14565, 439, 552, 12, 30, "Input",ExpressionUUID->"e4e8c4e7-0eaf-42d3-bd70-a8d018af7ee0"],
+Cell[15120, 453, 617, 11, 34, "Output",ExpressionUUID->"435f66b9-2be3-4129-a8e8-ae43c20316cb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15774, 469, 552, 12, 30, "Input",ExpressionUUID->"71796cf9-e4f0-4ef2-ac9e-5cb4c109c2a6"],
+Cell[16329, 483, 490, 9, 34, "Output",ExpressionUUID->"05dc805d-cbb2-4bd8-8a52-c8df06f1c292"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16856, 497, 568, 13, 52, "Input",ExpressionUUID->"d6f8abf7-e136-45c3-a0aa-3a9d625ec037"],
+Cell[17427, 512, 317, 5, 34, "Output",ExpressionUUID->"9f4a28c6-4fc6-437c-81ef-eb63aef3b4af"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17793, 523, 175, 3, 67, "Section",ExpressionUUID->"eba2eab2-62c9-450b-8e0a-f2820208fded"],
+Cell[CellGroupData[{
+Cell[17993, 530, 245, 4, 54, "Subsection",ExpressionUUID->"4e3269a9-b050-4fc2-baf8-45bcf4fe8a79"],
+Cell[CellGroupData[{
+Cell[18263, 538, 8348, 171, 871, "Input",ExpressionUUID->"dc1b5245-497e-4da9-99c9-146f8f3f46f9"],
+Cell[26614, 711, 6853, 119, 477, "Output",ExpressionUUID->"1a1ef415-09e4-45e3-b20b-d0a65c89e833"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
