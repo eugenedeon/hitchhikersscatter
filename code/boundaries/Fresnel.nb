@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     89506,       2380]
-NotebookOptionsPosition[     81555,       2241]
-NotebookOutlinePosition[     81964,       2259]
-CellTagsIndexPosition[     81921,       2256]
+NotebookDataLength[    102601,       2824]
+NotebookOptionsPosition[     94341,       2681]
+NotebookOutlinePosition[     94732,       2698]
+CellTagsIndexPosition[     94689,       2695]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -95,7 +95,7 @@ Cell[BoxData[{
      RowBox[{"n", ".", "v"}]}]}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.604104693928533*^9, 3.604104696512973*^9}},
  CellLabel->
-  "In[1327]:=",ExpressionUUID->"77224ca1-ddd4-41d0-9b63-a84413446dda"]
+  "In[2300]:=",ExpressionUUID->"77224ca1-ddd4-41d0-9b63-a84413446dda"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -170,7 +170,7 @@ Cell[BoxData[{
   3.590803991860276*^9, 3.5908040084335403`*^9}, {3.617242300761402*^9, 
   3.617242300943184*^9}},
  CellLabel->
-  "In[1657]:=",ExpressionUUID->"c0298f49-6891-4bdc-93ef-773ada0ec1d2"],
+  "In[2302]:=",ExpressionUUID->"c0298f49-6891-4bdc-93ef-773ada0ec1d2"],
 
 Cell[CellGroupData[{
 
@@ -354,11 +354,11 @@ Cell[BoxData[
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`\[Eta]i$$ = 1.02, $CellContext`\[Eta]t$$ = 
-    1.9420000000000002`, $CellContext`\[Theta]i$$ = 0.9047786842338605, 
-    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
-    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
-    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+   DynamicModuleBox[{$CellContext`\[Eta]i$$ = 1.152, $CellContext`\[Eta]t$$ = 
+    1.944, $CellContext`\[Theta]i$$ = 1.0587167242597604`, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`\[Eta]i$$], 1, 2}, {
       Hold[$CellContext`\[Eta]t$$], 1, 2}, {
       Hold[$CellContext`\[Theta]i$$], 0, Rational[1, 2] Pi}}, 
@@ -457,8 +457,14 @@ Cell[BoxData[{
   RowBox[{"ns", "=", 
    RowBox[{"{", 
     RowBox[{
-    "0.5", ",", "0.7", ",", "0.9", ",", "0.99", ",", "1.01", ",", "1.1", ",", 
-     "1.4", ",", "2"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+     FractionBox["5", "10"], ",", 
+     FractionBox["7", "10"], ",", 
+     FractionBox["9", "10"], ",", 
+     FractionBox["99", "100"], ",", 
+     FractionBox["101", "100"], ",", 
+     FractionBox["11", "10"], ",", 
+     FractionBox["14", "10"], ",", "2"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"FRdata", "=", 
    RowBox[{"Table", "[", 
@@ -467,7 +473,9 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{"FR", "[", 
         RowBox[{"n", ",", 
-         RowBox[{"Cos", "[", "t", "]"}]}], "]"}], ",", "10"}], "]"}], ",", 
+         RowBox[{"Cos", "[", "t", "]"}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"8", ",", "8"}], "}"}]}], "]"}], ",", 
      RowBox[{"{", 
       RowBox[{"n", ",", "ns"}], "}"}], ",", 
      RowBox[{"{", 
@@ -482,7 +490,8 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"{", 
       RowBox[{"Table", "[", 
-       RowBox[{"n", ",", 
+       RowBox[{
+        RowBox[{"N", "[", "n", "]"}], ",", 
         RowBox[{"{", 
          RowBox[{"n", ",", "ns"}], "}"}]}], "]"}], "}"}], ",", 
      RowBox[{"Transpose", "[", "FRdata", "]"}]}], "]"}], "]"}], "//", 
@@ -490,260 +499,262 @@ Cell[BoxData[{
  CellChangeTimes->{{3.6174827850094213`*^9, 3.617482831678864*^9}, {
   3.617482862500741*^9, 3.617482930784587*^9}, {3.617482966359417*^9, 
   3.617483024379854*^9}, {3.617483089058929*^9, 3.617483135134089*^9}, {
-  3.774670359893133*^9, 3.77467036471281*^9}},
+  3.774670359893133*^9, 3.77467036471281*^9}, {3.779589781568893*^9, 
+  3.779589812480027*^9}, {3.779589860234262*^9, 3.7795898847697077`*^9}, {
+  3.780243827356963*^9, 3.78024382821469*^9}},
  CellLabel->
-  "In[1603]:=",ExpressionUUID->"26273e87-abe6-4f17-aed8-644ae091f860"],
+  "In[2335]:=",ExpressionUUID->"26273e87-abe6-4f17-aed8-644ae091f860"],
 
 Cell[BoxData[
  TagBox[GridBox[{
     {"0.5`", 
      TagBox[
-      InterpretationBox["\<\"0.1111111111\"\>",
+      InterpretationBox["\<\"0.11111111\"\>",
        0.1111111111111111,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.1117519778\"\>",
+      InterpretationBox["\<\"0.11175198\"\>",
        0.11175197782669873`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.2832678262\"\>",
+      InterpretationBox["\<\"0.28326783\"\>",
        0.28326782616520846`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
       InterpretationBox["\<\"1\"\>",
        1,
        Editable->False],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
       InterpretationBox["\<\"1\"\>",
        1,
        Editable->False],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
       InterpretationBox["\<\"1\"\>",
        1,
        Editable->False],
-      NumberForm[#, 10]& ]},
+      NumberForm[#, {8, 8}]& ]},
     {"0.7`", 
      TagBox[
-      InterpretationBox["\<\"0.03114186851\"\>",
+      InterpretationBox["\<\"0.03114187\"\>",
        0.03114186851211074,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.03124674478\"\>",
+      InterpretationBox["\<\"0.03124674\"\>",
        0.031246744783662295`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.03870036015\"\>",
+      InterpretationBox["\<\"0.03870036\"\>",
        0.03870036015019172,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
       InterpretationBox["\<\"1\"\>",
        1,
        Editable->False],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
       InterpretationBox["\<\"1\"\>",
        1,
        Editable->False],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
       InterpretationBox["\<\"1\"\>",
        1,
        Editable->False],
-      NumberForm[#, 10]& ]},
+      NumberForm[#, {8, 8}]& ]},
     {"0.9`", 
      TagBox[
-      InterpretationBox["\<\"0.002770083102\"\>",
+      InterpretationBox["\<\"0.00277008\"\>",
        0.002770083102493073,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.002775881268\"\>",
+      InterpretationBox["\<\"0.00277588\"\>",
        0.002775881267592029,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.003095586937\"\>",
+      InterpretationBox["\<\"0.00309559\"\>",
        0.0030955869373966525`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.04529666859\"\>",
-       0.04529666859245075,
+      InterpretationBox["\<\"0.04529667\"\>",
+       0.045296668592450795`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
       InterpretationBox["\<\"1\"\>",
        1,
        Editable->False],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
       InterpretationBox["\<\"1\"\>",
        1,
        Editable->False],
-      NumberForm[#, 10]& ]},
+      NumberForm[#, {8, 8}]& ]},
     {"0.99`", 
      TagBox[
-      InterpretationBox["\<\"0.00002525188758\"\>",
+      InterpretationBox["\<\"0.00002525\"\>",
        0.000025251887578596543`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.00002529542523\"\>",
+      InterpretationBox["\<\"0.00002530\"\>",
        0.000025295425227888987`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.00002756061109\"\>",
+      InterpretationBox["\<\"0.00002756\"\>",
        0.000027560611086280997`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.0001846213332\"\>",
+      InterpretationBox["\<\"0.00018462\"\>",
        0.00018462133315085813`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.001324543092\"\>",
-       0.001324543092384392,
+      InterpretationBox["\<\"0.00132454\"\>",
+       0.0013245430923843869`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
       InterpretationBox["\<\"1\"\>",
        1,
        Editable->False],
-      NumberForm[#, 10]& ]},
+      NumberForm[#, {8, 8}]& ]},
     {"1.01`", 
      TagBox[
-      InterpretationBox["\<\"0.00002475186258\"\>",
+      InterpretationBox["\<\"0.00002475\"\>",
        0.000024751862577659013`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.00002479279742\"\>",
+      InterpretationBox["\<\"0.00002479\"\>",
        0.000024792797418971684`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.00002690032652\"\>",
+      InterpretationBox["\<\"0.00002690\"\>",
        0.000026900326522960413`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.0001609463153\"\>",
+      InterpretationBox["\<\"0.00016095\"\>",
        0.00016094631530521353`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.0009625252542\"\>",
+      InterpretationBox["\<\"0.00096253\"\>",
        0.0009625252541666001,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.1432253885\"\>",
+      InterpretationBox["\<\"0.14322539\"\>",
        0.14322538846291344`,
        AutoDelete->True],
-      NumberForm[#, 10]& ]},
+      NumberForm[#, {8, 8}]& ]},
     {"1.1`", 
      TagBox[
-      InterpretationBox["\<\"0.002267573696\"\>",
+      InterpretationBox["\<\"0.00226757\"\>",
        0.0022675736961451287`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.002270701284\"\>",
+      InterpretationBox["\<\"0.00227070\"\>",
        0.0022707012841326397`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.002425502197\"\>",
-       0.0024255021966376163`,
+      InterpretationBox["\<\"0.00242550\"\>",
+       0.0024255021966376115`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.009873570083\"\>",
-       0.00987357008327937,
+      InterpretationBox["\<\"0.00987357\"\>",
+       0.009873570083279359,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.0376233863\"\>",
-       0.03762338629566821,
+      InterpretationBox["\<\"0.03762339\"\>",
+       0.03762338629566818,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.5072258947\"\>",
-       0.5072258946777842,
+      InterpretationBox["\<\"0.50722589\"\>",
+       0.5072258946777841,
        AutoDelete->True],
-      NumberForm[#, 10]& ]},
+      NumberForm[#, {8, 8}]& ]},
     {"1.4`", 
      TagBox[
-      InterpretationBox["\<\"0.02777777778\"\>",
+      InterpretationBox["\<\"0.02777778\"\>",
        0.027777777777777762`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.02779989414\"\>",
-       0.02779989414147143,
+      InterpretationBox["\<\"0.02779989\"\>",
+       0.02779989414147146,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.0288138774\"\>",
+      InterpretationBox["\<\"0.02881388\"\>",
        0.02881387739947141,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.06118057067\"\>",
+      InterpretationBox["\<\"0.06118057\"\>",
        0.06118057067252712,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.1357357839\"\>",
+      InterpretationBox["\<\"0.13573578\"\>",
        0.13573578393665023`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.6579134605\"\>",
-       0.6579134605419164,
+      InterpretationBox["\<\"0.65791346\"\>",
+       0.6579134605419165,
        AutoDelete->True],
-      NumberForm[#, 10]& ]},
-    {"2", 
+      NumberForm[#, {8, 8}]& ]},
+    {"2.`", 
      TagBox[
-      InterpretationBox["\<\"0.1111111111\"\>",
+      InterpretationBox["\<\"0.11111111\"\>",
        0.1111111111111111,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.1111452334\"\>",
+      InterpretationBox["\<\"0.11114523\"\>",
        0.11114523336597867`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.1126212091\"\>",
+      InterpretationBox["\<\"0.11262121\"\>",
        0.1126212091363964,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.1501895051\"\>",
+      InterpretationBox["\<\"0.15018951\"\>",
        0.15018950508313395`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.2227859462\"\>",
+      InterpretationBox["\<\"0.22278595\"\>",
        0.22278594624772308`,
        AutoDelete->True],
-      NumberForm[#, 10]& ], 
+      NumberForm[#, {8, 8}]& ], 
      TagBox[
-      InterpretationBox["\<\"0.6834000872\"\>",
+      InterpretationBox["\<\"0.68340009\"\>",
        0.6834000871878501,
        AutoDelete->True],
-      NumberForm[#, 10]& ]}
+      NumberForm[#, {8, 8}]& ]}
    },
    AutoDelete->False,
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
@@ -751,9 +762,11 @@ Cell[BoxData[
  CellChangeTimes->{{3.617482882469062*^9, 3.617482931056035*^9}, {
    3.617482977396541*^9, 3.617483024719735*^9}, {3.617483091043614*^9, 
    3.6174831114003696`*^9}, 3.646176064207548*^9, {3.774670357271413*^9, 
-   3.774670365013523*^9}},
+   3.774670365013523*^9}, 3.779589509854929*^9, {3.779589805875162*^9, 
+   3.779589812812765*^9}, {3.779589864710134*^9, 3.7795898851758823`*^9}, 
+   3.780243828534581*^9},
  CellLabel->
-  "Out[1605]=",ExpressionUUID->"de5efd11-e771-4fc9-9910-d5f730150079"]
+  "Out[2337]=",ExpressionUUID->"904ef849-d556-4189-9b89-384c7be5a71f"]
 }, Open  ]]
 }, Open  ]],
 
@@ -1108,7 +1121,139 @@ dvIymCV2dYAKiemPouZXVsAe+S7G1iT+H4o+O98=
  CellLabel->
   "Out[1628]=",ExpressionUUID->"8c721a22-b9e1-4906-bef8-473f54e85135"]
 }, Open  ]]
-}, Closed]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Hemispherical Albedo - Smooth Dielectric - Flatland", "Subsection",
+ CellChangeTimes->{{3.780031077943048*^9, 
+  3.78003108623838*^9}},ExpressionUUID->"9362bc8b-be71-4bb5-9aea-\
+a45d4cf39686"],
+
+Cell["[Allen 1973]", "Text",
+ CellChangeTimes->{{3.780031097089655*^9, 
+  3.7800311072725077`*^9}},ExpressionUUID->"31184cb4-457d-4379-afc5-\
+2c8cc51c1562"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"DielectricHemisphericalAlbedoFlatland", "[", "n_", "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", "15"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"2", " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"31", " ", 
+           SuperscriptBox["n", "2"]}], "+", 
+          RowBox[{"15", " ", 
+           SuperscriptBox["n", "4"]}], "+", 
+          RowBox[{"31", " ", 
+           SuperscriptBox["n", "6"]}], "+", 
+          SuperscriptBox["n", "8"]}], ")"}], " ", 
+        RowBox[{"EllipticE", "[", 
+         FractionBox["1", 
+          RowBox[{"1", "-", 
+           SuperscriptBox["n", "2"]}]], "]"}]}], 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "1"}], "+", 
+           SuperscriptBox["n", "2"]}], ")"}], 
+         RowBox[{"3", "/", "2"}]], " ", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           SuperscriptBox["n", "2"]}], ")"}], "2"]}]]}], "+", 
+     RowBox[{
+      FractionBox["1", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", 
+          SuperscriptBox["n", "4"]}], ")"}], "3"]], 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "1"}], "+", "n"}], ")"}], " ", 
+         RowBox[{"(", 
+          RowBox[{"1", "+", "n"}], ")"}], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "+", 
+              SuperscriptBox["n", "2"]}], ")"}], " ", 
+            RowBox[{"(", 
+             RowBox[{"7", "+", 
+              RowBox[{"24", " ", 
+               SuperscriptBox["n", "2"]}], "+", 
+              RowBox[{"102", " ", 
+               SuperscriptBox["n", "4"]}], "+", 
+              RowBox[{"10", " ", 
+               SuperscriptBox["n", "6"]}], "+", 
+              RowBox[{"15", " ", 
+               SuperscriptBox["n", "8"]}]}], ")"}]}], "+", 
+           RowBox[{"30", " ", 
+            SuperscriptBox["n", "3"], " ", 
+            SqrtBox[
+             RowBox[{"1", "+", 
+              SuperscriptBox["n", "2"]}]], " ", 
+            RowBox[{"(", 
+             RowBox[{"2", "+", 
+              SuperscriptBox["n", "2"], "+", 
+              RowBox[{"2", " ", 
+               SuperscriptBox["n", "4"]}]}], ")"}], " ", 
+            RowBox[{"ArcSinh", "[", "n", "]"}]}]}], ")"}]}], "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["n", "2"], " ", 
+         SqrtBox[
+          RowBox[{
+           RowBox[{"-", "1"}], "+", 
+           SuperscriptBox["n", "2"]}]], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "22"}], "-", 
+              RowBox[{"15", " ", 
+               SuperscriptBox["n", "2"]}], "-", 
+              RowBox[{"47", " ", 
+               SuperscriptBox["n", "4"]}], "-", 
+              SuperscriptBox["n", "6"], "+", 
+              RowBox[{"9", " ", 
+               SuperscriptBox["n", "8"]}], "+", 
+              SuperscriptBox["n", "10"]}], ")"}], " ", 
+            RowBox[{"EllipticK", "[", 
+             FractionBox["1", 
+              RowBox[{"1", "-", 
+               SuperscriptBox["n", "2"]}]], "]"}]}], "+", 
+           RowBox[{"15", " ", 
+            SuperscriptBox["n", "4"], " ", 
+            RowBox[{"(", 
+             RowBox[{"2", "+", 
+              SuperscriptBox["n", "2"], "+", 
+              RowBox[{"2", " ", 
+               SuperscriptBox["n", "4"]}]}], ")"}], " ", 
+            RowBox[{"EllipticPi", "[", 
+             RowBox[{
+              RowBox[{"1", "+", 
+               SuperscriptBox["n", "2"]}], ",", 
+              FractionBox["1", 
+               RowBox[{"1", "-", 
+                SuperscriptBox["n", "2"]}]]}], "]"}]}]}], ")"}]}]}], 
+       ")"}]}]}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.780031091956545*^9, 3.780031094767415*^9}},
+ CellLabel->
+  "In[2295]:=",ExpressionUUID->"b6f88976-2120-40fe-a57a-7f090b766554"]
 }, Open  ]]
 }, Open  ]],
 
@@ -1205,7 +1350,7 @@ Cell[BoxData[{
    3.5455242324736147`*^9}, 3.5456199849755983`*^9, {3.590863984456265*^9, 
    3.590863990896598*^9}},
  CellLabel->
-  "In[1333]:=",ExpressionUUID->"28f30f18-1ac5-4c9b-920b-17933f4b906f"],
+  "In[2308]:=",ExpressionUUID->"28f30f18-1ac5-4c9b-920b-17933f4b906f"],
 
 Cell[BoxData[{
  RowBox[{
@@ -1253,7 +1398,7 @@ Cell[BoxData[{
  CellChangeTimes->{{3.5455239191307287`*^9, 3.545523963086542*^9}, {
   3.545523999936447*^9, 3.545524077677971*^9}},
  CellLabel->
-  "In[1336]:=",ExpressionUUID->"2365e1ea-5ef8-499b-8bcf-d0df352e3987"],
+  "In[2311]:=",ExpressionUUID->"2365e1ea-5ef8-499b-8bcf-d0df352e3987"],
 
 Cell[BoxData[
  RowBox[{
@@ -1280,7 +1425,7 @@ Cell[BoxData[
  CellChangeTimes->{{3.545524102800171*^9, 3.545524162096678*^9}, {
   3.617236439001842*^9, 3.61723643917494*^9}},
  CellLabel->
-  "In[1338]:=",ExpressionUUID->"4c9d62f6-324a-4782-839c-02f5dfa14cee"],
+  "In[2313]:=",ExpressionUUID->"4c9d62f6-324a-4782-839c-02f5dfa14cee"],
 
 Cell["Reflectance at normal incidence:", "Text",
  CellChangeTimes->{{3.617481120731402*^9, 
@@ -1584,7 +1729,7 @@ Cell[BoxData[
   3.646176173686007*^9, 3.6461761756197968`*^9}, {3.64617824794659*^9, 
   3.646178274583001*^9}},
  CellLabel->
-  "In[1354]:=",ExpressionUUID->"2461ec51-9376-44c8-a6b5-b2b5e0d0dd72"]
+  "In[2307]:=",ExpressionUUID->"2461ec51-9376-44c8-a6b5-b2b5e0d0dd72"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1698,7 +1843,7 @@ Cell[BoxData[
         RowBox[{"1", "+", "n"}]], "]"}]}]}], ")"}]}]}]], "Input",
  CellChangeTimes->{{3.769161848974454*^9, 3.76916193306546*^9}},
  CellLabel->
-  "In[1769]:=",ExpressionUUID->"cef54d24-374e-4b9e-8db6-04876c0b5adb"],
+  "In[2306]:=",ExpressionUUID->"cef54d24-374e-4b9e-8db6-04876c0b5adb"],
 
 Cell["unpolarized average:", "Text",
  CellChangeTimes->{{3.77467750377444*^9, 
@@ -1721,7 +1866,7 @@ Cell[BoxData[
   3.7746774394517603`*^9, 3.774677481083249*^9}, {3.774681683641958*^9, 
   3.7746816841519203`*^9}},
  CellLabel->
-  "In[1818]:=",ExpressionUUID->"db8e67bf-68a7-447a-a53f-8f31ee7dd6b4"]
+  "In[2305]:=",ExpressionUUID->"db8e67bf-68a7-447a-a53f-8f31ee7dd6b4"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1962,7 +2107,9 @@ Cell[BoxData[
      RowBox[{
       SuperscriptBox["etaratio", "2"], "-", "1", "+", 
       SuperscriptBox["costhetai", "2"]}]], ",", "costhetai"}], 
-   "]"}]}]], "Input",ExpressionUUID->"0255faac-08e6-49c3-a510-09957820cbe2"]
+   "]"}]}]], "Input",
+ CellLabel->
+  "In[2304]:=",ExpressionUUID->"0255faac-08e6-49c3-a510-09957820cbe2"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2142,8 +2289,12 @@ Cell[BoxData[{
   RowBox[{"FRdata1", "=", 
    RowBox[{"Table", "[", 
     RowBox[{
-     RowBox[{"FR", "[", 
-      RowBox[{"ni", ",", "n", ",", "k", ",", "t"}], "]"}], ",", 
+     RowBox[{"NumberForm", "[", 
+      RowBox[{
+       RowBox[{"FR", "[", 
+        RowBox[{"ni", ",", "n", ",", "k", ",", "t"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"8", ",", "8"}], "}"}]}], "]"}], ",", 
      RowBox[{"{", 
       RowBox[{"n", ",", "ns"}], "}"}], ",", 
      RowBox[{"{", 
@@ -2158,8 +2309,12 @@ Cell[BoxData[{
   RowBox[{"FRdata2", "=", 
    RowBox[{"Table", "[", 
     RowBox[{
-     RowBox[{"FR", "[", 
-      RowBox[{"ni", ",", "n", ",", "k", ",", "t"}], "]"}], ",", 
+     RowBox[{"NumberForm", "[", 
+      RowBox[{
+       RowBox[{"FR", "[", 
+        RowBox[{"ni", ",", "n", ",", "k", ",", "t"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"8", ",", "8"}], "}"}]}], "]"}], ",", 
      RowBox[{"{", 
       RowBox[{"n", ",", "ns"}], "}"}], ",", 
      RowBox[{"{", 
@@ -2192,59 +2347,343 @@ Cell[BoxData[{
    "Grid"}]}], "Input",
  CellChangeTimes->{{3.617483691746982*^9, 3.617483739073122*^9}, {
    3.617483775656452*^9, 3.617483806252644*^9}, 3.61748384513455*^9, {
-   3.617483899298718*^9, 
-   3.617483932840111*^9}},ExpressionUUID->"09f7b6b9-e4c6-47d4-bae6-\
-5681ac633415"],
+   3.617483899298718*^9, 3.617483932840111*^9}, {3.780243612884337*^9, 
+   3.780243629428111*^9}, {3.78024378879994*^9, 3.780243791652804*^9}},
+ CellLabel->
+  "In[2328]:=",ExpressionUUID->"09f7b6b9-e4c6-47d4-bae6-5681ac633415"],
 
 Cell[BoxData[
  TagBox[GridBox[{
-    {"1.01`", "0.058297009393720435`", "0.05837392038909034`", 
-     "0.06178288602384683`", "0.14339751984449295`", "0.2706772862910266`", 
-     "0.7712160399961835`"},
-    {"1.1`", "0.055793991416309016`", "0.055856233681667124`", 
-     "0.05861520115870979`", "0.12773108084802662`", "0.24394223750386768`", 
-     "0.7515783059536899`"},
-    {"1.4`", "0.06821963394342763`", "0.06826527857835857`", 
-     "0.07026499322911314`", "0.1216314327988141`", "0.21644127052761714`", 
-     "0.7168033936769589`"},
-    {"2", "0.13513513513513514`", "0.13517164065382856`", 
-     "0.1367329791621782`", "0.17490309111057867`", "0.24661001382175557`", 
-     "0.6940041341783688`"},
-    {"10", "0.6701030927835052`", "0.6700699733163424`", 
-     "0.6687097529961324`", "0.6401790302403103`", "0.5947332318951959`", 
-     "0.5004977555081336`"},
-    {"1.01`", "0.8608820217561235`", "0.8608621888399541`", 
-     "0.8600699913754737`", "0.8454246665205782`", "0.8270065600135691`", 
-     "0.8804323281413372`"},
-    {"1.1`", "0.8503910234614077`", "0.8503701493134637`", 
-     "0.8495360792194679`", "0.8341120052922804`", "0.8147247107382505`", 
-     "0.8711814171189698`"},
-    {"1.4`", "0.8179453836150844`", "0.8179216626202799`", 
-     "0.8169725671713937`", "0.7993792860102151`", "0.7772408248754019`", 
-     "0.8418378685293482`"},
-    {"2", "0.7647058823529411`", "0.764678628474007`", "0.7635844759645456`", 
-     "0.743100111868082`", "0.7169792731607314`", "0.7895449378248178`"},
-    {"10", "0.726027397260274`", "0.7259952969955183`", "0.7246785492685985`",
-      "0.6969008285568392`", "0.6514305979458885`", "0.5229244273742697`"}
+    {"1.01`", 
+     TagBox[
+      InterpretationBox["\<\"0.05829701\"\>",
+       0.058297009393720435`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.05837392\"\>",
+       0.05837392038909034,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.06178289\"\>",
+       0.06178288602384683,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.14339752\"\>",
+       0.14339751984449292`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.27067729\"\>",
+       0.2706772862910266,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.77121604\"\>",
+       0.7712160399961835,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]},
+    {"1.1`", 
+     TagBox[
+      InterpretationBox["\<\"0.05579399\"\>",
+       0.055793991416309016`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.05585623\"\>",
+       0.055856233681667124`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.05861520\"\>",
+       0.05861520115870979,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.12773108\"\>",
+       0.12773108084802662`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.24394224\"\>",
+       0.24394223750386768`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.75157831\"\>",
+       0.7515783059536899,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]},
+    {"1.4`", 
+     TagBox[
+      InterpretationBox["\<\"0.06821963\"\>",
+       0.06821963394342763,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.06826528\"\>",
+       0.06826527857835857,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.07026499\"\>",
+       0.07026499322911314,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.12163143\"\>",
+       0.1216314327988141,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.21644127\"\>",
+       0.21644127052761714`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.71680339\"\>",
+       0.7168033936769589,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]},
+    {"2", 
+     TagBox[
+      InterpretationBox["\<\"0.13513514\"\>",
+       0.13513513513513514`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.13517164\"\>",
+       0.13517164065382856`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.13673298\"\>",
+       0.1367329791621782,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.17490309\"\>",
+       0.17490309111057867`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.24661001\"\>",
+       0.24661001382175557`,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.69400413\"\>",
+       0.6940041341783688,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]},
+    {"10", 
+     TagBox[
+      InterpretationBox["\<\"0.67010309\"\>",
+       0.6701030927835052,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.67006997\"\>",
+       0.6700699733163424,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.66870975\"\>",
+       0.6687097529961324,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.64017903\"\>",
+       0.6401790302403105,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.59473323\"\>",
+       0.5947332318951959,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.50049776\"\>",
+       0.5004977555081336,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]},
+    {"1.01`", 
+     TagBox[
+      InterpretationBox["\<\"0.86088202\"\>",
+       0.8608820217561235,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.86086219\"\>",
+       0.8608621888399541,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.86006999\"\>",
+       0.8600699913754737,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.84542467\"\>",
+       0.8454246665205782,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.82700656\"\>",
+       0.8270065600135691,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.88043233\"\>",
+       0.8804323281413371,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]},
+    {"1.1`", 
+     TagBox[
+      InterpretationBox["\<\"0.85039102\"\>",
+       0.8503910234614077,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.85037015\"\>",
+       0.8503701493134637,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.84953608\"\>",
+       0.8495360792194679,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.83411201\"\>",
+       0.8341120052922805,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.81472471\"\>",
+       0.8147247107382506,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.87118142\"\>",
+       0.8711814171189699,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]},
+    {"1.4`", 
+     TagBox[
+      InterpretationBox["\<\"0.81794538\"\>",
+       0.8179453836150844,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.81792166\"\>",
+       0.8179216626202799,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.81697257\"\>",
+       0.8169725671713937,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.79937929\"\>",
+       0.7993792860102151,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.77724082\"\>",
+       0.7772408248754019,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.84183787\"\>",
+       0.8418378685293482,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]},
+    {"2", 
+     TagBox[
+      InterpretationBox["\<\"0.76470588\"\>",
+       0.7647058823529411,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.76467863\"\>",
+       0.764678628474007,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.76358448\"\>",
+       0.7635844759645456,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.74310011\"\>",
+       0.743100111868082,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.71697927\"\>",
+       0.7169792731607315,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.78954494\"\>",
+       0.7895449378248178,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]},
+    {"10", 
+     TagBox[
+      InterpretationBox["\<\"0.72602740\"\>",
+       0.726027397260274,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.72599530\"\>",
+       0.7259952969955183,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.72467855\"\>",
+       0.7246785492685985,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.69690083\"\>",
+       0.6969008285568394,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.65143060\"\>",
+       0.6514305979458885,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ], 
+     TagBox[
+      InterpretationBox["\<\"0.52292443\"\>",
+       0.5229244273742697,
+       AutoDelete->True],
+      NumberForm[#, {8, 8}]& ]}
    },
    AutoDelete->False,
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
   "Grid"]], "Output",
- CellChangeTimes->{3.617483933057744*^9, 
-  3.646176064449211*^9},ExpressionUUID->"08e82c26-b510-4b88-836e-\
-1a980cc23d23"]
+ CellChangeTimes->{
+  3.617483933057744*^9, 3.646176064449211*^9, {3.7802436197555428`*^9, 
+   3.780243629835124*^9}, 3.7802437919500217`*^9},
+ CellLabel->
+  "Out[2334]=",ExpressionUUID->"d6374bce-e659-44d5-81ec-4a716e980976"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{969, 1006},
-WindowMargins->{{74, Automatic}, {21, Automatic}},
+WindowSize->{969, 925},
+WindowMargins->{{Automatic, 256}, {Automatic, 0}},
 PrintingCopies->1,
 PrintingPageRange->{1, Automatic},
-FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
-2018)",
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -2276,107 +2715,112 @@ Cell[CellGroupData[{
 Cell[5325, 176, 199, 3, 54, "Subsection",ExpressionUUID->"ae4f5dac-e4c7-430d-8b3e-b2e40c00f82d"],
 Cell[CellGroupData[{
 Cell[5549, 183, 6944, 168, 656, "Input",ExpressionUUID->"e1f813b4-4134-4ab3-ba8a-34fe42090c54"],
-Cell[12496, 353, 4442, 88, 525, "Output",ExpressionUUID->"7a18a6c5-3c27-4dda-a4b5-e0d5c16522b2"]
+Cell[12496, 353, 4430, 88, 525, "Output",ExpressionUUID->"7a18a6c5-3c27-4dda-a4b5-e0d5c16522b2"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16987, 447, 162, 3, 54, "Subsection",ExpressionUUID->"c6d72c25-ed6a-4d46-9056-97c24a3bff6b"],
+Cell[16975, 447, 162, 3, 54, "Subsection",ExpressionUUID->"c6d72c25-ed6a-4d46-9056-97c24a3bff6b"],
 Cell[CellGroupData[{
-Cell[17174, 454, 1435, 40, 73, "Input",ExpressionUUID->"26273e87-abe6-4f17-aed8-644ae091f860"],
-Cell[18612, 496, 7349, 259, 151, "Output",ExpressionUUID->"de5efd11-e771-4fc9-9910-d5f730150079"]
+Cell[17162, 454, 1828, 51, 92, "Input",ExpressionUUID->"26273e87-abe6-4f17-aed8-644ae091f860"],
+Cell[18993, 507, 7560, 261, 151, "Output",ExpressionUUID->"904ef849-d556-4189-9b89-384c7be5a71f"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[26010, 761, 239, 4, 54, "Subsection",ExpressionUUID->"c5a155e9-596a-4b18-9db5-0f4bff365fb5"],
-Cell[26252, 767, 174, 3, 35, "Text",ExpressionUUID->"d66236e2-8294-410a-a3ab-ce7cc67acfdf"],
-Cell[26429, 772, 1841, 64, 82, "Input",ExpressionUUID->"ad472354-2b32-440c-91ad-2ed2f7cd8240"],
-Cell[28273, 838, 292, 4, 35, "Text",ExpressionUUID->"486addd2-8637-4073-8da2-cc5cf5de4a94"],
-Cell[28568, 844, 647, 15, 49, "Input",ExpressionUUID->"4a84fcd4-2dfb-4879-ac75-603bec73d02b"],
+Cell[26602, 774, 239, 4, 54, "Subsection",ExpressionUUID->"c5a155e9-596a-4b18-9db5-0f4bff365fb5"],
+Cell[26844, 780, 174, 3, 35, "Text",ExpressionUUID->"d66236e2-8294-410a-a3ab-ce7cc67acfdf"],
+Cell[27021, 785, 1841, 64, 82, "Input",ExpressionUUID->"ad472354-2b32-440c-91ad-2ed2f7cd8240"],
+Cell[28865, 851, 292, 4, 35, "Text",ExpressionUUID->"486addd2-8637-4073-8da2-cc5cf5de4a94"],
+Cell[29160, 857, 647, 15, 49, "Input",ExpressionUUID->"4a84fcd4-2dfb-4879-ac75-603bec73d02b"],
 Cell[CellGroupData[{
-Cell[29240, 863, 162, 3, 45, "Subsubsection",ExpressionUUID->"60f52042-ffa8-443b-9f5a-b4e5166ce688"],
+Cell[29832, 876, 162, 3, 45, "Subsubsection",ExpressionUUID->"60f52042-ffa8-443b-9f5a-b4e5166ce688"],
 Cell[CellGroupData[{
-Cell[29427, 870, 492, 11, 30, "Input",ExpressionUUID->"9df4c6c3-0f48-4454-abf5-55b26e3abdcd"],
-Cell[29922, 883, 12655, 225, 220, "Output",ExpressionUUID->"8c721a22-b9e1-4906-bef8-473f54e85135"]
+Cell[30019, 883, 492, 11, 30, "Input",ExpressionUUID->"9df4c6c3-0f48-4454-abf5-55b26e3abdcd"],
+Cell[30514, 896, 12655, 225, 220, "Output",ExpressionUUID->"8c721a22-b9e1-4906-bef8-473f54e85135"]
 }, Open  ]]
-}, Closed]]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[42650, 1116, 187, 3, 67, "Section",ExpressionUUID->"4c0a9426-7e12-4cdf-9d82-71c9253ae64f"],
-Cell[CellGroupData[{
-Cell[42862, 1123, 157, 3, 54, "Subsection",ExpressionUUID->"22aa810a-7fcb-44f8-8474-2cbeb86f574a"],
-Cell[43022, 1128, 2635, 79, 134, "Input",ExpressionUUID->"28f30f18-1ac5-4c9b-920b-17933f4b906f"],
-Cell[45660, 1209, 1530, 46, 102, "Input",ExpressionUUID->"2365e1ea-5ef8-499b-8bcf-d0df352e3987"],
-Cell[47193, 1257, 932, 25, 68, "Input",ExpressionUUID->"4c9d62f6-324a-4782-839c-02f5dfa14cee"],
-Cell[48128, 1284, 174, 3, 35, "Text",ExpressionUUID->"55559d49-2f99-402c-bc1e-3d3143742df1"],
-Cell[48305, 1289, 556, 15, 52, "Input",ExpressionUUID->"d1770c77-8626-4a0e-9658-fbc5f72545a5"],
-Cell[CellGroupData[{
-Cell[48886, 1308, 270, 4, 45, "Subsubsection",ExpressionUUID->"87e0b7d0-6354-4c93-88d5-c55631fbfeb0"],
-Cell[49159, 1314, 315, 11, 35, "Text",ExpressionUUID->"59a529bc-d0d0-4bc5-9abb-2d61957569dd"],
-Cell[49477, 1327, 639, 22, 56, "Input",ExpressionUUID->"fdeec40e-89d1-4ba4-8582-a02fecf84079"],
-Cell[50119, 1351, 1655, 52, 83, "Input",ExpressionUUID->"44e1587c-7ebc-4fae-ab05-de93c3dc1886"],
-Cell[51777, 1405, 325, 11, 35, "Text",ExpressionUUID->"b818eba3-7227-4b52-88cd-3417dff0e1dc"],
-Cell[52105, 1418, 1153, 38, 69, "Input",ExpressionUUID->"ff44670f-7ea1-433c-9068-1830b43a411d"],
-Cell[53261, 1458, 353, 11, 60, "Input",ExpressionUUID->"e05af961-9d4c-4794-8ed8-3c6909278ca0"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[53663, 1475, 236, 4, 54, "Subsection",ExpressionUUID->"79785ec9-5fb6-4a02-941f-0e45f4ea1dcc"],
-Cell[53902, 1481, 1041, 28, 140, "Input",ExpressionUUID->"01c90946-cf41-48e3-8000-565393b931b1"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[54980, 1514, 175, 3, 54, "Subsection",ExpressionUUID->"78af9d3e-02d4-4dc2-89a5-e3dfbd0bfded"],
-Cell[55158, 1519, 500, 9, 58, "Text",ExpressionUUID->"1cc68b26-6df8-40e2-bea8-4475a8613913"],
-Cell[55661, 1530, 1951, 56, 59, "Input",ExpressionUUID->"2461ec51-9376-44c8-a6b5-b2b5e0d0dd72"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[57649, 1591, 236, 4, 54, "Subsection",ExpressionUUID->"813b9dd9-e423-41e4-b12c-79df5854d3ea"],
-Cell[CellGroupData[{
-Cell[57910, 1599, 166, 3, 45, "Subsubsection",ExpressionUUID->"2b5df367-8e42-479d-b536-e7976288137c"],
-Cell[58079, 1604, 295, 7, 35, "Text",ExpressionUUID->"9bc58dea-0adc-4a60-8613-6e31a59944e1"],
-Cell[58377, 1613, 181, 3, 35, "Text",ExpressionUUID->"6f2b6d73-1016-4c78-9e26-0e8fdf800cdb"],
-Cell[58561, 1618, 1270, 36, 56, "Input",ExpressionUUID->"295c74cf-dced-4f67-abd0-6e04611324e3"],
-Cell[59834, 1656, 1367, 44, 59, "Input",ExpressionUUID->"cef54d24-374e-4b9e-8db6-04876c0b5adb"],
-Cell[61204, 1702, 160, 3, 35, "Text",ExpressionUUID->"553cff43-8981-4416-8d1d-d6a3e0ba7793"],
-Cell[61367, 1707, 624, 16, 47, "Input",ExpressionUUID->"db8e67bf-68a7-447a-a53f-8f31ee7dd6b4"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[62028, 1728, 168, 3, 45, "Subsubsection",ExpressionUUID->"f72292e9-ed67-4688-a014-988cc57ed410"],
-Cell[62199, 1733, 547, 10, 35, "Text",ExpressionUUID->"8d9d02a3-e876-41db-8cbc-aab660103b25"],
-Cell[62749, 1745, 2139, 62, 165, "Input",ExpressionUUID->"4866a9cb-54fe-4d9b-87c9-b027b5cc4a46"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[64925, 1812, 168, 3, 45, "Subsubsection",ExpressionUUID->"73e08414-5be3-4418-9892-c91c3230ecf4"],
-Cell[65096, 1817, 481, 9, 35, "Text",ExpressionUUID->"90a9686a-3eb4-4b28-932e-0889115c8050"],
-Cell[65580, 1828, 1590, 39, 144, "Input",ExpressionUUID->"28857eb6-29bf-4864-92d6-24cb2e06be25"],
-Cell[67173, 1869, 536, 13, 30, "Input",ExpressionUUID->"279777f4-99c1-4e52-be02-134164b0753e"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[67746, 1887, 174, 3, 45, "Subsubsection",ExpressionUUID->"d004041e-2044-442b-ac21-6d4fbf4d1187"],
-Cell[67923, 1892, 530, 16, 54, "Input",ExpressionUUID->"b568c2e9-7e85-4af8-b9bd-025705ad6d60"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[68490, 1913, 181, 3, 45, "Subsubsection",ExpressionUUID->"c7ab27da-bae5-4301-9fc7-b5c28e0efa27"],
-Cell[68674, 1918, 412, 11, 49, "Input",ExpressionUUID->"59ad5b38-0df4-479b-bb83-ffd2fe232c74"]
+Cell[43230, 1128, 198, 3, 54, "Subsection",ExpressionUUID->"9362bc8b-be71-4bb5-9aea-a45d4cf39686"],
+Cell[43431, 1133, 156, 3, 35, "Text",ExpressionUUID->"31184cb4-457d-4379-afc5-2c8cc51c1562"],
+Cell[43590, 1138, 4068, 117, 284, "Input",ExpressionUUID->"b6f88976-2120-40fe-a57a-7f090b766554"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[69135, 1935, 500, 10, 81, "Subsection",ExpressionUUID->"b337f537-4cb3-416d-9c93-0e26c6ac63b4"],
-Cell[69638, 1947, 212, 5, 35, "Text",ExpressionUUID->"f63e875d-c873-41df-8af4-7d57fbc2c976"],
-Cell[69853, 1954, 365, 10, 43, "Input",ExpressionUUID->"0255faac-08e6-49c3-a510-09957820cbe2"]
-}, Open  ]],
+Cell[47707, 1261, 187, 3, 67, "Section",ExpressionUUID->"4c0a9426-7e12-4cdf-9d82-71c9253ae64f"],
 Cell[CellGroupData[{
-Cell[70255, 1969, 190, 3, 54, "Subsection",ExpressionUUID->"8ddfe7b6-83ba-4649-94a6-247257647fcd"],
+Cell[47919, 1268, 157, 3, 54, "Subsection",ExpressionUUID->"22aa810a-7fcb-44f8-8474-2cbeb86f574a"],
+Cell[48079, 1273, 2635, 79, 134, "Input",ExpressionUUID->"28f30f18-1ac5-4c9b-920b-17933f4b906f"],
+Cell[50717, 1354, 1530, 46, 102, "Input",ExpressionUUID->"2365e1ea-5ef8-499b-8bcf-d0df352e3987"],
+Cell[52250, 1402, 932, 25, 68, "Input",ExpressionUUID->"4c9d62f6-324a-4782-839c-02f5dfa14cee"],
+Cell[53185, 1429, 174, 3, 35, "Text",ExpressionUUID->"55559d49-2f99-402c-bc1e-3d3143742df1"],
+Cell[53362, 1434, 556, 15, 52, "Input",ExpressionUUID->"d1770c77-8626-4a0e-9658-fbc5f72545a5"],
 Cell[CellGroupData[{
-Cell[70470, 1976, 3138, 71, 336, "Input",ExpressionUUID->"7358fcbb-94f6-4bdc-b2ab-43eb5fb615a2"],
-Cell[73611, 2049, 3475, 68, 441, "Output",ExpressionUUID->"70e199d6-86e0-4d10-a3fc-9a19aa10cdda"]
+Cell[53943, 1453, 270, 4, 45, "Subsubsection",ExpressionUUID->"87e0b7d0-6354-4c93-88d5-c55631fbfeb0"],
+Cell[54216, 1459, 315, 11, 35, "Text",ExpressionUUID->"59a529bc-d0d0-4bc5-9abb-2d61957569dd"],
+Cell[54534, 1472, 639, 22, 56, "Input",ExpressionUUID->"fdeec40e-89d1-4ba4-8582-a02fecf84079"],
+Cell[55176, 1496, 1655, 52, 83, "Input",ExpressionUUID->"44e1587c-7ebc-4fae-ab05-de93c3dc1886"],
+Cell[56834, 1550, 325, 11, 35, "Text",ExpressionUUID->"b818eba3-7227-4b52-88cd-3417dff0e1dc"],
+Cell[57162, 1563, 1153, 38, 69, "Input",ExpressionUUID->"ff44670f-7ea1-433c-9068-1830b43a411d"],
+Cell[58318, 1603, 353, 11, 60, "Input",ExpressionUUID->"e05af961-9d4c-4794-8ed8-3c6909278ca0"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[77135, 2123, 164, 3, 54, "Subsection",ExpressionUUID->"e06a5539-397b-47bc-b997-9189373510ab"],
+Cell[58720, 1620, 236, 4, 54, "Subsection",ExpressionUUID->"79785ec9-5fb6-4a02-941f-0e45f4ea1dcc"],
+Cell[58959, 1626, 1041, 28, 140, "Input",ExpressionUUID->"01c90946-cf41-48e3-8000-565393b931b1"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[77324, 2130, 2247, 66, 178, "Input",ExpressionUUID->"09f7b6b9-e4c6-47d4-bae6-5681ac633415"],
-Cell[79574, 2198, 1917, 36, 185, "Output",ExpressionUUID->"08e82c26-b510-4b88-836e-1a980cc23d23"]
+Cell[60037, 1659, 175, 3, 54, "Subsection",ExpressionUUID->"78af9d3e-02d4-4dc2-89a5-e3dfbd0bfded"],
+Cell[60215, 1664, 500, 9, 58, "Text",ExpressionUUID->"1cc68b26-6df8-40e2-bea8-4475a8613913"],
+Cell[60718, 1675, 1951, 56, 59, "Input",ExpressionUUID->"2461ec51-9376-44c8-a6b5-b2b5e0d0dd72"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[62706, 1736, 236, 4, 54, "Subsection",ExpressionUUID->"813b9dd9-e423-41e4-b12c-79df5854d3ea"],
+Cell[CellGroupData[{
+Cell[62967, 1744, 166, 3, 45, "Subsubsection",ExpressionUUID->"2b5df367-8e42-479d-b536-e7976288137c"],
+Cell[63136, 1749, 295, 7, 35, "Text",ExpressionUUID->"9bc58dea-0adc-4a60-8613-6e31a59944e1"],
+Cell[63434, 1758, 181, 3, 35, "Text",ExpressionUUID->"6f2b6d73-1016-4c78-9e26-0e8fdf800cdb"],
+Cell[63618, 1763, 1270, 36, 56, "Input",ExpressionUUID->"295c74cf-dced-4f67-abd0-6e04611324e3"],
+Cell[64891, 1801, 1367, 44, 59, "Input",ExpressionUUID->"cef54d24-374e-4b9e-8db6-04876c0b5adb"],
+Cell[66261, 1847, 160, 3, 35, "Text",ExpressionUUID->"553cff43-8981-4416-8d1d-d6a3e0ba7793"],
+Cell[66424, 1852, 624, 16, 47, "Input",ExpressionUUID->"db8e67bf-68a7-447a-a53f-8f31ee7dd6b4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[67085, 1873, 168, 3, 45, "Subsubsection",ExpressionUUID->"f72292e9-ed67-4688-a014-988cc57ed410"],
+Cell[67256, 1878, 547, 10, 35, "Text",ExpressionUUID->"8d9d02a3-e876-41db-8cbc-aab660103b25"],
+Cell[67806, 1890, 2139, 62, 165, "Input",ExpressionUUID->"4866a9cb-54fe-4d9b-87c9-b027b5cc4a46"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[69982, 1957, 168, 3, 45, "Subsubsection",ExpressionUUID->"73e08414-5be3-4418-9892-c91c3230ecf4"],
+Cell[70153, 1962, 481, 9, 35, "Text",ExpressionUUID->"90a9686a-3eb4-4b28-932e-0889115c8050"],
+Cell[70637, 1973, 1590, 39, 144, "Input",ExpressionUUID->"28857eb6-29bf-4864-92d6-24cb2e06be25"],
+Cell[72230, 2014, 536, 13, 30, "Input",ExpressionUUID->"279777f4-99c1-4e52-be02-134164b0753e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[72803, 2032, 174, 3, 45, "Subsubsection",ExpressionUUID->"d004041e-2044-442b-ac21-6d4fbf4d1187"],
+Cell[72980, 2037, 530, 16, 54, "Input",ExpressionUUID->"b568c2e9-7e85-4af8-b9bd-025705ad6d60"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[73547, 2058, 181, 3, 45, "Subsubsection",ExpressionUUID->"c7ab27da-bae5-4301-9fc7-b5c28e0efa27"],
+Cell[73731, 2063, 412, 11, 49, "Input",ExpressionUUID->"59ad5b38-0df4-479b-bb83-ffd2fe232c74"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[74192, 2080, 500, 10, 81, "Subsection",ExpressionUUID->"b337f537-4cb3-416d-9c93-0e26c6ac63b4"],
+Cell[74695, 2092, 212, 5, 35, "Text",ExpressionUUID->"f63e875d-c873-41df-8af4-7d57fbc2c976"],
+Cell[74910, 2099, 394, 12, 43, "Input",ExpressionUUID->"0255faac-08e6-49c3-a510-09957820cbe2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[75341, 2116, 190, 3, 54, "Subsection",ExpressionUUID->"8ddfe7b6-83ba-4649-94a6-247257647fcd"],
+Cell[CellGroupData[{
+Cell[75556, 2123, 3138, 71, 336, "Input",ExpressionUUID->"7358fcbb-94f6-4bdc-b2ab-43eb5fb615a2"],
+Cell[78697, 2196, 3475, 68, 441, "Output",ExpressionUUID->"70e199d6-86e0-4d10-a3fc-9a19aa10cdda"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[82221, 2270, 164, 3, 54, "Subsection",ExpressionUUID->"e06a5539-397b-47bc-b997-9189373510ab"],
+Cell[CellGroupData[{
+Cell[82410, 2277, 2621, 75, 178, "Input",ExpressionUUID->"09f7b6b9-e4c6-47d4-bae6-5681ac633415"],
+Cell[85034, 2354, 9243, 320, 185, "Output",ExpressionUUID->"d6374bce-e659-44d5-81ec-4a716e980976"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
