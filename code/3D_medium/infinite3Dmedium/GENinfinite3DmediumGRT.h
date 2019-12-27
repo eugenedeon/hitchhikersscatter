@@ -12,8 +12,7 @@ public:
 
     virtual Vector3 sampledir(const Vector3& prevDir ) = 0; // direction sampling
 
-    virtual double correlated_transmittance( const double s ) = 0;
-    virtual double uncorrelated_transmittance( const double s ) = 0;
+    // step-length-dependent cross sections and their integrals for collision and track-length estimators
     virtual double sigma_tc( const double s ) = 0;
     virtual double sigma_tu( const double s ) = 0;
     virtual double correlated_collision_integral( const double s1, const double s2 ) = 0;
@@ -22,16 +21,18 @@ public:
     virtual void printDescriptor() = 0; // print a string describing the medium's variety
 
     // estimate quantities at various radii from an isotropic point source - Analog walk, collision estimators of flux and reaction rate
-    void isotropicPointSourceAnalogCollision(  const double c, // single-scattering albedo
-                                         const double maxr, // maximum radius to record
-                                         const double dr, // uniformly spaced radial bins of with dr
-                                         const double du, // uniformly spaced direction cosine bins
-                                         const size_t numsamples, 
-                                         const size_t numCollisionOrders,
-                                         const size_t numMoments
-                                      )
+    void isotropicPointSourceAnalogCollisionEstimator(  const double c, // single-scattering albedo
+                                                        const double maxr, // maximum radius to record
+                                                        const double dr, // uniformly spaced radial bins of with dr
+                                                        const double du, // uniformly spaced direction cosine bins
+                                                        const size_t numsamples, 
+                                                        const size_t numCollisionOrders,
+                                                        const size_t numMoments
+                                                     )
     {
-        // collision density
+        // scalar quantities: 
+        //   collisionDensity - collision rate density for entering collisions at distance r from point source
+        //   fluence
         const size_t num_r_bins = floor( maxr / dr ) + 1.0;
         size_t * collisionDensity = new size_t [num_r_bins];
         double * fluence = new double [num_r_bins];
@@ -41,135 +42,133 @@ public:
             fluence[i] = 0.0;
         }
 
-        // angular collision density
+        // angular quantities:
+        //  angularCollisionDensity - collision rate density for ENTERING collisions at distance r from point source 
+        //                            along direction with cosine u to the position vector
+        //  angularSourceDensity    - rate density of particles LEAVING a collision at distance r from point source
+        //                            into direction with cosine u to the position vector
+        //  angularFlux             - azimuthally-integrated radiance
         const size_t num_u_bins = floor( 2.0 / du ) + 1.0;
         const size_t num_ru_bins = num_r_bins * num_u_bins;
         size_t * angularCollisionDensity = new size_t [num_ru_bins];
+        size_t * angularSourceDensity = new size_t [num_ru_bins];
+        double * angularFlux = new double [num_ru_bins];
         for( size_t i = 0; i < num_ru_bins; ++i )
         {
             angularCollisionDensity[i] = 0;
+            angularSourceDensity[i] = 0;
+            angularFlux[i] = 0.0;
         }
 
-        // collision density of arbitrary order
+        // scalar quantities by collision order
         const size_t numCollisionbins = num_r_bins * numCollisionOrders;
         size_t * collisionDensities = new size_t [numCollisionbins];
+        double * fluences = new double [numCollisionbins];
         for( size_t i = 0; i < numCollisionbins; ++i )
         {
             collisionDensities[i] = 0;
+            fluences[i] = 0.0;
         }
 
-        // moments
-        double * globalMoments = new double [numMoments];
+        // spatial moments
+        double * spatialCollisionRateMoments = new double [numMoments];
+        double * spatialFluenceMoments = new double [numMoments];
         for( size_t i = 0; i < numMoments; ++i )
         {
-            globalMoments[i] = 0;
+            spatialCollisionRateMoments[i] = 0;
+            spatialFluenceMoments[i] = 0;
         }
 
-        double * globalphiMoments = new double [numMoments];
-        for( size_t i = 0; i < numMoments; ++i )
-        {
-            globalphiMoments[i] = 0;
-        }
-
+        // spatial moments by collision order
         const size_t numOrderMoments = numMoments * numCollisionOrders;
-        double * orderMoments = new double [numOrderMoments];
+        double * spatialCollisionRateMomentsByCollision = new double [numOrderMoments];
+        double * spatialFluenceMomentsByCollision = new double [numOrderMoments];
         for( size_t i = 0; i < numOrderMoments; ++i )
         {
-            orderMoments[i] = 0;
+            spatialCollisionRateMomentsByCollision[i] = 0;
+            spatialFluenceMomentsByCollision[i] = 0;
         }
+
+        double track_length(0.0);
 
         for( size_t i = 0; i < numsamples; ++i )
         {
             size_t collisionOrder = 0;
-
             Vector3 pos( 0.0, 0.0, 0.0 );
             Vector3 dir( 1.0, 0.0, 0.0 );
-            double step = sample_uncorrelated_step();
+            bool absorbed = false;
 
-            pos += dir * step;
-
-            while( RandomReal() < c )
+            do
             {
-                const double r = Norm( pos );
-                collisionOrder++; // we collided and didn't absorb
+                double step = ( 0 == collisionOrder ) ? sample_uncorrelated_step() : sample_correlated_step();
+                pos += dir * step;
+                track_length += step;
 
+                collisionOrder++; // we collided
+                const double r = Norm( pos );
+                const size_t ri = discreteMap( 0.0, maxr, dr, r );
+
+                // collision estimator for angular flux/fluence
+                const double fluxCollisionEstimatorScore = ( 1 == collisionOrder ) ? ( 1.0 / sigma_tu( step ) ) : ( 1.0 / sigma_tc( step ) );
+
+                // tally scalar densities
+                collisionDensity[ri]++;
+                fluence[ri] += fluxCollisionEstimatorScore;
+
+                // tally angular densities
+                const float u = Dot( Normalize(pos), dir );
+                const size_t ui = discreteMap( -1.0, 1.0, du, u );
+                const size_t rui = num_u_bins * ri + ui;
+                assert( rui < num_ru_bins );
+                angularCollisionDensity[rui]++;
+                angularFlux[rui] += fluxCollisionEstimatorScore;
+
+                // tally spatial/radial moments
                 for( size_t m = 0; m < numMoments; ++m )
                 {
-                    globalMoments[m] += pow( r, double( m ) );
-                    globalphiMoments[m] += pow( r, double( m ) ) * (1 == collisionOrder ? 1.0 / sigma_tu( step ) : 1.0 / sigma_tc( step ));
+                    spatialCollisionRateMoments[m]  += pow( r, double( m ) );
+                    spatialFluenceMoments[m]        += pow( r, double( m ) ) * fluxCollisionEstimatorScore;
                 }
 
                 if( collisionOrder < numCollisionOrders )
                 {   
                     for( size_t m = 0; m < numMoments; ++m )
                     {
-                        assert( m * numCollisionOrders + collisionOrder < numOrderMoments );
-                        orderMoments[m * numCollisionOrders + collisionOrder] += pow( r, double( m ) );
+                        const size_t orderMomentIndex = m * numCollisionOrders + collisionOrder;
+                        assert( orderMomentIndex < numOrderMoments );
+                        spatialCollisionRateMomentsByCollision[orderMomentIndex] += pow( r, double( m ) );
+                        spatialFluenceMomentsByCollision[orderMomentIndex - 1]   += pow( r, double( m ) ) * fluxCollisionEstimatorScore;
                     }
                 }
 
-                const size_t ri = std::min( num_r_bins - 1, (long unsigned int)( floor( r / dr ) ) );
-                assert( ri < num_r_bins );
-                collisionDensity[ri]++;
-                fluence[ri] += 1 == collisionOrder ? 1.0 / sigma_tu( step ) : 1.0 / sigma_tc( step );
-
-                const float u = Dot( Normalize(pos), dir );
-                const size_t ui = discreteMap( -1.0, 1.0, du, u );
-                const size_t rui = num_u_bins * ri + ui;
-                assert( rui < num_ru_bins );
-                angularCollisionDensity[rui]++;
-
                 if( collisionOrder < numCollisionOrders )
                 {   
-                    const size_t collision_i = ri + num_r_bins * ( collisionOrder - 1 );
-                    assert( collision_i < numCollisionbins );
+                    const int collision_i = ri + num_r_bins * ( collisionOrder );
+                    const int fluence_i = ri + num_r_bins * ( collisionOrder - 1 );
+                    assert( 0 <= collision_i && collision_i < numCollisionbins );
+                    assert( 0 <= fluence_i && fluence_i < numCollisionbins );
                     collisionDensities[collision_i]++;
+                    fluences[fluence_i] += fluxCollisionEstimatorScore;
                 }
 
-                dir = sampledir( dir );
-                step = sample_correlated_step();
-                pos += dir * step;
-            }
+                absorbed = RandomReal() > c;
 
-            collisionOrder++; // we collided and were absorbed
-
-            const double r = Norm( pos );
-            for( size_t m = 0; m < numMoments; ++m )
-            {
-                globalMoments[m] += pow( r, double( m ) );
-                globalphiMoments[m] += pow( r, double( m ) ) * (1 == collisionOrder ? 1.0 / sigma_tu( step ) : 1.0 / sigma_tc( step ));
-            }
-
-            if( collisionOrder < numCollisionOrders )
-            {   
-                for( size_t m = 0; m < numMoments; ++m )
+                if( !absorbed )
                 {
-                    assert( m * numCollisionOrders + collisionOrder < numOrderMoments );
-                    orderMoments[m * numCollisionOrders + collisionOrder] += pow( r, double( m ) );
+                    dir = sampledir( dir );
+                    // score angular source density
+                    const float u = Dot( Normalize(pos), dir );
+                    const size_t ui = discreteMap( -1.0, 1.0, du, u );
+                    const size_t rui = num_u_bins * ri + ui;
+                    assert( rui < num_ru_bins );
+                    angularSourceDensity[rui]++;
                 }
             }
-            
-            const size_t ri = std::min( num_r_bins - 1, (long unsigned int)( floor( r / dr ) ) );
-            assert( ri < num_r_bins );
-            collisionDensity[ri]++;
-            fluence[ri] += 1 == collisionOrder ? 1.0 / sigma_tu( step ) : 1.0 / sigma_tc( step );
-
-            const float u = Dot( Normalize(pos), dir );
-            const size_t ui = discreteMap( -1.0, 1.0, du, u );
-            const size_t rui = num_u_bins * ri + ui;
-            assert( rui < num_ru_bins );
-            angularCollisionDensity[rui]++;
-
-            if( collisionOrder < numCollisionOrders )
-            {   
-                const size_t collision_i = ri + num_r_bins * ( collisionOrder - 1 );
-                assert( collision_i < numCollisionbins );
-                collisionDensities[collision_i]++;
-            }
+            while( !absorbed );
         }
 
         printDescriptor();
-        std::cout << "Analogmu_t c: " << c << 
+        std::cout << "AnalogCollisionEstimator c: " << c << 
                      " maxr: " << maxr << 
                      " dr: " << dr << 
                      " du: " << du << 
@@ -178,42 +177,79 @@ public:
                      " numMoments: " << numMoments << 
                      std::endl;
 
-        std::cout << "CollisionDensity:\n";
+        std::cout << "Collision-rate density for entering collisions at distance r from point source:\n";
         for( size_t i = 0; i < num_r_bins; ++i )
         {
             std::cout << double( collisionDensity[i] ) / ( double( numsamples ) * dr ) << " ";
         }
         std::cout << std::endl;
 
-        std::cout << "Density Moments:\n";
-        for( size_t m = 0; m < numMoments; m++ )
+        std::cout << "Fluence / scalar flux at distance r from point source:\n";
+        for( size_t i = 0; i < num_r_bins; ++i )
         {
-            std::cout << globalMoments[m] / double( numsamples ) << " ";
+            std::cout << double( fluence[i] ) / ( double( numsamples ) * dr ) << " ";
         }
         std::cout << std::endl;
 
-        std::cout << "Per-collision Density Moments:\n";
+        std::cout << "Spatial radial moments of the Collision-Rate Density:\n";
+        for( size_t m = 0; m < numMoments; m++ )
+        {
+            std::cout << spatialCollisionRateMoments[m] / double( numsamples ) << " ";
+        }
+        std::cout << std::endl;
+
+        std::cout << "Spatial radial moments of the fluence:\n";
+        for( size_t m = 0; m < numMoments; m++ )
+        {
+            std::cout << spatialFluenceMoments[m] / double( numsamples ) << " ";
+        }
+        std::cout << std::endl;
+
+        std::cout << "Per-collision Collision Density Moments:\n";
         for( size_t order = 0; order < numCollisionOrders; order++ )
         {
             for( size_t m = 0; m < numMoments; ++m )
             {
-                std::cout << double( orderMoments[order + m * numCollisionOrders ] ) / double( numsamples ) << " ";
+                std::cout << double( spatialCollisionRateMomentsByCollision[order + m * numCollisionOrders ] ) / double( numsamples ) << " ";
             }
             std::cout << std::endl;
         }
 
-        std::cout << "Per-collision Densities:\n";
-        for( size_t ci = 0; ci < numCollisionOrders; ++ci )
+        std::cout << "Per-collision Fluence Moments:\n";
+        for( size_t order = 0; order < numCollisionOrders; order++ )
         {
-            for( size_t ri = 0; ri < num_r_bins; ++ri )
+            for( size_t m = 0; m < numMoments; ++m )
             {
-                const size_t collision_i = ri + num_r_bins * ( ci - 1 );
+                std::cout << double( spatialFluenceMomentsByCollision[order + m * numCollisionOrders ] ) / double( numsamples ) << " ";
+            }
+            std::cout << std::endl;
+        }
+
+        std::cout << "Per-collision Collision Rate Densities:\n";
+        for( int ci = 0; ci < numCollisionOrders; ++ci )
+        {
+            for( int ri = 0; ri < num_r_bins; ++ri )
+            {
+                const int collision_i = ri + num_r_bins * ci;
+                assert( 0 <= collision_i && collision_i < numCollisionbins );
                 std::cout << double( collisionDensities[collision_i] ) / ( double( numsamples ) * dr ) << " ";
             }
             std::cout << std::endl;
         }
 
-        std::cout << "Angular Collision Densities:\n";
+        std::cout << "Per-collision Fluences:\n";
+        for( int ci = 0; ci < numCollisionOrders; ++ci )
+        {
+            for( int ri = 0; ri < num_r_bins; ++ri )
+            {
+                const int collision_i = ri + num_r_bins * ci;
+                assert( 0 <= collision_i && collision_i < numCollisionbins );
+                std::cout << double( fluences[collision_i] ) / ( double( numsamples ) * dr ) << " ";
+            }
+            std::cout << std::endl;
+        }
+
+        std::cout << "Angular Collision Rate Densities:\n";
         for( size_t ri = 0; ri < num_r_bins; ++ri )
         {
             for( size_t ui = 0; ui < num_u_bins; ++ui )
@@ -224,25 +260,32 @@ public:
             std::cout << std::endl;
         }
 
-        std::cout << "Flux Moments:\n";
-        for( size_t m = 0; m < numMoments; m++ )
+        std::cout << "Angular Flux:\n";
+        for( size_t ri = 0; ri < num_r_bins; ++ri )
         {
-            std::cout << globalphiMoments[m] / double( numsamples ) << " ";
+            for( size_t ui = 0; ui < num_u_bins; ++ui )
+            {
+                const size_t rui = ri * num_u_bins + ui;
+                std::cout << double( angularFlux[rui] ) / ( double( numsamples ) * dr * du ) << " ";
+            }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
 
-        std::cout << "Fluence:\n";
-        for( size_t i = 0; i < num_r_bins; ++i )
+        std::cout << "Angular Collision Source Density:\n";
+        for( size_t ri = 0; ri < num_r_bins; ++ri )
         {
-            std::cout << double( fluence[i] ) / ( double( numsamples ) * dr ) << " ";
+            for( size_t ui = 0; ui < num_u_bins; ++ui )
+            {
+                const size_t rui = ri * num_u_bins + ui;
+                std::cout << double( angularSourceDensity[rui] ) / ( double( numsamples ) * dr * du ) << " ";
+            }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
 
-        delete [] collisionDensity;
-        delete [] fluence;
+        std::cout << "Mean track length: " << track_length / double( numsamples ) << "\n";
     }
 
-    // estimate quantities at various radii from an isotropic point source - Analog walk, collision estimators of flux and reaction rate
+    // estimate quantities at various depths from an isotropic plane source - Analog walk, collision estimators of flux and reaction rate
     void isotropicPlaneSourceAnalogCollision(  const double c, // single-scattering albedo
                                          const double maxr, // maximum radius to record
                                          const double dr, // uniformly spaced radial bins of with dr

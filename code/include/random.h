@@ -276,6 +276,32 @@ Vector3 linanisoDir( const Vector3& in, const double b )
     }
 }
 
+// Rayleigh scattering
+Vector3 RayleighDir( const Vector3& in )
+{
+    const double xi1 = RandomReal();
+    const double w = (1 - Power(2 - 4*xi1 + Sqrt(5 + 16*(-1 + xi1)*xi1),0.6666666666666666))/
+   Power(2 - 4*xi1 + Sqrt(5 + 16*(-1 + xi1)*xi1),0.3333333333333333);
+    const double p = RandomReal( 0.0, 2.0 * M_PI );
+    const double s = sqrt( 1.0 - w * w );
+    Vector3 aligned = Vector3( w, s * cos(p), s * sin(p) );
+
+    if( in != Vector3( 0.0, 1.0, 0.0 ) )
+    {
+      const Vector3 v2 = Normalize( Vector3( 0.0, 1.0, 0.0 ) - in * in.y );
+      const Vector3 v3 = Cross( in, v2 );
+
+      return aligned.x * in + aligned.y * v2 + aligned.z * v3;
+    }
+    else
+    {
+      const Vector3 v2 = Vector3( 1.0, 0.0, 0.0 );
+      const Vector3 v3 = Vector3( 0.0, 0.0, 1.0 );
+
+      return aligned.x * in + aligned.y * v2 + aligned.z * v3;
+    }
+}
+
 // Lambertian Sphere Phase Function [Esposito and Lumme 1977]
 Vector3 lambertSphereDir( const Vector3& in)
 {
