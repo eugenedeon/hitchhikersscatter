@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    232533,       4296]
-NotebookOptionsPosition[    228617,       4221]
-NotebookOutlinePosition[    228955,       4236]
-CellTagsIndexPosition[    228912,       4233]
+NotebookDataLength[    386594,       7502]
+NotebookOptionsPosition[    381156,       7400]
+NotebookOutlinePosition[    381494,       7415]
+CellTagsIndexPosition[    381451,       7412]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2502,14 +2502,2202 @@ Cell[BoxData[
   "]"}]], "Input",
  CellChangeTimes->{{3.786289045596428*^9, 3.786289056735621*^9}, {
   3.786406093056638*^9, 3.786406094204205*^9}, {3.786582947934013*^9, 
-  3.786582950079975*^9}},ExpressionUUID->"7a02f027-b05f-4f5a-9304-\
-1f792768e87e"],
-
-Cell[BoxData["\<\"inf3DisopointRayleighscatter`\"\>"], "Output",
- CellChangeTimes->{3.7862890577682877`*^9, 3.7864060956737432`*^9},
+  3.786582950079975*^9}},
  CellLabel->
-  "Out[3199]=",ExpressionUUID->"650d1bd1-fd6f-44da-85e8-bc9745321382"]
+  "In[4627]:=",ExpressionUUID->"7a02f027-b05f-4f5a-9304-1f792768e87e"],
+
+Cell[BoxData["\<\"inf3DisopointLambertSpherescatter`\"\>"], "Output",
+ CellChangeTimes->{3.7862890577682877`*^9, 3.7864060956737432`*^9, 
+  3.78659594386829*^9},
+ CellLabel->
+  "Out[4627]=",ExpressionUUID->"421eb04c-8410-4539-aa9e-08a37a46878c"]
 }, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Util", "Section",
+ CellChangeTimes->{{3.6773044570984173`*^9, 
+  3.677304457416751*^9}},ExpressionUUID->"5511d532-5d3e-4dd9-bbcb-\
+de39324e4487"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SA", "[", 
+   RowBox[{"d_", ",", "r_"}], "]"}], ":=", 
+  RowBox[{"d", " ", 
+   FractionBox[
+    SuperscriptBox["Pi", 
+     RowBox[{"d", "/", "2"}]], 
+    RowBox[{"Gamma", "[", 
+     RowBox[{
+      FractionBox["d", "2"], "+", "1"}], "]"}]], 
+   SuperscriptBox["r", 
+    RowBox[{"d", "-", "1"}]]}]}]], "Input",
+ CellChangeTimes->{{3.591901602020393*^9, 3.591901630497299*^9}, {
+  3.591903030474992*^9, 3.591903031879117*^9}, {3.591904344669895*^9, 
+  3.59190435369742*^9}, {3.7863313528231583`*^9, 3.786331352966587*^9}},
+ CellLabel->
+  "In[4628]:=",ExpressionUUID->"e3b7b44b-6584-4c4a-9110-a3fe91efc262"],
+
+Cell[CellGroupData[{
+
+Cell["Diffusion modes", "Subsection",
+ CellChangeTimes->{{3.592870941238179*^9, 
+  3.592870943194511*^9}},ExpressionUUID->"afae3276-c173-4325-8797-\
+b465486f7a2a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"diffusionMode", "[", 
+   RowBox[{"v_", ",", "d_", ",", "r_"}], "]"}], ":=", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"2", " ", "\[Pi]"}], ")"}], 
+    RowBox[{
+     RowBox[{"-", "d"}], "/", "2"}]], " ", 
+   SuperscriptBox["r", 
+    RowBox[{"1", "-", 
+     FractionBox["d", "2"]}]], " ", 
+   SuperscriptBox["v", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     FractionBox["d", "2"]}]], " ", 
+   RowBox[{"BesselK", "[", 
+    RowBox[{
+     RowBox[{
+      FractionBox["1", "2"], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "2"}], "+", "d"}], ")"}]}], ",", 
+     FractionBox["r", "v"]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.650151410432075*^9, 3.650151423715064*^9}, {
+  3.650225821867483*^9, 3.650225822845146*^9}, {3.6773044841860228`*^9, 
+  3.677304484641555*^9}},
+ CellLabel->
+  "In[4629]:=",ExpressionUUID->"eec9ac9a-0ce2-4e5a-a14e-6453afe5b0c9"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Analytical solutions", "Section",
+ CellChangeTimes->{{3.786591790665563*^9, 
+  3.7865917932396317`*^9}},ExpressionUUID->"ff1744a7-5954-44fe-9a00-\
+10156f989230"],
+
+Cell[CellGroupData[{
+
+Cell["Fluence: exact solution", "Subsection",
+ CellChangeTimes->{{3.627013036155699*^9, 3.627013036987708*^9}, {
+  3.62701331063284*^9, 3.6270133130703506`*^9}, {3.649259718336639*^9, 
+  3.649259719232292*^9}, {3.650001074975786*^9, 3.650001075075953*^9}, {
+  3.677732291947114*^9, 
+  3.6777322924583187`*^9}},ExpressionUUID->"a101e7f1-3cc3-4260-8275-\
+1163de7dfa24"],
+
+Cell["\<\
+[Grosjean 1963 - A New Approximate One-Velocity Theory for Treating both \
+Isotropic and Anisotropic Multiple Scattering Problems, p. 37]\
+\>", "Text",
+ CellChangeTimes->{{3.7865915517196207`*^9, 
+  3.786591585187158*^9}},ExpressionUUID->"0b77c96b-f486-473c-a69f-\
+9499cc625c48"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Phi]exactTruncatedFourierOrder7", "[", 
+   RowBox[{"r_", ",", "\[CapitalSigma]t_", ",", "c_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"Exp", "[", 
+     RowBox[{
+      RowBox[{"-", "r"}], " ", "\[CapitalSigma]t"}], "]"}], 
+    RowBox[{"4", " ", "Pi", " ", 
+     SuperscriptBox["r", "2"]}]], "+", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"c", " ", "\[CapitalSigma]t"}], 
+     RowBox[{"2", " ", 
+      SuperscriptBox["Pi", "2"], "r", " "}]], 
+    RowBox[{"NIntegrate", "[", 
+     RowBox[{
+      RowBox[{"u", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"1.3333333333333333`", " ", 
+            SuperscriptBox["u", "2"]}], "-", 
+           RowBox[{"1.3999999999999997`", " ", "u", " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+           RowBox[{"2.337311630789803`*^-16", " ", 
+            SuperscriptBox["u", "3"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+           RowBox[{"0.06666666666666664`", " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "+", 
+           RowBox[{"0.9999999999999998`", " ", 
+            SuperscriptBox["u", "2"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "-", 
+           RowBox[{"0.00030924479166666665`", " ", 
+            SuperscriptBox["u", "2"], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+           RowBox[{"0.0004216974431818181`", " ", 
+            SuperscriptBox["u", "4"], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+           RowBox[{"0.0001405658143939394`", " ", 
+            SuperscriptBox["u", "6"], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+           RowBox[{"6.693610209235209`*^-6", " ", 
+            SuperscriptBox["u", "8"], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+           RowBox[{"0.00032470703125`", " ", "u", " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+           RowBox[{"0.000442782315340909`", " ", 
+            SuperscriptBox["u", "3"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+           RowBox[{"0.00014759410511363638`", " ", 
+            SuperscriptBox["u", "5"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+           RowBox[{"7.028290719696983`*^-6", " ", 
+            SuperscriptBox["u", "7"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+           RowBox[{"8.916136286887371`*^-22", " ", 
+            SuperscriptBox["u", "9"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+           RowBox[{"0.000015462239583333328`", " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+           RowBox[{"0.00025301846590909086`", " ", 
+            SuperscriptBox["u", "2"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+           RowBox[{"0.00032330137310606055`", " ", 
+            SuperscriptBox["u", "4"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+           RowBox[{"0.0001057590413059163`", " ", 
+            SuperscriptBox["u", "6"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+           RowBox[{"5.020207656926406`*^-6", " ", 
+            SuperscriptBox["u", "8"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["7", "2"], ",", "4", ",", 
+              FractionBox["15", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+           RowBox[{"3.242461239176438`*^-8", " ", 
+            SuperscriptBox["u", "6"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"5.558504981445322`*^-8", " ", 
+            SuperscriptBox["u", "8"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"1.0561159464746111`*^-7", " ", 
+            SuperscriptBox["u", "10"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"5.5585049814453225`*^-8", " ", 
+            SuperscriptBox["u", "12"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"1.228318152177984`*^-7", " ", 
+            SuperscriptBox["u", "14"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+           RowBox[{"9.00974926948953`*^-8", " ", 
+            SuperscriptBox["u", "16"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+           RowBox[{"3.40458430113526`*^-8", " ", 
+            SuperscriptBox["u", "5"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+           RowBox[{"5.836430230517588`*^-8", " ", 
+            SuperscriptBox["u", "7"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+           RowBox[{"1.1089217437983416`*^-7", " ", 
+            SuperscriptBox["u", "9"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+           RowBox[{"5.8364302305175895`*^-8", " ", 
+            SuperscriptBox["u", "11"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+           RowBox[{"1.484991523182093`*^-8", " ", 
+            SuperscriptBox["u", "13"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+           RowBox[{"8.559261806015054`*^-8", " ", 
+            SuperscriptBox["u", "15"], " ", 
+            RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"1.6212306195882188`*^-9", " ", 
+            SuperscriptBox["u", "4"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"2.7097711784545943`*^-8", " ", 
+            SuperscriptBox["u", "6"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"4.696936709321298`*^-8", " ", 
+            SuperscriptBox["u", "8"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"8.19879484763185`*^-8", " ", 
+            SuperscriptBox["u", "10"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"4.212420358438646`*^-8", " ", 
+            SuperscriptBox["u", "12"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+           RowBox[{"6.531243353198253`*^-9", " ", 
+            SuperscriptBox["u", "14"], " ", 
+            SuperscriptBox[
+             RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["7", "2"], ",", "4", ",", 
+               FractionBox["15", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+           RowBox[{
+            SuperscriptBox["u", "4"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["5", "2"], ",", "3", ",", 
+               FractionBox["11", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "8.527021919879064`*^-6"}], " ", 
+               SuperscriptBox["u", "2"]}], "-", 
+              RowBox[{"5.684681279919375`*^-6", " ", 
+               SuperscriptBox["u", "4"]}], "-", 
+              RowBox[{"0.000013713046947173927`", " ", 
+               SuperscriptBox["u", "6"]}], "+", 
+              RowBox[{"0.000010078105316200553`", " ", 
+               SuperscriptBox["u", "8"]}], "+", 
+              RowBox[{"8.953373015873015`*^-6", " ", "u", " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+              RowBox[{"5.968915343915344`*^-6", " ", 
+               SuperscriptBox["u", "3"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+              RowBox[{"1.633099227345259`*^-6", " ", 
+               SuperscriptBox["u", "5"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+              RowBox[{"9.574200050390523`*^-6", " ", 
+               SuperscriptBox["u", "7"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+              RowBox[{"4.2635109599395304`*^-7", " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "-", 
+              RowBox[{"6.679500503905266`*^-6", " ", 
+               SuperscriptBox["u", "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "-", 
+              RowBox[{"4.310883303938859`*^-6", " ", 
+               SuperscriptBox["u", "4"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "-", 
+              RowBox[{"7.105851599899218`*^-7", " ", 
+               SuperscriptBox["u", "6"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  SuperscriptBox["u", "2"], " ", 
+                  RowBox[{"(", 
+                   RowBox[{"1.9777028378625758`*^-9", "+", 
+                    RowBox[{"4.015336064751289`*^-9", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                    RowBox[{"5.877383765896755`*^-9", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                    RowBox[{"2.6417277537085793`*^-9", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"1.7132059435166385`*^-9", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"9.93635467705722`*^-10", " ", 
+                    SuperscriptBox["u", "10"]}], "-", 
+                    RowBox[{"5.059418147570075`*^-11", " ", 
+                    SuperscriptBox["u", "12"]}]}], ")"}]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.0765879797557045`*^-9"}], " ", "u"}], "-", 
+                    RowBox[{"4.216102867988854`*^-9", " ", 
+                    SuperscriptBox["u", "3"]}], "-", 
+                    RowBox[{"3.210481454233586`*^-9", " ", 
+                    SuperscriptBox["u", "5"]}], "-", 
+                    RowBox[{"3.4113008279878395`*^-9", " ", 
+                    SuperscriptBox["u", "7"]}], "-", 
+                    RowBox[{"3.2301953979921833`*^-9", " ", 
+                    SuperscriptBox["u", "9"]}], "-", 
+                    RowBox[{"1.017552417685869`*^-9", " ", 
+                    SuperscriptBox["u", "11"]}], "-", 
+                    RowBox[{"4.806447240191571`*^-11", " ", 
+                    SuperscriptBox["u", "13"]}]}], ")"}], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"9.888514189312876`*^-11", "+", 
+                    RowBox[{"1.6840439316344963`*^-9", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                    RowBox[{"3.1573326618604042`*^-9", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                    RowBox[{"2.234547362260312`*^-9", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                    RowBox[{"7.127435552037204`*^-10", " ", 
+                    SuperscriptBox["u", "8"]}], "+", 
+                    RowBox[{"9.655451565322337`*^-11", " ", 
+                    SuperscriptBox["u", "10"]}], "+", 
+                    RowBox[{"3.5672850610796814`*^-12", " ", 
+                    SuperscriptBox["u", "12"]}]}], ")"}], " ", 
+                  SuperscriptBox[
+                   RowBox[{"ArcTan", "[", "u", "]"}], "2"]}]}], ")"}], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"2.3600816241260076`*^-44", " ", 
+               SuperscriptBox["u", "13"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}]}], ")"}]}], 
+           "+", 
+           RowBox[{
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["5", "2"], ",", "3", ",", 
+              FractionBox["11", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "0.002199074074074074`"}], " ", 
+               SuperscriptBox["u", "2"]}], "-", 
+              RowBox[{"0.0018849206349206352`", " ", 
+               SuperscriptBox["u", "4"]}], "-", 
+              RowBox[{"0.00018849206349206342`", " ", 
+               SuperscriptBox["u", "6"]}], "+", 
+              RowBox[{"0.002309027777777778`", " ", "u", " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+              RowBox[{"0.001979166666666667`", " ", 
+               SuperscriptBox["u", "3"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+              RowBox[{"0.00019791666666666655`", " ", 
+               SuperscriptBox["u", "5"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+              RowBox[{"0.00010995370370370366`", " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "-", 
+              RowBox[{"0.0017435515873015868`", " ", 
+               SuperscriptBox["u", "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "-", 
+              RowBox[{"0.0014231150793650794`", " ", 
+               SuperscriptBox["u", "4"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "-", 
+              RowBox[{"0.00014136904761904762`", " ", 
+               SuperscriptBox["u", "6"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  SuperscriptBox["u", "2"], " ", 
+                  RowBox[{"(", 
+                   RowBox[{"5.100391529224537`*^-7", "+", 
+                    RowBox[{"1.1326843525940206`*^-6", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                    RowBox[{"8.717032795401936`*^-7", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                    RowBox[{"2.693713275174864`*^-7", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                    RowBox[{"2.933434831279418`*^-8", " ", 
+                    SuperscriptBox["u", "8"]}], "+", 
+                    RowBox[{"9.462693004127154`*^-10", " ", 
+                    SuperscriptBox["u", "10"]}]}], ")"}]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "5.355411105685764`*^-7"}], " ", "u"}], "-", 
+                    
+                    RowBox[{"1.1893185702237215`*^-6", " ", 
+                    SuperscriptBox["u", "3"]}], "-", 
+                    RowBox[{"9.152884435172032`*^-7", " ", 
+                    SuperscriptBox["u", "5"]}], "-", 
+                    RowBox[{"2.8283989389336067`*^-7", " ", 
+                    SuperscriptBox["u", "7"]}], "-", 
+                    RowBox[{"3.080106572843393`*^-8", " ", 
+                    SuperscriptBox["u", "9"]}], "-", 
+                    RowBox[{"9.935827654333515`*^-10", " ", 
+                    SuperscriptBox["u", "11"]}], "-", 
+                    RowBox[{"1.088395542832931`*^-25", " ", 
+                    SuperscriptBox["u", "13"]}]}], ")"}], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"2.550195764612268`*^-8", "+", 
+                    RowBox[{"4.3916358232154127`*^-7", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                    RowBox[{"8.930984284225248`*^-7", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                    RowBox[{"6.672460260310193`*^-7", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                    RowBox[{"2.0349521305375447`*^-7", " ", 
+                    SuperscriptBox["u", "8"]}], "+", 
+                    RowBox[{"2.2048074699616273`*^-8", " ", 
+                    SuperscriptBox["u", "10"]}], "+", 
+                    RowBox[{"7.097019753095366`*^-10", " ", 
+                    SuperscriptBox["u", "12"]}]}], ")"}], " ", 
+                  SuperscriptBox[
+                   RowBox[{"ArcTan", "[", "u", "]"}], "2"]}]}], ")"}], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{
+               SuperscriptBox["u", "8"], " ", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  SuperscriptBox["u", "2"], " ", 
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"-", "1.2572808886602517`*^-10"}], "-", 
+                    RowBox[{"1.9158565922441929`*^-10", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"2.8481561050051276`*^-10", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"3.1895562657583395`*^-11", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                    RowBox[{"1.1003902778341604`*^-10", " ", 
+                    SuperscriptBox["u", "8"]}], "+", 
+                    RowBox[{"1.2736996735141446`*^-11", " ", 
+                    SuperscriptBox["u", "10"]}]}], ")"}]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"1.3201449330932643`*^-10", " ", "u"}], "+", 
+                    RowBox[{"2.0116494218564024`*^-10", " ", 
+                    SuperscriptBox["u", "3"]}], "+", 
+                    RowBox[{"1.10831883717337`*^-10", " ", 
+                    SuperscriptBox["u", "5"]}], "+", 
+                    RowBox[{"1.6935163929863798`*^-10", " ", 
+                    SuperscriptBox["u", "7"]}], "+", 
+                    RowBox[{"1.230654263323963`*^-10", " ", 
+                    SuperscriptBox["u", "9"]}], "+", 
+                    RowBox[{"1.2100146898384375`*^-11", " ", 
+                    SuperscriptBox["u", "11"]}]}], ")"}], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"-", "6.286404443301257`*^-12"}], "-", 
+                    RowBox[{"1.0387534961073984`*^-10", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"1.4851879957793006`*^-10", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"7.340125569035563`*^-11", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"1.4428794960339077`*^-11", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"8.980577776144653`*^-13", " ", 
+                    SuperscriptBox["u", "10"]}]}], ")"}], " ", 
+                  SuperscriptBox[
+                   RowBox[{"ArcTan", "[", "u", "]"}], "2"]}]}], ")"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}]}], ")"}]}], 
+           "+", 
+           RowBox[{
+            SuperscriptBox["u", "5"], " ", 
+            SuperscriptBox[
+             RowBox[{"Hypergeometric2F1", "[", 
+              RowBox[{
+               FractionBox["3", "2"], ",", "2", ",", 
+               FractionBox["7", "2"], ",", 
+               RowBox[{"-", 
+                SuperscriptBox["u", "2"]}]}], "]"}], "2"], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "0.007037037037037035`"}], " ", "u"}], "+", 
+              RowBox[{"0.005555555555555555`", " ", 
+               SuperscriptBox["u", "3"]}], "+", 
+              RowBox[{"0.0003518518518518523`", " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+              RowBox[{"0.005277777777777776`", " ", 
+               SuperscriptBox["u", "2"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"1.6321252893518515`*^-6", " ", "u"}], "+", 
+                 RowBox[{"9.371054292929284`*^-7", " ", 
+                  SuperscriptBox["u", "3"]}], "-", 
+                 RowBox[{"1.015197548400673`*^-6", " ", 
+                  SuperscriptBox["u", "5"]}], "-", 
+                 RowBox[{"5.503635060926727`*^-7", " ", 
+                  SuperscriptBox["u", "7"]}], "-", 
+                 RowBox[{"2.7890042538480034`*^-8", " ", 
+                  SuperscriptBox["u", "9"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"-", "8.160626446759271`*^-8"}], "-", 
+                    RowBox[{"1.3353752367424243`*^-6", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"1.7063128025042084`*^-6", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"5.58172718003447`*^-7", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"2.6495540411556034`*^-8", " ", 
+                    SuperscriptBox["u", "8"]}]}], ")"}], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{
+               SuperscriptBox["u", "4"], " ", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"1.7112989873431197`*^-10", " ", "u"}], "+", 
+                 RowBox[{"1.582629890550404`*^-10", " ", 
+                  SuperscriptBox["u", "3"]}], "-", 
+                 RowBox[{"7.653973129212405`*^-11", " ", 
+                  SuperscriptBox["u", "5"]}], "-", 
+                 RowBox[{"9.72738371752931`*^-11", " ", 
+                  SuperscriptBox["u", "7"]}], "-", 
+                 RowBox[{"1.859452261650161`*^-11", " ", 
+                  SuperscriptBox["u", "9"]}], "-", 
+                 RowBox[{"9.92590175258093`*^-13", " ", 
+                  SuperscriptBox["u", "11"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"-", "8.556494936715614`*^-12"}], "-", 
+                    RowBox[{"1.430157010851036`*^-10", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"2.2777738766228217`*^-10", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"1.175557630897335`*^-10", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"1.892207737433678`*^-11", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"9.429606664951885`*^-13", " ", 
+                    SuperscriptBox["u", "10"]}]}], ")"}], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["5", "2"], ",", "3", ",", 
+                 FractionBox["11", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], " ", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"0.000011606224279835386`", " ", "u"}], "+", 
+                 RowBox[{"7.853835978835977`*^-7", " ", 
+                  SuperscriptBox["u", "3"]}], "-", 
+                 RowBox[{"6.859016754850088`*^-6", " ", 
+                  SuperscriptBox["u", "5"]}], "-", 
+                 RowBox[{"7.853835978835977`*^-7", " ", 
+                  SuperscriptBox["u", "7"]}], "-", 
+                 RowBox[{"5.803112139917703`*^-7", " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                 RowBox[{"9.202077821869489`*^-6", " ", 
+                  SuperscriptBox["u", "2"], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                 RowBox[{"7.5108851410934715`*^-6", " ", 
+                  SuperscriptBox["u", "4"], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                 RowBox[{"7.461144179894178`*^-7", " ", 
+                  SuperscriptBox["u", "6"], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.6918733070907274`*^-9"}], " ", "u"}], "-", 
+                    RowBox[{"3.8528931681804386`*^-9", " ", 
+                    SuperscriptBox["u", "3"]}], "+", 
+                    RowBox[{"1.1886193823517555`*^-10", " ", 
+                    SuperscriptBox["u", "5"]}], "+", 
+                    RowBox[{"2.2104149917418506`*^-9", " ", 
+                    SuperscriptBox["u", "7"]}], "+", 
+                    RowBox[{"9.675603596720017`*^-10", " ", 
+                    SuperscriptBox["u", "9"]}], "+", 
+                    RowBox[{"1.1723225221779753`*^-10", " ", 
+                    SuperscriptBox["u", "11"]}], "+", 
+                    RowBox[{"3.942788751719648`*^-12", " ", 
+                    SuperscriptBox["u", "13"]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"1.345936653545366`*^-10", "+", 
+                    RowBox[{"2.3178077955859128`*^-9", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                    RowBox[{"4.713575038896659`*^-9", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                    RowBox[{"3.521576248497046`*^-9", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                    RowBox[{"1.0740025133392595`*^-9", " ", 
+                    SuperscriptBox["u", "8"]}], "+", 
+                    RowBox[{"1.1636483869241919`*^-10", " ", 
+                    SuperscriptBox["u", "10"]}], "+", 
+                    RowBox[{"3.745649314133665`*^-12", " ", 
+                    SuperscriptBox["u", "12"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+                  RowBox[{"Hypergeometric2F1", "[", 
+                   RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}]}], ")"}]}]}], 
+             ")"}]}], "+", 
+           RowBox[{
+            RowBox[{"Hypergeometric2F1", "[", 
+             RowBox[{
+              FractionBox["3", "2"], ",", "2", ",", 
+              FractionBox["7", "2"], ",", 
+              RowBox[{"-", 
+               SuperscriptBox["u", "2"]}]}], "]"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "0.07916666666666665`"}], " ", 
+               SuperscriptBox["u", "2"]}], "-", 
+              RowBox[{"0.026388888888888882`", " ", 
+               SuperscriptBox["u", "4"]}], "+", 
+              RowBox[{"0.08312499999999999`", " ", "u", " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+              RowBox[{"0.027708333333333324`", " ", 
+               SuperscriptBox["u", "3"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+              RowBox[{"3.652049423109067`*^-18", " ", 
+               SuperscriptBox["u", "5"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+              RowBox[{"0.003958333333333333`", " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "-", 
+              RowBox[{"0.06069444444444443`", " ", 
+               SuperscriptBox["u", "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "-", 
+              RowBox[{"0.019791666666666662`", " ", 
+               SuperscriptBox["u", "4"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "+", 
+              RowBox[{"0.000018361409505208334`", " ", 
+               SuperscriptBox["u", "2"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"0.00003115875552398989`", " ", 
+               SuperscriptBox["u", "4"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"0.0000166921904592803`", " ", 
+               SuperscriptBox["u", "6"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"3.179464849386724`*^-6", " ", 
+               SuperscriptBox["u", "8"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"1.3247770205778017`*^-7", " ", 
+               SuperscriptBox["u", "10"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+              RowBox[{"0.00001927947998046875`", " ", "u", " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+              RowBox[{"0.00003271669330018938`", " ", 
+               SuperscriptBox["u", "3"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+              RowBox[{"0.000017526799982244312`", " ", 
+               SuperscriptBox["u", "5"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+              RowBox[{"3.33843809185606`*^-6", " ", 
+               SuperscriptBox["u", "7"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+              RowBox[{"1.391015871606694`*^-7", " ", 
+               SuperscriptBox["u", "9"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"9.180704752604166`*^-7", " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"0.000015328994905105745`", " ", 
+               SuperscriptBox["u", "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"0.000024203676165956436`", " ", 
+               SuperscriptBox["u", "4"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"0.000012678116086929564`", " ", 
+               SuperscriptBox["u", "6"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"2.3912225221429324`*^-6", " ", 
+               SuperscriptBox["u", "8"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"9.935827654333512`*^-8", " ", 
+               SuperscriptBox["u", "10"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+              RowBox[{"1.92521136076101`*^-9", " ", 
+               SuperscriptBox["u", "6"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"3.94209945298683`*^-9", " ", 
+               SuperscriptBox["u", "8"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"2.844598010593818`*^-9", " ", 
+               SuperscriptBox["u", "10"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"8.643806109539228`*^-10", " ", 
+               SuperscriptBox["u", "12"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+              RowBox[{"6.667641786448301`*^-9", " ", 
+               SuperscriptBox["u", "14"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"3.095559344393466`*^-9", " ", 
+               SuperscriptBox["u", "16"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"1.7831795429198027`*^-9", " ", 
+               SuperscriptBox["u", "18"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+              RowBox[{"2.0214719287990605`*^-9", " ", 
+               SuperscriptBox["u", "5"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+              RowBox[{"4.1392044256361715`*^-9", " ", 
+               SuperscriptBox["u", "7"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+              RowBox[{"2.9868279111235095`*^-9", " ", 
+               SuperscriptBox["u", "9"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+              RowBox[{"9.075996415016188`*^-10", " ", 
+               SuperscriptBox["u", "11"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"2.2494161267546796`*^-10", " ", 
+               SuperscriptBox["u", "13"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"5.190045858207257`*^-9", " ", 
+               SuperscriptBox["u", "15"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"1.6940205657738122`*^-9", " ", 
+               SuperscriptBox["u", "17"], " ", 
+               RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"9.626056803805048`*^-11", " ", 
+               SuperscriptBox["u", "4"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"1.6410134932200989`*^-9", " ", 
+               SuperscriptBox["u", "6"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"3.0988044902698135`*^-9", " ", 
+               SuperscriptBox["u", "8"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"2.1766675384930604`*^-9", " ", 
+               SuperscriptBox["u", "10"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"6.537074820477894`*^-10", " ", 
+               SuperscriptBox["u", "12"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"8.156609765183379`*^-11", " ", 
+               SuperscriptBox["u", "14"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{"3.536102499356957`*^-12", " ", 
+               SuperscriptBox["u", "16"], " ", 
+               SuperscriptBox[
+                RowBox[{"ArcTan", "[", "u", "]"}], "2"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["7", "2"], ",", "4", ",", 
+                  FractionBox["15", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+              RowBox[{
+               SuperscriptBox["u", "9"], " ", 
+               SuperscriptBox[
+                RowBox[{"Hypergeometric2F1", "[", 
+                 RowBox[{
+                  FractionBox["5", "2"], ",", "3", ",", 
+                  FractionBox["11", "2"], ",", 
+                  RowBox[{"-", 
+                   SuperscriptBox["u", "2"]}]}], "]"}], "2"], " ", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "7.5795750398925`*^-7"}], " ", "u"}], "+", 
+                 RowBox[{"3.45735001819658`*^-7", " ", 
+                  SuperscriptBox["u", "3"]}], "+", 
+                 RowBox[{"1.994625010498026`*^-7", " ", 
+                  SuperscriptBox["u", "5"]}], "+", 
+                 RowBox[{"3.789787519946254`*^-8", " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                 RowBox[{"5.81100753058425`*^-7", " ", 
+                  SuperscriptBox["u", "2"], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                 RowBox[{"1.8948937599731244`*^-7", " ", 
+                  SuperscriptBox["u", "4"], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"1.7579580781000673`*^-10", " ", "u"}], "+", 
+                    RowBox[{"1.5953399464735848`*^-10", " ", 
+                    SuperscriptBox["u", "3"]}], "-", 
+                    RowBox[{"7.570154403301727`*^-11", " ", 
+                    SuperscriptBox["u", "5"]}], "-", 
+                    RowBox[{"9.572840753381547`*^-11", " ", 
+                    SuperscriptBox["u", "7"]}], "-", 
+                    RowBox[{"2.2763868179240637`*^-11", " ", 
+                    SuperscriptBox["u", "9"]}], "-", 
+                    RowBox[{"1.0013431750399107`*^-12", " ", 
+                    SuperscriptBox["u", "11"]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "8.789790390500344`*^-12"}], "-", 
+                    RowBox[{"1.4676286379289958`*^-10", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"2.3173083756773613`*^-10", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"1.2138281967833794`*^-10", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"2.289404279199582`*^-11", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"9.51276016287915`*^-13", " ", 
+                    SuperscriptBox["u", "10"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+                  RowBox[{"Hypergeometric2F1", "[", 
+                   RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}]}], ")"}]}], "+", 
+              RowBox[{
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["5", "2"], ",", "3", ",", 
+                 FractionBox["11", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], " ", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"0.00013057002314814813`", " ", 
+                  SuperscriptBox["u", "2"]}], "+", 
+                 RowBox[{"0.00015544050374779537`", " ", 
+                  SuperscriptBox["u", "4"]}], "+", 
+                 RowBox[{"0.00004849743716931215`", " ", 
+                  SuperscriptBox["u", "6"]}], "+", 
+                 RowBox[{"3.730572089947088`*^-6", " ", 
+                  SuperscriptBox["u", "8"]}], "-", 
+                 RowBox[{"0.00013709852430555554`", " ", "u", " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                 RowBox[{"0.00016321252893518516`", " ", 
+                  SuperscriptBox["u", "3"], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                 RowBox[{"0.00005092230902777777`", " ", 
+                  SuperscriptBox["u", "5"], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                 RowBox[{"3.9171006944444275`*^-6", " ", 
+                  SuperscriptBox["u", "7"], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                 RowBox[{"4.458068143443686`*^-22", " ", 
+                  SuperscriptBox["u", "9"], " ", 
+                  RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                 RowBox[{"6.528501157407406`*^-6", " ", 
+                  SuperscriptBox[
+                   RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "+", 
+                 RowBox[{"0.00010569954254850087`", " ", 
+                  SuperscriptBox["u", "2"], " ", 
+                  SuperscriptBox[
+                   RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "+", 
+                 RowBox[{"0.00011900524966931214`", " ", 
+                  SuperscriptBox["u", "4"], " ", 
+                  SuperscriptBox[
+                   RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "+", 
+                 RowBox[{"0.000036559606481481464`", " ", 
+                  SuperscriptBox["u", "6"], " ", 
+                  SuperscriptBox[
+                   RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "+", 
+                 RowBox[{"2.7979290674603167`*^-6", " ", 
+                  SuperscriptBox["u", "8"], " ", 
+                  SuperscriptBox[
+                   RowBox[{"ArcTan", "[", "u", "]"}], "2"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    SuperscriptBox["u", "2"], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "3.028357470477069`*^-8"}], "-", 
+                    RowBox[{"7.734765833686019`*^-8", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"7.417509336778895`*^-8", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"3.324638331225041`*^-8", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"7.073034454855736`*^-9", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"6.36760383402723`*^-10", " ", 
+                    SuperscriptBox["u", "10"]}], "-", 
+                    RowBox[{"1.8728246570668323`*^-11", " ", 
+                    SuperscriptBox["u", "12"]}]}], ")"}]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"3.1797753440009226`*^-8", " ", "u"}], "+", 
+                    RowBox[{"8.121504125370321`*^-8", " ", 
+                    SuperscriptBox["u", "3"]}], "+", 
+                    RowBox[{"7.788384803617842`*^-8", " ", 
+                    SuperscriptBox["u", "5"]}], "+", 
+                    RowBox[{"3.490870247786293`*^-8", " ", 
+                    SuperscriptBox["u", "7"]}], "+", 
+                    RowBox[{"7.426686177598523`*^-9", " ", 
+                    SuperscriptBox["u", "9"]}], "+", 
+                    RowBox[{"6.685984025728589`*^-10", " ", 
+                    SuperscriptBox["u", "11"]}], "+", 
+                    RowBox[{"1.966465889920171`*^-11", " ", 
+                    SuperscriptBox["u", "13"]}], "+", 
+                    RowBox[{"1.700618035676455`*^-27", " ", 
+                    SuperscriptBox["u", "15"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1.5141787352385342`*^-9"}], "-", 
+                    RowBox[{"2.658006394542103`*^-8", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"6.171949842103459`*^-8", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"5.7293639191454246`*^-8", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"2.5288439206930598`*^-8", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"5.33661386031194`*^-9", " ", 
+                    SuperscriptBox["u", "10"]}], "-", 
+                    RowBox[{"4.785066998805757`*^-10", " ", 
+                    SuperscriptBox["u", "12"]}], "-", 
+                    RowBox[{"1.4046184928001245`*^-11", " ", 
+                    SuperscriptBox["u", "14"]}]}], ")"}], " ", 
+                    SuperscriptBox[
+                    RowBox[{"ArcTan", "[", "u", "]"}], "2"]}]}], ")"}], " ", 
+                  RowBox[{"Hypergeometric2F1", "[", 
+                   RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["u", "13"], " ", 
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.1175830121424458`*^-11"}], " ", "u"}], 
+                    "-", 
+                    RowBox[{"4.481535888290506`*^-12", " ", 
+                    SuperscriptBox["u", "3"]}], "+", 
+                    RowBox[{"6.352577121651799`*^-12", " ", 
+                    SuperscriptBox["u", "5"]}], "+", 
+                    RowBox[{"2.957813686271736`*^-12", " ", 
+                    SuperscriptBox["u", "7"]}], "+", 
+                    RowBox[{"2.520863937163412`*^-13", " ", 
+                    SuperscriptBox["u", "9"]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"5.587915060712234`*^-13", "+", 
+                    RowBox[{"9.047100574486466`*^-12", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                    RowBox[{"1.0185970882098291`*^-11", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                    RowBox[{"3.129232433998848`*^-12", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                    RowBox[{"2.3948207403052407`*^-13", " ", 
+                    SuperscriptBox["u", "8"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+                  SuperscriptBox[
+                   RowBox[{"Hypergeometric2F1", "[", 
+                    RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}], "2"]}]}], ")"}]}]}], 
+             ")"}]}]}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"u", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"0.06333333333333331`", " ", "u"}], "+", 
+             RowBox[{"1.`", " ", 
+              SuperscriptBox["u", "3"]}], "-", 
+             RowBox[{"0.06333333333333331`", " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+             RowBox[{"0.9499999999999998`", " ", 
+              SuperscriptBox["u", "2"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+             RowBox[{"0.000014689127604166663`", " ", "u", " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+             RowBox[{"0.0002519642223011364`", " ", 
+              SuperscriptBox["u", "3"], " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+             RowBox[{"0.00032294995857007575`", " ", 
+              SuperscriptBox["u", "5"], " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+             RowBox[{"0.00010574230728039322`", " ", 
+              SuperscriptBox["u", "7"], " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+             RowBox[{"5.020207656926407`*^-6", " ", 
+              SuperscriptBox["u", "9"], " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+             RowBox[{"0.000014689127604166663`", " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+             RowBox[{"0.00024036754261363635`", " ", 
+              SuperscriptBox["u", "2"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+             RowBox[{"0.00030713630445075753`", " ", 
+              SuperscriptBox["u", "4"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+             RowBox[{"0.00010047108924062049`", " ", 
+              SuperscriptBox["u", "6"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+             RowBox[{"4.769197274080086`*^-6", " ", 
+              SuperscriptBox["u", "8"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["7", "2"], ",", "4", ",", 
+                FractionBox["15", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+             RowBox[{"1.5401690886088079`*^-9", " ", 
+              SuperscriptBox["u", "5"], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+             RowBox[{"2.695874916000981`*^-8", " ", 
+              SuperscriptBox["u", "7"], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+             RowBox[{"4.670533810659433`*^-8", " ", 
+              SuperscriptBox["u", "9"], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+             RowBox[{"8.184898585178239`*^-8", " ", 
+              SuperscriptBox["u", "11"], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+             RowBox[{"4.7523298583685345`*^-8", " ", 
+              SuperscriptBox["u", "13"], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "-", 
+             RowBox[{"8.784423051034127`*^-8", " ", 
+              SuperscriptBox["u", "15"], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+             RowBox[{"1.5401690886088079`*^-9", " ", 
+              SuperscriptBox["u", "4"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+             RowBox[{"2.5742826195318646`*^-8", " ", 
+              SuperscriptBox["u", "6"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+             RowBox[{"4.462089873855233`*^-8", " ", 
+              SuperscriptBox["u", "8"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+             RowBox[{"7.788855105250257`*^-8", " ", 
+              SuperscriptBox["u", "10"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+             RowBox[{"4.001799340516714`*^-8", " ", 
+              SuperscriptBox["u", "12"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+             RowBox[{"6.204681185538341`*^-9", " ", 
+              SuperscriptBox["u", "14"], " ", 
+              RowBox[{"ArcTan", "[", "u", "]"}], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["7", "2"], ",", "4", ",", 
+                 FractionBox["15", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+             RowBox[{
+              SuperscriptBox["u", "4"], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["5", "2"], ",", "3", ",", 
+                 FractionBox["11", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"], " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "4.050335411942554`*^-7"}], " ", "u"}], "-", 
+                RowBox[{"6.665288800705468`*^-6", " ", 
+                 SuperscriptBox["u", "3"]}], "-", 
+                RowBox[{"4.914880689930294`*^-6", " ", 
+                 SuperscriptBox["u", "5"]}], "-", 
+                RowBox[{"9.806075207860919`*^-6", " ", 
+                 SuperscriptBox["u", "7"]}], "+", 
+                RowBox[{"4.050335411942554`*^-7", " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{"6.3455254787100024`*^-6", " ", 
+                 SuperscriptBox["u", "2"], " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{"4.095339138741916`*^-6", " ", 
+                 SuperscriptBox["u", "4"], " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{"6.750559019904257`*^-7", " ", 
+                 SuperscriptBox["u", "6"], " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"9.394088479847233`*^-11", " ", "u"}], "+", 
+                   RowBox[{"1.6740055914726182`*^-9", " ", 
+                    SuperscriptBox["u", "3"]}], "+", 
+                   RowBox[{"3.290677777443564`*^-9", " ", 
+                    SuperscriptBox["u", "5"]}], "+", 
+                   RowBox[{"4.533519892723724`*^-9", " ", 
+                    SuperscriptBox["u", "7"]}], "+", 
+                   RowBox[{"3.6530069210974262`*^-9", " ", 
+                    SuperscriptBox["u", "9"]}], "+", 
+                   RowBox[{"1.0584729323733594`*^-9", " ", 
+                    SuperscriptBox["u", "11"]}], "+", 
+                   RowBox[{"4.9228533842899604`*^-11", " ", 
+                    SuperscriptBox["u", "13"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "9.394088479847233`*^-11"}], "-", 
+                    RowBox[{"1.5998417350527715`*^-9", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"2.9994660287673843`*^-9", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"2.1228199941472967`*^-9", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"6.771063774435344`*^-10", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"9.172678987056221`*^-11", " ", 
+                    SuperscriptBox["u", "10"]}], "-", 
+                    RowBox[{"3.3889208080256974`*^-12", " ", 
+                    SuperscriptBox["u", "12"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+                 RowBox[{"Hypergeometric2F1", "[", 
+                  RowBox[{
+                   FractionBox["7", "2"], ",", "4", ",", 
+                   FractionBox["15", "2"], ",", 
+                   RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}], "-", 
+                RowBox[{"2.2420775429197073`*^-44", " ", 
+                 SuperscriptBox["u", "13"], " ", 
+                 SuperscriptBox[
+                  RowBox[{"Hypergeometric2F1", "[", 
+                   RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}], "2"]}]}], ")"}]}], 
+             "+", 
+             RowBox[{
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["5", "2"], ",", "3", ",", 
+                FractionBox["11", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}], " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "0.00010445601851851848`"}], " ", "u"}], "-", 
+                RowBox[{"0.0017388392857142856`", " ", 
+                 SuperscriptBox["u", "3"]}], "-", 
+                RowBox[{"0.001422643849206349`", " ", 
+                 SuperscriptBox["u", "5"]}], "-", 
+                RowBox[{"0.0001413690476190476`", " ", 
+                 SuperscriptBox["u", "7"]}], "+", 
+                RowBox[{"0.00010445601851851848`", " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{"0.0016563740079365075`", " ", 
+                 SuperscriptBox["u", "2"], " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{"0.0013519593253968254`", " ", 
+                 SuperscriptBox["u", "4"], " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{"0.00013430059523809523`", " ", 
+                 SuperscriptBox["u", "6"], " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"2.4226859763816547`*^-8", " ", "u"}], "+", 
+                   RowBox[{"4.3633187144005633`*^-7", " ", 
+                    SuperscriptBox["u", "3"]}], "+", 
+                   RowBox[{"8.909191702236746`*^-7", " ", 
+                    SuperscriptBox["u", "5"]}], "+", 
+                   RowBox[{"6.665725977122258`*^-7", " ", 
+                    SuperscriptBox["u", "7"]}], "+", 
+                   RowBox[{"2.0342187718297252`*^-7", " ", 
+                    SuperscriptBox["u", "9"]}], "+", 
+                   RowBox[{"2.204570902636524`*^-8", " ", 
+                    SuperscriptBox["u", "11"]}], "+", 
+                   RowBox[{"7.097019753095367`*^-10", " ", 
+                    SuperscriptBox["u", "13"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "2.4226859763816547`*^-8"}], "-", 
+                    RowBox[{"4.172054032054642`*^-7", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"8.484435070013986`*^-7", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"6.338837247294684`*^-7", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"1.9332045240106675`*^-7", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"2.094567096463546`*^-8", " ", 
+                    SuperscriptBox["u", "10"]}], "-", 
+                    RowBox[{"6.742168765440598`*^-10", " ", 
+                    SuperscriptBox["u", "12"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+                 RowBox[{"Hypergeometric2F1", "[", 
+                  RowBox[{
+                   FractionBox["7", "2"], ",", "4", ",", 
+                   FractionBox["15", "2"], ",", 
+                   RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+                RowBox[{
+                 SuperscriptBox["u", "8"], " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "5.972084221136194`*^-12"}], " ", "u"}], "-", 
+                   RowBox[{"1.0339638546267878`*^-10", " ", 
+                    SuperscriptBox["u", "3"]}], "-", 
+                   RowBox[{"1.572179859170888`*^-10", " ", 
+                    SuperscriptBox["u", "5"]}], "-", 
+                   RowBox[{"2.151267471016198`*^-10", " ", 
+                    SuperscriptBox["u", "7"]}], "-", 
+                   RowBox[{"1.3014353960596295`*^-10", " ", 
+                    SuperscriptBox["u", "9"]}], "-", 
+                   RowBox[{"1.2393197331079623`*^-11", " ", 
+                    SuperscriptBox["u", "11"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"5.972084221136194`*^-12", "+", 
+                    RowBox[{"9.868158213020285`*^-11", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                    RowBox[{"1.4109285959903355`*^-10", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                    RowBox[{"6.973119290583785`*^-11", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                    RowBox[{"1.3707355212322124`*^-11", " ", 
+                    SuperscriptBox["u", "8"]}], "+", 
+                    RowBox[{"8.531548887337421`*^-13", " ", 
+                    SuperscriptBox["u", "10"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+                 SuperscriptBox[
+                  RowBox[{"Hypergeometric2F1", "[", 
+                   RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}], "2"]}]}], ")"}]}], 
+             "+", 
+             RowBox[{
+              SuperscriptBox["u", "5"], " ", 
+              SuperscriptBox[
+               RowBox[{"Hypergeometric2F1", "[", 
+                RowBox[{
+                 FractionBox["3", "2"], ",", "2", ",", 
+                 FractionBox["7", "2"], ",", 
+                 RowBox[{"-", 
+                  SuperscriptBox["u", "2"]}]}], "]"}], "2"], " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"-", "0.00033425925925925973`"}], "-", 
+                RowBox[{"0.005013888888888888`", " ", 
+                 SuperscriptBox["u", "2"]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"7.752595124421308`*^-8", "+", 
+                   RowBox[{"1.268606474905303`*^-6", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                   RowBox[{"1.620997162378998`*^-6", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                   RowBox[{"5.302640821032747`*^-7", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                   RowBox[{"2.5170763390978234`*^-8", " ", 
+                    SuperscriptBox["u", "8"]}]}], ")"}], " ", 
+                 RowBox[{"Hypergeometric2F1", "[", 
+                  RowBox[{
+                   FractionBox["7", "2"], ",", "4", ",", 
+                   FractionBox["15", "2"], ",", 
+                   RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+                RowBox[{
+                 SuperscriptBox["u", "4"], " ", 
+                 RowBox[{"(", 
+                  RowBox[{"8.128670189879833`*^-12", "+", 
+                   RowBox[{"1.3586491603084844`*^-10", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                   RowBox[{"2.1638851827916808`*^-10", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                   RowBox[{"1.1167797493524682`*^-10", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                   RowBox[{"1.7975973505619944`*^-11", " ", 
+                    SuperscriptBox["u", "8"]}], "+", 
+                   RowBox[{"8.95812633170429`*^-13", " ", 
+                    SuperscriptBox["u", "10"]}]}], ")"}], " ", 
+                 SuperscriptBox[
+                  RowBox[{"Hypergeometric2F1", "[", 
+                   RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+                RowBox[{
+                 RowBox[{"Hypergeometric2F1", "[", 
+                  RowBox[{
+                   FractionBox["5", "2"], ",", "3", ",", 
+                   FractionBox["11", "2"], ",", 
+                   RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}], " ", 
+                 RowBox[{"(", 
+                  RowBox[{"5.512956532921818`*^-7", "+", 
+                   RowBox[{"8.741973930776015`*^-6", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                   RowBox[{"7.135340884038798`*^-6", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                   RowBox[{"7.08808697089947`*^-7", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1.2786398208680978`*^-10"}], "-", 
+                    RowBox[{"2.2019174058066174`*^-9", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"4.477896286951826`*^-9", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"3.345497436072194`*^-9", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"1.0203023876722966`*^-9", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"1.1054659675779824`*^-10", " ", 
+                    SuperscriptBox["u", "10"]}], "-", 
+                    RowBox[{"3.558366848426982`*^-12", " ", 
+                    SuperscriptBox["u", "12"]}]}], ")"}], " ", 
+                    RowBox[{"Hypergeometric2F1", "[", 
+                    RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}]}], ")"}]}]}], 
+               ")"}]}], "+", 
+             RowBox[{
+              RowBox[{"Hypergeometric2F1", "[", 
+               RowBox[{
+                FractionBox["3", "2"], ",", "2", ",", 
+                FractionBox["7", "2"], ",", 
+                RowBox[{"-", 
+                 SuperscriptBox["u", "2"]}]}], "]"}], " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "0.0037604166666666662`"}], " ", "u"}], "-", 
+                RowBox[{"0.06062847222222222`", " ", 
+                 SuperscriptBox["u", "3"]}], "-", 
+                RowBox[{"0.01979166666666667`", " ", 
+                 SuperscriptBox["u", "5"]}], "+", 
+                RowBox[{"0.0037604166666666662`", " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{"0.057659722222222216`", " ", 
+                 SuperscriptBox["u", "2"], " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{"0.01880208333333333`", " ", 
+                 SuperscriptBox["u", "4"], " ", 
+                 RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"8.721669514973958`*^-7", " ", "u"}], "+", 
+                   RowBox[{"0.000015251098016295774`", " ", 
+                    SuperscriptBox["u", "3"]}], "+", 
+                   RowBox[{"0.000024161945689808236`", " ", 
+                    SuperscriptBox["u", "5"]}], "+", 
+                   RowBox[{"0.000012670167424806096`", " ", 
+                    SuperscriptBox["u", "7"]}], "+", 
+                   RowBox[{"2.3908913278877878`*^-6", " ", 
+                    SuperscriptBox["u", "9"]}], "+", 
+                   RowBox[{"9.935827654333514`*^-8", " ", 
+                    SuperscriptBox["u", "11"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "8.721669514973958`*^-7"}], "-", 
+                    RowBox[{"0.00001456254515985046`", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"0.000022993492357658616`", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"0.000012044210282583086`", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"2.271661396035786`*^-6", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"9.439036271616837`*^-8", " ", 
+                    SuperscriptBox["u", "10"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+                 RowBox[{"Hypergeometric2F1", "[", 
+                  RowBox[{
+                   FractionBox["7", "2"], ",", "4", ",", 
+                   FractionBox["15", "2"], ",", 
+                   RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+                RowBox[{
+                 SuperscriptBox["u", "4"], " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"9.144753963614797`*^-11", " ", "u"}], "+", 
+                   RowBox[{"1.6311582445876322`*^-9", " ", 
+                    SuperscriptBox["u", "3"]}], "+", 
+                   RowBox[{"3.091692995243329`*^-9", " ", 
+                    SuperscriptBox["u", "5"]}], "+", 
+                   RowBox[{"2.1745065869656758`*^-9", " ", 
+                    SuperscriptBox["u", "7"]}], "+", 
+                   RowBox[{"3.315724733591484`*^-10", " ", 
+                    SuperscriptBox["u", "9"]}], "-", 
+                   RowBox[{"4.853692270977536`*^-9", " ", 
+                    SuperscriptBox["u", "11"]}], "-", 
+                   RowBox[{"1.6057834349857647`*^-9", " ", 
+                    SuperscriptBox["u", "13"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "9.144753963614797`*^-11"}], "-", 
+                    RowBox[{"1.558962818559094`*^-9", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"2.943864265756323`*^-9", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"2.0678341615684074`*^-9", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"6.210221079454`*^-10", " ", 
+                    SuperscriptBox["u", "8"]}], "-", 
+                    RowBox[{"7.74877927692421`*^-11", " ", 
+                    SuperscriptBox["u", "10"]}], "-", 
+                    RowBox[{"3.359297374389109`*^-12", " ", 
+                    SuperscriptBox["u", "12"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+                 SuperscriptBox[
+                  RowBox[{"Hypergeometric2F1", "[", 
+                   RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}], "2"]}], "+", 
+                RowBox[{
+                 SuperscriptBox["u", "9"], " ", 
+                 SuperscriptBox[
+                  RowBox[{"Hypergeometric2F1", "[", 
+                   RowBox[{
+                    FractionBox["5", "2"], ",", "3", ",", 
+                    FractionBox["11", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}], "2"], " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"-", "3.600298143948941`*^-8"}], "-", 
+                   RowBox[{"5.520457154055038`*^-7", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                   RowBox[{"1.8001490719744684`*^-7", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"8.350300870975327`*^-12", "+", 
+                    RowBox[{"1.394247206032546`*^-10", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                    RowBox[{"2.2014429568934935`*^-10", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                    RowBox[{"1.1531367869442106`*^-10", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                    RowBox[{"2.174934065239603`*^-11", " ", 
+                    SuperscriptBox["u", "8"]}], "+", 
+                    RowBox[{"9.037122154735193`*^-13", " ", 
+                    SuperscriptBox["u", "10"]}]}], ")"}], " ", 
+                    RowBox[{"Hypergeometric2F1", "[", 
+                    RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}]}], ")"}]}], "+", 
+                RowBox[{
+                 RowBox[{"Hypergeometric2F1", "[", 
+                  RowBox[{
+                   FractionBox["5", "2"], ",", "3", ",", 
+                   FractionBox["11", "2"], ",", 
+                   RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}], " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"6.202076099537036`*^-6", " ", "u"}], "+", 
+                   RowBox[{"0.0001053109412891314`", " ", 
+                    SuperscriptBox["u", "3"]}], "+", 
+                   RowBox[{"0.00011888400607638889`", " ", 
+                    SuperscriptBox["u", "5"]}], "+", 
+                   RowBox[{"0.000036550280051256606`", " ", 
+                    SuperscriptBox["u", "7"]}], "+", 
+                   RowBox[{"2.797929067460317`*^-6", " ", 
+                    SuperscriptBox["u", "9"]}], "-", 
+                   RowBox[{"6.202076099537036`*^-6", " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                   RowBox[{"0.00010041456542107584`", " ", 
+                    SuperscriptBox["u", "2"], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                   RowBox[{"0.00011305498718584654`", " ", 
+                    SuperscriptBox["u", "4"], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                   RowBox[{"0.000034731626157407394`", " ", 
+                    SuperscriptBox["u", "6"], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}], "-", 
+                   RowBox[{"2.658032614087301`*^-6", " ", 
+                    SuperscriptBox["u", "8"], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.4384697984766076`*^-9"}], " ", "u"}], "-", 
+                    RowBox[{"2.638669479957888`*^-8", " ", 
+                    SuperscriptBox["u", "3"]}], "-", 
+                    RowBox[{"6.153406068761513`*^-8", " ", 
+                    SuperscriptBox["u", "5"]}], "-", 
+                    RowBox[{"5.721052323317363`*^-8", " ", 
+                    SuperscriptBox["u", "7"]}], "-", 
+                    RowBox[{"2.5270756620793458`*^-8", " ", 
+                    SuperscriptBox["u", "9"]}], "-", 
+                    RowBox[{"5.335021959353433`*^-9", " ", 
+                    SuperscriptBox["u", "11"]}], "-", 
+                    RowBox[{"4.784598792641491`*^-10", " ", 
+                    SuperscriptBox["u", "13"]}], "-", 
+                    RowBox[{"1.4046184928001247`*^-11", " ", 
+                    SuperscriptBox["u", "15"]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"1.4384697984766076`*^-9", "+", 
+                    RowBox[{"2.525106074814998`*^-8", " ", 
+                    SuperscriptBox["u", "2"]}], "+", 
+                    RowBox[{"5.863352349998286`*^-8", " ", 
+                    SuperscriptBox["u", "4"]}], "+", 
+                    RowBox[{"5.4428957231881536`*^-8", " ", 
+                    SuperscriptBox["u", "6"]}], "+", 
+                    RowBox[{"2.402401724658407`*^-8", " ", 
+                    SuperscriptBox["u", "8"]}], "+", 
+                    RowBox[{"5.069783167296343`*^-9", " ", 
+                    SuperscriptBox["u", "10"]}], "+", 
+                    RowBox[{"4.54581364886547`*^-10", " ", 
+                    SuperscriptBox["u", "12"]}], "+", 
+                    RowBox[{"1.3343875681601184`*^-11", " ", 
+                    SuperscriptBox["u", "14"]}]}], ")"}], " ", 
+                    RowBox[{"ArcTan", "[", "u", "]"}]}]}], ")"}], " ", 
+                    RowBox[{"Hypergeometric2F1", "[", 
+                    RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}]}], "+", 
+                   RowBox[{
+                    SuperscriptBox["u", "13"], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "5.308519307676622`*^-13"}], "-", 
+                    RowBox[{"8.594745545762143`*^-12", " ", 
+                    SuperscriptBox["u", "2"]}], "-", 
+                    RowBox[{"9.676672337993377`*^-12", " ", 
+                    SuperscriptBox["u", "4"]}], "-", 
+                    RowBox[{"2.9727708122989056`*^-12", " ", 
+                    SuperscriptBox["u", "6"]}], "-", 
+                    RowBox[{"2.2750797032899787`*^-13", " ", 
+                    SuperscriptBox["u", "8"]}]}], ")"}], " ", 
+                    SuperscriptBox[
+                    RowBox[{"Hypergeometric2F1", "[", 
+                    RowBox[{
+                    FractionBox["7", "2"], ",", "4", ",", 
+                    FractionBox["15", "2"], ",", 
+                    RowBox[{"-", 
+                    SuperscriptBox["u", "2"]}]}], "]"}], "2"]}]}], ")"}]}]}], 
+               ")"}]}]}], ")"}]}], ")"}]}], ")"}], 
+       RowBox[{"Sin", "[", 
+        RowBox[{"r", " ", "\[CapitalSigma]t", " ", "u"}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"u", ",", "0", ",", "Infinity"}], "}"}], ",", 
+      RowBox[{"Method", "\[Rule]", "\"\<LevinRule\>\""}]}], 
+     "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.786591406134039*^9, 3.786591455664904*^9}, {
+   3.786591814546232*^9, 3.786591824066506*^9}, 3.786592127628091*^9, {
+   3.786592340139099*^9, 3.7865923497776337`*^9}, {3.786592405303031*^9, 
+   3.786592416209463*^9}, 3.786593615032392*^9, {3.786595955763619*^9, 
+   3.7865959620260878`*^9}, 3.786596193211255*^9},
+ CellLabel->
+  "In[4649]:=",ExpressionUUID->"c286266b-653e-4485-94e7-372cbef0ed75"]
 }, Open  ]]
 }, Open  ]],
 
@@ -2549,7 +4737,7 @@ Cell[BoxData[
    3.677634993533287*^9}, 3.786291618881989*^9, {3.7863143053317537`*^9, 
    3.7863143077750483`*^9}},
  CellLabel->
-  "In[4221]:=",ExpressionUUID->"d40d6d2a-f300-40cb-a795-3566f27a9f1b"],
+  "In[4650]:=",ExpressionUUID->"d40d6d2a-f300-40cb-a795-3566f27a9f1b"],
 
 Cell[BoxData[
  RowBox[{
@@ -2582,7 +4770,7 @@ Cell[BoxData[
    3.650061175369117*^9, 3.6500611770751762`*^9}, 3.6776349935423813`*^9, 
    3.67769687034093*^9, 3.7862916220491657`*^9},
  CellLabel->
-  "In[4222]:=",ExpressionUUID->"bbf9aa55-9f8a-491d-953a-205a1895b7d1"],
+  "In[4651]:=",ExpressionUUID->"bbf9aa55-9f8a-491d-953a-205a1895b7d1"],
 
 Cell[BoxData[
  RowBox[{
@@ -2596,7 +4784,7 @@ isotropicpoint_LSscatter*\>\"", "]"}]}], ";"}]], "Input",
    3.786245259770894*^9}, 3.786291624399591*^9, {3.786406170216544*^9, 
    3.786406182940407*^9}, {3.786582957915954*^9, 3.786582961313518*^9}},
  CellLabel->
-  "In[4223]:=",ExpressionUUID->"ac382d93-c5e4-47fa-810c-c583161b623d"],
+  "In[4652]:=",ExpressionUUID->"ac382d93-c5e4-47fa-810c-c583161b623d"],
 
 Cell[CellGroupData[{
 
@@ -2641,7 +4829,7 @@ Cell[BoxData[{
    3.677634993555244*^9, 3.677634993574909*^9}, {3.786291627306572*^9, 
    3.7862916409040623`*^9}, {3.786304812038371*^9, 3.786304812252084*^9}},
  CellLabel->
-  "In[4224]:=",ExpressionUUID->"35855fc5-d4eb-47b7-a3a9-e0f5fbfe476a"],
+  "In[4653]:=",ExpressionUUID->"35855fc5-d4eb-47b7-a3a9-e0f5fbfe476a"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -2658,9 +4846,9 @@ Cell[BoxData[
    3.680433012505762*^9, 3.786213849179082*^9, 3.786245266668948*^9, 
    3.786291673131493*^9, 3.7862931687068977`*^9, 3.786304814682735*^9, 
    3.786319303089954*^9, 3.786406188121819*^9, 3.786567920819906*^9, 
-   3.786582966143401*^9},
+   3.786582966143401*^9, 3.786596216902861*^9},
  CellLabel->
-  "Out[4226]=",ExpressionUUID->"e4cbfd26-5882-4270-b215-80b203015338"]
+  "Out[4655]=",ExpressionUUID->"3de0476c-9faa-464a-b5c4-edeedeb558f3"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2677,7 +4865,7 @@ Cell[BoxData[
   3.677634993581637*^9, 3.6776349935856857`*^9}, {3.78624527103545*^9, 
   3.7862452716509323`*^9}, {3.786291643630517*^9, 3.786291646354698*^9}},
  CellLabel->
-  "In[4227]:=",ExpressionUUID->"69e6fe8f-cd2d-4b6e-8f9e-dd6235196978"],
+  "In[4656]:=",ExpressionUUID->"69e6fe8f-cd2d-4b6e-8f9e-dd6235196978"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -2691,9 +4879,9 @@ Cell[BoxData[
    3.680433012525682*^9, 3.786213849187841*^9, {3.78624526676204*^9, 
    3.786245273027358*^9}, 3.786291673201789*^9, 3.786293168768718*^9, 
    3.786319303167811*^9, 3.786406188264803*^9, 3.786567920920837*^9, 
-   3.786582966246388*^9},
+   3.786582966246388*^9, 3.78659621702419*^9},
  CellLabel->
-  "Out[4227]=",ExpressionUUID->"4b9d61df-eed9-48cf-b762-c9d1a6aadcd8"]
+  "Out[4656]=",ExpressionUUID->"a4ba7fa2-55c4-4205-9888-ebc9f7a9555f"]
 }, Open  ]],
 
 Cell[BoxData[{
@@ -2734,7 +4922,7 @@ Cell[BoxData[{
   3.652044399500836*^9}, {3.677634993592737*^9, 3.677634993627224*^9}, {
   3.786291649547029*^9, 3.786291669427231*^9}},
  CellLabel->
-  "In[4228]:=",ExpressionUUID->"b6d5c2dd-2df2-4e0b-a3ce-3ed83f065de8"]
+  "In[4657]:=",ExpressionUUID->"b6d5c2dd-2df2-4e0b-a3ce-3ed83f065de8"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2743,6 +4931,997 @@ Cell["Compare MC and deterministic", "Section",
  CellChangeTimes->{{3.786406139677245*^9, 
   3.786406143683948*^9}},ExpressionUUID->"c547fc48-134f-47cb-8d28-\
 1dbeb64a0f83"],
+
+Cell[CellGroupData[{
+
+Cell["Fluence - Exact solution comparison to MC", "Subsection",
+ CellChangeTimes->{{3.649259702897419*^9, 3.64925971462465*^9}, {
+  3.649893943340941*^9, 3.649893948401101*^9}, {3.650003121496348*^9, 
+  3.650003125748569*^9}, {3.67763541090819*^9, 3.67763541224439*^9}, {
+  3.6777330731603403`*^9, 
+  3.677733073576435*^9}},ExpressionUUID->"c10cf3c8-73d2-4935-a0e6-\
+805aa6786a1f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"ActionMenu", "[", 
+      RowBox[{"\"\<Set c\>\"", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"\"\<c = \>\"", "<>", 
+           RowBox[{"ToString", "[", "#", "]"}]}], "\[RuleDelayed]", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"c", "=", "#"}], ";"}], ")"}]}], "&"}], "/@", "cs"}]}], 
+      "]"}], ",", 
+     RowBox[{"Dynamic", "[", "c", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"ActionMenu", "[", 
+      RowBox[{"\"\<Set mfp\>\"", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"\"\<mfp = \>\"", "<>", 
+           RowBox[{"ToString", "[", "#", "]"}]}], "\[RuleDelayed]", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"mfp", "=", "#"}], ";"}], ")"}]}], "&"}], "/@", 
+        "mfps"}]}], "]"}], ",", 
+     RowBox[{"Dynamic", "[", "mfp", "]"}]}], "}"}]}], "}"}]], "Input",
+ CellChangeTimes->{{3.7863047842087173`*^9, 3.7863048611216803`*^9}, {
+   3.786304963534321*^9, 3.786304966020904*^9}, 3.786305069701693*^9, {
+   3.786305103866951*^9, 3.786305167570434*^9}, {3.786375424724613*^9, 
+   3.7863754367554827`*^9}, 3.786592025142064*^9},
+ CellLabel->
+  "In[4670]:=",ExpressionUUID->"3a969acb-b253-4159-846d-afda655f6e79"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     ActionMenuBox["\<\"Set c\"\>", {"\<\"c = 0.01\"\>":>($CellContext`c = 
+       0.01; Null), "\<\"c = 0.1\"\>":>($CellContext`c = 0.1; 
+      Null), "\<\"c = 0.3\"\>":>($CellContext`c = 0.3; 
+      Null), "\<\"c = 0.5\"\>":>($CellContext`c = 0.5; 
+      Null), "\<\"c = 0.7\"\>":>($CellContext`c = 0.7; 
+      Null), "\<\"c = 0.8\"\>":>($CellContext`c = 0.8; 
+      Null), "\<\"c = 0.9\"\>":>($CellContext`c = 0.9; 
+      Null), "\<\"c = 0.95\"\>":>($CellContext`c = 0.95; 
+      Null), "\<\"c = 0.99\"\>":>($CellContext`c = 0.99; 
+      Null), "\<\"c = 0.999\"\>":>($CellContext`c = 0.999; Null)}], ",", 
+     DynamicBox[ToBoxes[$CellContext`c, StandardForm],
+      ImageSizeCache->{31., {1., 9.}}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     ActionMenuBox["\<\"Set mfp\"\>", {"\<\"mfp = 0.3\"\>":>(
+      inf3DisopointLambertSpherescatter`mfp = 0.3; Null), "\<\"mfp = 1\"\>":>(
+      inf3DisopointLambertSpherescatter`mfp = 1; Null)}], ",", 
+     DynamicBox[ToBoxes[inf3DisopointLambertSpherescatter`mfp, StandardForm],
+      ImageSizeCache->{8., {0., 9.}}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.786304816662303*^9, 3.786304861426643*^9}, 
+   3.7863050699145308`*^9, 3.786305108259633*^9, {3.786305144696945*^9, 
+   3.7863051680399*^9}, 3.786315425383231*^9, 3.786317836902219*^9, {
+   3.786317875870419*^9, 3.786317880527614*^9}, 3.786375436981453*^9, 
+   3.7863754854945097`*^9, 3.786386862306595*^9, 3.78639071116691*^9, 
+   3.786592025597628*^9, {3.786596262456168*^9, 3.786596275479377*^9}},
+ CellLabel->
+  "Out[4670]=",ExpressionUUID->"1827ce1b-7db5-48ff-accc-92bb3e1fb1a8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{
+    RowBox[{"SelectFirst", "[", 
+     RowBox[{"simulations", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "c"}], "&&", 
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", "mfp"}]}], "&"}]}], 
+     "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"-", "1"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"maxr", "=", 
+   RowBox[{"data", "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "5"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dr", "=", 
+   RowBox[{"data", "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "7"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pointsFluence", "=", 
+   RowBox[{"ppoints", "[", 
+    RowBox[{
+     RowBox[{"data", "[", 
+      RowBox[{"[", "6", "]"}], "]"}], ",", "dr", ",", "maxr"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"exact1FluenceShallow", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Quiet", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"4", " ", "Pi", " ", 
+         SuperscriptBox[
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "2"], " ", 
+         RowBox[{"\[Phi]exactTruncatedFourierOrder7", "[", 
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", 
+           RowBox[{"1", "/", "mfp"}], ",", "c"}], "]"}]}]}], "}"}], "]"}], 
+     "&"}], " ", "/@", 
+    RowBox[{"pointsFluence", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ";;", "60"}], "]"}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"exact1Fluence", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Quiet", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"4", " ", "Pi", " ", 
+         SuperscriptBox[
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "2"], " ", 
+         RowBox[{"\[Phi]exactTruncatedFourierOrder7", "[", 
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", 
+           RowBox[{"1", "/", "mfp"}], ",", "c"}], "]"}]}]}], "}"}], "]"}], 
+     "&"}], " ", "/@", 
+    RowBox[{"pointsFluence", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ";;", 
+       RowBox[{"-", "1"}], ";;", "10"}], "]"}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"plot\[Phi]shallow", "=", 
+   RowBox[{"Quiet", "[", 
+    RowBox[{"Show", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"ListPlot", "[", 
+       RowBox[{
+        RowBox[{"pointsFluence", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ";;", "60"}], "]"}], "]"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ListPlot", "[", 
+       RowBox[{"exact1FluenceShallow", ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+        RowBox[{"Joined", "\[Rule]", "True"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"FrameLabel", "->", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"4", " ", "Pi", " ", 
+            SuperscriptBox["r", "2"], " ", 
+            RowBox[{"\[Phi]", "[", "r", "]"}]}], ","}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]", 
+     "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"logplot\[Phi]", "=", 
+   RowBox[{"Quiet", "[", 
+    RowBox[{"Show", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"ListLogPlot", "[", 
+       RowBox[{"pointsFluence", ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"PointSize", "[", ".01", "]"}]}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ListLogPlot", "[", 
+       RowBox[{"exact1Fluence", ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+        RowBox[{"Joined", "\[Rule]", "True"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"FrameLabel", "->", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"4", " ", "Pi", " ", 
+            SuperscriptBox["r", "2"], " ", 
+            RowBox[{"\[Phi]", "[", "r", "]"}]}], ","}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ","}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]", 
+     "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"GraphicsGrid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{"plot\[Phi]shallow", ",", "logplot\[Phi]"}], "}"}], "}"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "800"}]}], "]"}], ",", 
+   RowBox[{"PlotLabel", "->", 
+    RowBox[{
+    "\"\<Exact solution\\nInfinite 3D, isotropic point source, Lambert-Sphere \
+scattering, fluence \[Phi][r], c = \>\"", "<>", 
+     RowBox[{"ToString", "[", "c", "]"}], "<>", 
+     "\"\<, \!\(\*SubscriptBox[\(\[CapitalSigma]\), \(t\)]\) = \>\"", "<>", 
+     RowBox[{"ToString", "[", 
+      RowBox[{"1", "/", "mfp"}], "]"}]}]}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{
+  3.7863142340954723`*^9, {3.786314276303994*^9, 3.7863143664263144`*^9}, {
+   3.7863144153842487`*^9, 3.7863144216822023`*^9}, {3.7863144543493853`*^9, 
+   3.786314459273158*^9}, {3.786314639829359*^9, 3.786314649565798*^9}, {
+   3.78631475576293*^9, 3.786314815590746*^9}, 3.786314868154546*^9, {
+   3.7863907557901297`*^9, 3.78639078013855*^9}, {3.786390814485157*^9, 
+   3.7863908321983967`*^9}, {3.7863909109949093`*^9, 3.786390923941827*^9}, {
+   3.786391106329418*^9, 3.786391107313718*^9}, 3.786592019031204*^9, {
+   3.7865920606469803`*^9, 3.786592068236442*^9}, {3.786593632972064*^9, 
+   3.786593634725463*^9}, {3.786596252162541*^9, 3.78659625346434*^9}, {
+   3.786596451726222*^9, 3.7865964574199457`*^9}},
+ CellLabel->
+  "In[4680]:=",ExpressionUUID->"02fa5b21-5eb1-4ad8-930c-a23def3ff382"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {InsetBox[
+     GraphicsBox[{{{}, {
+         {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.01], 
+          AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJwB0QMu/CFib1JlAgAAADwAAAACAAAA9HAC02ndsD8AdJgvL8DyP26pg7we
+TMk/ukkMAisH+D8xDcNHxBTVP3CxogbTsPw/q0VEMXmD3T+fPCzUmmYAQBK/
+Yg0X+eI/fSJPkq5ZAkBQWyOCcTDnP4GyKVd41wNAjPfj9stn6z+utmJ/2T0F
+QMqTpGsmn+8/7fXuj/dqBkADmDJwQOvxP2L4iJgSSQdAIuaSqu0G9D8u51Jc
+VTYIQEE08+SaIvY/MCqpE9DECEBfglMfSD74PzI9YYkHVAlAfdCzWfVZ+j8V
+HcnlP6QJQJweFJSidfw/JTs2AvH6CUC7bHTOT5H+P5WCbi9pDApAbF1qhH5W
+AEBG66hqgigKQHuEmiFVZAFA9Bq7RPUWCkCKq8q+K3ICQHeE04IX/QlAmtL6
+WwKAA0BUdCSX/9AJQKn5KvnYjQRAoDcVqTB2CUC4IFuWr5sFQMbctYR8UAlA
+yEeLM4apBkDxun7BbtgIQNduu9BctwdA+tAF9S1zCEDmlettM8UIQGuad5yi
+IwhA9bwbCwrTCUDWVuwvu6cHQATkS6jg4ApAvVKWIY41B0AUC3xFt+4LQEAY
+eO49nAZAIzKs4o38DEBRZoNMMjIGQDJZ3H9kCg5ANNdppKWyBUBCgAwdOxgP
+QKzijcwj/wRAqFMe3QgTEEAw9fOmIpUEQDBntiv0mRBAujE9YYkHBEC4ek56
+3yARQChEwCFUaQNAP47myMqnEUB1djI4St4CQMehfhe2LhJAkzXqIRpdAkBO
+tRZmobUSQOP8TShEwAFA1siutIw8E0CYTBWMSioBQF7cRgN4wxNAMIFbd/OU
+AEDl795RY0oUQLjkuFM6GABAbQN3oE7RFEDfFcH/VjL/P/UWD+85WBVARl9B
+mrHo/T98Kqc9Jd8VQEZCW86luPw/BD4/jBBmFkBATS1b6wv8P4xR19r77BZA
+jSjtDb6w+j8TZW8p53MXQGdhTzv8tfk/m3gHeNL6F0CGPe3w1+T4PyKMn8a9
+gRhAqaROQBPh9z+qnzcVqQgZQJ7qkJvhBvc/MrPPY5SPGUCIgEOoUjP2P7nG
+Z7J/FhpAl631RUJb9T9B2v8Aa50aQLNBJhk5i/Q/yO2XT1YkG0ASg8DKocXz
+P1ABMJ5BqxtANh/Xhorx8j/YFMjsLDIcQNIdxM4UOvI/XyhgOxi5HECP5PIf
+0m/xP+c7+IkDQB1AD2JnCp3X8D9vT5DY7sYdQIz4Tsx6MfA/9mIoJ9pNHkBv
+9Zz0vvHuP352wHXF1B5AyVnY0w5/7T8GiljEsFsfQDvGFRdHZew/jKiosQ==
+
+           "]]}, {
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.01], 
+           AbsoluteThickness[1.6]}, {}}, {
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.01], 
+           AbsoluteThickness[1.6]}, {}}}, {{}, {}}}, {{}, {{{}, {}, 
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+           0.011000000000000001`], AbsoluteThickness[1.6], 
+           LineBox[CompressedData["
+1:eJwB0QMu/CFib1JlAgAAADwAAAACAAAA9HAC02ndsD867837w93yP26pg7we
+TMk/wK42KeMh+D8xDcNHxBTVP83SLmSK0fw/q0VEMXmD3T/tQzL8R3sAQBK/
+Yg0X+eI/scsfBA1NAkBQWyOCcTDnP8Kn7QWE4gNAjPfj9stn6z8du5er/T8F
+QMqTpGsmn+8/ByzdcadpBkADmDJwQOvxP5b2mKiGYwdAIuaSqu0G9D8gKn9T
+dDEIQEE08+SaIvY/CU4KQBrXCEBfglMfSD74P4/HCEDxVwlAfdCzWfVZ+j9b
+b7pbQLcJQJweFJSidfw/tvqyyxz4CUC7bHTOT5H+P3g9+49qHQpAbF1qhH5W
+AECTZ91/3SkKQHuEmiFVZAFAHpAPtPofCkCKq8q+K3ICQAQ9JzMaAgpAmtL6
+WwKAA0AuHyDMaNIJQKn5KvnYjQRAc7xwD+qSCUC4IFuWr5sFQNNp7Fl6RQlA
+yEeLM4apBkCJDZDn0OsIQNduu9BctwdAa0hS5oGHCEDmlettM8UIQEYV4YIA
+GghA9bwbCwrTCUCx8avqoKQHQATkS6jg4ApAFMObP5ooB0AUC3xFt+4LQFTr
+8XoIpwZAIzKs4o38DEAn9U097iAGQDJZ3H9kCg5AY/roijaXBUBCgAwdOxgP
+QOxw23K2CgVAqFMe3QgTEEDF3EehLnwEQDBntiv0mRBALS9Z3EzsA0C4ek56
+3yARQAF3TGytWwNAP47myMqnEUAKA6Ru3MoCQMehfhe2LhJAVQJKFVc6AkBO
+tRZmobUSQE5RKNKMqgFA1siutIw8E0Dtl+lv4BsBQF7cRgN4wxNAdImCGKmO
+AEDl795RY0oUQMR5tEozAwBAbQN3oE7RFEAGNJV9g/P+P/UWD+85WBVA4cCu
+dxzl/T98Kqc9Jd8VQFEYFbyU2/w/BD4/jBBmFkBKSv2dQNf7P4xR19r77BZA
+qxeI4WbY+j8TZW8p53MXQKsH9/hB3/k/m3gHeNL6F0AyXEkqAez4PyKMn8a9
+gRhAn1Pqnsn+9z+qnzcVqQgZQExCr163F/c/MrPPY5SPGUCo/YA33jb2P7nG
+Z7J/FhpAI6vzkkpc9T9B2v8Aa50aQCoy9ToCiPQ/yO2XT1YkG0Db0dgOBbrz
+P1ABMJ5BqxtAneyEqU3y8j/YFMjsLDIcQGMeL/rRMPI/XyhgOxi5HECDejjQ
+g3XxP+c7+IkDQB1AcSFcW1HA8D9vT5DY7sYdQO7c0aAlEfA/9mIoJ9pNHkCr
+gqHM0c/uP352wHXF1B5A1G2cJwKJ7T8GiljEsFsfQHceLhikTew/kJmqtg==
+
+            "]]}}, 
+         {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+          0.011000000000000001`], AbsoluteThickness[1.6]}, {
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+           0.011000000000000001`], AbsoluteThickness[1.6]}, {}}, {
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+           0.011000000000000001`], AbsoluteThickness[1.6]}, {}}}, {{}, {}}}},
+      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+      Axes->{True, True},
+      AxesLabel->{None, None},
+      AxesOrigin->{0, 0},
+      DisplayFunction->Identity,
+      Frame->True,
+      FrameLabel->{{
+         FormBox[
+          RowBox[{"4", " ", "\[Pi]", " ", 
+            SuperscriptBox["r", "2"], " ", 
+            RowBox[{"\[Phi]", "(", "r", ")"}]}], TraditionalForm], ""}, {
+         FormBox["r", TraditionalForm], ""}},
+      FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+      GridLines->{None, None},
+      GridLinesStyle->Directive[
+        GrayLevel[0.5, 0.4]],
+      ImagePadding->{{50., 24.000000000000057`}, {36., 18.999999999999986`}},
+      Method->{
+       "OptimizePlotMarkers" -> True, 
+        "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+            (Identity[#]& )[
+             Part[#, 1]], 
+            (Identity[#]& )[
+             Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+            (Identity[#]& )[
+             Part[#, 1]], 
+            (Identity[#]& )[
+             Part[#, 2]]}& )}},
+      PlotRange->{{0, 7.839541500000001}, {0, 3.26978}},
+      PlotRangeClipping->True,
+      PlotRangePadding->{{
+         Scaled[0.02], 
+         Scaled[0.02]}, {
+         Scaled[0.02], 
+         Scaled[0.05]}},
+      Ticks->{Automatic, Automatic}], {192., -116.80842387373012}, 
+     ImageScaled[{0.5, 0.5}], {360., 222.49223594996212}], InsetBox[
+     GraphicsBox[{{{}, {
+         {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.01], 
+          AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJxFl3c81e/7xzn2dux5cIzsHHu/L5SRrUiZkfwiRVJKoTLyCfGhdexRkYiK
+KHnfpWFVSlmRlZ2ZkVF+n+8/zl/vx+vxfF3X+3Vdf9z345bxO+ESQKCjo+Oh
+p6P733cplNBxtL8Sqwq5/k+Iw2vseOnlepJdMzZQ4x1iytyLUbgarV4LfMUK
+Cxyd6SuHsbLduyhnL/djZe3UUwu/xzA+3I9LeG0YU0lN5eVIn8KcPGQvhWmM
+Y6SR8C/yxBkseXVkpTVwGjPyZPh6F5vDWjKKgxXy5jCWTte/mefnMYZbmqEw
+vYBFnbZ+KCGygJHH/r0/w7yE1ZNn89afLmBm2r9+UMkr2JXqTWGi4CLmc2mv
+lLXpb4yc2mKYErqIXWh/fGD5wDrWfz0rY6pwEcsmCWQWRmxiK/ZjpJLuRez5
+sVMfHNP/YqIiBjVHRhaxY15BcdFudDDy2rc1b2kRi4qjyrgepofoLOGxgclF
+7J+ylgaVkwRwCSSLbPQsYtTP6x6EWAZg9s2/3NCwiJWuKa91pzBCuq0uP3/C
+IlYr7XHjYRYTOP2sEHM6vog1WV3VSihlBo2DT6i1MotY1/Hn7Z5PWaDj20jb
+n4EFbOz6dIjWG1bQOJ17l1q2gC3Xi3Owd7BBgwxnebH7Asb4w7ZkcJAd4pML
+v5WzL2ACHOd3P53lgOFNtpLbefOYrOaD4ZRNTvhrK1fdt3ce0zzQF3OYnRvu
+saS0v5iZw8xjOSWNRHigQejWq4LBWaxkL6mflZ8XWmKusJ02mcU0AmtUlm7z
+QolgS7m99wxWe87h3IA0EXoi+kuuef3EsNSxppZ7RKAreiYrFDGNvSuIFq5R
+54O+unvu9DenMIdqoSMF1XygOxoaz3FxEutsqniSbMwPMn3r7FLHJzDvPkuG
+yEZ+EKtapRt0GcdG5747++8RgK29UeIZ3mNYCMOZfIdPAvAqxbV7zWsUWxbi
+mTNwFwTh7z/57jP+wM4r3zORHxCEjveXp+pqhzFGUyyZ94gQbDoX128sD2HJ
+zl29Gz+FwAKTzPntM4jxB5xQGg8Xhmnt/vADHt+xrEiWyM/rwvCWvrjYbk8f
+Rk7Oe/viogg8cRaxOZPfg93P0xMsZRWFxfrg1XW7Lkzz8Uf/zGuiIENq01Zd
++YLVvQ18FCMkBitmCcEKUZ8xs94tuuAcMWDqJ+WKbH3EmmZuOrrJiYMLU4/v
+LpFWzIleI9esTBzGp+Z5inLeYN0CTT9VNSUg9+PknaVyhPko+hqJ1EnANzW7
+HU8ZarBxo99JDCAJdm+3WpR23cdOOKZ1z76VhGq/Kx7hN69gK36KO3rtSSCp
+s+/TlmoBHn0aRbz5QgJib9wh029PcOZ/3F9XekjBx6t9Xvk3G/DUnHm+7GEp
+eGDpzM2s+Ab/H27UlgYSVdLS6HkL7uDH624QKQ1hC5wR96Ed5zvmuVXxXBqa
+319kD9r/Ge+MKLkrtyUNPD0Kxg2dX3BqzJI91VwGzvK3Bqoe7Ma9kmCZJ0EG
+LIsNlhy+9+IyGcnZ8c0yQOrYPdh2uB8fze622OAkQ6Fe1rmQ3YN46V256VAn
+MuiOO7W6rw7hIZWh/45lkEGuOYMtKnME13hWb+DZRQamOBsZm+If+FIj69An
+MVmotzG+RV0YxWvf77ti5S0Lrm5jM4Sicfx8V/7OFwWyoKEiQhwwnsRh6Gen
+5qgsRMdO0NclTuGM0/rRJYpy8Gx3aOwsw0/83VKcPOmYHISYCqvbR8/gV/+2
+t2U8lIOYEe/3P5TncEdWyVNsv+QgtLNG8bHFPM7Pd1Q8Rlce6okdjw4zLeBd
+4tWvls7Kg3DllTcDvxZwqjx9UNALeSgguVkeOreIe++0Jw7SKYB8e0bUtb2/
+cLLB7VrXXQpwBWVTA2WX8DHzUZ/WRAUQPXLK597YEn7fjsJi1qoA3xYCHa5l
+L+PH3S5U1HDvAGfdH4r7TqzgFN9mV1WXHSCpISftsbSCLx8V/FNwfQcc3LhQ
+OvpyFa8LP1Qs3LMDTMuaXUacfuMXLpTbpkgowt7xe1adB9dws8S1RYKvIhSE
+XPJ93rOGM6bvpkYWKYJfqRD5+o11vImabjY7pgjH6rmIFt4beHJx/4S/shIM
+NDadc/XaxJ0qlNJ6QpTgMTZv9N7+Dy5QG6HnWKUEruOrGHnxD9718uX310tK
+8NakalySewvPauVKMNRXhr40pzsucVu4z9cDapVRyiDe3enbeYAOyQ7c+SKP
+K8P+9g6jx1Q6ND6xEJVFUAGW4J/5bur06P6iiSzRUgXY8qsc9DTo0fHNpJaE
+JBXwDk8Jt5mnR5rMnWGbbSrAeYdI8MYIaIWHLHqSVxUovysOeg4R0DPR42h8
+ryq0MXTdU+omoGjZZ4FeN1VBvOOI/4ojAzJTY+bp6FUFwYymy3sGGRCTnkuN
+NUkN1vuNa2asGFEz5Ho1HFKDsY0i4f9LZ0Qpe6YYte+ogUWxUR25nhE579N9
+UDqhBqmHcJtZTSYk4P3fhaOqDkbYjoreQSbUHfhhPfOEOjz0yFt55cWMssPE
+Ctkfq0N93HLZ8D1m5Bt1xCZ2RR3UX3JH3uZjQXLxj+aXDXYCc7P1MCWFBU2k
+/r0ZfGEnPN9fe4JcyoLKbu3BhtBOoAzFzPL5syJ9Z9twFYIGHPp0fDg0kRWJ
+ui1YjslqQNZWc+i6ChvaOHhTrGC3BuT/dhHeF86G+n1MZj0CNSByJkC+BNgR
+fnjkpVCSBhRLX5BiyWZHBUeTrn+6rwEi66Y7LvxhR5eP7zya3KYBis/O9Xir
+cKCA8K/GVrMaQDEsH/hJ5UBWkVG8BF4KWB6ZrHxgzYmULsj8qKdQwHzghWaD
+DSfiuPTu6Zm9FKB7fqio5zknmkkIuaoZQYHqjLUocQoX+nCV32fmBgVsj7W9
+aTLmRpVpdZoltRQ4Z57WUenCjf697sPs30sBm37tD+cfcaNTVKZeyU0KTNee
+tlUd4kZueWXl3ZKaMJK0cYgnkQfpFztfzMA04d0BkvrDYR4kVrq6z+GQJthL
+WwtFxvOgzfIcRbbLmjDVnqQlms2Lvj+y2Gws1oSjyZEvtCi8CD2d/Bj9VhOs
+/IS6Jap5UUH9tSKDCU34tRHKZkYkossvdc4ssWkBdXH/31Z9Igp4+23PQxUt
++LB3xNHCmIisWi+Sguy1wCfDkZrkQ0RK7TsW5U5oQVrF7Np8IBFxfH3/ZiBN
+C1b7dluyJxHRTE/4beojLTCx7RmwcuZDH7+Lhrh+0YKc3Zf/b18uH6oawYF3
+RQs4giN1n1nyoYyJAIFWYW1g2pQnBB7kQxEzHBPxBtpwqDBRq/4aH3JbrHoO
+HtrQ8uCVuwEvP9Jf3X9t47w2iBZzBGdY8iOxzT9+NbnaQLTQvtUdwY826Yp1
+w5A2SPBWmgxl86PvTHvYVYe1odayKuDpHD9C7PP9Yww68FSoO37XEj8q5LlR
+VSCvAxLZDv5HMgVQnIBxvKeVDjDn3DO+HSSAjogOuwsf1QECYYak2iqArElX
+VD//owN8jodvMxIFkbKsOl3KAx3wfHzpPJEgiDgUv3RYfdCBOuf2gIBCQTSj
+eu4eYV4HjN63K5vHCqKPFOmoF0RdSMdXxR9GCKEq3bcOkVq6IEe6W7V8Vghl
+GB0ja7nqgl/RXdc6CyEUAXwrM6d1odXOaulvhhDav7u2ueQWzW+wxzvH/5ku
+xG1C1TdMGIk7MoaR+nQhaGXdJPuaEPqz9/6unj+6kJo7+nitQBgNuDuJZErp
+QYWXo+7Og8IIea1MO5jpAeFcbv+tG8Ko0C8bZ/PXA9vJXa8UWUVQXKB5xus4
+Gj9ybOJIzF09iKwgjE4NCyPrsFRDwyY9eN2m8e2TlwhSPq3NvTypB822/rfG
+E0UQZ1Tv0EMOfTD4/eVDTo4Imo2JrQ5S0weZmgZQJ4ui9jiFJHlHfaBsCjJf
+ZBNFj5LaPAdD9SHt4v7ZVU1RlJF6UiPrX31onE1xtb8qiiIyRBjdnugDYTTi
+XXqmKNp/q6GLt1MftoKvf3rhJoYMcg6Xta7qg1ByVyWSEEfihewxCaIGkKQh
+R154L4b+3K10MTMyAOqBJEubh+JooMxNYdPTAFT17vbdWBJDLys312qiDSDt
+Lt0gliaOiqoL34flG8AvldfDTRkSKP6ZdYHqKwN429MncDdPHAXis6fGR2jc
++nWmdSGT4Xa9crOhhNcOQwiKjjf2eSaJOD8MzgnbGMJUGl5uFSuBZj8nNH4O
+MoQ9hq6LK7ISqL1L9WZKsuF2v0d9n4OsKwzB9evz9+pKJJQ5FGnK0E6rPz1G
+4mtYMISjIekJBw5KIPfp16OR/EbQ62Da4ESQRobzQXVaOkbQear+vNW8JBJf
+5k2ZdTMCl9EW/7J7EujPWo1vaaQRPOh+EHsigIQG/npqH6YaQc6a6Zl+SxJ6
+ycDAKlVvBOlWl8RO5kuiItbSbz39RhCwEZKLT5JQPJfjw8wtI0jwaLer4JJC
+gXzLlxxljCE+QubbqTskZCOc5cZuYQx+Enj3QhwJqUiYKb85bLzdn0tm/E9M
+gjHUlf5W+6kphebkUz4ZlhgDJbzIPP2AFGpX1rqz3GwM4kGf1xLLpNCjnT2R
+ldPG4OmZJvD8ohTK1I6xC+YygalvJ7l4jkqj0wby0go7TaA4rDbT114auZu2
+/hp0MoF2iqOE153/9mER9i7rpAmcndKo/dUqgySs/wuYaQJsRy0Vynlk0F+7
+F8eJNbR+g87+5m1dJlDe3a1aoi+DXrmxCSWu0XSxx8NJM3FTOPHV1M6MlYzi
+fV1fbBqbwlurEhedABkUGLCR9tSbxm2CCg6fjDXdrlc5YaWvVmgKzMHSIfQ3
+ZBDXqf8OwEZTsDvf5JmcRUZzkRkDhaOmwH1W/bx8sCz6dMHgsRcLBne4eXNG
+f5PR40sDCSJKGJRLkB6wfZBD1xPjD3bsofEzySrqqcdo/ED6J3qbVBo3vHHm
+K0MljUtkSZY2fMJgWqo2OfSvLNrKazx/9hdNh33WVqSyA9ghrr4ZDQU0/IXl
+3zPisF3v8t/zZJ8qbOdv7CkP0DShae2+2I88DjT/ne97DWa8YXs+oSGFopYT
+AJz2qnL5dmSUOLLGWRIL2/v7Pdp2Oj6d5j86kTfoVwjb+XqnTu6Bx7A9n+3M
+7ieSr2F7v/VzIqSNL7R+aovTid2jNH/uUsNC9QqtH89qukcGi9m2P3bt8JtQ
+EbPt/y9s6O10UDLbnsfvL/ttFUMa76D7TmCzNdveVzVTXGfjMRpXYN0PBRdo
++ga78v3oVJp/klg0LvSSpod3cOcPuJtva2FttSrNcvPtvFd06cR5G2h8Tb8j
+buaD+Xa+/wcOZ+xz
+           "]]}, {
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.01], 
+           AbsoluteThickness[1.6]}, {}}, {
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.01], 
+           AbsoluteThickness[1.6]}, {}}}, {{}, {}}}, {{}, {{{}, {}, 
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+           0.011000000000000001`], AbsoluteThickness[1.6], 
+           LineBox[CompressedData["
+1:eJwBMQPO/CFib1JlAgAAADIAAAACAAAA9HAC02ndsD+bwDLjvRfFP0E08+Sa
+IvY/nLdUTd0g8j+4IFuWr5sFQH75BF1ZZ/I/qFMe3QgTEEBuKZnlkhbuP/UW
+D+85WBVApbjQltQA5D9B2v8Aa50aQBlleRsQ688/jp3wEpziH0Do7CB9xTPF
+v22wcJLmkyJApjImQHZ1478TEmkbfzYlQDNak0zZIfG/uXNhpBfZJ0A9NXPV
+g8j4v1/VWS2weypAPH1KL7hQAMAFN1K2SB4tQEcqJvyLUQTAq5hKP+HAL0BN
+6d75NWMIwCl9IeS8MTFArqMpogaDDMD8rZ0oCYMyQGiTHFlzVxDAz94ZbVXU
+M0DOJxSrlnISwKIPlrGhJTVAJ8jS4kGSFMB1QBL27XY2QA9pn7TotRbASHGO
+OjrIN0CHEBfUFt0YwBuiCn+GGTlA5aH9y2oHG8Du0obD0mo6QNOIKiCSNB3A
+wQMDCB+8O0Bx9vdaRmQfwJQ0f0xrDT1A4AmEbiXLIMBnZfuQt14+QBpRAIw1
+5SHAOpZ31QOwP0BWBNyYPAAjwIfj+QyogEBAlWqUciYcJMDx+zcvTilBQKA2
+g1fhOCXAWhR2UfTRQUCQDt+IXVYmwMQstHOaekJAoawz+4x0J8AtRfKVQCND
+QO3AEB5jkyjAl10wuObLQ0CJiXKr1LIpwAB2btqMdERA0jKaZ9fSKsBqjqz8
+Mh1FQHx170Fi8yvA06bqHtnFRUAk9SCybBQtwD2/KEF/bkZATw+RE+81LsCn
+12ZjJRdHQIooRI/iVy/AEPCkhcu/R0AdKNSLID0wwHoI46dxaEhAVRtMNYLO
+MMDjICHKFxFJQBMADxAUYDHATTlf7L25SUDpelmr0fExwLZRnQ5kYkpA4oyU
+Bb2DMsAgatswCgtLQOzRlnDPFTPAiYIZU7CzS0CoV1OaCKgzwPOaV3VWXExA
+hlBuOWU6NMBcs5WX/ARNQIu4GjLezDTAxsvTuaKtTUBegQP3W181wC/kEdxI
+Vk5ATbd0KybyNcCZ/E/+7v5OQPEnMfCogzbAAhWOIJWnT0DFzmwi5hc3wLYW
+ZqEdKFBAWPZr9T6qN8CPBmpf
+            "]]}}, 
+         {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+          0.011000000000000001`], AbsoluteThickness[1.6]}, {
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+           0.011000000000000001`], AbsoluteThickness[1.6]}, {}}, {
+          {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+           0.011000000000000001`], AbsoluteThickness[1.6]}, {}}}, {{}, {}}}},
+      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+      Axes->{True, True},
+      AxesLabel->{None, None},
+      AxesOrigin->{0, -12.056566906930858`},
+      DisplayFunction->Identity,
+      Frame->True,
+      FrameLabel->{{
+         FormBox[
+          RowBox[{"4", " ", "\[Pi]", " ", 
+            SuperscriptBox["r", "2"], " ", 
+            RowBox[{"\[Phi]", "(", "r", ")"}]}], TraditionalForm], ""}, {
+         FormBox["r", TraditionalForm], ""}},
+      FrameTicks->FrontEndValueCache[{{
+          Charting`ScaledTicks[{Log, Exp}], 
+          Charting`ScaledFrameTicks[{Log, Exp}]}, {
+         Automatic, Automatic}}, {{{{-11.512925464970229`, 
+            FormBox[
+             TemplateBox[{"10", 
+               RowBox[{"-", "5"}]}, "Superscript", SyntaxForm -> 
+              SuperscriptBox], TraditionalForm], {0.01, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.210340371976182, 
+            FormBox[
+             TemplateBox[{"10", 
+               RowBox[{"-", "4"}]}, "Superscript", SyntaxForm -> 
+              SuperscriptBox], TraditionalForm], {0.01, 0.}, {
+             AbsoluteThickness[0.1]}}, {-6.907755278982137, 
+            FormBox["0.001`", TraditionalForm], {0.01, 0.}, {
+             AbsoluteThickness[0.1]}}, {-4.605170185988091, 
+            FormBox[
+             TagBox[
+              InterpretationBox["\"0.010\"", 0.01, AutoDelete -> True], 
+              NumberForm[#, {
+                DirectedInfinity[1], 3}]& ], TraditionalForm], {0.01, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.3025850929940455`, 
+            FormBox[
+             TagBox[
+              InterpretationBox["\"0.100\"", 0.1, AutoDelete -> True], 
+              NumberForm[#, {
+                DirectedInfinity[1], 3}]& ], TraditionalForm], {0.01, 0.}, {
+             AbsoluteThickness[0.1]}}, {0., 
+            FormBox["1", TraditionalForm], {0.01, 0.}, {
+             AbsoluteThickness[0.1]}}, {-13.815510557964274`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-13.122363377404328`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-12.716898269296165`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-12.429216196844383`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-12.206072645530174`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-12.02375108873622, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-11.86960040890896, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-11.736069016284437`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-11.618285980628055`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-10.819778284410283`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-10.41431317630212, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-10.126631103850338`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.903487552536127, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.721165995742174, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.567015315914915, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.433483923290392, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.315700887634009, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-8.517193191416238, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-8.111728083308073, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.824046010856292, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.600902459542082, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.418580902748128, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.264430222920869, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.1308988302963465`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.013115794639964, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-6.214608098422191, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-5.809142990314028, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-5.521460917862246, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-5.298317366548036, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-5.115995809754082, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-4.961845129926823, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-4.8283137373023015`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-4.710530701645918, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-3.912023005428146, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-3.506557897319982, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-3.2188758248682006`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.995732273553991, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.8134107167600364`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.659260036932778, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.5257286443082556`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.4079456086518722`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-1.6094379124341003`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-1.2039728043259361`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.916290731874155, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.6931471805599453, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.5108256237659907, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.35667494393873245`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.2231435513142097, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.10536051565782628`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {0.6931471805599453, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.0986122886681098`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.3862943611198906`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.6094379124341003`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.791759469228055, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.9459101490553132`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {2.0794415416798357`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {2.1972245773362196`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {2.302585092994046, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {2.995732273553991, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {3.4011973816621555`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {3.6888794541139363`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {3.912023005428146, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {4.0943445622221, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {4.248495242049359, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {4.382026634673881, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {4.499809670330265, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}}, {{-11.512925464970229`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.01, 0.}, {
+            
+             AbsoluteThickness[0.1]}}, {-9.210340371976182, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.01, 0.}, {
+            
+             AbsoluteThickness[0.1]}}, {-6.907755278982137, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.01, 0.}, {
+            
+             AbsoluteThickness[0.1]}}, {-4.605170185988091, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.01, 0.}, {
+            
+             AbsoluteThickness[0.1]}}, {-2.3025850929940455`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.01, 0.}, {
+            
+             AbsoluteThickness[0.1]}}, {0., 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.01, 0.}, {
+            
+             AbsoluteThickness[0.1]}}, {-13.815510557964274`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-13.122363377404328`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-12.716898269296165`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-12.429216196844383`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-12.206072645530174`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-12.02375108873622, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-11.86960040890896, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-11.736069016284437`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-11.618285980628055`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-10.819778284410283`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-10.41431317630212, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-10.126631103850338`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.903487552536127, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.721165995742174, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.567015315914915, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.433483923290392, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-9.315700887634009, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-8.517193191416238, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-8.111728083308073, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.824046010856292, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.600902459542082, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.418580902748128, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.264430222920869, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.1308988302963465`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-7.013115794639964, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-6.214608098422191, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-5.809142990314028, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-5.521460917862246, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-5.298317366548036, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-5.115995809754082, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-4.961845129926823, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-4.8283137373023015`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-4.710530701645918, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-3.912023005428146, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-3.506557897319982, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-3.2188758248682006`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.995732273553991, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.8134107167600364`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.659260036932778, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.5257286443082556`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-2.4079456086518722`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-1.6094379124341003`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-1.2039728043259361`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.916290731874155, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.6931471805599453, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.5108256237659907, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.35667494393873245`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.2231435513142097, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {-0.10536051565782628`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {0.6931471805599453, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.0986122886681098`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.3862943611198906`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.6094379124341003`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.791759469228055, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {1.9459101490553132`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {2.0794415416798357`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {2.1972245773362196`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {2.302585092994046, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {2.995732273553991, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {3.4011973816621555`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {3.6888794541139363`, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {3.912023005428146, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {4.0943445622221, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {4.248495242049359, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {4.382026634673881, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}, {4.499809670330265, 
+            FormBox[
+             TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+             AbsoluteThickness[0.1]}}}}, {Automatic, Automatic}}],
+      GridLines->{None, None},
+      GridLinesStyle->Directive[
+        GrayLevel[0.5, 0.4]],
+      ImagePadding->{{50., 24.000000000000057`}, {36., 18.999999999999986`}},
+      Method->{
+       "OptimizePlotMarkers" -> True, 
+        "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+            (Identity[#]& )[
+             Part[#, 1]], 
+            (Exp[#]& )[
+             Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+            (Identity[#]& )[
+             Part[#, 1]], 
+            (Exp[#]& )[
+             Part[#, 2]]}& )}},
+      PlotRange->{{0, 37.61662350000001}, {-12.056566906930858`, 
+        1.1847227043584148`}},
+      PlotRangeClipping->True,
+      PlotRangePadding->{{
+         Scaled[0.02], 
+         Scaled[0.02]}, {
+         Scaled[0.02], 
+         Scaled[0.05]}},
+      Ticks->{Automatic, 
+        Charting`ScaledTicks[{Log, Exp}]}], {576., -116.80842387373012}, 
+     ImageScaled[{0.5, 0.5}], {360., 222.49223594996212}]}, {}},
+  ContentSelectable->True,
+  ImageSize->800,
+  PlotLabel->FormBox[
+   "\"Exact solution\\nInfinite 3D, isotropic point source, Lambert-Sphere \
+scattering, fluence \[Phi][r], c = 0.95, \\!\\(\\*SubscriptBox[\\(\
+\[CapitalSigma]\\), \\(t\\)]\\) = 1\"", TraditionalForm],
+  PlotRangePadding->{6, 5}]], "Output",
+ CellChangeTimes->{
+  3.786391132529998*^9, 3.786592037236081*^9, 3.786592073187849*^9, 
+   3.786592136637373*^9, 3.786592368665753*^9, {3.786592428480213*^9, 
+   3.786592463845809*^9}, {3.7865936451877337`*^9, 3.786593655870535*^9}, 
+   3.7865962644740267`*^9, 3.7865964193514757`*^9, 3.786596602900248*^9},
+ CellLabel->
+  "Out[4688]=",ExpressionUUID->"b386b981-f493-45a7-90fe-1dbeb29001c8"]
+}, Open  ]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -2806,7 +5985,7 @@ Cell[BoxData[
       Null), "\<\"c = 0.99\"\>":>($CellContext`c = 0.99; 
       Null), "\<\"c = 0.999\"\>":>($CellContext`c = 0.999; Null)}], ",", 
      DynamicBox[ToBoxes[$CellContext`c, StandardForm],
-      ImageSizeCache->{8., {1., 7.}}]}], "}"}], ",", 
+      ImageSizeCache->{31., {1., 9.}}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      ActionMenuBox["\<\"Set mfp\"\>", {"\<\"mfp = 0.3\"\>":>(
@@ -4219,8 +7398,8 @@ f6FyYZKEdz6zg7cNbPBtpNbbt9MkGKduUbubbYv/A+JS3Uc=
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{808, 821},
-WindowMargins->{{Automatic, 104}, {Automatic, 12}},
+WindowSize->{1054, 883},
+WindowMargins->{{236, Automatic}, {Automatic, 0}},
 FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
 ]
@@ -4251,48 +7430,75 @@ Cell[148288, 2477, 556, 11, 104, "Text",ExpressionUUID->"c585efeb-0c4c-4038-8267
 Cell[CellGroupData[{
 Cell[148869, 2492, 157, 3, 54, "Subsection",ExpressionUUID->"f698e452-18bd-47f0-af2d-1991dbd92ffc"],
 Cell[CellGroupData[{
-Cell[149051, 2499, 323, 6, 30, "Input",ExpressionUUID->"7a02f027-b05f-4f5a-9304-1f792768e87e"],
-Cell[149377, 2507, 216, 3, 34, "Output",ExpressionUUID->"650d1bd1-fd6f-44da-85e8-bc9745321382"]
+Cell[149051, 2499, 350, 7, 30, "Input",ExpressionUUID->"7a02f027-b05f-4f5a-9304-1f792768e87e"],
+Cell[149404, 2508, 245, 4, 34, "Output",ExpressionUUID->"421eb04c-8410-4539-aa9e-08a37a46878c"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[149654, 2517, 254, 4, 67, "Section",ExpressionUUID->"80be4df6-20e7-4eca-b7f5-4c7d3942e699"],
-Cell[149911, 2523, 1080, 28, 30, "Input",ExpressionUUID->"d40d6d2a-f300-40cb-a795-3566f27a9f1b"],
-Cell[150994, 2553, 1188, 31, 52, "Input",ExpressionUUID->"bbf9aa55-9f8a-491d-953a-205a1895b7d1"],
-Cell[152185, 2586, 584, 12, 94, "Input",ExpressionUUID->"ac382d93-c5e4-47fa-810c-c583161b623d"],
+Cell[149710, 2519, 151, 3, 67, "Section",ExpressionUUID->"5511d532-5d3e-4dd9-bbcb-de39324e4487"],
+Cell[149864, 2524, 638, 17, 61, "Input",ExpressionUUID->"e3b7b44b-6584-4c4a-9110-a3fe91efc262"],
 Cell[CellGroupData[{
-Cell[152794, 2602, 1538, 41, 178, "Input",ExpressionUUID->"35855fc5-d4eb-47b7-a3a9-e0f5fbfe476a"],
-Cell[154335, 2645, 948, 17, 34, "Output",ExpressionUUID->"e4cbfd26-5882-4270-b215-80b203015338"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[155320, 2667, 498, 12, 30, "Input",ExpressionUUID->"69e6fe8f-cd2d-4b6e-8f9e-dd6235196978"],
-Cell[155821, 2681, 772, 14, 34, "Output",ExpressionUUID->"4b9d61df-eed9-48cf-b762-c9d1a6aadcd8"]
-}, Open  ]],
-Cell[156608, 2698, 1418, 38, 73, "Input",ExpressionUUID->"b6d5c2dd-2df2-4e0b-a3ce-3ed83f065de8"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[158063, 2741, 173, 3, 67, "Section",ExpressionUUID->"c547fc48-134f-47cb-8d28-1dbeb64a0f83"],
-Cell[CellGroupData[{
-Cell[158261, 2748, 175, 3, 54, "Subsection",ExpressionUUID->"410b9f0b-3813-4986-9919-dde12bac29e4"],
-Cell[CellGroupData[{
-Cell[158461, 2755, 1254, 35, 52, "Input",ExpressionUUID->"d35e4037-5dc3-4949-b433-867c8ba1ad68"],
-Cell[159718, 2792, 1473, 29, 46, "Output",ExpressionUUID->"e6297b8c-3721-4fa3-9e1e-d73a1f31c989"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[161228, 2826, 155, 3, 45, "Subsubsection",ExpressionUUID->"868fb9c7-36a2-4712-ba73-f666f8d5ca58"],
-Cell[161386, 2831, 535, 15, 52, "Input",ExpressionUUID->"12c0f1c3-dfc4-448c-add8-2c7c86640a3e"],
-Cell[CellGroupData[{
-Cell[161946, 2850, 7284, 209, 483, "Input",ExpressionUUID->"c02b4f06-88ca-4d6f-904b-3cf0404bb026"],
-Cell[169233, 3061, 24983, 445, 422, "Output",ExpressionUUID->"32c395ea-7956-471b-8d8c-cf0be6a061eb"]
+Cell[150527, 2545, 163, 3, 54, "Subsection",ExpressionUUID->"afae3276-c173-4325-8797-b465486f7a2a"],
+Cell[150693, 2550, 929, 29, 47, "Input",ExpressionUUID->"eec9ac9a-0ce2-4e5a-a14e-6453afe5b0c9"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[194265, 3512, 157, 3, 45, "Subsubsection",ExpressionUUID->"ba729762-62ea-480b-b366-74b014d89a50"],
-Cell[194425, 3517, 585, 16, 52, "Input",ExpressionUUID->"fcaf7f4a-3b01-4f4d-b618-43c8be9dea30"],
+Cell[151671, 2585, 167, 3, 67, "Section",ExpressionUUID->"ff1744a7-5954-44fe-9a00-10156f989230"],
 Cell[CellGroupData[{
-Cell[195035, 3537, 7206, 208, 483, "Input",ExpressionUUID->"dae535c7-57dc-4b54-8e48-ffb9be0ad4a5"],
-Cell[202244, 3747, 26309, 467, 411, "Output",ExpressionUUID->"fc684904-b60e-45ca-9136-e5c67b30f470"]
+Cell[151863, 2592, 367, 6, 54, "Subsection",ExpressionUUID->"a101e7f1-3cc3-4260-8275-1163de7dfa24"],
+Cell[152233, 2600, 289, 6, 35, "Text",ExpressionUUID->"0b77c96b-f486-473c-a69f-9499cc625c48"],
+Cell[152525, 2608, 100938, 2091, 7772, "Input",ExpressionUUID->"c286266b-653e-4485-94e7-372cbef0ed75"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[253512, 4705, 254, 4, 67, "Section",ExpressionUUID->"80be4df6-20e7-4eca-b7f5-4c7d3942e699"],
+Cell[253769, 4711, 1080, 28, 30, "Input",ExpressionUUID->"d40d6d2a-f300-40cb-a795-3566f27a9f1b"],
+Cell[254852, 4741, 1188, 31, 30, "Input",ExpressionUUID->"bbf9aa55-9f8a-491d-953a-205a1895b7d1"],
+Cell[256043, 4774, 584, 12, 30, "Input",ExpressionUUID->"ac382d93-c5e4-47fa-810c-c583161b623d"],
+Cell[CellGroupData[{
+Cell[256652, 4790, 1538, 41, 178, "Input",ExpressionUUID->"35855fc5-d4eb-47b7-a3a9-e0f5fbfe476a"],
+Cell[258193, 4833, 970, 17, 34, "Output",ExpressionUUID->"3de0476c-9faa-464a-b5c4-edeedeb558f3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[259200, 4855, 498, 12, 30, "Input",ExpressionUUID->"69e6fe8f-cd2d-4b6e-8f9e-dd6235196978"],
+Cell[259701, 4869, 793, 14, 34, "Output",ExpressionUUID->"a4ba7fa2-55c4-4205-9888-ebc9f7a9555f"]
+}, Open  ]],
+Cell[260509, 4886, 1418, 38, 73, "Input",ExpressionUUID->"b6d5c2dd-2df2-4e0b-a3ce-3ed83f065de8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[261964, 4929, 173, 3, 67, "Section",ExpressionUUID->"c547fc48-134f-47cb-8d28-1dbeb64a0f83"],
+Cell[CellGroupData[{
+Cell[262162, 4936, 381, 6, 54, "Subsection",ExpressionUUID->"c10cf3c8-73d2-4935-a0e6-805aa6786a1f"],
+Cell[CellGroupData[{
+Cell[262568, 4946, 1328, 36, 52, "Input",ExpressionUUID->"3a969acb-b253-4159-846d-afda655f6e79"],
+Cell[263899, 4984, 1676, 31, 46, "Output",ExpressionUUID->"1827ce1b-7db5-48ff-accc-92bb3e1fb1a8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[265612, 5020, 6388, 169, 530, "Input",ExpressionUUID->"02fa5b21-5eb1-4ad8-930c-a23def3ff382"],
+Cell[272003, 5191, 38747, 730, 313, "Output",ExpressionUUID->"b386b981-f493-45a7-90fe-1dbeb29001c8"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[310799, 5927, 175, 3, 54, "Subsection",ExpressionUUID->"410b9f0b-3813-4986-9919-dde12bac29e4"],
+Cell[CellGroupData[{
+Cell[310999, 5934, 1254, 35, 52, "Input",ExpressionUUID->"d35e4037-5dc3-4949-b433-867c8ba1ad68"],
+Cell[312256, 5971, 1474, 29, 46, "Output",ExpressionUUID->"e6297b8c-3721-4fa3-9e1e-d73a1f31c989"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[313767, 6005, 155, 3, 45, "Subsubsection",ExpressionUUID->"868fb9c7-36a2-4712-ba73-f666f8d5ca58"],
+Cell[313925, 6010, 535, 15, 52, "Input",ExpressionUUID->"12c0f1c3-dfc4-448c-add8-2c7c86640a3e"],
+Cell[CellGroupData[{
+Cell[314485, 6029, 7284, 209, 367, "Input",ExpressionUUID->"c02b4f06-88ca-4d6f-904b-3cf0404bb026"],
+Cell[321772, 6240, 24983, 445, 422, "Output",ExpressionUUID->"32c395ea-7956-471b-8d8c-cf0be6a061eb"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[346804, 6691, 157, 3, 45, "Subsubsection",ExpressionUUID->"ba729762-62ea-480b-b366-74b014d89a50"],
+Cell[346964, 6696, 585, 16, 52, "Input",ExpressionUUID->"fcaf7f4a-3b01-4f4d-b618-43c8be9dea30"],
+Cell[CellGroupData[{
+Cell[347574, 6716, 7206, 208, 367, "Input",ExpressionUUID->"dae535c7-57dc-4b54-8e48-ffb9be0ad4a5"],
+Cell[354783, 6926, 26309, 467, 411, "Output",ExpressionUUID->"fc684904-b60e-45ca-9136-e5c67b30f470"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
