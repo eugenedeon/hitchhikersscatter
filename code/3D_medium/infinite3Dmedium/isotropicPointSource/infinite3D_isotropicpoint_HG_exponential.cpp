@@ -12,14 +12,6 @@ public:
 
     double sample_correlated_step() { return -m_mfp * log( RandomReal() ); } 
     double sample_uncorrelated_step() { return -m_mfp * log( RandomReal() ); } 
-    double correlated_transmittance( const double s )
-    {
-        return exp(-s / m_mfp);
-    }
-    double uncorrelated_transmittance( const double s )
-    {
-        return exp(-s / m_mfp);
-    }
     double sigma_tc( const double s )
     {
         return 1.0 / m_mfp;
@@ -45,7 +37,7 @@ public:
 
     void printDescriptor()
     {
-        std::cout << "Infinite 3D isotropic point source HG g=" << m_g <<" exponential random flight.\n";
+        std::cout << "Infinite 3D isotropic point source HG scattering exponential random flight, mfp = " << m_mfp << " g = " << m_g << std::endl;
     }
 };
 
@@ -71,7 +63,7 @@ int main( int argc, char** argv )
 
     IsotropicExponentialInfiniteMedium sampler(mfp,g);
 
-    sampler.isotropicPointSourceAnalogCollision( c, maxr, dr, du, numsamples, numCollisionOrders, numMoments );
+    sampler.isotropicPointSourceAnalogCollisionEstimator( c, maxr, dr, du, numsamples, numCollisionOrders, numMoments );
 
     return 0;
 }
