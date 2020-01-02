@@ -9,12 +9,17 @@ import math
 if not os.path.exists('MCdata'):
 	os.mkdir('MCdata')
 
-# classical - various phase functions
+# classical exponential random flights - various phase functions
 os.system('g++ infinite3D_isotropicpoint_isotropicscatter_exponential.cpp -o infinite3D_isotropicpoint_isotropicscatter_exponential -O3 -I ../../../include/')
 os.system('g++ infinite3D_isotropicpoint_rayleighscatter_exponential.cpp -o infinite3D_isotropicpoint_rayleighscatter_exponential -O3 -I ../../../include/')
 os.system('g++ infinite3D_isotropicpoint_LSscatter_exponential.cpp -o infinite3D_isotropicpoint_LSscatter_exponential -O3 -I ../../../include/')
 os.system('g++ infinite3D_isotropicpoint_linanisoscatter_exponential.cpp -o infinite3D_isotropicpoint_linanisoscatter_exponential -O3 -I ../../../include/')
 os.system('g++ infinite3D_isotropicpoint_HG_exponential.cpp -o infinite3D_isotropicpoint_HG_exponential -O3 -I ../../../include/')
+
+# Gamma flights - linearly anisotropic scattering
+os.system('g++ infinite3D_isotropicpoint_linanisoscatter_gamma2C.cpp -o infinite3D_isotropicpoint_linanisoscatter_gamma2C -O3 -I ../../../include/')
+os.system('g++ infinite3D_isotropicpoint_linanisoscatter_gamma3C.cpp -o infinite3D_isotropicpoint_linanisoscatter_gamma3C -O3 -I ../../../include/')
+os.system('g++ infinite3D_isotropicpoint_linanisoscatter_gamma4C.cpp -o infinite3D_isotropicpoint_linanisoscatter_gamma4C -O3 -I ../../../include/')
 
 cs = [ 0.01, 0.1, 0.3, 0.5, 0.7, 0.8, 0.9, 0.95, 0.99, 0.999 ]
 numorders = 25
@@ -64,6 +69,19 @@ for mfp in [1.0, 0.3]: 			# mean-free path
 			filename = 'MCdata/inf3d_isotropicpoint_linanisoscatter_c' + str(c) + '_mfp' + str(mfp) + '_b' + str(b) + '.txt'
 			print 'computing: ' + filename
 			os.system( './infinite3D_isotropicpoint_linanisoscatter_exponential ' + str(c) + ' ' + str(mfp) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(du) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str(b) + ' > ' + filename )
+
+			filename = 'MCdata/inf3d_isotropicpoint_linanisoscatter_gamma2C_c' + str(c) + '_mfp' + str(mfp) + '_b' + str(b) + '.txt'
+			print 'computing: ' + filename
+			os.system( './infinite3D_isotropicpoint_linanisoscatter_gamma2C ' + str(c) + ' ' + str(mfp) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(du) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str(b) + ' > ' + filename )
+
+			filename = 'MCdata/inf3d_isotropicpoint_linanisoscatter_gamma3C_c' + str(c) + '_mfp' + str(mfp) + '_b' + str(b) + '.txt'
+			print 'computing: ' + filename
+			os.system( './infinite3D_isotropicpoint_linanisoscatter_gamma3C ' + str(c) + ' ' + str(mfp) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(du) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str(b) + ' > ' + filename )
+
+			filename = 'MCdata/inf3d_isotropicpoint_linanisoscatter_gamma4C_c' + str(c) + '_mfp' + str(mfp) + '_b' + str(b) + '.txt'
+			print 'computing: ' + filename
+			os.system( './infinite3D_isotropicpoint_linanisoscatter_gamma4C ' + str(c) + ' ' + str(mfp) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(du) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' ' + str(b) + ' > ' + filename )
+
 
 # HENYEY GREENSTEIN (HG)
 
