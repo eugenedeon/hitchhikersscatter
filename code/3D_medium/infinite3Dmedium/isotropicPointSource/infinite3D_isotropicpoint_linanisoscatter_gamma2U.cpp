@@ -1,22 +1,32 @@
 #include "../GENinfinite3DmediumGRT.h"
 
-class LinAnisoGamma2CInfiniteMedium : public GENInfiniteMedium
+class LinAnisoGamma2UInfiniteMedium : public GENInfiniteMedium
 {
 public:
     double m_mfp;
     double m_b;
-    LinAnisoGamma2CInfiniteMedium( const double mfp, const double b ) : m_mfp(mfp), m_b(b){}
+    LinAnisoGamma2UInfiniteMedium( const double mfp, const double b ) : m_mfp(mfp), m_b(b){}
 
-    double sample_correlated_step() { return Gamma2Step(); } 
-    double sample_uncorrelated_step() { return Gamma2Step(); } 
+    double sample_correlated_step() { return Gamma2Step(); }
+    double sample_uncorrelated_step() { return Gamma2ExtinctionStep(); }
+    double correlated_transmittance( const double s )
+    {
+        return exp(-s) * ( 1.0 + s );
+    }
+    double uncorrelated_transmittance( const double s )
+    {
+        return 0.5 * exp(-s) * ( 2.0 + s );
+    }
+
     double sigma_tc( const double s )
     {
         return s / ( 1.0 + s );
     }
-     double sigma_tu( const double s )
+    double sigma_tu( const double s )
     {
-        return s / ( 1.0 + s );
+        return (1.0 + s) / ( 2.0 + s );
     }
+
     double correlated_collision_integral( const double s1, const double s2 )
     {
         return -s1 + s2 + log(1.0 + s1) - log(1.0 + s2);
@@ -24,7 +34,7 @@ public:
 
     double uncorrelated_collision_integral( const double s1, const double s2 )
     {
-        return -s1 + s2 + log(1.0 + s1) - log(1.0 + s2);
+        return -s1 + s2 + log(2.0 + s1) - log(2.0 + s2);
     }
 
     Vector3 sampledir( const Vector3& prevDir ) // isotropic scattering
@@ -34,7 +44,7 @@ public:
 
     void printDescriptor()
     {
-        std::cout << "Infinite 3D isotropic point source Linearly-anisotropic scattering Gamma2C random flight, mfp = " << m_mfp << " b = " << m_b << std::endl;
+        std::cout << "Infinite 3D isotropic point source Linearly-anisotropic scattering Gamma2U random flight, mfp = " << m_mfp << " b = " << m_b << std::endl;
     }
 };
 
@@ -60,7 +70,7 @@ int main( int argc, char** argv )
     size_t numMoments = StringToNumber<size_t>( std::string( argv[10] ) );
     double b = StringToNumber<double>( std::string( argv[11] ) );
 
-    LinAnisoGamma2CInfiniteMedium sampler( mfp, b );
+    LinAnisoGamma2UInfiniteMedium sampler( mfp, b );
 
     sampler.isotropicPointSourceAnalogCollisionEstimator( c, maxr, dr, maxt, dt, du, numsamples, numCollisionOrders, numMoments );
 

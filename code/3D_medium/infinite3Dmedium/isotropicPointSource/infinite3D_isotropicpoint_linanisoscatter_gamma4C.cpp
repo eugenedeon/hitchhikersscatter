@@ -42,9 +42,9 @@ int main( int argc, char** argv )
 {
     srand48( time(NULL) );
 
-    if( argc != 10 )
+    if( argc != 12 )
     {
-        std::cout << "usage: infiniteMedium c mfp maxr dr du numsamples numCollisionOrders numMoments b \n";
+        std::cout << "usage: infiniteMedium c mfp maxr dr du numsamples numCollisionOrders numMoments b maxt dt \n";
         exit( -1 );
     }
 
@@ -52,15 +52,17 @@ int main( int argc, char** argv )
     double mfp = StringToNumber<double>( std::string( argv[2] ) );
     double maxr = StringToNumber<double>( std::string( argv[3] ) );
     double dr = StringToNumber<double>( std::string( argv[4] ) );
-    double du = StringToNumber<double>( std::string( argv[5] ) );
-    size_t numsamples = StringToNumber<size_t>( std::string( argv[6] ) );
-    size_t numCollisionOrders = StringToNumber<size_t>( std::string( argv[7] ) );
-    size_t numMoments = StringToNumber<size_t>( std::string( argv[8] ) );
-    double b = StringToNumber<double>( std::string( argv[9] ) );
+    double maxt = StringToNumber<double>( std::string( argv[5] ) );
+    double dt = StringToNumber<double>( std::string( argv[6] ) );
+    double du = StringToNumber<double>( std::string( argv[7] ) );
+    size_t numsamples = StringToNumber<size_t>( std::string( argv[8] ) );
+    size_t numCollisionOrders = StringToNumber<size_t>( std::string( argv[9] ) );
+    size_t numMoments = StringToNumber<size_t>( std::string( argv[10] ) );
+    double b = StringToNumber<double>( std::string( argv[11] ) );
 
     LinAnisoGamma4CInfiniteMedium sampler( mfp, b );
 
-    sampler.isotropicPointSourceAnalogCollisionEstimator( c, maxr, dr, du, numsamples, numCollisionOrders, numMoments );
+    sampler.isotropicPointSourceAnalogCollisionEstimator( c, maxr, dr, maxt, dt, du, numsamples, numCollisionOrders, numMoments );
 
     return 0;
 }

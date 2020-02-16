@@ -24,6 +24,8 @@ public:
     void isotropicPointSourceAnalogCollisionEstimator(  const double c, // single-scattering albedo
                                                         const double maxr, // maximum radius to record
                                                         const double dr, // uniformly spaced radial bins of with dr
+                                                        const double maxt,
+                                                        const double dt,
                                                         const double du, // uniformly spaced direction cosine bins
                                                         const size_t numsamples, 
                                                         const size_t numCollisionOrders,
@@ -40,6 +42,15 @@ public:
         {
             collisionDensity[i] = 0;
             fluence[i] = 0.0;
+        }
+
+        // time-resolved collision rate density tallies
+        const size_t num_t_bins = floor( maxt / dt ) + 1.0;
+        const size_t num_tr_bins = num_r_bins * num_t_bins;
+        size_t * collisionDensityTR = new size_t [num_tr_bins];
+        for( size_t i = 0; i < num_tr_bins; ++i )
+        {
+            collisionDensityTR[i] = 0;
         }
 
         // angular quantities:
@@ -94,6 +105,7 @@ public:
         for( size_t i = 0; i < numsamples; ++i )
         {
             size_t collisionOrder = 0;
+            double t = 0; // track-length of the current particle only
             Vector3 pos( 0.0, 0.0, 0.0 );
             Vector3 dir( 1.0, 0.0, 0.0 );
             bool absorbed = false;
@@ -103,16 +115,19 @@ public:
                 double step = ( 0 == collisionOrder ) ? sample_uncorrelated_step() : sample_correlated_step();
                 pos += dir * step;
                 track_length += step;
+                t += step;
 
                 collisionOrder++; // we collided
                 const double r = Norm( pos );
                 const size_t ri = discreteMap( 0.0, maxr, dr, r );
+                const size_t ti = discreteMap( 0.0, maxt, dt, t );
 
                 // collision estimator for angular flux/fluence
                 const double fluxCollisionEstimatorScore = ( 1 == collisionOrder ) ? ( 1.0 / sigma_tu( step ) ) : ( 1.0 / sigma_tc( step ) );
 
                 // tally scalar densities
                 collisionDensity[ri]++;
+                collisionDensityTR[ ri + num_r_bins * ti ]++;
                 fluence[ri] += fluxCollisionEstimatorScore;
 
                 // tally angular densities
@@ -278,6 +293,17 @@ public:
             {
                 const size_t rui = ri * num_u_bins + ui;
                 std::cout << double( angularSourceDensity[rui] ) / ( double( numsamples ) * dr * du ) << " ";
+            }
+            std::cout << std::endl;
+        }
+
+        std::cout << "Time-resolved collision rate densities:\n";
+        for( int ti = 0; ti < num_t_bins; ++ti )
+        {
+            for( int ri = 0; ri < num_r_bins; ++ri )
+            {
+                const int collision_i = ri + num_r_bins * ti;
+                std::cout << double( collisionDensityTR[collision_i] ) / ( double( numsamples ) * dr * dt ) << " ";
             }
             std::cout << std::endl;
         }
