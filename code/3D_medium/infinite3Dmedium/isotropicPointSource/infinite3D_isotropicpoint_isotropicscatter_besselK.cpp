@@ -35,7 +35,7 @@ public:
 
     void printDescriptor()
     {
-        std::cout << "Infinite 3D isotropic point source Rayleigh scattering BesselK random flight.\n";
+        std::cout << "Infinite 3D isotropic point source isotropic scattering BesselK random flight.\n";
     }
 };
 
