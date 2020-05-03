@@ -92,6 +92,16 @@ double Dagum22step()
        x/(Power(M_PI,2)*(-1 + x))))/3.0;
 }
 
+double CauchyStep()
+{
+  return tan( ( M_PI * RandomReal() ) / 2.0 );
+}
+
+double BesselK0Step()
+{
+  return -( cos( ( M_PI * RandomReal() ) / 2.0 ) * log( RandomReal() ) );
+}
+
 double LogCauchyStep( const double a )
 {
   return exp(-( a * 1.0 / tan( M_PI * RandomReal() ) ) );

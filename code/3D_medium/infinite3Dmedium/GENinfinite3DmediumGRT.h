@@ -44,13 +44,15 @@ public:
             fluence[i] = 0.0;
         }
 
-        // time-resolved collision rate density tallies
+        // time-resolved collision rate density and fluence tallies
         const size_t num_t_bins = floor( maxt / dt ) + 1.0;
         const size_t num_tr_bins = num_r_bins * num_t_bins;
         size_t * collisionDensityTR = new size_t [num_tr_bins];
+        double * fluenceTR = new double [num_tr_bins];
         for( size_t i = 0; i < num_tr_bins; ++i )
         {
             collisionDensityTR[i] = 0;
+            fluenceTR[i] = 0.0;
         }
 
         // angular quantities:
@@ -129,6 +131,7 @@ public:
                 collisionDensity[ri]++;
                 collisionDensityTR[ ri + num_r_bins * ti ]++;
                 fluence[ri] += fluxCollisionEstimatorScore;
+                fluenceTR[ ri + num_r_bins * ti ] += fluxCollisionEstimatorScore;
 
                 // tally angular densities
                 const float u = Dot( Normalize(pos), dir );
@@ -304,6 +307,17 @@ public:
             {
                 const int collision_i = ri + num_r_bins * ti;
                 std::cout << double( collisionDensityTR[collision_i] ) / ( double( numsamples ) * dr * dt ) << " ";
+            }
+            std::cout << std::endl;
+        }
+
+        std::cout << "Time-resolved fluence:\n";
+        for( int ti = 0; ti < num_t_bins; ++ti )
+        {
+            for( int ri = 0; ri < num_r_bins; ++ri )
+            {
+                const int collision_i = ri + num_r_bins * ti;
+                std::cout << double( fluenceTR[collision_i] ) / ( double( numsamples ) * dr * dt ) << " ";
             }
             std::cout << std::endl;
         }
