@@ -20,7 +20,7 @@ nummoments = 10
 for c in cs: 			# single-scattering albedo
     nu_0 = 1/math.sqrt(1 - math.pow(c,2.4429445001914587 + 0.5786368322364553/c - 0.021581332427913873*c))
     expected_num_samples_inv = 1.0 - c
-    numsamples = 10 * min( 10000000, int( 10000000.0 * expected_num_samples_inv ) )
+    numsamples = min( 10000000, int( 10000000.0 * expected_num_samples_inv ) )
     print 'num samples: ' + str(numsamples)
     maxr = nu_0 * 25.0
     dr = maxr / 500.0
@@ -30,8 +30,8 @@ for c in cs: 			# single-scattering albedo
 
     filename = 'MCdata/inf3d_isotropicpoint_isotropicscatter_besselK_c' + str(c) + '.txt'
     print 'computing: ' + filename
-    os.system( './infinite3D_isotropicpoint_isotropicscatter_besselK ' + str(c) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(maxt) + ' ' + str(dt) + ' ' + str(du) + ' ' + str( numsamples / 10 ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' > ' + filename )
+    os.system( './infinite3D_isotropicpoint_isotropicscatter_besselK ' + str(c) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(maxt) + ' ' + str(dt) + ' ' + str(du) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' > ' + filename )
 
     filename = 'MCdata/inf3d_isotropicpoint_rayleighscatter_besselK_c' + str(c) + '.txt'
     print 'computing: ' + filename
-    os.system( './infinite3d_isotropicpoint_rayleighscatter_besselK ' + str(c) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(maxt) + ' ' + str(dt) + ' ' + str(du) + ' ' + str( numsamples / 10 ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' > ' + filename )
+    os.system( './infinite3d_isotropicpoint_rayleighscatter_besselK ' + str(c) + ' ' + str(maxr) + ' ' + str(dr) + ' ' + str(maxt) + ' ' + str(dt) + ' ' + str(du) + ' ' + str( numsamples ) + ' ' + str( numorders ) + ' ' + str( nummoments ) + ' > ' + filename )
