@@ -70,6 +70,13 @@ double Chid3CorrelatedStep()
   return Norm( (2.0 / (M_PI ))*Vector3(RandomGauss(),RandomGauss(),RandomGauss() ) );
 }
 
+// a = 3 distribution - using modified definition in current book
+double Chi3CorrelatedStep()
+{
+  // this isn't right - not sure why the 0.98 is required
+  return 0.98 * 1.436696977001332493512655869021542042257 * Norm( Vector3( RandomGauss(), RandomGauss(), RandomGauss() ) );
+}
+
 double Chid3UncorrelatedStep()
 {
   if( RandomReal() < 0.5 )
