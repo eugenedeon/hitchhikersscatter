@@ -1,0 +1,247 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8623,        239]
+NotebookOptionsPosition[      6803,        198]
+NotebookOutlinePosition[      7141,        213]
+CellTagsIndexPosition[      7098,        210]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ "Picard/Lalesco kernel: ",
+ StyleBox["H-function",
+  FontWeight->"Bold"]
+}], "Title",
+ CellChangeTimes->{{3.7943407007091293`*^9, 3.794340702527874*^9}, {
+   3.794340772050861*^9, 3.794340773622973*^9}, 3.794343987465021*^9, {
+   3.794352693154593*^9, 3.7943526943642817`*^9}, {3.794352778660247*^9, 
+   3.794352783531233*^9}},ExpressionUUID->"6ed4afd1-3432-48ef-a787-\
+3da0420b74d2"],
+
+Cell[CellGroupData[{
+
+Cell["Definition and application", "Section",
+ CellChangeTimes->{{3.7943427906416197`*^9, 3.794342793295961*^9}, {
+  3.794342843835644*^9, 
+  3.79434284901822*^9}},ExpressionUUID->"0759ad25-25fc-484c-a8e0-\
+d7a0a2f97796"],
+
+Cell["\<\
+This H function arises for isotropic scattering problems including:\
+\>", "Text",
+ CellChangeTimes->{{3.794340709601984*^9, 3.794340745366528*^9}, {
+  3.794340933729349*^9, 3.794340955536579*^9}, {3.7943410036399097`*^9, 
+  3.794341061727435*^9}, {3.7943411109703817`*^9, 
+  3.794341117777349*^9}},ExpressionUUID->"1493572f-d895-4537-8b7f-\
+361fbf462936"],
+
+Cell[CellGroupData[{
+
+Cell["classical exponential random flights in a 1D rod", "Item",
+ CellChangeTimes->{{3.7943410548047323`*^9, 3.7943410743484898`*^9}, {
+  3.794341125799556*^9, 3.794341131476178*^9}, {3.794352702534555*^9, 
+  3.7943527036404123`*^9}, {3.7943529064197273`*^9, 
+  3.794352906420795*^9}},ExpressionUUID->"c736839a-672b-4151-8c22-\
+442205ae47eb"],
+
+Cell["Gamma/Erlang-2 random flights in 3D", "Item",
+ CellChangeTimes->{{3.7943410548047323`*^9, 3.7943410743484898`*^9}, {
+  3.794341125799556*^9, 3.794341131476178*^9}, {3.794352702534555*^9, 
+  3.7943527036404123`*^9}, {3.79435290720914*^9, 
+  3.7943529158757133`*^9}},ExpressionUUID->"5c4893bd-d27b-4f4f-b1ab-\
+e249e9482696"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["References", "Section",
+ CellChangeTimes->{{3.794342839540654*^9, 
+  3.794342840962349*^9}},ExpressionUUID->"368480ed-4c2e-4432-825a-\
+0a217d62df7b"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Fock, V. 1944. Some integral equations of mathematical physics. In: Doklady \
+AN SSSR, vol.
+26, 147\[Dash]51, http://mi.mathnet.ru/eng/msb6183.\
+\>", "Item",
+ CellChangeTimes->{{3.7943410548047323`*^9, 3.7943410597174063`*^9}, {
+  3.7943412104940453`*^9, 3.7943412188213053`*^9}, {3.7943413570372047`*^9, 
+  3.794341407625621*^9}, {3.794342882819928*^9, 3.794342902922697*^9}, {
+  3.794343027614889*^9, 3.794343028093405*^9}, {3.794343066627544*^9, 
+  3.794343066627783*^9}},ExpressionUUID->"cbff2df8-85b0-42e9-9623-\
+1f6b2241c5e7"],
+
+Cell["\<\
+Case, K. M. 1957. On Wiener-Hopf equations. Ann. Phys. (USA) 2(4): \
+384\[Dash]405. doi:10. 1016/0003-4916(57)90027-1\
+\>", "Item",
+ CellChangeTimes->{{3.7943410548047323`*^9, 3.7943410597174063`*^9}, {
+  3.7943412104940453`*^9, 3.7943412188213053`*^9}, {3.7943413570372047`*^9, 
+  3.794341407625621*^9}, {3.794342882819928*^9, 3.794342902922697*^9}, {
+  3.794343027614889*^9, 3.794343028093405*^9}, {3.7943430669018917`*^9, 
+  3.794343081457789*^9}},ExpressionUUID->"0de801b4-bd38-4a83-8a82-\
+c6386172c65d"],
+
+Cell["\<\
+Krein, M. G. 1962. Integral equations on a half-line with kernel depending \
+upon the difference of the arguments. Amer. Math. Soc. Transl. 22: \
+163\[Dash]288.\
+\>", "Item",
+ CellChangeTimes->{{3.7943410548047323`*^9, 3.7943410597174063`*^9}, {
+  3.7943412104940453`*^9, 3.7943412188213053`*^9}, {3.7943413570372047`*^9, 
+  3.794341407625621*^9}, {3.794342882819928*^9, 3.794342902922697*^9}, {
+  3.794343027614889*^9, 3.794343028093405*^9}, {3.7943430669018917`*^9, 
+  3.7943430852412653`*^9}},ExpressionUUID->"8973e688-3fca-43e6-8791-\
+255dd9c2eec3"],
+
+Cell[TextData[{
+ "Eugene d\[CloseCurlyQuote]Eon & Norman J. McCormick (2019) Radiative \
+Transfer in Half Spaces of Arbitrary Dimension, ",
+ StyleBox["Journal of Computational and Theoretical Transport",
+  FontSlant->"Italic"],
+ ", 48:7, 280-337, DOI: 10.1080/23324309.2019.1696365"
+}], "Item",
+ CellChangeTimes->{{3.7943410548047323`*^9, 3.7943410597174063`*^9}, {
+  3.7943412104940453`*^9, 3.7943412188213053`*^9}, {3.7943413570372047`*^9, 
+  3.794341407625621*^9}, {3.794342882819928*^9, 
+  3.79434288902354*^9}},ExpressionUUID->"02116dd1-e5a6-4031-804e-\
+01de40ced602"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notation", "Section",
+ CellChangeTimes->{{3.7440431719805098`*^9, 
+  3.744043172560051*^9}},ExpressionUUID->"ebb8cefc-c130-4115-b311-\
+5495fb2fb494"],
+
+Cell["\<\
+u = cos \[Theta] - direction cosine
+c - single-scattering albedo\
+\>", "Text",
+ CellChangeTimes->{{3.7440431762991533`*^9, 3.74404320032414*^9}, {
+  3.7440440966169043`*^9, 
+  3.74404410083189*^9}},ExpressionUUID->"44f53915-19a5-4e19-8c0f-\
+ba64a72c6884"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Rod", "Section",
+ CellChangeTimes->{{3.7440434550530787`*^9, 
+  3.7440434555144587`*^9}},ExpressionUUID->"222b1e72-dea4-4b3b-bc92-\
+a4ef1e5366e5"],
+
+Cell[BoxData[
+ FormBox[
+  TagBox[
+   RowBox[{
+    RowBox[{"H", "(", "u", ")"}], "=", 
+    RowBox[{"exp", "(", 
+     RowBox[{
+      SubsuperscriptBox["\[Integral]", "0", "\[Infinity]"], 
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{"u", " ", 
+          RowBox[{"log", "(", 
+           RowBox[{"1", "-", 
+            FractionBox["c", 
+             RowBox[{"1", "+", 
+              SuperscriptBox["t", "2"]}]]}], ")"}]}], 
+         RowBox[{"\[Pi]", " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{
+             SuperscriptBox["t", "2"], " ", 
+             SuperscriptBox["u", "2"]}]}], ")"}]}]]}], 
+       RowBox[{"\[DifferentialD]", "t"}]}]}], ")"}]}],
+   HoldForm], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.744341883337893*^9, 3.744341905830309*^9}},
+ CellLabel->
+  "Out[91]//TraditionalForm=",ExpressionUUID->"b3df9a28-b5f4-45ce-b771-\
+eb756797ad8f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Picard`H", "[", 
+   RowBox[{"u_", ",", "c_"}], "]"}], ":=", 
+  FractionBox[
+   RowBox[{"1", "+", "u"}], 
+   RowBox[{"1", "+", 
+    RowBox[{"u", 
+     SqrtBox[
+      RowBox[{"1", "-", "c"}]]}]}]]}]], "Input",
+ CellChangeTimes->{{3.744067945343955*^9, 3.744067951352717*^9}, {
+  3.7440680121127*^9, 3.74406802082883*^9}, {3.794352822547577*^9, 
+  3.794352823167366*^9}},ExpressionUUID->"978ea2f9-badc-4956-b36e-\
+2ea98329cf39"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 675},
+WindowMargins->{{101, Automatic}, {Automatic, 27}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 401, 9, 98, "Title",ExpressionUUID->"6ed4afd1-3432-48ef-a787-3da0420b74d2"],
+Cell[CellGroupData[{
+Cell[1006, 35, 221, 4, 67, "Section",ExpressionUUID->"0759ad25-25fc-484c-a8e0-d7a0a2f97796"],
+Cell[1230, 41, 365, 7, 35, "Text",ExpressionUUID->"1493572f-d895-4537-8b7f-361fbf462936"],
+Cell[CellGroupData[{
+Cell[1620, 52, 342, 5, 32, "Item",ExpressionUUID->"c736839a-672b-4151-8c22-442205ae47eb"],
+Cell[1965, 59, 328, 5, 32, "Item",ExpressionUUID->"5c4893bd-d27b-4f4f-b1ab-e249e9482696"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2342, 70, 155, 3, 67, "Section",ExpressionUUID->"368480ed-4c2e-4432-825a-0a217d62df7b"],
+Cell[CellGroupData[{
+Cell[2522, 77, 542, 10, 53, "Item",ExpressionUUID->"cbff2df8-85b0-42e9-9623-1f6b2241c5e7"],
+Cell[3067, 89, 518, 9, 53, "Item",ExpressionUUID->"0de801b4-bd38-4a83-8a82-c6386172c65d"],
+Cell[3588, 100, 563, 10, 53, "Item",ExpressionUUID->"8973e688-3fca-43e6-8791-255dd9c2eec3"],
+Cell[4154, 112, 573, 11, 53, "Item",ExpressionUUID->"02116dd1-e5a6-4031-804e-01de40ced602"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4776, 129, 155, 3, 67, "Section",ExpressionUUID->"ebb8cefc-c130-4115-b311-5495fb2fb494"],
+Cell[4934, 134, 265, 7, 58, "Text",ExpressionUUID->"44f53915-19a5-4e19-8c0f-ba64a72c6884"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5236, 146, 152, 3, 67, "Section",ExpressionUUID->"222b1e72-dea4-4b3b-bc92-a4ef1e5366e5"],
+Cell[5391, 151, 921, 28, 79, "Output",ExpressionUUID->"b3df9a28-b5f4-45ce-b771-eb756797ad8f"],
+Cell[6315, 181, 460, 13, 52, "Input",ExpressionUUID->"978ea2f9-badc-4956-b36e-2ea98329cf39"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
