@@ -40,6 +40,31 @@ namespace fresnel
   {
     return sqrt( 1.0 - etai * etai * ( 1.0 - ui * ui ) / ( etao * etao ) );
   }
+
+  double ConductorR( const double costheta, const double etai, const double eta, const double k )
+  {
+    return ((Power(etai,2) - 2*Power(costheta,2)*Power(etai,2) + Power(costheta,4)*Power(etai,2) + 
+       Power(costheta,2)*Sqrt(4*Power(eta,2)*Power(k,2) + 
+          Power(Power(eta,2) + (-1 + Power(costheta,2))*Power(etai,2) - Power(k,2),2)))*
+     (Power(costheta,2)*Power(etai,2) + Sqrt(4*Power(eta,2)*Power(k,2) + 
+         Power(Power(eta,2) + (-1 + Power(costheta,2))*Power(etai,2) - Power(k,2),2)) - 
+       Sqrt(2)*costheta*etai*Sqrt(Power(eta,2) - Power(etai,2) + Power(costheta,2)*Power(etai,2) - 
+          Power(k,2) + Sqrt(4*Power(eta,2)*Power(k,2) + 
+            Power(Power(eta,2) + (-1 + Power(costheta,2))*Power(etai,2) - Power(k,2),2)))))/
+   ((Power(costheta,2)*Power(etai,2) + Sqrt(4*Power(eta,2)*Power(k,2) + 
+         Power(Power(eta,2) + (-1 + Power(costheta,2))*Power(etai,2) - Power(k,2),2)) + 
+       Sqrt(2)*costheta*etai*Sqrt(Power(eta,2) - Power(etai,2) + Power(costheta,2)*Power(etai,2) - 
+          Power(k,2) + Sqrt(4*Power(eta,2)*Power(k,2) + 
+            Power(Power(eta,2) + (-1 + Power(costheta,2))*Power(etai,2) - Power(k,2),2))))*
+     (Power(-1 + Power(costheta,2),2)*Power(etai,2) + 
+       Power(costheta,2)*Sqrt(Power(eta,4) + 
+          Power(-((-1 + Power(costheta,2))*Power(etai,2)) + Power(k,2),2) + 
+          2*Power(eta,2)*((-1 + Power(costheta,2))*Power(etai,2) + Power(k,2))) - 
+       Sqrt(2)*costheta*(-1 + Power(costheta,2))*etai*
+        Sqrt(Power(eta,2) - Power(etai,2) + Power(costheta,2)*Power(etai,2) - Power(k,2) + 
+          Sqrt(Power(eta,4) + Power(-((-1 + Power(costheta,2))*Power(etai,2)) + Power(k,2),2) + 
+            2*Power(eta,2)*((-1 + Power(costheta,2))*Power(etai,2) + Power(k,2))))));
+  }
 }
 
 // exact [Dunkle 1963]
